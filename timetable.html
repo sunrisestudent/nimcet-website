@@ -7,6 +7,7 @@
 <title>NIMCET PrepPro | Timetable</title>
 
 <style>
+
 :root{
     --bg:#070b17;
     --panel:#0d1426;
@@ -38,12 +39,28 @@ html{
 
 body{
     min-height:100vh;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
     color:var(--text);
 
     background:
-        radial-gradient(circle at 20% 0%,rgba(99,102,241,.10),transparent 27%),
-        radial-gradient(circle at 90% 20%,rgba(34,211,238,.07),transparent 25%),
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(99,102,241,.10),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(34,211,238,.07),
+            transparent 25%
+        ),
         var(--bg);
 }
 
@@ -54,6 +71,7 @@ SIDEBAR
 
 .sidebar{
     position:fixed;
+
     left:0;
     top:0;
     bottom:0;
@@ -63,7 +81,9 @@ SIDEBAR
     padding:22px 15px;
 
     background:rgba(8,13,27,.96);
+
     border-right:1px solid var(--border);
+
     backdrop-filter:blur(20px);
 
     z-index:100;
@@ -75,7 +95,9 @@ SIDEBAR
     overflow-x:hidden;
 
     scrollbar-width:thin;
-    scrollbar-color:rgba(129,140,248,.35) transparent;
+    scrollbar-color:
+        rgba(129,140,248,.35)
+        transparent;
 
     transition:.3s;
 }
@@ -93,13 +115,10 @@ SIDEBAR
     border-radius:20px;
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover{
-    background:rgba(129,140,248,.55);
-}
-
 .logo-area{
     display:flex;
     align-items:center;
+
     gap:12px;
 
     padding:5px 12px 25px;
@@ -116,7 +135,12 @@ SIDEBAR
 
     border-radius:13px;
 
-    background:linear-gradient(135deg,var(--primary),var(--purple));
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
 
     font-size:20px;
     font-weight:900;
@@ -125,6 +149,7 @@ SIDEBAR
 .logo-name{
     font-size:16px;
     font-weight:800;
+
     white-space:nowrap;
 }
 
@@ -134,6 +159,7 @@ SIDEBAR
 
 .menu-label{
     padding:0 13px;
+
     margin:18px 0 9px;
 
     color:#475569;
@@ -142,22 +168,21 @@ SIDEBAR
     font-weight:800;
 
     letter-spacing:1.3px;
-    text-transform:uppercase;
 
-    flex-shrink:0;
+    text-transform:uppercase;
 }
 
 .nav{
     display:flex;
     flex-direction:column;
-    gap:4px;
 
-    flex-shrink:0;
+    gap:4px;
 }
 
 .nav-item{
     display:flex;
     align-items:center;
+
     gap:12px;
 
     padding:11px 13px;
@@ -165,19 +190,20 @@ SIDEBAR
     border-radius:12px;
 
     color:#7f8da3;
+
     text-decoration:none;
 
     font-size:12px;
     font-weight:600;
 
     transition:.2s;
-
-    flex-shrink:0;
 }
 
 .nav-item:hover{
     color:#e2e8f0;
-    background:rgba(255,255,255,.045);
+
+    background:
+        rgba(255,255,255,.045);
 }
 
 .nav-item.active{
@@ -190,7 +216,9 @@ SIDEBAR
             rgba(139,92,246,.10)
         );
 
-    border:1px solid rgba(129,140,248,.12);
+    border:
+        1px solid
+        rgba(129,140,248,.12);
 }
 
 .nav-icon{
@@ -202,7 +230,8 @@ SIDEBAR
 
     border-radius:8px;
 
-    background:rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
     font-size:13px;
 
@@ -211,38 +240,38 @@ SIDEBAR
 
 .nav-item.active .nav-icon{
     color:#a5b4fc;
-    background:rgba(99,102,241,.18);
+
+    background:
+        rgba(99,102,241,.18);
 }
 
 .sidebar-bottom{
-    position:sticky;
-
-    left:auto;
-    right:auto;
-    bottom:auto;
-
     margin-top:auto;
+
     padding-top:18px;
 
-    flex-shrink:0;
-
-    background:linear-gradient(
-        to bottom,
-        transparent,
-        rgba(8,13,27,.98) 25%
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(8,13,27,.98) 25%
+        );
 }
 
 .logout{
     width:100%;
 
     margin-top:9px;
+
     padding:10px;
 
     border:0;
+
     border-radius:11px;
 
-    background:rgba(251,113,133,.06);
+    background:
+        rgba(251,113,133,.06);
+
     color:#fb7185;
 
     cursor:pointer;
@@ -252,7 +281,8 @@ SIDEBAR
 }
 
 .logout:hover{
-    background:rgba(251,113,133,.12);
+    background:
+        rgba(251,113,133,.12);
 }
 
 
@@ -265,7 +295,10 @@ MAIN
 
     min-height:100vh;
 
-    padding:25px 30px 50px;
+    padding:
+        25px
+        30px
+        50px;
 }
 
 
@@ -283,18 +316,22 @@ TOPBAR
 
 .page-title h1{
     font-size:24px;
+
     letter-spacing:-.8px;
 }
 
 .page-title p{
     margin-top:5px;
+
     color:var(--muted);
+
     font-size:11px;
 }
 
 .top-actions{
     display:flex;
     align-items:center;
+
     gap:10px;
 }
 
@@ -305,10 +342,15 @@ TOPBAR
     display:grid;
     place-items:center;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius:11px;
 
-    background:rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
+
     color:#94a3b8;
 
     cursor:pointer;
@@ -323,7 +365,12 @@ TOPBAR
 
     border-radius:12px;
 
-    background:linear-gradient(135deg,var(--primary),var(--purple));
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
 
     color:#fff;
 
@@ -339,10 +386,15 @@ TOPBAR
     width:38px;
     height:38px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius:11px;
 
-    background:rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
+
     color:white;
 
     cursor:pointer;
@@ -372,7 +424,9 @@ HEADER
             rgba(15,23,42,.7)
         );
 
-    border:1px solid rgba(129,140,248,.12);
+    border:
+        1px solid
+        rgba(129,140,248,.12);
 }
 
 .header-content{
@@ -387,13 +441,16 @@ HEADER
 
     border-radius:50px;
 
-    background:rgba(99,102,241,.1);
+    background:
+        rgba(99,102,241,.1);
+
     color:#a5b4fc;
 
     font-size:9px;
     font-weight:750;
 
     text-transform:uppercase;
+
     letter-spacing:.6px;
 }
 
@@ -401,6 +458,7 @@ HEADER
     margin-top:11px;
 
     font-size:25px;
+
     letter-spacing:-.9px;
 }
 
@@ -416,6 +474,7 @@ HEADER
     color:#94a3b8;
 
     font-size:11px;
+
     line-height:1.6;
 }
 
@@ -426,10 +485,14 @@ STATS
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:10px;
 
     width:390px;
+
     flex-shrink:0;
 }
 
@@ -438,17 +501,23 @@ STATS
 
     border-radius:15px;
 
-    background:rgba(0,0,0,.16);
-    border:1px solid rgba(255,255,255,.05);
+    background:
+        rgba(0,0,0,.16);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
 }
 
 .stat-icon{
     font-size:15px;
+
     margin-bottom:9px;
 }
 
 .stat-value{
     font-size:18px;
+
     font-weight:800;
 }
 
@@ -456,6 +525,7 @@ STATS
     margin-top:3px;
 
     color:#64748b;
+
     font-size:8px;
 }
 
@@ -467,29 +537,40 @@ TOOLBAR
 .toolbar{
     display:flex;
     align-items:center;
+
     gap:10px;
 
     margin-top:17px;
+
     padding:13px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius:16px;
 
-    background:rgba(15,23,42,.62);
+    background:
+        rgba(15,23,42,.62);
 }
 
 .search{
     position:relative;
+
     flex:1;
 }
 
 .search-icon{
     position:absolute;
+
     left:13px;
     top:50%;
-    transform:translateY(-50%);
+
+    transform:
+        translateY(-50%);
 
     color:#64748b;
+
     font-size:12px;
 }
 
@@ -497,14 +578,22 @@ TOOLBAR
     width:100%;
     height:39px;
 
-    padding:0 13px 0 36px;
+    padding:
+        0
+        13px
+        0
+        36px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
     border-radius:10px;
-    border:1px solid rgba(255,255,255,.07);
 
     outline:none;
 
     background:#0a1120;
+
     color:#fff;
 
     font-size:11px;
@@ -517,17 +606,24 @@ TOOLBAR
 select{
     height:39px;
 
-    padding:0 12px;
+    padding:
+        0
+        12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
     border-radius:10px;
-    border:1px solid rgba(255,255,255,.07);
 
     background:#0a1120;
+
     color:#cbd5e1;
 
     outline:none;
 
     font-size:10px;
+
     cursor:pointer;
 }
 
@@ -535,40 +631,16 @@ select option{
     background:#0f172a;
 }
 
-.primary-btn{
-    height:39px;
-
-    padding:0 15px;
-
-    border:0;
-    border-radius:10px;
-
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
-
-    color:white;
-
-    font-size:10px;
-    font-weight:750;
-
-    cursor:pointer;
-
-    box-shadow:0 8px 20px rgba(99,102,241,.18);
-}
-
-.primary-btn:hover{
-    filter:brightness(1.08);
-}
-
 
 /* =========================================================
 DAY TABS
-ONLY 7 DAYS - NO DATE
 ========================================================= */
 
 .day-tabs{
     display:grid;
 
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:
+        repeat(7,1fr);
 
     gap:7px;
 
@@ -578,10 +650,14 @@ ONLY 7 DAYS - NO DATE
 .day-tab{
     padding:13px 8px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius:13px;
 
-    background:rgba(15,23,42,.65);
+    background:
+        rgba(15,23,42,.65);
 
     color:#64748b;
 
@@ -594,7 +670,9 @@ ONLY 7 DAYS - NO DATE
 
 .day-tab:hover{
     color:#cbd5e1;
-    border-color:rgba(129,140,248,.18);
+
+    border-color:
+        rgba(129,140,248,.18);
 }
 
 .day-tab.active{
@@ -607,13 +685,17 @@ ONLY 7 DAYS - NO DATE
             rgba(139,92,246,.13)
         );
 
-    border-color:rgba(129,140,248,.25);
+    border-color:
+        rgba(129,140,248,.25);
 
-    box-shadow:0 8px 25px rgba(99,102,241,.08);
+    box-shadow:
+        0 8px 25px
+        rgba(99,102,241,.08);
 }
 
 .day-name{
     font-size:9px;
+
     font-weight:750;
 
     text-transform:uppercase;
@@ -625,16 +707,20 @@ ONLY 7 DAYS - NO DATE
 
 
 /* =========================================================
-TIMETABLE
+TIMETABLE CARD
 ========================================================= */
 
 .timetable-card{
     margin-top:15px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
 
-    background:rgba(15,23,42,.68);
+    background:
+        rgba(15,23,42,.68);
 
     overflow:hidden;
 }
@@ -646,11 +732,14 @@ TIMETABLE
 
     padding:17px 19px;
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
 }
 
 .timetable-title{
     font-size:13px;
+
     font-weight:750;
 }
 
@@ -658,6 +747,7 @@ TIMETABLE
     margin-top:3px;
 
     color:#64748b;
+
     font-size:9px;
 }
 
@@ -666,15 +756,75 @@ TIMETABLE
 
     border-radius:7px;
 
-    background:rgba(99,102,241,.08);
+    background:
+        rgba(99,102,241,.08);
+
     color:#a5b4fc;
 
     font-size:8px;
+
     font-weight:750;
 }
 
+
+/* =========================================================
+STUDY SUMMARY
+========================================================= */
+
+.study-summary{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+
+    padding:15px 19px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+.summary-box{
+    padding:12px;
+
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.045);
+}
+
+.summary-value{
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:800;
+}
+
+.summary-label{
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+
+/* =========================================================
+SESSIONS
+========================================================= */
+
 .sessions{
-    padding:7px 19px 18px;
+    padding:
+        7px
+        19px
+        18px;
 }
 
 .session{
@@ -682,7 +832,11 @@ TIMETABLE
 
     display:grid;
 
-    grid-template-columns:80px 8px 1fr auto;
+    grid-template-columns:
+        80px
+        8px
+        1fr
+        auto;
 
     align-items:center;
 
@@ -690,7 +844,9 @@ TIMETABLE
 
     min-height:83px;
 
-    border-bottom:1px solid rgba(255,255,255,.045);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.045);
 }
 
 .session:last-child{
@@ -703,7 +859,9 @@ TIMETABLE
 
 .start-time{
     color:#cbd5e1;
+
     font-size:10px;
+
     font-weight:750;
 }
 
@@ -711,6 +869,7 @@ TIMETABLE
     margin-top:3px;
 
     color:#475569;
+
     font-size:8px;
 }
 
@@ -724,7 +883,9 @@ TIMETABLE
 
     background:#6366f1;
 
-    box-shadow:0 0 0 4px rgba(99,102,241,.08);
+    box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,.08);
 }
 
 .timeline-dot::before{
@@ -738,22 +899,49 @@ TIMETABLE
     width:2px;
     height:65px;
 
-    background:rgba(99,102,241,.12);
+    background:
+        rgba(99,102,241,.12);
 }
 
-.session:last-child .timeline-dot::before{
+.session:last-child
+.timeline-dot::before{
     display:none;
 }
 
-.session.completed .timeline-dot{
-    background:#34d399;
+.session.sleep .timeline-dot{
+    background:#64748b;
 
-    box-shadow:0 0 0 4px rgba(52,211,153,.08);
+    box-shadow:
+        0 0 0 4px
+        rgba(100,116,139,.08);
 }
 
-.session.completed .session-title{
-    text-decoration:line-through;
-    color:#64748b;
+.session.work .timeline-dot{
+    background:#f59e0b;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(245,158,11,.08);
+}
+
+.session.rest .timeline-dot{
+    background:#22d3ee;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(34,211,238,.08);
+}
+
+.session.study .timeline-dot{
+    background:#6366f1;
+}
+
+.session.coding .timeline-dot{
+    background:#8b5cf6;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(139,92,246,.08);
 }
 
 .session-main{
@@ -762,7 +950,9 @@ TIMETABLE
 
 .session-top{
     display:flex;
+
     align-items:center;
+
     gap:7px;
 }
 
@@ -772,9 +962,11 @@ TIMETABLE
     color:#e2e8f0;
 
     font-size:11px;
+
     font-weight:700;
 
     white-space:nowrap;
+
     text-overflow:ellipsis;
 }
 
@@ -785,15 +977,19 @@ TIMETABLE
 
     border-radius:5px;
 
-    background:rgba(99,102,241,.09);
+    background:
+        rgba(99,102,241,.09);
+
     color:#a5b4fc;
 
     font-size:7px;
+
     font-weight:750;
 }
 
 .session-meta{
     display:flex;
+
     flex-wrap:wrap;
 
     gap:7px;
@@ -815,35 +1011,64 @@ TIMETABLE
     font-size:8px;
 
     white-space:nowrap;
+
     text-overflow:ellipsis;
 }
 
-.priority{
+.type-badge{
     padding:4px 7px;
 
     border-radius:5px;
 
     font-size:7px;
+
     font-weight:750;
 }
 
-.priority.high{
-    color:#fb7185;
-    background:rgba(251,113,133,.08);
+.type-badge.study{
+    color:#a5b4fc;
+
+    background:
+        rgba(99,102,241,.08);
 }
 
-.priority.medium{
+.type-badge.sleep{
+    color:#94a3b8;
+
+    background:
+        rgba(100,116,139,.08);
+}
+
+.type-badge.work{
     color:#fbbf24;
-    background:rgba(251,191,36,.08);
+
+    background:
+        rgba(245,158,11,.08);
 }
 
-.priority.low{
+.type-badge.rest{
+    color:#67e8f9;
+
+    background:
+        rgba(34,211,238,.08);
+}
+
+.type-badge.coding{
+    color:#c4b5fd;
+
+    background:
+        rgba(139,92,246,.08);
+}
+
+.session-duration{
     color:#34d399;
-    background:rgba(52,211,153,.08);
+
+    font-weight:700;
 }
 
 .session-actions{
     display:flex;
+
     gap:5px;
 }
 
@@ -854,10 +1079,14 @@ TIMETABLE
     display:grid;
     place-items:center;
 
-    border:1px solid rgba(255,255,255,.06);
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
     border-radius:8px;
 
-    background:rgba(255,255,255,.025);
+    background:
+        rgba(255,255,255,.025);
 
     color:#64748b;
 
@@ -866,238 +1095,51 @@ TIMETABLE
 
 .small-btn:hover{
     color:white;
-    background:rgba(255,255,255,.06);
-}
 
-.small-btn.complete:hover{
-    color:#34d399;
-}
-
-.small-btn.delete:hover{
-    color:#fb7185;
+    background:
+        rgba(255,255,255,.06);
 }
 
 
 /* =========================================================
-EMPTY
+FOOTER NOTE
 ========================================================= */
 
-.empty{
-    padding:65px 20px;
+.timetable-footer{
+    margin-top:15px;
 
-    text-align:center;
+    padding:16px 19px;
 
-    border:1px dashed rgba(148,163,184,.14);
+    border:
+        1px solid
+        rgba(99,102,241,.10);
 
-    color:#64748b;
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.08),
+            rgba(139,92,246,.04)
+        );
 }
 
-.empty-icon{
-    width:55px;
-    height:55px;
+.timetable-footer-title{
+    color:#a5b4fc;
 
-    display:grid;
-    place-items:center;
+    font-size:10px;
 
-    margin:0 auto 13px;
-
-    border-radius:16px;
-
-    background:rgba(99,102,241,.08);
-    color:#818cf8;
-
-    font-size:20px;
-}
-
-.empty h3{
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-.empty p{
-    max-width:380px;
-
-    margin:7px auto 0;
-
-    font-size:9px;
-    line-height:1.6;
-}
-
-
-/* =========================================================
-MODAL
-========================================================= */
-
-.modal-overlay{
-    position:fixed;
-    inset:0;
-
-    z-index:500;
-
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(2,6,23,.72);
-
-    backdrop-filter:blur(8px);
-}
-
-.modal-overlay.show{
-    display:flex;
-}
-
-.modal{
-    width:min(100%,500px);
-
-    max-height:90vh;
-    overflow:auto;
-
-    padding:25px;
-
-    border-radius:22px;
-
-    background:#0d1426;
-
-    border:1px solid rgba(255,255,255,.09);
-
-    box-shadow:0 35px 90px rgba(0,0,0,.5);
-
-    animation:modalIn .25s ease;
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.98);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-.modal-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:20px;
-}
-
-.modal-title{
-    font-size:18px;
     font-weight:800;
 }
 
-.close{
-    width:31px;
-    height:31px;
+.timetable-footer-text{
+    margin-top:5px;
 
-    border:0;
-    border-radius:9px;
+    color:#64748b;
 
-    background:rgba(255,255,255,.05);
+    font-size:9px;
 
-    color:#94a3b8;
-
-    cursor:pointer;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-label{
-    display:block;
-
-    margin-bottom:7px;
-
-    color:#cbd5e1;
-
-    font-size:10px;
-    font-weight:650;
-}
-
-.form-input,
-.form-select{
-    width:100%;
-
-    height:43px;
-
-    padding:0 12px;
-
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:10px;
-
-    outline:none;
-
-    background:#090f1d;
-    color:white;
-
-    font-size:11px;
-}
-
-.form-input:focus,
-.form-select:focus{
-    border-color:#6366f1;
-}
-
-textarea.form-input{
-    height:85px;
-
-    padding-top:12px;
-
-    resize:vertical;
-}
-
-.two-col{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.modal-buttons{
-    display:flex;
-    justify-content:flex-end;
-    gap:8px;
-
-    margin-top:20px;
-}
-
-.cancel-btn{
-    height:40px;
-    padding:0 15px;
-
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:10px;
-
-    background:rgba(255,255,255,.04);
-    color:#94a3b8;
-
-    cursor:pointer;
-
-    font-size:10px;
-}
-
-.save-btn{
-    height:40px;
-    padding:0 17px;
-
-    border:0;
-    border-radius:10px;
-
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:10px;
-    font-weight:750;
+    line-height:1.6;
 }
 
 
@@ -1114,6 +1156,7 @@ TOAST
     z-index:999;
 
     display:flex;
+
     flex-direction:column;
 
     gap:8px;
@@ -1128,33 +1171,42 @@ TOAST
 
     background:#111827;
 
-    border:1px solid rgba(255,255,255,.09);
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35);
 
     font-size:10px;
 
-    animation:toastIn .25s ease;
+    animation:
+        toastIn .25s ease;
 }
 
 .toast.success{
-    border-left:3px solid var(--green);
-}
-
-.toast.error{
-    border-left:3px solid var(--red);
+    border-left:
+        3px solid
+        var(--green);
 }
 
 @keyframes toastIn{
+
     from{
         opacity:0;
-        transform:translateX(15px);
+
+        transform:
+            translateX(15px);
     }
 
     to{
         opacity:1;
-        transform:translateX(0);
+
+        transform:
+            translateX(0);
     }
+
 }
 
 
@@ -1172,28 +1224,36 @@ RESPONSIVE
         overflow-x:auto;
 
         grid-template-columns:
-            repeat(7,minmax(85px,1fr));
+            repeat(
+                7,
+                minmax(85px,1fr)
+            );
     }
+
 }
 
 
 @media(max-width:800px){
 
     .sidebar{
-        transform:translateX(-100%);
+        transform:
+            translateX(-100%);
     }
 
     .sidebar.open{
-        transform:translateX(0);
+        transform:
+            translateX(0);
     }
 
     .main{
         margin-left:0;
+
         padding:18px;
     }
 
     .mobile-menu{
         display:grid;
+
         place-items:center;
     }
 
@@ -1207,12 +1267,14 @@ RESPONSIVE
 
     .header-card{
         flex-direction:column;
+
         align-items:stretch;
     }
 
     .stats{
         width:100%;
     }
+
 }
 
 
@@ -1230,26 +1292,24 @@ RESPONSIVE
         flex:1;
     }
 
-    .primary-btn{
-        flex:1;
-    }
-
-    .two-col{
-        grid-template-columns:1fr;
-    }
-
     .session{
-        grid-template-columns:58px 8px 1fr;
+        grid-template-columns:
+            58px
+            8px
+            1fr;
+
         gap:9px;
     }
 
     .session-actions{
         grid-column:3;
+
         margin-top:-5px;
     }
 
     .session-time{
         align-self:start;
+
         padding-top:19px;
     }
 
@@ -1262,17 +1322,27 @@ RESPONSIVE
     }
 
     .stats{
-        grid-template-columns:1fr 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr 1fr;
     }
 
     .stat{
         padding:12px 9px;
     }
+
+    .study-summary{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================================================
 SIDEBAR
@@ -1300,32 +1370,55 @@ SIDEBAR
 
     <nav class="nav">
 
-        <a href="dashboard.html" class="nav-item">
+        <a
+            href="dashboard.html"
+            class="nav-item"
+        >
             <span class="nav-icon">⌂</span>
             Dashboard
         </a>
 
-        <a href="syllabus.html" class="nav-item">
+
+        <a
+            href="syllabus.html"
+            class="nav-item"
+        >
             <span class="nav-icon">✓</span>
             Syllabus
         </a>
 
-        <a href="notes.html" class="nav-item">
+
+        <a
+            href="notes.html"
+            class="nav-item"
+        >
             <span class="nav-icon">✎</span>
             Notes
         </a>
 
-        <a href="doubts.html" class="nav-item">
+
+        <a
+            href="doubts.html"
+            class="nav-item"
+        >
             <span class="nav-icon">?</span>
             Doubts
         </a>
 
-        <a href="weekly-plan.html" class="nav-item">
+
+        <a
+            href="weekly-plan.html"
+            class="nav-item"
+        >
             <span class="nav-icon">◷</span>
             Weekly Plan
         </a>
 
-        <a href="timetable.html" class="nav-item active">
+
+        <a
+            href="timetable.html"
+            class="nav-item active"
+        >
             <span class="nav-icon">▦</span>
             Timetable
         </a>
@@ -1336,17 +1429,28 @@ SIDEBAR
         </div>
 
 
-        <a href="mock-test.html" class="nav-item">
+        <a
+            href="mock-test.html"
+            class="nav-item"
+        >
             <span class="nav-icon">▣</span>
             Mock Tests
         </a>
 
-        <a href="progress.html" class="nav-item">
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
             <span class="nav-icon">◒</span>
             Progress
         </a>
 
-        <a href="resources.html" class="nav-item">
+
+        <a
+            href="resources.html"
+            class="nav-item"
+        >
             <span class="nav-icon">▤</span>
             Resources
         </a>
@@ -1357,7 +1461,10 @@ SIDEBAR
         </div>
 
 
-        <a href="profile.html" class="nav-item">
+        <a
+            href="profile.html"
+            class="nav-item"
+        >
             <span class="nav-icon">●</span>
             Profile
         </a>
@@ -1367,7 +1474,10 @@ SIDEBAR
 
     <div class="sidebar-bottom">
 
-        <button class="logout" id="logoutBtn">
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
             ↪ &nbsp; Logout
         </button>
 
@@ -1376,35 +1486,48 @@ SIDEBAR
 </aside>
 
 
+
 <!-- =========================================================
 MAIN
 ========================================================= -->
 
 <main class="main">
 
+
+    <!-- TOPBAR -->
+
     <header class="topbar">
 
-        <button class="mobile-menu" id="mobileMenu">
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
             ☰
         </button>
+
 
         <div class="page-title">
 
             <h1>
-                My Timetable
+                NIMCET Timetable
             </h1>
 
             <p>
-                Plan your NIMCET study sessions and stay consistent
+                Fixed weekly study schedule
             </p>
 
         </div>
 
+
         <div class="top-actions">
 
-            <button class="icon-btn">
+            <button
+                class="icon-btn"
+                type="button"
+            >
                 🔔
             </button>
+
 
             <a
                 href="profile.html"
@@ -1419,25 +1542,31 @@ MAIN
     </header>
 
 
-    <!-- HEADER -->
+
+    <!-- =====================================================
+    HEADER CARD
+    ====================================================== -->
 
     <section class="header-card">
 
         <div class="header-content">
 
             <div class="badge">
-                Personal study schedule
+                NIMCET EXAM PREPARATION
             </div>
+
 
             <h2>
                 Study smarter,
                 <span>every single day.</span>
             </h2>
 
+
             <p>
-                Create your own NIMCET study timetable.
-                Choose the day, time, subject and topic
-                according to your personal study routine.
+                This is your fixed NIMCET preparation
+                timetable. The same routine is planned
+                for Monday to Sunday. You don't need to
+                create sessions manually.
             </p>
 
         </div>
@@ -1445,21 +1574,22 @@ MAIN
 
         <div class="stats">
 
+
             <div class="stat">
 
                 <div class="stat-icon">
-                    ⏱
+                    📚
                 </div>
 
                 <div
                     class="stat-value"
-                    id="todayHours"
+                    id="studyHours"
                 >
-                    0h
+                    11h
                 </div>
 
                 <div class="stat-label">
-                    Today's Study
+                    Daily Study
                 </div>
 
             </div>
@@ -1468,18 +1598,18 @@ MAIN
             <div class="stat">
 
                 <div class="stat-icon">
-                    ◷
+                    📅
                 </div>
 
                 <div
                     class="stat-value"
                     id="weekHours"
                 >
-                    0h
+                    77h
                 </div>
 
                 <div class="stat-label">
-                    Weekly Hours
+                    Weekly Study
                 </div>
 
             </div>
@@ -1488,28 +1618,32 @@ MAIN
             <div class="stat">
 
                 <div class="stat-icon">
-                    ✓
+                    ⏰
                 </div>
 
                 <div
                     class="stat-value"
-                    id="completionRate"
+                    id="totalHours"
                 >
-                    0%
+                    24h
                 </div>
 
                 <div class="stat-label">
-                    Completed
+                    Full Day
                 </div>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- TOOLBAR -->
+
+    <!-- =====================================================
+    SEARCH
+    ====================================================== -->
 
     <section class="toolbar">
 
@@ -1519,10 +1653,11 @@ MAIN
                 ⌕
             </span>
 
+
             <input
                 type="search"
                 id="searchInput"
-                placeholder="Search sessions, subjects or topics..."
+                placeholder="Search subject, work or activity..."
             >
 
         </div>
@@ -1531,49 +1666,52 @@ MAIN
         <select id="filterSelect">
 
             <option value="all">
-                All Sessions
+                All Activities
             </option>
 
-            <option value="pending">
-                Pending
+            <option value="study">
+                Study
             </option>
 
-            <option value="completed">
-                Completed
+            <option value="sleep">
+                Sleeping
             </option>
 
-            <option value="high">
-                High Priority
+            <option value="work">
+                Work
+            </option>
+
+            <option value="rest">
+                Rest
+            </option>
+
+            <option value="coding">
+                Coding
             </option>
 
         </select>
 
-
-        <button
-            class="primary-btn"
-            id="addSessionBtn"
-        >
-            + Add Session
-        </button>
-
     </section>
 
 
+
     <!-- =====================================================
-    ONLY 7 WEEKLY DAYS
-    NO DATE
+    WEEK DAYS
     ====================================================== -->
 
     <section
         class="day-tabs"
         id="dayTabs"
-    >
-    </section>
+    ></section>
 
 
-    <!-- TIMETABLE -->
+
+    <!-- =====================================================
+    TIMETABLE
+    ====================================================== -->
 
     <section class="timetable-card">
+
 
         <div class="timetable-header">
 
@@ -1586,8 +1724,9 @@ MAIN
                     Monday
                 </div>
 
+
                 <div class="timetable-subtitle">
-                    Your study sessions for this day
+                    NIMCET daily routine
                 </div>
 
             </div>
@@ -1597,271 +1736,132 @@ MAIN
                 class="day-session-count"
                 id="sessionCount"
             >
-                0 Sessions
+                10 Activities
             </div>
 
         </div>
 
+
+
+        <!-- SUMMARY -->
+
+        <div class="study-summary">
+
+
+            <div class="summary-box">
+
+                <div
+                    class="summary-value"
+                >
+                    11 Hours
+                </div>
+
+                <div
+                    class="summary-label"
+                >
+                    Study Time
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div
+                    class="summary-value"
+                >
+                    2 + 2 + 2 + 1
+                </div>
+
+                <div
+                    class="summary-label"
+                >
+                    Main NIMCET Blocks
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div
+                    class="summary-value"
+                >
+                    9 Hours
+                </div>
+
+                <div
+                    class="summary-label"
+                >
+                    Sleep
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div
+                    class="summary-value"
+                >
+                    4 Hours
+                </div>
+
+                <div
+                    class="summary-label"
+                >
+                    Rest + Work
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SESSIONS -->
 
         <div
             class="sessions"
             id="sessions"
-        >
-        </div>
+        ></div>
+
 
     </section>
 
-</main>
 
 
-<!-- =========================================================
-SESSION MODAL
-========================================================= -->
+    <!-- =====================================================
+    FOOTER NOTE
+    ====================================================== -->
 
-<div
-    class="modal-overlay"
-    id="modalOverlay"
->
+    <div class="timetable-footer">
 
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <div
-                class="modal-title"
-                id="modalTitle"
-            >
-                Add Study Session
-            </div>
-
-            <button
-                class="close"
-                id="closeModal"
-                type="button"
-            >
-                ×
-            </button>
-
+        <div class="timetable-footer-title">
+            📌 NIMCET Daily Target
         </div>
 
 
-        <form id="sessionForm">
-
-
-            <div class="form-group">
-
-                <label class="form-label">
-                    Session Title
-                </label>
-
-                <input
-                    class="form-input"
-                    id="sessionTitle"
-                    type="text"
-                    placeholder="e.g. Probability Practice"
-                    maxlength="80"
-                    required
-                >
-
-            </div>
-
-
-            <div class="two-col">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Subject
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="sessionSubject"
-                        type="text"
-                        placeholder="Mathematics"
-                        maxlength="50"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Topic
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="sessionTopic"
-                        type="text"
-                        placeholder="Probability"
-                        maxlength="80"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="two-col">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Start Time
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="startTime"
-                        type="time"
-                        value="06:00"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        End Time
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="endTime"
-                        type="time"
-                        value="07:00"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="two-col">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Priority
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="sessionPriority"
-                    >
-
-                        <option value="high">
-                            High
-                        </option>
-
-                        <option
-                            value="medium"
-                            selected
-                        >
-                            Medium
-                        </option>
-
-                        <option value="low">
-                            Low
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Day
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="sessionDay"
-                    >
-
-                        <option value="Monday">
-                            Monday
-                        </option>
-
-                        <option value="Tuesday">
-                            Tuesday
-                        </option>
-
-                        <option value="Wednesday">
-                            Wednesday
-                        </option>
-
-                        <option value="Thursday">
-                            Thursday
-                        </option>
-
-                        <option value="Friday">
-                            Friday
-                        </option>
-
-                        <option value="Saturday">
-                            Saturday
-                        </option>
-
-                        <option value="Sunday">
-                            Sunday
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label class="form-label">
-                    Session Notes
-                </label>
-
-                <textarea
-                    class="form-input"
-                    id="sessionNotes"
-                    placeholder="What do you want to complete in this session?"
-                    maxlength="300"
-                ></textarea>
-
-            </div>
-
-
-            <div class="modal-buttons">
-
-                <button
-                    type="button"
-                    class="cancel-btn"
-                    id="cancelModal"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="submit"
-                    class="save-btn"
-                >
-                    Save Session
-                </button>
-
-            </div>
-
-        </form>
+        <div class="timetable-footer-text">
+
+            Follow this same timetable from Monday to
+            Sunday. Your total planned study time is
+            <strong>11 hours every day</strong> and
+            <strong>77 hours every week</strong>.
+
+            Computer Awareness + Analytical Ability &
+            Logical Reasoning, Mathematics and General
+            English are included along with your
+            HTML, CSS, JS, Python and MySQL coaching.
+
+        </div>
 
     </div>
 
-</div>
+
+</main>
+
 
 
 <!-- =========================================================
@@ -1874,48 +1874,31 @@ TOAST
 ></div>
 
 
+
 <script>
-
-/* =========================================================
-STORAGE
-========================================================= */
-
-const USERS_KEY = "nimcet_preppro_users";
-const SESSION_KEY = "nimcet_preppro_session";
-
-
-/* =========================================================
-GET USERS
-========================================================= */
-
-function getUsers(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(USERS_KEY)
-        ) || [];
-
-    }catch{
-
-        return [];
-
-    }
-
-}
 
 
 /* =========================================================
 AUTH
 ========================================================= */
 
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+
 let session = null;
 
 try{
 
-    session = JSON.parse(
-        localStorage.getItem(SESSION_KEY)
-    );
+    session =
+        JSON.parse(
+            localStorage.getItem(
+                SESSION_KEY
+            )
+        );
 
 }catch{
 
@@ -1923,44 +1906,275 @@ try{
 
 }
 
+
+/*
+    Agar aapki website me login system hai
+    to ye check useful hai.
+*/
+
 if(!session){
 
-    window.location.href = "index.html";
+    /*
+        Login nahi hai to index par bhejega.
+        Agar testing ke time direct timetable
+        open karna ho to neeche ki 3 lines
+        comment kar sakte ho.
+    */
+
+    // window.location.href = "index.html";
 
 }
+
 
 
 /* =========================================================
-CURRENT USER
+USER
 ========================================================= */
 
-let users = getUsers();
+let users = [];
 
-let user = users.find(
-    item => item.id === session?.userId
-);
+try{
 
-if(!user){
+    users =
+        JSON.parse(
+            localStorage.getItem(
+                USERS_KEY
+            )
+        ) || [];
 
-    localStorage.removeItem(
-        SESSION_KEY
-    );
+}catch{
 
-    window.location.href =
-        "index.html";
+    users = [];
 
 }
+
+
+let currentUser = null;
+
+
+if(session && session.userId){
+
+    currentUser =
+        users.find(
+            user =>
+                user.id ===
+                session.userId
+        );
+
+}
+
 
 
 /* =========================================================
-TIMETABLE
+FIXED NIMCET TIMETABLE
+=========================================================
+
+IMPORTANT:
+
+User kuch create nahi karega.
+
+Ye timetable directly code ke andar
+fixed hai.
+
+Same timetable Monday-Sunday
+sabhi days par show hoga.
+
 ========================================================= */
 
-if(!Array.isArray(user.timetable)){
 
-    user.timetable = [];
+const weeklyTimetable = [
 
-}
+    {
+        id:"sleep-night",
+
+        start:"22:00",
+        end:"04:00",
+
+        title:"Sleeping",
+
+        subject:"Sleep",
+
+        topic:"Night Sleep",
+
+        type:"sleep",
+
+        note:"Complete 6 hours of night sleep."
+
+    },
+
+
+    {
+        id:"computer-reasoning",
+
+        start:"04:00",
+        end:"06:00",
+
+        title:"Computer Awareness + Analytical Ability & Logical Reasoning",
+
+        subject:"Computer + Reasoning",
+
+        topic:"Computer Awareness, Analytical Ability & Logical Reasoning",
+
+        type:"study",
+
+        note:"NIMCET Computer Awareness + Analytical Ability & Logical Reasoning preparation."
+
+    },
+
+
+    {
+        id:"work",
+
+        start:"06:00",
+        end:"07:00",
+
+        title:"Work",
+
+        subject:"Work",
+
+        topic:"Daily Work",
+
+        type:"work",
+
+        note:"Complete daily work responsibilities."
+
+    },
+
+
+    {
+        id:"coding",
+
+        start:"07:00",
+        end:"11:00",
+
+        title:"HTML + CSS + JavaScript + Python + MySQL",
+
+        subject:"Coding",
+
+        topic:"HTML, CSS, JS, Python & MySQL",
+
+        type:"coding",
+
+        note:"Coaching + coding practice."
+
+    },
+
+
+    {
+        id:"rest-morning",
+
+        start:"11:00",
+        end:"13:00",
+
+        title:"Rest",
+
+        subject:"Rest",
+
+        topic:"Recovery Time",
+
+        type:"rest",
+
+        note:"Take proper rest before Mathematics."
+
+    },
+
+
+    {
+        id:"mathematics-1",
+
+        start:"13:00",
+        end:"15:00",
+
+        title:"Mathematics",
+
+        subject:"Mathematics",
+
+        topic:"NIMCET Mathematics",
+
+        type:"study",
+
+        note:"Mathematics concepts and problem solving."
+
+    },
+
+
+    {
+        id:"sleep-afternoon",
+
+        start:"15:00",
+        end:"18:00",
+
+        title:"Sleeping",
+
+        subject:"Sleep",
+
+        topic:"Afternoon Sleep",
+
+        type:"sleep",
+
+        note:"Complete 3 hours of afternoon sleep."
+
+    },
+
+
+    {
+        id:"mathematics-2",
+
+        start:"18:00",
+        end:"20:00",
+
+        title:"Mathematics",
+
+        subject:"Mathematics",
+
+        topic:"NIMCET Mathematics Practice",
+
+        type:"study",
+
+        note:"Mathematics practice, questions and revision."
+
+    },
+
+
+    {
+        id:"rest-evening",
+
+        start:"20:00",
+        end:"21:00",
+
+        title:"Rest",
+
+        subject:"Rest",
+
+        topic:"Break",
+
+        type:"rest",
+
+        note:"Relax and prepare for English session."
+
+    },
+
+
+    {
+        id:"english",
+
+        start:"21:00",
+        end:"22:00",
+
+        title:"General English",
+
+        subject:"General English",
+
+        topic:"English",
+
+        type:"study",
+
+        note:"General English practice for NIMCET."
+
+    }
+
+];
+
 
 
 /* =========================================================
@@ -1968,28 +2182,32 @@ WEEK DAYS
 ========================================================= */
 
 const days = [
+
     "Monday",
+
     "Tuesday",
+
     "Wednesday",
+
     "Thursday",
+
     "Friday",
+
     "Saturday",
+
     "Sunday"
+
 ];
 
 
-/*
-    IMPORTANT:
 
-    Ab current date ka use timetable
-    select karne ke liye nahi ho raha.
+/* =========================================================
+SELECTED DAY
+========================================================= */
 
-    User manually koi bhi day select karega.
-*/
+let selectedDay =
+    getCurrentDay();
 
-let selectedDay = "Monday";
-
-let editingSessionId = null;
 
 
 /* =========================================================
@@ -1997,99 +2215,115 @@ ELEMENTS
 ========================================================= */
 
 const dayTabs =
-    document.getElementById("dayTabs");
+    document.getElementById(
+        "dayTabs"
+    );
 
-const sessionsContainer =
-    document.getElementById("sessions");
 
-const modalOverlay =
-    document.getElementById("modalOverlay");
+const sessions =
+    document.getElementById(
+        "sessions"
+    );
 
-const sessionForm =
-    document.getElementById("sessionForm");
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const filterSelect =
+    document.getElementById(
+        "filterSelect"
+    );
+
+
+const selectedDayTitle =
+    document.getElementById(
+        "selectedDayTitle"
+    );
+
+
+const sessionCount =
+    document.getElementById(
+        "sessionCount"
+    );
+
 
 const sidebar =
-    document.getElementById("sidebar");
+    document.getElementById(
+        "sidebar"
+    );
+
 
 const mobileMenu =
-    document.getElementById("mobileMenu");
+    document.getElementById(
+        "mobileMenu"
+    );
+
 
 
 /* =========================================================
-SAVE USER
+CURRENT DAY
 ========================================================= */
 
-function saveCurrentUser(){
+function getCurrentDay(){
 
-    const index =
-        users.findIndex(
-            item => item.id === user.id
-        );
+    const current =
+        new Date().getDay();
 
-    if(index !== -1){
 
-        users[index] = user;
+    if(current === 0){
+
+        return "Sunday";
 
     }
 
-    localStorage.setItem(
-        USERS_KEY,
-        JSON.stringify(users)
-    );
+
+    return days[current - 1];
 
 }
 
 
-/* =========================================================
-GENERATE ID
-========================================================= */
-
-function generateId(){
-
-    return (
-        "session_" +
-        Date.now().toString(36) +
-        "_" +
-        Math.random()
-            .toString(36)
-            .substring(2,8)
-    );
-
-}
-
 
 /* =========================================================
-RENDER 7 DAYS
+RENDER DAY TABS
 ========================================================= */
 
 function renderDayTabs(){
 
     dayTabs.innerHTML =
-        days.map(day => {
 
-            return `
+        days.map(
+            day => {
 
-                <button
-                    type="button"
-                    class="day-tab ${
-                        day === selectedDay
-                            ? "active"
-                            : ""
-                    }"
-                    onclick="selectDay('${day}')"
-                >
+                return `
 
-                    <div class="day-name">
-                        ${day}
-                    </div>
+                    <button
+                        type="button"
+                        class="day-tab ${
+                            selectedDay === day
+                                ? "active"
+                                : ""
+                        }"
+                        onclick="
+                            selectDay('${day}')
+                        "
+                    >
 
-                </button>
+                        <div class="day-name">
+                            ${day}
+                        </div>
 
-            `;
+                    </button>
 
-        }).join("");
+                `;
+
+            }
+        ).join("");
 
 }
+
 
 
 /* =========================================================
@@ -2098,7 +2332,8 @@ SELECT DAY
 
 function selectDay(day){
 
-    selectedDay = day;
+    selectedDay =
+        day;
 
     renderDayTabs();
 
@@ -2107,516 +2342,81 @@ function selectDay(day){
 }
 
 
-/* =========================================================
-OPEN MODAL
-========================================================= */
-
-function openModal(item = null){
-
-    modalOverlay.classList.add("show");
-
-    if(item){
-
-        editingSessionId = item.id;
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Edit Study Session";
-
-
-        document.getElementById(
-            "sessionTitle"
-        ).value =
-            item.title || "";
-
-
-        document.getElementById(
-            "sessionSubject"
-        ).value =
-            item.subject || "";
-
-
-        document.getElementById(
-            "sessionTopic"
-        ).value =
-            item.topic || "";
-
-
-        document.getElementById(
-            "startTime"
-        ).value =
-            item.startTime || "06:00";
-
-
-        document.getElementById(
-            "endTime"
-        ).value =
-            item.endTime || "07:00";
-
-
-        document.getElementById(
-            "sessionPriority"
-        ).value =
-            item.priority || "medium";
-
-
-        document.getElementById(
-            "sessionDay"
-        ).value =
-            item.day || selectedDay;
-
-
-        document.getElementById(
-            "sessionNotes"
-        ).value =
-            item.notes || "";
-
-    }else{
-
-        editingSessionId = null;
-
-        sessionForm.reset();
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Add Study Session";
-
-
-        document.getElementById(
-            "sessionDay"
-        ).value =
-            selectedDay;
-
-
-        document.getElementById(
-            "startTime"
-        ).value =
-            "06:00";
-
-
-        document.getElementById(
-            "endTime"
-        ).value =
-            "07:00";
-
-
-        document.getElementById(
-            "sessionPriority"
-        ).value =
-            "medium";
-
-    }
-
-
-    setTimeout(() => {
-
-        document
-            .getElementById("sessionTitle")
-            .focus();
-
-    },100);
-
-}
-
 
 /* =========================================================
-CLOSE MODAL
+GET FILTERED SESSIONS
 ========================================================= */
 
-function closeModal(){
-
-    modalOverlay.classList.remove("show");
-
-    editingSessionId = null;
-
-    sessionForm.reset();
-
-}
-
-
-/* =========================================================
-MODAL EVENTS
-========================================================= */
-
-document
-    .getElementById("addSessionBtn")
-    .addEventListener(
-        "click",
-        () => openModal()
-    );
-
-
-document
-    .getElementById("closeModal")
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-document
-    .getElementById("cancelModal")
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-modalOverlay.addEventListener(
-    "click",
-    event => {
-
-        if(event.target === modalOverlay){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-FORM SUBMIT
-========================================================= */
-
-sessionForm.addEventListener(
-    "submit",
-    event => {
-
-        event.preventDefault();
-
-
-        const title =
-            document
-                .getElementById("sessionTitle")
-                .value
-                .trim();
-
-
-        const subject =
-            document
-                .getElementById("sessionSubject")
-                .value
-                .trim();
-
-
-        const topic =
-            document
-                .getElementById("sessionTopic")
-                .value
-                .trim();
-
-
-        const startTime =
-            document
-                .getElementById("startTime")
-                .value;
-
-
-        const endTime =
-            document
-                .getElementById("endTime")
-                .value;
-
-
-        const priority =
-            document
-                .getElementById("sessionPriority")
-                .value;
-
-
-        const day =
-            document
-                .getElementById("sessionDay")
-                .value;
-
-
-        const notes =
-            document
-                .getElementById("sessionNotes")
-                .value
-                .trim();
-
-
-        if(!title || !subject){
-
-            showToast(
-                "Please enter session title and subject.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(!startTime || !endTime){
-
-            showToast(
-                "Please select start and end time.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(startTime >= endTime){
-
-            showToast(
-                "End time must be after start time.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* =================================================
-        EDIT EXISTING
-        ================================================= */
-
-        if(editingSessionId){
-
-            const item =
-                user.timetable.find(
-                    session =>
-                        session.id ===
-                        editingSessionId
-                );
-
-
-            if(item){
-
-                item.title = title;
-
-                item.subject = subject;
-
-                item.topic = topic;
-
-                item.startTime = startTime;
-
-                item.endTime = endTime;
-
-                item.priority = priority;
-
-                item.day = day;
-
-                item.notes = notes;
-
-                item.updatedAt =
-                    new Date().toISOString();
-
-            }
-
-
-            showToast(
-                "Study session updated."
-            );
-
-        }
-
-
-        /* =================================================
-        CREATE NEW
-        ================================================= */
-
-        else{
-
-            user.timetable.push({
-
-                id: generateId(),
-
-                title: title,
-
-                subject: subject,
-
-                topic: topic,
-
-                startTime: startTime,
-
-                endTime: endTime,
-
-                priority: priority,
-
-                day: day,
-
-                notes: notes,
-
-                completed: false,
-
-                completedAt: null,
-
-                createdAt:
-                    new Date().toISOString(),
-
-                updatedAt:
-                    new Date().toISOString()
-
-            });
-
-
-            showToast(
-                "Study session created."
-            );
-
-        }
-
-
-        /*
-            User jis day par session create karta hai,
-            save ke baad wahi day automatically select hoga.
-        */
-
-        selectedDay = day;
-
-
-        saveCurrentUser();
-
-        closeModal();
-
-        renderDayTabs();
-
-        renderSessions();
-
-        updateStats();
-
-    }
-);
-
-
-/* =========================================================
-SEARCH
-========================================================= */
-
-document
-    .getElementById("searchInput")
-    .addEventListener(
-        "input",
-        renderSessions
-    );
-
-
-/* =========================================================
-FILTER
-========================================================= */
-
-document
-    .getElementById("filterSelect")
-    .addEventListener(
-        "change",
-        renderSessions
-    );
-
-
-/* =========================================================
-GET DAY SESSIONS
-========================================================= */
-
-function getDaySessions(){
+function getFilteredSessions(){
 
     let list =
-        user.timetable.filter(
-            session =>
-                session.day ===
-                selectedDay
-        );
+        [...weeklyTimetable];
 
 
-    const query =
-        document
-            .getElementById("searchInput")
+    const search =
+        searchInput
             .value
             .trim()
             .toLowerCase();
 
 
     const filter =
-        document
-            .getElementById("filterSelect")
+        filterSelect
             .value;
 
 
-    if(query){
+    /* SEARCH */
 
-        list =
-            list.filter(session => {
-
-                return (
-
-                    (session.title || "")
-                        .toLowerCase()
-                        .includes(query)
-
-                    ||
-
-                    (session.subject || "")
-                        .toLowerCase()
-                        .includes(query)
-
-                    ||
-
-                    (session.topic || "")
-                        .toLowerCase()
-                        .includes(query)
-
-                );
-
-            });
-
-    }
-
-
-    if(filter === "pending"){
+    if(search){
 
         list =
             list.filter(
-                session =>
-                    !session.completed
+                item => {
+
+                    return (
+
+                        item.title
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        item.subject
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        item.topic
+                            .toLowerCase()
+                            .includes(search)
+
+                    );
+
+                }
             );
 
     }
 
 
-    if(filter === "completed"){
+    /* FILTER */
+
+    if(filter !== "all"){
 
         list =
             list.filter(
-                session =>
-                    session.completed
+                item =>
+                    item.type ===
+                    filter
             );
 
     }
-
-
-    if(filter === "high"){
-
-        list =
-            list.filter(
-                session =>
-                    session.priority === "high"
-            );
-
-    }
-
-
-    list.sort(
-        (a,b) =>
-            (a.startTime || "")
-                .localeCompare(
-                    b.startTime || ""
-                )
-    );
 
 
     return list;
 
 }
+
 
 
 /* =========================================================
@@ -2626,54 +2426,55 @@ RENDER SESSIONS
 function renderSessions(){
 
     const list =
-        getDaySessions();
+        getFilteredSessions();
 
 
-    document.getElementById(
-        "selectedDayTitle"
-    ).textContent =
+    selectedDayTitle.textContent =
         selectedDay;
 
 
-    document.getElementById(
-        "sessionCount"
-    ).textContent =
-        `${list.length} Session${
-            list.length !== 1
-                ? "s"
-                : ""
-        }`;
+    sessionCount.textContent =
+        `${list.length} Activities`;
 
 
     if(!list.length){
 
-        sessionsContainer.innerHTML = `
+        sessions.innerHTML = `
 
-            <div class="empty">
+            <div
+                style="
+                    padding:50px;
+                    text-align:center;
+                    color:#64748b;
+                "
+            >
 
-                <div class="empty-icon">
-                    ◷
+                <div
+                    style="
+                        font-size:30px;
+                        margin-bottom:10px;
+                    "
+                >
+                    🔍
                 </div>
 
-                <h3>
-                    No study sessions
+                <h3
+                    style="
+                        color:#cbd5e1;
+                        font-size:14px;
+                    "
+                >
+                    No activity found
                 </h3>
 
-                <p>
-                    Add your study time for
-                    ${escapeHTML(selectedDay)}.
-                    You decide what to study and when.
-                </p>
-
-                <br>
-
-                <button
-                    type="button"
-                    class="primary-btn"
-                    onclick="openModal()"
+                <p
+                    style="
+                        margin-top:6px;
+                        font-size:9px;
+                    "
                 >
-                    + Add Session
-                </button>
+                    Try another search or filter.
+                </p>
 
             </div>
 
@@ -2684,7 +2485,8 @@ function renderSessions(){
     }
 
 
-    sessionsContainer.innerHTML =
+    sessions.innerHTML =
+
         list
             .map(
                 item =>
@@ -2695,6 +2497,7 @@ function renderSessions(){
 }
 
 
+
 /* =========================================================
 RENDER SINGLE SESSION
 ========================================================= */
@@ -2703,154 +2506,192 @@ function renderSession(item){
 
     const duration =
         calculateDuration(
-            item.startTime,
-            item.endTime
+            item.start,
+            item.end
+        );
+
+
+    const typeName =
+        getTypeName(
+            item.type
         );
 
 
     return `
 
         <article
-            class="session ${
-                item.completed
-                    ? "completed"
-                    : ""
-            }"
+            class="
+                session
+                ${item.type}
+            "
         >
+
+
+            <!-- TIME -->
 
             <div class="session-time">
 
                 <div class="start-time">
-                    ${formatTime(item.startTime)}
+                    ${formatTime(item.start)}
                 </div>
 
                 <div class="end-time">
-                    ${formatTime(item.endTime)}
+                    ${formatTime(item.end)}
                 </div>
 
             </div>
 
 
+
+            <!-- TIMELINE -->
+
             <div class="timeline-dot"></div>
 
+
+
+            <!-- CONTENT -->
 
             <div class="session-main">
 
                 <div class="session-top">
 
                     <div class="session-title">
-                        ${escapeHTML(item.title)}
+
+                        ${escapeHTML(
+                            item.title
+                        )}
+
                     </div>
 
-                    <span class="subject-badge">
-                        ${escapeHTML(item.subject)}
+
+                    <span class="
+                        subject-badge
+                    ">
+
+                        ${escapeHTML(
+                            item.subject
+                        )}
+
                     </span>
 
                 </div>
+
 
 
                 <div class="session-meta">
 
-                    <span>
+                    <span class="
+                        session-duration
+                    ">
+
                         ⏱ ${duration}
+
                     </span>
 
 
-                    ${
-                        item.topic
-                        ?
-                        `
-                            <span>
-                                ◈
-                                ${escapeHTML(item.topic)}
-                            </span>
-                        `
-                        :
-                        ""
-                    }
+                    <span>
+                        ◈
+                        ${escapeHTML(
+                            item.topic
+                        )}
+                    </span>
 
 
-                    <span
-                        class="priority ${
-                            item.priority || "medium"
-                        }"
-                    >
-                        ${(
-                            item.priority ||
-                            "medium"
-                        ).toUpperCase()}
+                    <span class="
+                        type-badge
+                        ${item.type}
+                    ">
+
+                        ${typeName}
+
                     </span>
 
                 </div>
 
 
-                ${
-                    item.notes
-                    ?
-                    `
-                        <div class="session-note">
-                            ${escapeHTML(item.notes)}
-                        </div>
-                    `
-                    :
-                    ""
-                }
+
+                <div class="session-note">
+
+                    ${escapeHTML(
+                        item.note
+                    )}
+
+                </div>
 
             </div>
 
+
+
+            <!-- ACTION -->
 
             <div class="session-actions">
 
                 <button
                     type="button"
-                    class="small-btn complete"
-                    title="${
-                        item.completed
-                            ? "Mark Pending"
-                            : "Mark Complete"
-                    }"
-                    onclick="
-                        toggleSession('${item.id}')
-                    "
+                    class="small-btn"
+                    title="${typeName}"
                 >
                     ${
-                        item.completed
-                            ? "✓"
-                            : "○"
+                        item.type === "study"
+                            ? "📚"
+                            :
+                        item.type === "coding"
+                            ? "💻"
+                            :
+                        item.type === "sleep"
+                            ? "😴"
+                            :
+                        item.type === "work"
+                            ? "💼"
+                            :
+                        "☕"
                     }
                 </button>
 
-
-                <button
-                    type="button"
-                    class="small-btn"
-                    title="Edit"
-                    onclick="
-                        editSession('${item.id}')
-                    "
-                >
-                    ✎
-                </button>
-
-
-                <button
-                    type="button"
-                    class="small-btn delete"
-                    title="Delete"
-                    onclick="
-                        deleteSession('${item.id}')
-                    "
-                >
-                    ×
-                </button>
-
             </div>
+
 
         </article>
 
     `;
 
 }
+
+
+
+/* =========================================================
+TYPE NAME
+========================================================= */
+
+function getTypeName(type){
+
+    const names = {
+
+        study:
+            "NIMCET STUDY",
+
+        sleep:
+            "SLEEPING",
+
+        work:
+            "WORK",
+
+        rest:
+            "REST",
+
+        coding:
+            "CODING"
+
+    };
+
+
+    return (
+        names[type] ||
+        "ACTIVITY"
+    );
+
+}
+
 
 
 /* =========================================================
@@ -2862,93 +2703,155 @@ function calculateDuration(
     end
 ){
 
-    if(!start || !end)
-        return "0m";
-
-
-    const [sh,sm] =
+    let [
+        startHour,
+        startMinute
+    ] =
         start
             .split(":")
             .map(Number);
 
 
-    const [eh,em] =
+    let [
+        endHour,
+        endMinute
+    ] =
         end
             .split(":")
             .map(Number);
 
 
-    const minutes =
-        (eh * 60 + em) -
-        (sh * 60 + sm);
+    let startTotal =
+        startHour * 60 +
+        startMinute;
 
 
-    if(minutes <= 0)
-        return "0m";
+    let endTotal =
+        endHour * 60 +
+        endMinute;
 
 
-    const hours =
-        Math.floor(
-            minutes / 60
-        );
+    /*
+        Sleeping 10 PM → 4 AM
+        crosses midnight.
+    */
 
+    if(endTotal <= startTotal){
 
-    const mins =
-        minutes % 60;
-
-
-    if(hours && mins){
-
-        return `${hours}h ${mins}m`;
+        endTotal += 24 * 60;
 
     }
 
 
-    if(hours){
+    const total =
+        endTotal -
+        startTotal;
+
+
+    const hours =
+        Math.floor(
+            total / 60
+        );
+
+
+    const minutes =
+        total % 60;
+
+
+    if(minutes === 0){
 
         return `${hours}h`;
 
     }
 
 
-    return `${mins}m`;
+    return `${hours}h ${minutes}m`;
 
 }
+
 
 
 /* =========================================================
-DURATION HOURS
+CALCULATE STUDY HOURS
 ========================================================= */
 
-function durationHours(item){
+function calculateStudyHours(){
 
-    if(!item.startTime || !item.endTime)
-        return 0;
+    return weeklyTimetable
+        .filter(
+            item =>
+                item.type === "study" ||
+                item.type === "coding"
+        )
+        .reduce(
+            (total,item) => {
 
+                return (
+                    total +
+                    getHours(
+                        item.start,
+                        item.end
+                    )
+                );
 
-    const [sh,sm] =
-        item.startTime
-            .split(":")
-            .map(Number);
-
-
-    const [eh,em] =
-        item.endTime
-            .split(":")
-            .map(Number);
-
-
-    const minutes =
-        (eh * 60 + em) -
-        (sh * 60 + sm);
-
-
-    return Math.max(
-        0,
-        minutes / 60
-    );
+            },
+            0
+        );
 
 }
+
+
+
+/* =========================================================
+GET HOURS
+========================================================= */
+
+function getHours(
+    start,
+    end
+){
+
+    let [
+        sh,
+        sm
+    ] =
+        start
+            .split(":")
+            .map(Number);
+
+
+    let [
+        eh,
+        em
+    ] =
+        end
+            .split(":")
+            .map(Number);
+
+
+    let startMinutes =
+        sh * 60 + sm;
+
+
+    let endMinutes =
+        eh * 60 + em;
+
+
+    if(endMinutes <= startMinutes){
+
+        endMinutes +=
+            24 * 60;
+
+    }
+
+
+    return (
+        endMinutes -
+        startMinutes
+    ) / 60;
+
+}
+
 
 
 /* =========================================================
@@ -2957,11 +2860,10 @@ FORMAT TIME
 
 function formatTime(time){
 
-    if(!time)
-        return "--";
-
-
-    const [hour,minute] =
+    let [
+        hour,
+        minute
+    ] =
         time
             .split(":")
             .map(Number);
@@ -2973,299 +2875,25 @@ function formatTime(time){
             : "AM";
 
 
-    const h =
-        hour % 12 || 12;
+    let displayHour =
+        hour % 12;
 
 
-    return (
-        h +
-        ":" +
-        String(minute)
-            .padStart(2,"0") +
-        " " +
-        suffix
-    );
+    if(displayHour === 0){
 
-}
-
-
-/* =========================================================
-EDIT
-========================================================= */
-
-function editSession(id){
-
-    const item =
-        user.timetable.find(
-            session =>
-                session.id === id
-        );
-
-
-    if(item){
-
-        openModal(item);
+        displayHour = 12;
 
     }
 
-}
 
-
-/* =========================================================
-DELETE
-========================================================= */
-
-function deleteSession(id){
-
-    const item =
-        user.timetable.find(
-            session =>
-                session.id === id
-        );
-
-
-    if(!item)
-        return;
-
-
-    const confirmed =
-        confirm(
-            `Delete "${item.title}" from your timetable?`
-        );
-
-
-    if(!confirmed)
-        return;
-
-
-    user.timetable =
-        user.timetable.filter(
-            session =>
-                session.id !== id
-        );
-
-
-    saveCurrentUser();
-
-    renderSessions();
-
-    updateStats();
-
-    showToast(
-        "Study session deleted."
-    );
+    return `
+        ${displayHour}:${String(
+            minute
+        ).padStart(2,"0")} ${suffix}
+    `;
 
 }
 
-
-/* =========================================================
-TOGGLE COMPLETE
-========================================================= */
-
-function toggleSession(id){
-
-    const item =
-        user.timetable.find(
-            session =>
-                session.id === id
-        );
-
-
-    if(!item)
-        return;
-
-
-    item.completed =
-        !item.completed;
-
-
-    item.completedAt =
-        item.completed
-            ? new Date().toISOString()
-            : null;
-
-
-    item.updatedAt =
-        new Date().toISOString();
-
-
-    saveCurrentUser();
-
-    renderSessions();
-
-    updateStats();
-
-
-    showToast(
-        item.completed
-            ? "Session completed ✓"
-            : "Session marked pending."
-    );
-
-}
-
-
-/* =========================================================
-TODAY HOURS
-=========================================================
-
-NOTE:
-
-"Today's Study" ab bhi current weekday
-ke according total show karega.
-
-Lekin timetable ke andar date nahi hai.
-
-Example:
-Aaj Wednesday hai ->
-Wednesday ke sessions ka total.
-
-========================================================= */
-
-function getCurrentDay(){
-
-    const day =
-        new Date().getDay();
-
-
-    if(day === 0)
-        return "Sunday";
-
-
-    return days[day - 1];
-
-}
-
-
-function getTodaySessions(){
-
-    const today =
-        getCurrentDay();
-
-
-    return user.timetable.filter(
-        item =>
-            item.day === today
-    );
-
-}
-
-
-/* =========================================================
-STATS
-========================================================= */
-
-function updateStats(){
-
-    const all =
-        user.timetable || [];
-
-
-    const today =
-        getTodaySessions();
-
-
-    const todayHours =
-        today.reduce(
-            (total,item) =>
-                total +
-                durationHours(item),
-            0
-        );
-
-
-    const weekHours =
-        all.reduce(
-            (total,item) =>
-                total +
-                durationHours(item),
-            0
-        );
-
-
-    const completed =
-        all.filter(
-            item =>
-                item.completed
-        ).length;
-
-
-    const completion =
-        all.length
-            ? Math.round(
-                completed /
-                all.length *
-                100
-            )
-            : 0;
-
-
-    document.getElementById(
-        "todayHours"
-    ).textContent =
-        formatHours(todayHours);
-
-
-    document.getElementById(
-        "weekHours"
-    ).textContent =
-        formatHours(weekHours);
-
-
-    document.getElementById(
-        "completionRate"
-    ).textContent =
-        completion + "%";
-
-}
-
-
-/* =========================================================
-FORMAT HOURS
-========================================================= */
-
-function formatHours(hours){
-
-    if(hours === 0)
-        return "0h";
-
-
-    if(hours < 1){
-
-        return (
-            Math.round(
-                hours * 60
-            ) + "m"
-        );
-
-    }
-
-
-    const whole =
-        Math.floor(hours);
-
-
-    const mins =
-        Math.round(
-            (hours - whole) * 60
-        );
-
-
-    if(!mins){
-
-        return whole + "h";
-
-    }
-
-
-    return (
-        whole +
-        "h " +
-        mins +
-        "m"
-    );
-
-}
 
 
 /* =========================================================
@@ -3275,28 +2903,182 @@ ESCAPE HTML
 function escapeHTML(value){
 
     return String(value || "")
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
         );
 
 }
+
+
+
+/* =========================================================
+SEARCH EVENT
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    renderSessions
+);
+
+
+
+/* =========================================================
+FILTER EVENT
+========================================================= */
+
+filterSelect.addEventListener(
+    "change",
+    renderSessions
+);
+
+
+
+/* =========================================================
+UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+    const dailyStudy =
+        calculateStudyHours();
+
+
+    const weeklyStudy =
+        dailyStudy * 7;
+
+
+    document.getElementById(
+        "studyHours"
+    ).textContent =
+        formatHours(
+            dailyStudy
+        );
+
+
+    document.getElementById(
+        "weekHours"
+    ).textContent =
+        formatHours(
+            weeklyStudy
+        );
+
+
+    document.getElementById(
+        "totalHours"
+    ).textContent =
+        "24h";
+
+}
+
+
+
+/* =========================================================
+FORMAT HOURS
+========================================================= */
+
+function formatHours(hours){
+
+    if(
+        Number.isInteger(hours)
+    ){
+
+        return `${hours}h`;
+
+    }
+
+
+    const whole =
+        Math.floor(hours);
+
+
+    const minutes =
+        Math.round(
+            (hours - whole) * 60
+        );
+
+
+    if(whole === 0){
+
+        return `${minutes}m`;
+
+    }
+
+
+    return `${whole}h ${minutes}m`;
+
+}
+
+
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+CLOSE MOBILE SIDEBAR
+========================================================= */
+
+document
+    .querySelectorAll(".nav-item")
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    if(
+                        window.innerWidth <=
+                        800
+                    ){
+
+                        sidebar.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
 
 
 /* =========================================================
@@ -3313,6 +3095,7 @@ document
                 SESSION_KEY
             );
 
+
             window.location.href =
                 "index.html";
 
@@ -3320,55 +3103,12 @@ document
     );
 
 
-/* =========================================================
-MOBILE SIDEBAR
-========================================================= */
-
-mobileMenu.addEventListener(
-    "click",
-    () => {
-
-        sidebar.classList.toggle(
-            "open"
-        );
-
-    }
-);
-
-
-/* =========================================================
-CLOSE SIDEBAR AFTER CLICKING LINK ON MOBILE
-========================================================= */
-
-document
-    .querySelectorAll(".nav-item")
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                if(
-                    window.innerWidth <= 800
-                ){
-
-                    sidebar.classList.remove(
-                        "open"
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
 
 /* =========================================================
 AVATAR
 ========================================================= */
 
-if(user){
+function setAvatar(){
 
     const avatar =
         document.getElementById(
@@ -3376,34 +3116,70 @@ if(user){
         );
 
 
-    const name =
-        user.name ||
-        user.email ||
-        "User";
+    if(
+        currentUser &&
+        currentUser.name
+    ){
+
+        avatar.textContent =
+            currentUser.name
+                .split(" ")
+                .map(
+                    word =>
+                        word.charAt(0)
+                )
+                .join("")
+                .substring(0,2)
+                .toUpperCase();
+
+        return;
+
+    }
 
 
     avatar.textContent =
-        name
-            .split(" ")
-            .map(
-                word =>
-                    word[0]
-            )
-            .join("")
-            .substring(0,2)
-            .toUpperCase();
+        "U";
 
 }
+
+
+
+/* =========================================================
+INITIALIZE
+========================================================= */
+
+renderDayTabs();
+
+renderSessions();
+
+updateStats();
+
+setAvatar();
+
+
+
+/* =========================================================
+WELCOME TOAST
+========================================================= */
+
+setTimeout(
+    () => {
+
+        showToast(
+            "NIMCET timetable loaded — 11 hours study every day."
+        );
+
+    },
+    500
+);
+
 
 
 /* =========================================================
 TOAST
 ========================================================= */
 
-function showToast(
-    message,
-    type = "success"
-){
+function showToast(message){
 
     const container =
         document.getElementById(
@@ -3418,7 +3194,7 @@ function showToast(
 
 
     toast.className =
-        `toast ${type}`;
+        "toast success";
 
 
     toast.textContent =
@@ -3438,27 +3214,19 @@ function showToast(
 
 
             setTimeout(
-                () =>
-                    toast.remove(),
+                () => {
+
+                    toast.remove();
+
+                },
                 250
             );
 
         },
-        2600
+        3000
     );
 
 }
-
-
-/* =========================================================
-INITIALIZE
-========================================================= */
-
-renderDayTabs();
-
-renderSessions();
-
-updateStats();
 
 </script>
 
