@@ -3,22 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>NIMCET PrepPro | Weekly Plan</title>
 
 <style>
+
 :root{
     --bg:#070b17;
     --panel:#0d1426;
     --panel2:#111a30;
     --border:rgba(255,255,255,.08);
+
     --primary:#6366f1;
     --purple:#8b5cf6;
     --cyan:#22d3ee;
     --green:#34d399;
     --orange:#f59e0b;
     --red:#fb7185;
+
     --text:#f8fafc;
     --muted:#94a3b8;
+
     --sidebar:255px;
 }
 
@@ -30,48 +35,89 @@
 
 body{
     min-height:100vh;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
     color:var(--text);
+
     background:
-        radial-gradient(circle at 8% 0%,rgba(99,102,241,.10),transparent 27%),
-        radial-gradient(circle at 90% 15%,rgba(34,211,238,.06),transparent 25%),
+        radial-gradient(
+            circle at 8% 0%,
+            rgba(99,102,241,.12),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(34,211,238,.07),
+            transparent 25%
+        ),
         var(--bg);
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
     font-family:inherit;
 }
 
-/* SIDEBAR */
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
     bottom:0;
+
     width:var(--sidebar);
+
     padding:22px 15px;
+
     background:rgba(8,13,27,.96);
+
     border-right:1px solid var(--border);
+
     backdrop-filter:blur(20px);
+
     z-index:100;
+
     transition:.3s;
 }
 
 .logo-area{
     display:flex;
     align-items:center;
+
     gap:12px;
+
     padding:5px 12px 25px;
 }
 
 .logo{
     width:43px;
     height:43px;
+
     display:grid;
     place-items:center;
+
     border-radius:13px;
-    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
     font-size:20px;
     font-weight:900;
 }
@@ -87,65 +133,93 @@ button,input,textarea,select{
 
 .menu-label{
     padding:0 13px;
+
     margin:18px 0 9px;
+
     color:#475569;
+
     font-size:9px;
     font-weight:800;
+
     letter-spacing:1.3px;
+
     text-transform:uppercase;
 }
 
 .nav{
     display:flex;
     flex-direction:column;
+
     gap:4px;
 }
 
 .nav-item{
     display:flex;
     align-items:center;
+
     gap:12px;
+
     padding:11px 13px;
+
     border-radius:12px;
+
     color:#7f8da3;
+
     text-decoration:none;
+
     font-size:12px;
     font-weight:600;
+
     transition:.2s;
 }
 
 .nav-item:hover{
     color:#e2e8f0;
-    background:rgba(255,255,255,.045);
+
+    background:
+        rgba(255,255,255,.045);
 }
 
 .nav-item.active{
     color:#fff;
-    background:linear-gradient(
-        100deg,
-        rgba(99,102,241,.22),
-        rgba(139,92,246,.10)
-    );
-    border:1px solid rgba(129,140,248,.12);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.12);
 }
 
 .nav-icon{
     width:28px;
     height:28px;
+
     display:grid;
     place-items:center;
+
     border-radius:8px;
-    background:rgba(255,255,255,.035);
+
+    background:
+        rgba(255,255,255,.035);
+
     font-size:13px;
 }
 
 .nav-item.active .nav-icon{
     color:#a5b4fc;
-    background:rgba(99,102,241,.18);
+
+    background:
+        rgba(99,102,241,.18);
 }
 
 .sidebar-bottom{
     position:absolute;
+
     left:15px;
     right:15px;
     bottom:18px;
@@ -153,96 +227,154 @@ button,input,textarea,select{
 
 .logout{
     width:100%;
+
     margin-top:9px;
+
     padding:10px;
+
     border:0;
     border-radius:11px;
-    background:rgba(251,113,133,.06);
+
+    background:
+        rgba(251,113,133,.06);
+
     color:#fb7185;
+
     cursor:pointer;
+
     font-size:11px;
     font-weight:650;
 }
 
 .logout:hover{
-    background:rgba(251,113,133,.12);
+    background:
+        rgba(251,113,133,.12);
 }
 
-/* MAIN */
+
+/* =========================================================
+   MAIN
+========================================================= */
 
 .main{
     margin-left:var(--sidebar);
+
     min-height:100vh;
-    padding:25px 30px 50px;
+
+    padding:
+        25px
+        30px
+        50px;
 }
 
 .topbar{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     margin-bottom:23px;
 }
 
 .page-title h1{
     font-size:24px;
+
     letter-spacing:-.8px;
 }
 
 .page-title p{
     margin-top:5px;
+
     color:var(--muted);
+
     font-size:11px;
 }
 
 .top-actions{
     display:flex;
     align-items:center;
+
     gap:10px;
 }
 
 .icon-btn{
     width:38px;
     height:38px;
+
     display:grid;
     place-items:center;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:11px;
-    background:rgba(255,255,255,.035);
+
+    background:
+        rgba(255,255,255,.035);
+
     color:#94a3b8;
+
     cursor:pointer;
 }
 
 .avatar{
     width:38px;
     height:38px;
+
     display:grid;
     place-items:center;
+
     border-radius:12px;
-    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
     color:#fff;
+
     font-size:11px;
     font-weight:800;
+
     text-decoration:none;
 }
 
 .mobile-menu{
     display:none;
+
     width:38px;
     height:38px;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:11px;
-    background:rgba(255,255,255,.035);
+
+    background:
+        rgba(255,255,255,.035);
+
     color:white;
+
     cursor:pointer;
 }
 
-/* HERO */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     position:relative;
+
     overflow:hidden;
+
     padding:25px;
+
     border-radius:21px;
+
     background:
         linear-gradient(
             120deg,
@@ -250,34 +382,52 @@ button,input,textarea,select{
             rgba(34,211,238,.06),
             rgba(15,23,42,.75)
         );
-    border:1px solid rgba(129,140,248,.11);
+
+    border:
+        1px solid
+        rgba(129,140,248,.11);
 }
 
 .hero:after{
-    content:"7";
+    content:"38";
+
     position:absolute;
-    right:40px;
-    top:-48px;
-    color:rgba(129,140,248,.06);
-    font-size:190px;
+
+    right:30px;
+    top:-65px;
+
+    color:
+        rgba(129,140,248,.055);
+
+    font-size:180px;
     font-weight:900;
 }
 
 .badge{
     display:inline-flex;
+
     padding:6px 10px;
+
     border-radius:50px;
-    background:rgba(99,102,241,.09);
+
+    background:
+        rgba(99,102,241,.09);
+
     color:#a5b4fc;
+
     font-size:9px;
     font-weight:750;
+
     text-transform:uppercase;
+
     letter-spacing:.6px;
 }
 
 .hero h2{
     margin-top:11px;
+
     font-size:25px;
+
     letter-spacing:-.9px;
 }
 
@@ -286,122 +436,200 @@ button,input,textarea,select{
 }
 
 .hero p{
-    max-width:700px;
+    max-width:760px;
+
     margin-top:7px;
+
     color:#94a3b8;
+
     font-size:11px;
+
     line-height:1.6;
 }
 
-/* WEEK SELECTOR */
+
+/* =========================================================
+   WEEK NAV
+========================================================= */
 
 .week-bar{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:12px;
+
     margin-top:15px;
+
     padding:14px;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:16px;
-    background:rgba(15,23,42,.68);
+
+    background:
+        rgba(15,23,42,.68);
 }
 
 .week-info{
     display:flex;
     align-items:center;
+
     gap:10px;
 }
 
 .calendar-icon{
     width:40px;
     height:40px;
+
     display:grid;
     place-items:center;
+
     border-radius:11px;
-    background:rgba(99,102,241,.10);
+
+    background:
+        rgba(99,102,241,.10);
+
     color:#a5b4fc;
+
     font-size:16px;
 }
 
 .week-text strong{
     display:block;
+
     font-size:11px;
 }
 
 .week-text span{
     display:block;
+
     margin-top:3px;
+
     color:#64748b;
+
     font-size:9px;
 }
 
 .week-actions{
     display:flex;
+
     gap:7px;
 }
 
 .small-btn{
     height:34px;
+
     padding:0 12px;
-    border:1px solid rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
     border-radius:9px;
-    background:rgba(255,255,255,.035);
+
+    background:
+        rgba(255,255,255,.035);
+
     color:#94a3b8;
+
     cursor:pointer;
+
     font-size:9px;
     font-weight:650;
 }
 
 .small-btn:hover{
     color:#fff;
-    background:rgba(255,255,255,.06);
+
+    background:
+        rgba(255,255,255,.06);
 }
 
 .small-btn.primary{
     border:0;
+
     color:#fff;
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
 }
 
-/* STATS */
+
+/* =========================================================
+   STATS
+========================================================= */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:12px;
+
     margin-top:15px;
 }
 
 .stat{
     padding:15px;
+
     border-radius:15px;
-    background:rgba(15,23,42,.65);
-    border:1px solid var(--border);
+
+    background:
+        rgba(15,23,42,.65);
+
+    border:
+        1px solid
+        var(--border);
 }
 
 .stat-label{
     color:#64748b;
+
     font-size:9px;
 }
 
 .stat-value{
     margin-top:6px;
+
     font-size:21px;
+
     font-weight:800;
 }
 
-.blue{color:#a5b4fc}
-.green{color:#34d399}
-.yellow{color:#fbbf24}
-.cyan{color:#67e8f9}
+.blue{
+    color:#a5b4fc;
+}
 
-/* PLAN */
+.green{
+    color:#34d399;
+}
+
+.yellow{
+    color:#fbbf24;
+}
+
+.cyan{
+    color:#67e8f9;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section-heading{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     margin-top:22px;
     margin-bottom:12px;
 }
@@ -411,219 +639,479 @@ button,input,textarea,select{
 }
 
 .section-heading p{
+    margin-top:3px;
+
     color:#64748b;
+
     font-size:9px;
 }
 
-/* DAY CARD */
 
-.days{
+/* =========================================================
+   WEEK CARDS
+========================================================= */
+
+.weeks{
     display:flex;
     flex-direction:column;
+
     gap:12px;
 }
 
-.day-card{
-    border:1px solid var(--border);
-    border-radius:17px;
-    background:rgba(15,23,42,.70);
+.week-card{
     overflow:hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:17px;
+
+    background:
+        rgba(15,23,42,.72);
 }
 
-.day-header{
+.week-card.current{
+    border-color:
+        rgba(99,102,241,.40);
+
+    box-shadow:
+        0 0 0 1px
+        rgba(99,102,241,.06),
+        0 15px 40px
+        rgba(0,0,0,.12);
+}
+
+.week-card.completed-week{
+    border-color:
+        rgba(52,211,153,.22);
+}
+
+.week-card-header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
+
+    gap:15px;
+
     padding:15px 17px;
-    border-bottom:1px solid rgba(255,255,255,.05);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
 }
 
-.day-left{
+.week-left{
     display:flex;
     align-items:center;
+
     gap:12px;
 }
 
-.day-number{
-    width:38px;
-    height:38px;
+.week-number{
+    width:42px;
+    height:42px;
+
     display:grid;
     place-items:center;
-    border-radius:11px;
-    background:rgba(99,102,241,.10);
+
+    flex-shrink:0;
+
+    border-radius:12px;
+
+    background:
+        rgba(99,102,241,.12);
+
     color:#a5b4fc;
+
     font-size:12px;
+    font-weight:900;
+}
+
+.week-card.current .week-number{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6
+        );
+}
+
+.week-name{
+    font-size:13px;
     font-weight:800;
 }
 
-.day-name{
-    font-size:12px;
-    font-weight:750;
+.week-date{
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:9px;
 }
 
-.day-date{
-    margin-top:3px;
+.current-badge{
+    display:inline-flex;
+
+    margin-left:6px;
+
+    padding:3px 7px;
+
+    border-radius:20px;
+
+    background:
+        rgba(34,211,238,.10);
+
+    color:#67e8f9;
+
+    font-size:7px;
+    font-weight:800;
+
+    text-transform:uppercase;
+}
+
+.week-progress-area{
+    min-width:170px;
+}
+
+.week-progress-top{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:6px;
+
     color:#64748b;
+
     font-size:8px;
 }
 
-.day-progress{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.progress-track{
-    width:80px;
+.week-progress-track{
+    width:100%;
     height:5px;
+
     overflow:hidden;
-    border-radius:50px;
+
+    border-radius:20px;
+
     background:#1e293b;
 }
 
-.progress-fill{
+.week-progress-fill{
     height:100%;
-    border-radius:50px;
-    background:linear-gradient(90deg,#6366f1,#22d3ee);
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #22d3ee
+        );
+
     transition:.3s;
 }
 
-.progress-text{
-    color:#94a3b8;
-    font-size:8px;
+
+/* =========================================================
+   SUBJECT GRID
+========================================================= */
+
+.subject-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:1px;
+
+    background:
+        rgba(255,255,255,.04);
 }
 
-.day-tasks{
-    padding:8px;
+.subject-column{
+    min-width:0;
+
+    padding:15px;
+
+    background:
+        rgba(13,20,38,.82);
 }
 
-.task{
+.subject-header{
     display:flex;
     align-items:center;
-    gap:11px;
-    padding:12px 10px;
-    border-radius:11px;
+
+    gap:7px;
+
+    margin-bottom:10px;
+
+    color:#cbd5e1;
+
+    font-size:9px;
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.3px;
+}
+
+.subject-hours{
+    margin-left:auto;
+
+    padding:3px 6px;
+
+    border-radius:5px;
+
+    background:
+        rgba(99,102,241,.08);
+
+    color:#818cf8;
+
+    font-size:7px;
+}
+
+.topic{
+    display:flex;
+    align-items:flex-start;
+
+    gap:8px;
+
+    padding:8px 7px;
+
+    border-radius:8px;
+
     transition:.2s;
 }
 
-.task:hover{
-    background:rgba(255,255,255,.025);
+.topic:hover{
+    background:
+        rgba(255,255,255,.035);
 }
 
-.task.completed{
-    opacity:.55;
-}
+.topic-check{
+    width:18px;
+    height:18px;
 
-.check{
-    width:20px;
-    height:20px;
-    flex-shrink:0;
     display:grid;
     place-items:center;
-    border:1px solid #334155;
-    border-radius:6px;
+
+    flex-shrink:0;
+
+    margin-top:1px;
+
+    border:
+        1px solid
+        #334155;
+
+    border-radius:5px;
+
     background:transparent;
+
     color:transparent;
+
     cursor:pointer;
+
     font-size:10px;
+    font-weight:900;
+
+    transition:.2s;
 }
 
-.check:hover{
+.topic-check:hover{
     border-color:#6366f1;
 }
 
-.task.completed .check{
+.topic.done .topic-check{
     border-color:#34d399;
+
     background:#34d399;
+
     color:#052e1b;
 }
 
-.task-main{
+.topic-content{
     min-width:0;
-    flex:1;
 }
 
-.task-title{
-    overflow:hidden;
+.topic-title{
     color:#dbeafe;
-    font-size:10px;
-    font-weight:700;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+
+    font-size:9px;
+
+    font-weight:650;
+
+    line-height:1.4;
 }
 
-.task.completed .task-title{
-    text-decoration:line-through;
-}
-
-.task-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:5px;
-}
-
-.task-tag{
-    padding:3px 6px;
-    border-radius:5px;
-    background:rgba(99,102,241,.08);
-    color:#a5b4fc;
-    font-size:7px;
-    font-weight:700;
-}
-
-.task-hours{
+.topic.done .topic-title{
     color:#64748b;
+
+    text-decoration:
+        line-through;
+
+    text-decoration-color:
+        #34d399;
+}
+
+.topic-note{
+    margin-top:3px;
+
+    color:#64748b;
+
     font-size:7px;
-    padding:3px 0;
+
+    line-height:1.35;
 }
 
-.task-actions{
+
+/* =========================================================
+   SUNDAY TEST
+========================================================= */
+
+.test-row{
     display:flex;
-    gap:5px;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:13px 17px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
+
+    background:
+        rgba(99,102,241,.045);
 }
 
-.task-btn{
-    width:27px;
-    height:27px;
+.test-left{
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+}
+
+.test-icon{
+    width:34px;
+    height:34px;
+
     display:grid;
     place-items:center;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:7px;
-    background:rgba(255,255,255,.025);
+
+    border-radius:10px;
+
+    background:
+        rgba(245,158,11,.10);
+
+    color:#fbbf24;
+
+    font-size:14px;
+}
+
+.test-title{
+    font-size:10px;
+    font-weight:800;
+}
+
+.test-subtitle{
+    margin-top:3px;
+
     color:#64748b;
+
+    font-size:7px;
+}
+
+.test-check{
+    width:22px;
+    height:22px;
+
+    display:grid;
+    place-items:center;
+
+    border:
+        1px solid
+        #475569;
+
+    border-radius:6px;
+
+    background:transparent;
+
+    color:transparent;
+
     cursor:pointer;
-    font-size:9px;
+
+    font-size:11px;
 }
 
-.task-btn:hover{
-    color:#fff;
+.test-check:hover{
+    border-color:#f59e0b;
 }
 
-.task-btn.delete:hover{
-    color:#fb7185;
+.test-row.done .test-check{
+    border-color:#34d399;
+
+    background:#34d399;
+
+    color:#052e1b;
 }
 
-.no-task{
-    padding:18px;
-    text-align:center;
-    color:#475569;
-    font-size:9px;
+.test-row.done .test-title{
+    color:#64748b;
+
+    text-decoration:
+        line-through;
 }
 
-/* MODAL */
+
+/* =========================================================
+   COMPLETION MESSAGE
+========================================================= */
+
+.all-done{
+    display:inline-flex;
+
+    padding:4px 8px;
+
+    margin-left:5px;
+
+    border-radius:20px;
+
+    background:
+        rgba(52,211,153,.09);
+
+    color:#34d399;
+
+    font-size:7px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal-overlay{
     position:fixed;
+
     inset:0;
+
     z-index:500;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
-    background:rgba(2,6,23,.78);
-    backdrop-filter:blur(9px);
+
+    background:
+        rgba(2,6,23,.78);
+
+    backdrop-filter:
+        blur(9px);
 }
 
 .modal-overlay.show{
@@ -632,31 +1120,31 @@ button,input,textarea,select{
 
 .modal{
     width:min(100%,600px);
-    max-height:90vh;
-    overflow:auto;
-    padding:25px;
-    border-radius:22px;
-    background:#0d1426;
-    border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 35px 90px rgba(0,0,0,.5);
-    animation:modalIn .25s ease;
-}
 
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.98);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
+    max-height:90vh;
+
+    overflow:auto;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:#0d1426;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 35px 90px
+        rgba(0,0,0,.5);
 }
 
 .modal-header{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     margin-bottom:20px;
 }
 
@@ -668,10 +1156,16 @@ button,input,textarea,select{
 .close{
     width:31px;
     height:31px;
+
     border:0;
+
     border-radius:9px;
-    background:rgba(255,255,255,.05);
+
+    background:
+        rgba(255,255,255,.05);
+
     color:#94a3b8;
+
     cursor:pointer;
 }
 
@@ -681,8 +1175,11 @@ button,input,textarea,select{
 
 .form-label{
     display:block;
+
     margin-bottom:7px;
+
     color:#cbd5e1;
+
     font-size:10px;
     font-weight:650;
 }
@@ -691,24 +1188,36 @@ button,input,textarea,select{
 .form-select,
 .form-textarea{
     width:100%;
-    border:1px solid rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     border-radius:10px;
+
     outline:none;
+
     background:#090f1d;
+
     color:white;
+
     font-size:11px;
 }
 
 .form-input,
 .form-select{
     height:43px;
+
     padding:0 12px;
 }
 
 .form-textarea{
     min-height:100px;
+
     resize:vertical;
+
     padding:12px;
+
     line-height:1.6;
 }
 
@@ -720,120 +1229,134 @@ button,input,textarea,select{
 
 .form-row{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:12px;
 }
 
 .modal-buttons{
     display:flex;
     justify-content:flex-end;
+
     gap:8px;
+
     margin-top:20px;
 }
 
 .cancel-btn{
     height:40px;
+
     padding:0 15px;
-    border:1px solid rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     border-radius:10px;
-    background:rgba(255,255,255,.04);
+
+    background:
+        rgba(255,255,255,.04);
+
     color:#94a3b8;
+
     cursor:pointer;
+
     font-size:10px;
 }
 
 .save-btn{
     height:40px;
+
     padding:0 17px;
+
     border:0;
+
     border-radius:10px;
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
     color:white;
+
     cursor:pointer;
+
     font-size:10px;
+
     font-weight:750;
 }
 
-/* EMPTY */
 
-.empty{
-    padding:60px 20px;
-    text-align:center;
-    border:1px dashed rgba(148,163,184,.14);
-    border-radius:17px;
-    color:#64748b;
-}
-
-.empty-icon{
-    width:55px;
-    height:55px;
-    display:grid;
-    place-items:center;
-    margin:0 auto 12px;
-    border-radius:16px;
-    background:rgba(99,102,241,.08);
-    color:#818cf8;
-    font-size:21px;
-}
-
-.empty h3{
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-.empty p{
-    margin-top:6px;
-    font-size:9px;
-}
-
-/* TOAST */
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast-container{
     position:fixed;
+
     right:18px;
     bottom:18px;
+
     z-index:999;
+
     display:flex;
     flex-direction:column;
+
     gap:8px;
 }
 
 .toast{
     min-width:260px;
+
     padding:13px 15px;
+
     border-radius:12px;
+
     background:#111827;
-    border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35);
+
     font-size:10px;
-    animation:toastIn .25s ease;
 }
 
 .toast.success{
-    border-left:3px solid var(--green);
+    border-left:
+        3px solid
+        var(--green);
 }
 
 .toast.error{
-    border-left:3px solid var(--red);
+    border-left:
+        3px solid
+        var(--red);
 }
 
-@keyframes toastIn{
-    from{
-        opacity:0;
-        transform:translateX(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1100px){
 
+    .subject-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
@@ -841,20 +1364,25 @@ button,input,textarea,select{
 @media(max-width:800px){
 
     .sidebar{
-        transform:translateX(-100%);
+        transform:
+            translateX(-100%);
     }
 
     .sidebar.open{
-        transform:translateX(0);
+        transform:
+            translateX(0);
     }
 
     .main{
         margin-left:0;
-        padding:18px;
+
+        padding:
+            18px;
     }
 
     .mobile-menu{
         display:grid;
+
         place-items:center;
     }
 
@@ -864,7 +1392,20 @@ button,input,textarea,select{
 
     .week-bar{
         align-items:flex-start;
+
         flex-direction:column;
+    }
+
+    .week-actions{
+        width:100%;
+
+        flex-wrap:wrap;
+    }
+
+    .week-progress-area{
+        width:100%;
+
+        min-width:0;
     }
 
 }
@@ -872,7 +1413,8 @@ button,input,textarea,select{
 @media(max-width:600px){
 
     .stats{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .hero{
@@ -883,107 +1425,155 @@ button,input,textarea,select{
         font-size:21px;
     }
 
-    .form-row{
+    .subject-grid{
         grid-template-columns:1fr;
     }
 
-    .day-header{
+    .week-card-header{
         align-items:flex-start;
+
         flex-direction:column;
     }
 
-    .day-progress{
+    .week-progress-area{
         width:100%;
     }
 
-    .progress-track{
-        flex:1;
-    }
-
-    .task{
+    .test-row{
         align-items:flex-start;
     }
 
-    .task-actions{
-        flex-shrink:0;
-    }
-
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- SIDEBAR -->
 
-<aside class="sidebar" id="sidebar">
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
 
     <div class="logo-area">
-        <div class="logo">N</div>
+
+        <div class="logo">
+            N
+        </div>
 
         <div class="logo-name">
             NIMCET <span>PrepPro</span>
         </div>
+
     </div>
 
-    <div class="menu-label">Main</div>
+
+    <div class="menu-label">
+        Main
+    </div>
+
 
     <nav class="nav">
 
-        <a href="dashboard.html" class="nav-item">
+        <a
+            href="dashboard.html"
+            class="nav-item"
+        >
             <span class="nav-icon">⌂</span>
             Dashboard
         </a>
 
-        <a href="syllabus.html" class="nav-item">
+        <a
+            href="syllabus.html"
+            class="nav-item"
+        >
             <span class="nav-icon">✓</span>
             Syllabus
         </a>
 
-        <a href="notes.html" class="nav-item">
+        <a
+            href="notes.html"
+            class="nav-item"
+        >
             <span class="nav-icon">✎</span>
             Notes
         </a>
 
-        <a href="doubts.html" class="nav-item">
+        <a
+            href="doubts.html"
+            class="nav-item"
+        >
             <span class="nav-icon">?</span>
             Doubts
         </a>
 
-        <a href="weekly-plan.html" class="nav-item active">
+        <a
+            href="weekly-plan.html"
+            class="nav-item active"
+        >
             <span class="nav-icon">◷</span>
             Weekly Plan
         </a>
 
-        <div class="menu-label">Practice</div>
 
-        <a href="mock-test.html" class="nav-item">
+        <div class="menu-label">
+            Practice
+        </div>
+
+
+        <a
+            href="mock-test.html"
+            class="nav-item"
+        >
             <span class="nav-icon">▣</span>
             Mock Tests
         </a>
 
-        <a href="progress.html" class="nav-item">
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
             <span class="nav-icon">◒</span>
             Progress
         </a>
 
-        <a href="resources.html" class="nav-item">
+        <a
+            href="resources.html"
+            class="nav-item"
+        >
             <span class="nav-icon">▤</span>
             Resources
         </a>
 
-        <div class="menu-label">Account</div>
 
-        <a href="profile.html" class="nav-item">
+        <div class="menu-label">
+            Account
+        </div>
+
+
+        <a
+            href="profile.html"
+            class="nav-item"
+        >
             <span class="nav-icon">●</span>
             Profile
         </a>
 
     </nav>
 
+
     <div class="sidebar-bottom">
 
-        <button class="logout" id="logoutBtn">
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
             ↪ &nbsp; Logout
         </button>
 
@@ -992,33 +1582,49 @@ button,input,textarea,select{
 </aside>
 
 
-<!-- MAIN -->
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main class="main">
 
+
     <header class="topbar">
 
-        <button class="mobile-menu" id="mobileMenu">
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
             ☰
         </button>
 
+
         <div class="page-title">
 
-            <h1>Weekly Plan</h1>
+            <h1>
+                Weekly Plan
+            </h1>
 
             <p>
-                Plan your NIMCET preparation one day at a time
+                Complete NIMCET preparation roadmap
             </p>
 
         </div>
 
+
         <div class="top-actions">
 
-            <button class="icon-btn">
+            <button
+                class="icon-btn"
+            >
                 🔔
             </button>
 
-            <a href="profile.html" class="avatar" id="avatar">
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+            >
                 U
             </a>
 
@@ -1027,29 +1633,37 @@ button,input,textarea,select{
     </header>
 
 
-    <!-- HERO -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <section class="hero">
 
         <div class="badge">
-            Smart Study Planner
+            38 Week NIMCET Roadmap
         </div>
 
+
         <h2>
-            Turn your week into a
-            <span>clear preparation plan.</span>
+            Finish your syllabus
+            <span>one topic at a time.</span>
         </h2>
 
+
         <p>
-            Add exactly what you want to study every day,
-            set your target hours and track your completion.
-            Your complete weekly plan stays saved in your account.
+            Mathematics gets the highest priority with
+            4 hours/day, while Reasoning, Computer Awareness
+            and English get 1 hour/day. Tick ✓ a topic after
+            completing it. Your completed topics are saved
+            automatically.
         </p>
 
     </section>
 
 
-    <!-- WEEK BAR -->
+    <!-- =====================================================
+         WEEK NAVIGATION
+    ====================================================== -->
 
     <section class="week-bar">
 
@@ -1059,14 +1673,15 @@ button,input,textarea,select{
                 ▣
             </div>
 
+
             <div class="week-text">
 
                 <strong id="weekTitle">
-                    This Week
+                    Week 2
                 </strong>
 
                 <span id="weekRange">
-                    Loading week...
+                    13 Aug – 19 Aug
                 </span>
 
             </div>
@@ -1087,7 +1702,7 @@ button,input,textarea,select{
                 class="small-btn"
                 id="todayWeek"
             >
-                Today
+                Current
             </button>
 
             <button
@@ -1099,9 +1714,9 @@ button,input,textarea,select{
 
             <button
                 class="small-btn primary"
-                id="addTaskBtn"
+                id="showAll"
             >
-                + Add Task
+                All Weeks
             </button>
 
         </div>
@@ -1109,19 +1724,21 @@ button,input,textarea,select{
     </section>
 
 
-    <!-- STATS -->
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
 
     <section class="stats">
 
         <div class="stat">
 
             <div class="stat-label">
-                Total Tasks
+                Total Topics
             </div>
 
             <div
                 class="stat-value blue"
-                id="totalTasks"
+                id="totalTopics"
             >
                 0
             </div>
@@ -1132,12 +1749,12 @@ button,input,textarea,select{
         <div class="stat">
 
             <div class="stat-label">
-                Completed
+                Topics Completed
             </div>
 
             <div
                 class="stat-value green"
-                id="completedTasks"
+                id="completedTopics"
             >
                 0
             </div>
@@ -1148,14 +1765,14 @@ button,input,textarea,select{
         <div class="stat">
 
             <div class="stat-label">
-                Study Hours
+                Overall Progress
             </div>
 
             <div
                 class="stat-value cyan"
-                id="totalHours"
+                id="overallPercent"
             >
-                0h
+                0%
             </div>
 
         </div>
@@ -1164,14 +1781,14 @@ button,input,textarea,select{
         <div class="stat">
 
             <div class="stat-label">
-                Completion
+                Current Week
             </div>
 
             <div
                 class="stat-value yellow"
-                id="completionPercent"
+                id="currentWeekStat"
             >
-                0%
+                2
             </div>
 
         </div>
@@ -1179,18 +1796,21 @@ button,input,textarea,select{
     </section>
 
 
-    <!-- DAYS -->
+    <!-- =====================================================
+         PLAN
+    ====================================================== -->
 
     <div class="section-heading">
 
         <div>
 
             <h2>
-                Your 7-Day Plan
+                NIMCET 38-Week Preparation Plan
             </h2>
 
             <p>
-                Add tasks according to your preparation strategy
+                ✓ = topic completed &nbsp; • &nbsp;
+                Click any checkbox to mark it complete
             </p>
 
         </div>
@@ -1199,237 +1819,17 @@ button,input,textarea,select{
 
 
     <section
-        class="days"
-        id="days"
+        class="weeks"
+        id="weeksContainer"
     ></section>
+
 
 </main>
 
 
-<!-- MODAL -->
-
-<div
-    class="modal-overlay"
-    id="modalOverlay"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <div
-                class="modal-title"
-                id="modalTitle"
-            >
-                Add Study Task
-            </div>
-
-            <button
-                class="close"
-                id="closeModal"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <form id="taskForm">
-
-            <div class="form-group">
-
-                <label class="form-label">
-                    What do you want to study?
-                </label>
-
-                <input
-                    class="form-input"
-                    id="taskTitle"
-                    type="text"
-                    maxlength="150"
-                    placeholder="e.g. Complete Probability PYQs"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Day
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="taskDay"
-                        required
-                    >
-
-                        <option value="0">
-                            Monday
-                        </option>
-
-                        <option value="1">
-                            Tuesday
-                        </option>
-
-                        <option value="2">
-                            Wednesday
-                        </option>
-
-                        <option value="3">
-                            Thursday
-                        </option>
-
-                        <option value="4">
-                            Friday
-                        </option>
-
-                        <option value="5">
-                            Saturday
-                        </option>
-
-                        <option value="6">
-                            Sunday
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Study Hours
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="taskHours"
-                        type="number"
-                        min="0.25"
-                        max="24"
-                        step="0.25"
-                        value="1"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Subject
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="taskSubject"
-                    >
-
-                        <option value="">
-                            General
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Type
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="taskType"
-                    >
-
-                        <option value="Study">
-                            Study
-                        </option>
-
-                        <option value="Revision">
-                            Revision
-                        </option>
-
-                        <option value="PYQ">
-                            PYQ
-                        </option>
-
-                        <option value="Mock Test">
-                            Mock Test
-                        </option>
-
-                        <option value="Practice">
-                            Practice
-                        </option>
-
-                        <option value="Revision + PYQ">
-                            Revision + PYQ
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label class="form-label">
-                    Notes / Target
-                </label>
-
-                <textarea
-                    class="form-textarea"
-                    id="taskNotes"
-                    maxlength="1000"
-                    placeholder="e.g. Solve at least 40 questions and revise formulas..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="modal-buttons">
-
-                <button
-                    type="button"
-                    class="cancel-btn"
-                    id="cancelModal"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="submit"
-                    class="save-btn"
-                >
-                    Save Task
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</div>
-
-
-<!-- TOAST -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
 <div
     class="toast-container"
@@ -1440,7 +1840,7 @@ button,input,textarea,select{
 <script>
 
 /* ============================================================
-   STORAGE
+   AUTH STORAGE
 ============================================================ */
 
 const USERS_KEY =
@@ -1479,10 +1879,6 @@ function saveUsers(users){
 }
 
 
-/* ============================================================
-   AUTH
-============================================================ */
-
 let session = null;
 
 try{
@@ -1500,6 +1896,10 @@ try{
 
 }
 
+
+/*
+    Login protection
+*/
 
 if(!session){
 
@@ -1533,48 +1933,20 @@ if(!user){
 
 
 /* ============================================================
-   PLAN STORAGE
+   PROGRESS STORAGE
 ============================================================ */
 
-if(!Array.isArray(user.weeklyPlans)){
+/*
+    This is separate from weeklyPlans so that
+    fixed roadmap topics can be checked independently.
+*/
 
-    user.weeklyPlans = [];
+if(!user.weeklyTopicProgress){
+
+    user.weeklyTopicProgress = {};
 
 }
 
-
-/* ============================================================
-   STATE
-============================================================ */
-
-let weekOffset = 0;
-
-let editingTaskId = null;
-
-
-/* ============================================================
-   ELEMENTS
-============================================================ */
-
-const daysContainer =
-    document.getElementById(
-        "days"
-    );
-
-const modalOverlay =
-    document.getElementById(
-        "modalOverlay"
-    );
-
-const taskForm =
-    document.getElementById(
-        "taskForm"
-    );
-
-
-/* ============================================================
-   SAVE USER
-============================================================ */
 
 function saveCurrentUser(){
 
@@ -1596,315 +1968,785 @@ function saveCurrentUser(){
 
 
 /* ============================================================
-   ID
+   COMPLETE 38 WEEK PLAN
 ============================================================ */
 
-function generateId(){
+const PLAN = [
 
-    return (
-        "task_" +
-        Date.now().toString(36) +
-        "_" +
-        Math.random()
-            .toString(36)
-            .substring(2,8)
-    );
+{
+    week:1,
+    date:"6–12 Aug",
 
+    math:"Trigonometric Ratios",
+    reasoning:"Blood Relation",
+    computer:"Computer Basics",
+    english:"Vocabulary",
+    test:"Weekly Test"
+},
+
+{
+    week:2,
+    date:"13–19 Aug",
+
+    math:"Standard Angles & Allied Angles",
+    reasoning:"Coding-Decoding",
+    computer:"CPU & Memory",
+    english:"Grammar",
+    test:"Weekly Test"
+},
+
+{
+    week:3,
+    date:"20–26 Aug",
+
+    math:"Trigonometric Identities",
+    reasoning:"Direction Test",
+    computer:"Input/Output Devices",
+    english:"Parts of Speech",
+    test:"Weekly Test"
+},
+
+{
+    week:4,
+    date:"27 Aug–2 Sep",
+
+    math:"Graphs + Inverse Trigonometry",
+    reasoning:"Series",
+    computer:"Number System",
+    english:"Reading",
+    test:"Weekly Test"
+},
+
+{
+    week:5,
+    date:"3–9 Sep",
+
+    math:"Properties of Triangle",
+    reasoning:"Analogy",
+    computer:"Binary & Hexadecimal",
+    english:"Comprehension",
+    test:"Weekly Test"
+},
+
+{
+    week:6,
+    date:"10–16 Sep",
+
+    math:"Heights & Distances",
+    mathNote:"Festival Week – Light Target",
+    reasoning:"Ranking",
+    computer:"Boolean Algebra",
+    english:"Error Detection",
+    test:"Weekly Test"
+},
+
+{
+    week:7,
+    date:"17–23 Sep",
+
+    math:"Trigonometric Equations",
+    reasoning:"Syllogism",
+    computer:"Hardware",
+    english:"Vocabulary",
+    test:"Weekly Test"
+},
+
+{
+    week:8,
+    date:"24–30 Sep",
+
+    math:"Trigonometry Revision + PYQs",
+    reasoning:"Puzzle",
+    computer:"Software",
+    english:"Grammar",
+    test:"Full Mock Test"
+},
+
+{
+    week:9,
+    date:"1–7 Oct",
+
+    math:"Algebra Fundamentals",
+    reasoning:"Seating Arrangement",
+    computer:"Operating System",
+    english:"Comprehension",
+    test:"Weekly Test"
+},
+
+{
+    week:10,
+    date:"8–14 Oct",
+
+    math:"Indices & Logarithms",
+    reasoning:"Input–Output",
+    computer:"Windows/Linux",
+    english:"Vocabulary",
+    test:"Weekly Test"
+},
+
+{
+    week:11,
+    date:"15–21 Oct",
+
+    math:"Quadratic Equations",
+    reasoning:"Statement & Conclusion",
+    computer:"Internet",
+    english:"Grammar",
+    test:"Weekly Test"
+},
+
+{
+    week:12,
+    date:"22–28 Oct",
+
+    math:"Roots & Coefficients",
+    mathNote:"Dussehra – Half-Day Study",
+    reasoning:"Data Sufficiency",
+    computer:"Email",
+    english:"Reading",
+    test:"Full Mock Test"
+},
+
+{
+    week:13,
+    date:"29 Oct–4 Nov",
+
+    math:"AP & GP",
+    reasoning:"Critical Thinking",
+    computer:"Online Security",
+    english:"Error Detection",
+    test:"Weekly Test"
+},
+
+{
+    week:14,
+    date:"5–11 Nov",
+
+    math:"HP & Finite Sums",
+    reasoning:"Numerical Reasoning",
+    computer:"Networking",
+    english:"Vocabulary",
+    test:"Weekly Test"
+},
+
+{
+    week:15,
+    date:"12–18 Nov",
+
+    math:"Matrices",
+    reasoning:"Data Interpretation",
+    computer:"Storage Devices",
+    english:"Grammar",
+    test:"Weekly Test"
+},
+
+{
+    week:16,
+    date:"19–25 Nov",
+
+    math:"Determinants",
+    reasoning:"Mixed Practice",
+    computer:"RAM, ROM, Cache",
+    english:"Reading",
+    test:"Full Mock Test"
+},
+
+{
+    week:17,
+    date:"26 Nov–2 Dec",
+
+    math:"Simultaneous Equations",
+    reasoning:"Mixed Practice",
+    computer:"Computer Revision",
+    english:"Vocabulary",
+    test:"Weekly Test"
+},
+
+{
+    week:18,
+    date:"3–9 Dec",
+
+    math:"Permutation & Combination",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"Grammar",
+    test:"Weekly Test"
+},
+
+{
+    week:19,
+    date:"10–16 Dec",
+
+    math:"Binomial Theorem",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"Reading",
+    test:"Weekly Test"
+},
+
+{
+    week:20,
+    date:"17–23 Dec",
+
+    math:"Algebra Revision + PYQs",
+    reasoning:"Revision",
+    computer:"Revision",
+    english:"Revision",
+    test:"Full Mock Test"
+},
+
+{
+    week:21,
+    date:"24–30 Dec",
+
+    math:"Functions",
+    mathNote:"Christmas – Light Target",
+    reasoning:"Mixed",
+    computer:"Mixed",
+    english:"Mixed",
+    test:"Weekly Test"
+},
+
+{
+    week:22,
+    date:"31 Dec–6 Jan",
+
+    math:"Limits",
+    reasoning:"Mixed",
+    computer:"Mixed",
+    english:"Mixed",
+    test:"Weekly Test"
+},
+
+{
+    week:23,
+    date:"7–13 Jan",
+
+    math:"Continuity",
+    reasoning:"Mixed",
+    computer:"Mixed",
+    english:"Mixed",
+    test:"Weekly Test"
+},
+
+{
+    week:24,
+    date:"14–20 Jan",
+
+    math:"Differentiation",
+    mathNote:"Makar Sankranti – Half-Day Study",
+    reasoning:"Mixed",
+    computer:"Mixed",
+    english:"Mixed",
+    test:"Full Mock Test"
+},
+
+{
+    week:25,
+    date:"21–27 Jan",
+
+    math:"Applications of Differentiation",
+    reasoning:"Revision",
+    computer:"Revision",
+    english:"Revision",
+    test:"Weekly Test"
+},
+
+{
+    week:26,
+    date:"28 Jan–3 Feb",
+
+    math:"Integration",
+    reasoning:"Revision",
+    computer:"Revision",
+    english:"Revision",
+    test:"Weekly Test"
+},
+
+{
+    week:27,
+    date:"4–10 Feb",
+
+    math:"Definite Integrals",
+    reasoning:"Revision",
+    computer:"Revision",
+    english:"Revision",
+    test:"Weekly Test"
+},
+
+{
+    week:28,
+    date:"11–17 Feb",
+
+    math:"Coordinate Geometry – Line",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"PYQs",
+    test:"Full Mock Test"
+},
+
+{
+    week:29,
+    date:"18–24 Feb",
+
+    math:"Circle",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"PYQs",
+    test:"Weekly Test"
+},
+
+{
+    week:30,
+    date:"25 Feb–3 Mar",
+
+    math:"Parabola",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"PYQs",
+    test:"Weekly Test"
+},
+
+{
+    week:31,
+    date:"4–10 Mar",
+
+    math:"Ellipse & Hyperbola",
+    reasoning:"Revision",
+    computer:"Revision",
+    english:"Revision",
+    test:"Weekly Test"
+},
+
+{
+    week:32,
+    date:"11–17 Mar",
+
+    math:"Probability",
+    reasoning:"Mixed Practice",
+    computer:"Mixed Practice",
+    english:"Mixed Practice",
+    test:"Full Mock Test"
+},
+
+{
+    week:33,
+    date:"18–24 Mar",
+
+    math:"Statistics",
+    reasoning:"Mixed Practice",
+    computer:"Mixed Practice",
+    english:"Mixed Practice",
+    test:"Weekly Test"
+},
+
+{
+    week:34,
+    date:"25–31 Mar",
+
+    math:"Set Theory & Logic",
+    reasoning:"Mixed Practice",
+    computer:"Mixed Practice",
+    english:"Mixed Practice",
+    test:"Weekly Test"
+},
+
+{
+    week:35,
+    date:"1–7 Apr",
+
+    math:"Full Mathematics Revision",
+    reasoning:"Full Revision",
+    computer:"Full Revision",
+    english:"Full Revision",
+    test:"Full Mock Test"
+},
+
+{
+    week:36,
+    date:"8–14 Apr",
+
+    math:"Maths PYQs",
+    reasoning:"PYQs",
+    computer:"PYQs",
+    english:"PYQs",
+    test:"Full Mock Test"
+},
+
+{
+    week:37,
+    date:"15–21 Apr",
+
+    math:"Weak Topics",
+    reasoning:"Weak Topics",
+    computer:"Weak Topics",
+    english:"Weak Topics",
+    test:"Full Mock Test"
+},
+
+{
+    week:38,
+    date:"22–30 Apr",
+
+    math:"Grand Revision + Full-Length Mock Tests",
+    reasoning:"Final Revision",
+    computer:"Final Revision",
+    english:"Final Revision",
+    test:"Grand Mock Test"
 }
+
+];
 
 
 /* ============================================================
-   DATE HELPERS
+   CURRENT WEEK
 ============================================================ */
 
-function startOfWeek(date){
-
-    const d =
-        new Date(date);
-
-    const day =
-        d.getDay();
-
-    const diff =
-        day === 0
-        ? -6
-        : 1 - day;
-
-    d.setDate(
-        d.getDate() + diff
-    );
-
-    d.setHours(
-        0,0,0,0
-    );
-
-    return d;
-
-}
+let selectedWeek =
+    getInitialWeek();
 
 
-function getCurrentWeekStart(){
+function getInitialWeek(){
 
-    const monday =
-        startOfWeek(
-            new Date()
-        );
+    /*
+        Current date:
+        13 Aug 2026
 
-    monday.setDate(
-        monday.getDate() +
-        weekOffset * 7
-    );
+        Week 2:
+        13–19 Aug
+    */
 
-    return monday;
+    const today =
+        new Date();
 
-}
-
-
-function getWeekKey(){
-
-    const monday =
-        getCurrentWeekStart();
-
-    return formatDateKey(
-        monday
-    );
-
-}
-
-
-function formatDateKey(date){
-
-    const y =
-        date.getFullYear();
-
-
-    const m =
-        String(
-            date.getMonth()+1
-        ).padStart(2,"0");
-
-
-    const d =
-        String(
-            date.getDate()
-        ).padStart(2,"0");
-
-
-    return `${y}-${m}-${d}`;
-
-}
-
-
-function getDayDate(
-    weekStart,
-    index
-){
-
-    const date =
+    const start =
         new Date(
-            weekStart
-        );
-
-
-    date.setDate(
-        date.getDate() + index
-    );
-
-
-    return date;
-
-}
-
-
-/* ============================================================
-   DATE FORMAT
-============================================================ */
-
-function formatPrettyDate(date){
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"short",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-function formatShortDate(date){
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"short"
-        }
-    );
-
-}
-
-
-/* ============================================================
-   WEEK INFO
-============================================================ */
-
-function updateWeekInfo(){
-
-    const monday =
-        getCurrentWeekStart();
-
-
-    const sunday =
-        getDayDate(
-            monday,
+            2026,
+            7,
             6
         );
 
+    const diff =
+        today.getTime() -
+        start.getTime();
 
-    let title =
-        "This Week";
+    const week =
+        Math.floor(
+            diff /
+            (
+                7 *
+                24 *
+                60 *
+                60 *
+                1000
+            )
+        ) + 1;
 
-
-    if(weekOffset < 0){
-
-        title =
-            `${Math.abs(weekOffset)} Week${
-                Math.abs(weekOffset)>1
-                ? "s"
-                : ""
-            } Ago`;
-
-    }
-
-
-    if(weekOffset > 0){
-
-        title =
-            `${weekOffset} Week${
-                weekOffset>1
-                ? "s"
-                : ""
-            } Ahead`;
-
-    }
-
-
-    document.getElementById(
-        "weekTitle"
-    ).textContent =
-        title;
-
-
-    document.getElementById(
-        "weekRange"
-    ).textContent =
-        `${formatPrettyDate(monday)} — ${formatPrettyDate(sunday)}`;
+    return Math.min(
+        Math.max(week,1),
+        38
+    );
 
 }
 
 
 /* ============================================================
-   SUBJECTS
+   TOPIC KEY
 ============================================================ */
 
-function getSubjects(){
+function topicKey(
+    week,
+    subject
+){
 
-    if(!Array.isArray(user.syllabus))
-        return [];
-
-
-    return user.syllabus
-        .filter(
-            item =>
-                item &&
-                item.title
-        )
-        .map(
-            item => ({
-                id:item.id,
-                title:item.title
-            })
-        );
-
-}
-
-
-function populateSubjects(){
-
-    const select =
-        document.getElementById(
-            "taskSubject"
-        );
-
-
-    const subjects =
-        getSubjects();
-
-
-    select.innerHTML =
-        `
-        <option value="">
-            General
-        </option>
-
-        ${
-            subjects
-                .map(
-                    subject =>
-                        `
-                        <option
-                            value="${escapeHTML(subject.id)}"
-                        >
-                            ${escapeHTML(
-                                subject.title
-                            )}
-                        </option>
-                        `
-                )
-                .join("")
-        }
-        `;
-
-}
-
-
-function getSubjectName(id){
-
-    if(!id)
-        return "General";
-
-
-    const subject =
-        getSubjects().find(
-            item =>
-                item.id === id
-        );
-
-
-    return subject
-        ? subject.title
-        : "General";
+    return (
+        `week_${week}_${subject}`
+    );
 
 }
 
 
 /* ============================================================
-   GET CURRENT WEEK TASKS
+   IS TOPIC DONE
 ============================================================ */
 
-function getWeekTasks(){
+function isTopicDone(
+    week,
+    subject
+){
+
+    return !!user
+        .weeklyTopicProgress[
+            topicKey(
+                week,
+                subject
+            )
+        ];
+
+}
+
+
+/* ============================================================
+   TOGGLE TOPIC
+============================================================ */
+
+function toggleTopic(
+    week,
+    subject
+){
 
     const key =
-        getWeekKey();
+        topicKey(
+            week,
+            subject
+        );
 
 
-    return user.weeklyPlans.filter(
-        task =>
-            task.weekKey === key
+    user.weeklyTopicProgress[key] =
+        !user.weeklyTopicProgress[key];
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    if(
+        user.weeklyTopicProgress[key]
+    ){
+
+        showToast(
+            "Topic completed ✓"
+        );
+
+    }else{
+
+        showToast(
+            "Topic marked incomplete."
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   TEST KEY
+============================================================ */
+
+function testKey(week){
+
+    return `week_${week}_test`;
+
+}
+
+
+/* ============================================================
+   TEST STATUS
+============================================================ */
+
+function isTestDone(week){
+
+    return !!user
+        .weeklyTopicProgress[
+            testKey(week)
+        ];
+
+}
+
+
+/* ============================================================
+   TOGGLE TEST
+============================================================ */
+
+function toggleTest(week){
+
+    const key =
+        testKey(week);
+
+
+    user.weeklyTopicProgress[key] =
+        !user.weeklyTopicProgress[key];
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        user.weeklyTopicProgress[key]
+        ? "Test completed ✓"
+        : "Test marked incomplete."
     );
+
+}
+
+
+/* ============================================================
+   SUBJECT DATA
+============================================================ */
+
+const SUBJECTS = [
+
+    {
+        key:"math",
+        title:"Mathematics",
+        hours:"4 hrs/day",
+        icon:"∑"
+    },
+
+    {
+        key:"reasoning",
+        title:"Reasoning",
+        hours:"1 hr/day",
+        icon:"◈"
+    },
+
+    {
+        key:"computer",
+        title:"Computer Awareness",
+        hours:"1 hr/day",
+        icon:"▣"
+    },
+
+    {
+        key:"english",
+        title:"English",
+        hours:"1 hr/day",
+        icon:"A"
+    }
+
+];
+
+
+/* ============================================================
+   TOTAL TOPICS
+============================================================ */
+
+function getAllTopicCount(){
+
+    return PLAN.length * 4;
+
+}
+
+
+/* ============================================================
+   COMPLETED TOPICS
+============================================================ */
+
+function getCompletedCount(){
+
+    let count = 0;
+
+
+    PLAN.forEach(
+        item => {
+
+            SUBJECTS.forEach(
+                subject => {
+
+                    if(
+                        isTopicDone(
+                            item.week,
+                            subject.key
+                        )
+                    ){
+
+                        count++;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    return count;
+
+}
+
+
+/* ============================================================
+   OVERALL %
+============================================================ */
+
+function getOverallPercent(){
+
+    const total =
+        getAllTopicCount();
+
+
+    const completed =
+        getCompletedCount();
+
+
+    return total
+        ? Math.round(
+            completed /
+            total *
+            100
+        )
+        : 0;
+
+}
+
+
+/* ============================================================
+   WEEK COMPLETION
+============================================================ */
+
+function getWeekProgress(
+    item
+){
+
+    let completed = 0;
+
+
+    SUBJECTS.forEach(
+        subject => {
+
+            if(
+                isTopicDone(
+                    item.week,
+                    subject.key
+                )
+            ){
+
+                completed++;
+
+            }
+
+        }
+    );
+
+
+    if(
+        isTestDone(
+            item.week
+        )
+    ){
+
+        completed++;
+
+    }
+
+
+    const total = 5;
+
+
+    return {
+        completed,
+        total,
+        percent:
+            Math.round(
+                completed /
+                total *
+                100
+            )
+    };
 
 }
 
@@ -1915,125 +2757,198 @@ function getWeekTasks(){
 
 function render(){
 
-    updateWeekInfo();
-
-    populateSubjects();
-
-    renderDays();
-
     updateStats();
 
-}
+    updateWeekBar();
 
-
-/* ============================================================
-   RENDER DAYS
-============================================================ */
-
-function renderDays(){
-
-    const weekStart =
-        getCurrentWeekStart();
-
-
-    const tasks =
-        getWeekTasks();
-
-
-    const names = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-    ];
-
-
-    daysContainer.innerHTML =
-        names
-            .map(
-                (name,index) => {
-
-                    const date =
-                        getDayDate(
-                            weekStart,
-                            index
-                        );
-
-
-                    const dayTasks =
-                        tasks.filter(
-                            task =>
-                                task.dayIndex === index
-                        );
-
-
-                    return renderDay(
-                        name,
-                        date,
-                        index,
-                        dayTasks
-                    );
-
-                }
-            )
-            .join("");
+    renderWeeks();
 
 }
 
 
 /* ============================================================
-   RENDER DAY
+   UPDATE STATS
 ============================================================ */
 
-function renderDay(
-    name,
-    date,
-    index,
-    tasks
-){
+function updateStats(){
 
-    const completed =
-        tasks.filter(
-            task =>
-                task.completed
-        ).length;
+    document.getElementById(
+        "totalTopics"
+    ).textContent =
+        getAllTopicCount();
 
 
-    const percent =
-        tasks.length
-        ? Math.round(
-            completed /
-            tasks.length *
-            100
-        )
-        : 0;
+    document.getElementById(
+        "completedTopics"
+    ).textContent =
+        getCompletedCount();
+
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent =
+        `${getOverallPercent()}%`;
+
+
+    document.getElementById(
+        "currentWeekStat"
+    ).textContent =
+        selectedWeek;
+
+}
+
+
+/* ============================================================
+   WEEK BAR
+============================================================ */
+
+function updateWeekBar(){
+
+    const item =
+        PLAN[
+            selectedWeek - 1
+        ];
+
+
+    if(!item)
+        return;
+
+
+    document.getElementById(
+        "weekTitle"
+    ).textContent =
+        `Week ${item.week}`;
+
+
+    document.getElementById(
+        "weekRange"
+    ).textContent =
+        item.date;
+
+}
+
+
+/* ============================================================
+   RENDER WEEKS
+============================================================ */
+
+function renderWeeks(){
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+
+    /*
+        "All Weeks" mode
+        is represented by selectedWeek = 0.
+    */
+
+    if(selectedWeek === 0){
+
+        container.innerHTML =
+            PLAN
+                .map(
+                    item =>
+                        renderWeekCard(
+                            item
+                        )
+                )
+                .join("");
+
+        return;
+
+    }
+
+
+    const item =
+        PLAN[
+            selectedWeek - 1
+        ];
+
+
+    container.innerHTML =
+        item
+        ? renderWeekCard(item)
+        : "";
+
+}
+
+
+/* ============================================================
+   RENDER WEEK CARD
+============================================================ */
+
+function renderWeekCard(item){
+
+    const progress =
+        getWeekProgress(item);
+
+
+    const isCurrent =
+        item.week ===
+        getInitialWeek();
+
+
+    const allDone =
+        progress.percent === 100;
 
 
     return `
 
-        <article class="day-card">
+        <article
+            class="
+                week-card
+                ${isCurrent ? "current" : ""}
+                ${allDone ? "completed-week" : ""}
+            "
+        >
 
-            <div class="day-header">
+            <div class="week-card-header">
 
-                <div class="day-left">
+                <div class="week-left">
 
-                    <div class="day-number">
-                        ${index+1}
+                    <div class="week-number">
+                        ${item.week}
                     </div>
+
 
                     <div>
 
-                        <div class="day-name">
-                            ${name}
+                        <div class="week-name">
+
+                            Week ${item.week}
+
+                            ${
+                                isCurrent
+                                ?
+                                `
+                                <span class="current-badge">
+                                    Current Week
+                                </span>
+                                `
+                                :
+                                ""
+                            }
+
+                            ${
+                                allDone
+                                ?
+                                `
+                                <span class="all-done">
+                                    ✓ Completed
+                                </span>
+                                `
+                                :
+                                ""
+                            }
+
                         </div>
 
-                        <div class="day-date">
-                            ${formatShortDate(
-                                date
-                            )}
+
+                        <div class="week-date">
+                            ${item.date}
                         </div>
 
                     </div>
@@ -2041,57 +2956,55 @@ function renderDay(
                 </div>
 
 
-                <div class="day-progress">
+                <div class="week-progress-area">
 
-                    <div class="progress-track">
+                    <div class="week-progress-top">
+
+                        <span>
+                            Week Progress
+                        </span>
+
+                        <span>
+                            ${progress.completed}/${progress.total}
+                            &nbsp; (${progress.percent}%)
+                        </span>
+
+                    </div>
+
+
+                    <div class="week-progress-track">
 
                         <div
-                            class="progress-fill"
-                            style="width:${percent}%"
+                            class="week-progress-fill"
+                            style="
+                                width:${progress.percent}%
+                            "
                         ></div>
 
                     </div>
 
-                    <div class="progress-text">
-                        ${completed}/${tasks.length}
-                    </div>
-
-                    <button
-                        class="small-btn primary"
-                        onclick="
-                            openAddModal(${index})
-                        "
-                    >
-                        + Task
-                    </button>
-
                 </div>
 
             </div>
 
 
-            <div class="day-tasks">
+            <div class="subject-grid">
 
-                ${
-                    tasks.length
-                    ?
-                    tasks
-                        .map(
-                            task =>
-                                renderTask(
-                                    task
-                                )
-                        )
-                        .join("")
-                    :
-                    `
-                    <div class="no-task">
-                        No study task planned for this day.
-                    </div>
-                    `
+                ${SUBJECTS
+                    .map(
+                        subject =>
+                            renderSubject(
+                                item,
+                                subject
+                            )
+                    )
+                    .join("")
                 }
 
             </div>
+
+
+            ${renderTest(item)}
 
         </article>
 
@@ -2101,102 +3014,100 @@ function renderDay(
 
 
 /* ============================================================
-   RENDER TASK
+   RENDER SUBJECT
 ============================================================ */
 
-function renderTask(task){
+function renderSubject(
+    item,
+    subject
+){
 
-    const subject =
-        getSubjectName(
-            task.subjectId
+    const done =
+        isTopicDone(
+            item.week,
+            subject.key
         );
+
+
+    const topic =
+        item[
+            subject.key
+        ];
+
+
+    const note =
+        subject.key === "math"
+        ? item.mathNote || ""
+        : "";
 
 
     return `
 
-        <div
-            class="
-                task
-                ${task.completed ? "completed" : ""}
-            "
-        >
+        <div class="subject-column">
 
-            <button
-                class="check"
-                onclick="
-                    toggleTask(
-                        '${task.id}'
-                    )
-                "
-                title="Mark complete"
-            >
-                ✓
-            </button>
+            <div class="subject-header">
 
+                <span>
+                    ${subject.icon}
+                </span>
 
-            <div class="task-main">
+                <span>
+                    ${subject.title}
+                </span>
 
-                <div class="task-title">
-                    ${escapeHTML(
-                        task.title
-                    )}
-                </div>
-
-
-                <div class="task-meta">
-
-                    <span class="task-tag">
-                        ${escapeHTML(
-                            subject
-                        )}
-                    </span>
-
-
-                    <span class="task-tag">
-                        ${escapeHTML(
-                            task.type ||
-                            "Study"
-                        )}
-                    </span>
-
-
-                    <span class="task-hours">
-                        ◷ ${Number(
-                            task.hours || 0
-                        )}h
-                    </span>
-
-                </div>
+                <span class="subject-hours">
+                    ${subject.hours}
+                </span>
 
             </div>
 
 
-            <div class="task-actions">
+            <div
+                class="
+                    topic
+                    ${done ? "done" : ""}
+                "
+            >
 
                 <button
-                    class="task-btn"
+                    class="topic-check"
                     onclick="
-                        editTask(
-                            '${task.id}'
+                        toggleTopic(
+                            ${item.week},
+                            '${subject.key}'
                         )
                     "
-                    title="Edit"
+                    title="
+                        ${done
+                            ? "Mark incomplete"
+                            : "Mark complete"
+                        }
+                    "
                 >
-                    ✎
+                    ✓
                 </button>
 
 
-                <button
-                    class="task-btn delete"
-                    onclick="
-                        deleteTask(
-                            '${task.id}'
-                        )
-                    "
-                    title="Delete"
-                >
-                    ×
-                </button>
+                <div class="topic-content">
+
+                    <div class="topic-title">
+                        ${escapeHTML(topic)}
+                    </div>
+
+
+                    ${
+                        note
+                        ?
+                        `
+                        <div class="topic-note">
+                            ${escapeHTML(note)}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
 
             </div>
 
@@ -2208,558 +3119,111 @@ function renderTask(task){
 
 
 /* ============================================================
-   OPEN ADD MODAL
+   RENDER TEST
 ============================================================ */
 
-function openAddModal(dayIndex=null){
+function renderTest(item){
 
-    editingTaskId = null;
-
-
-    taskForm.reset();
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "Add Study Task";
-
-
-    document.getElementById(
-        "taskHours"
-    ).value =
-        "1";
-
-
-    populateSubjects();
-
-
-    if(dayIndex !== null){
-
-        document.getElementById(
-            "taskDay"
-        ).value =
-            String(dayIndex);
-
-    }
-
-
-    modalOverlay.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        () =>
-            document
-                .getElementById(
-                    "taskTitle"
-                )
-                .focus(),
-        100
-    );
-
-}
-
-
-/* ============================================================
-   EDIT TASK
-============================================================ */
-
-function editTask(id){
-
-    const task =
-        user.weeklyPlans.find(
-            item =>
-                item.id === id
+    const done =
+        isTestDone(
+            item.week
         );
 
 
-    if(!task)
-        return;
+    return `
+
+        <div
+            class="
+                test-row
+                ${done ? "done" : ""}
+            "
+        >
+
+            <div class="test-left">
+
+                <div class="test-icon">
+                    ${item.test.includes("Grand")
+                        ? "★"
+                        : "✓"
+                    }
+                </div>
 
 
-    editingTaskId =
-        id;
+                <div>
+
+                    <div class="test-title">
+                        ${escapeHTML(item.test)}
+                    </div>
 
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "Edit Study Task";
+                    <div class="test-subtitle">
+                        Sunday Test • Weekly Assessment
+                    </div>
+
+                </div>
+
+            </div>
 
 
-    populateSubjects();
-
-
-    document.getElementById(
-        "taskTitle"
-    ).value =
-        task.title || "";
-
-
-    document.getElementById(
-        "taskDay"
-    ).value =
-        String(
-            task.dayIndex
-        );
-
-
-    document.getElementById(
-        "taskHours"
-    ).value =
-        task.hours || 1;
-
-
-    document.getElementById(
-        "taskSubject"
-    ).value =
-        task.subjectId || "";
-
-
-    document.getElementById(
-        "taskType"
-    ).value =
-        task.type || "Study";
-
-
-    document.getElementById(
-        "taskNotes"
-    ).value =
-        task.notes || "";
-
-
-    modalOverlay.classList.add(
-        "show"
-    );
-
-}
-
-
-/* ============================================================
-   CLOSE MODAL
-============================================================ */
-
-function closeModal(){
-
-    modalOverlay.classList.remove(
-        "show"
-    );
-
-    editingTaskId = null;
-
-    taskForm.reset();
-
-}
-
-
-/* ============================================================
-   MODAL EVENTS
-============================================================ */
-
-document
-    .getElementById(
-        "addTaskBtn"
-    )
-    .addEventListener(
-        "click",
-        () => openAddModal()
-    );
-
-
-document
-    .getElementById(
-        "closeModal"
-    )
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-document
-    .getElementById(
-        "cancelModal"
-    )
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-modalOverlay.addEventListener(
-    "click",
-    event => {
-
-        if(
-            event.target ===
-            modalOverlay
-        ){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* ============================================================
-   SAVE TASK
-============================================================ */
-
-taskForm.addEventListener(
-    "submit",
-    event => {
-
-        event.preventDefault();
-
-
-        const title =
-            document
-                .getElementById(
-                    "taskTitle"
-                )
-                .value
-                .trim();
-
-
-        const dayIndex =
-            Number(
-                document
-                    .getElementById(
-                        "taskDay"
+            <button
+                class="test-check"
+                onclick="
+                    toggleTest(
+                        ${item.week}
                     )
-                    .value
-            );
+                "
+                title="
+                    ${done
+                        ? "Mark test incomplete"
+                        : "Mark test complete"
+                    }
+                "
+            >
+                ✓
+            </button>
 
+        </div>
 
-        const hours =
-            Number(
-                document
-                    .getElementById(
-                        "taskHours"
-                    )
-                    .value
-            );
+    `;
 
-
-        const subjectId =
-            document
-                .getElementById(
-                    "taskSubject"
-                )
-                .value;
-
-
-        const type =
-            document
-                .getElementById(
-                    "taskType"
-                )
-                .value;
-
-
-        const notes =
-            document
-                .getElementById(
-                    "taskNotes"
-                )
-                .value
-                .trim();
-
-
-        if(!title){
-
-            showToast(
-                "Please enter a study task.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(
-            !hours ||
-            hours <= 0
-        ){
-
-            showToast(
-                "Please enter valid study hours.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* EDIT */
-
-        if(editingTaskId){
-
-            const task =
-                user.weeklyPlans.find(
-                    item =>
-                        item.id ===
-                        editingTaskId
-                );
-
-
-            if(task){
-
-                task.title =
-                    title;
-
-                task.dayIndex =
-                    dayIndex;
-
-                task.hours =
-                    hours;
-
-                task.subjectId =
-                    subjectId;
-
-                task.type =
-                    type;
-
-                task.notes =
-                    notes;
-
-                task.updatedAt =
-                    new Date().toISOString();
-
-            }
-
-
-            showToast(
-                "Study task updated."
-            );
-
-        }
-
-
-        /* CREATE */
-
-        else{
-
-            user.weeklyPlans.push({
-
-                id:
-                    generateId(),
-
-                weekKey:
-                    getWeekKey(),
-
-                dayIndex:
-                    dayIndex,
-
-                title:
-                    title,
-
-                hours:
-                    hours,
-
-                subjectId:
-                    subjectId,
-
-                type:
-                    type,
-
-                notes:
-                    notes,
-
-                completed:
-                    false,
-
-                createdAt:
-                    new Date().toISOString(),
-
-                updatedAt:
-                    new Date().toISOString()
-
-            });
-
-
-            showToast(
-                "Study task saved permanently."
-            );
-
-        }
-
-
-        saveCurrentUser();
-
-        closeModal();
-
-        render();
-
-    }
-);
+}
 
 
 /* ============================================================
-   TOGGLE TASK
+   ESCAPE HTML
 ============================================================ */
 
-function toggleTask(id){
+function escapeHTML(value){
 
-    const task =
-        user.weeklyPlans.find(
-            item =>
-                item.id === id
-        );
-
-
-    if(!task)
-        return;
-
-
-    task.completed =
-        !task.completed;
-
-
-    task.updatedAt =
-        new Date().toISOString();
-
-
-    saveCurrentUser();
-
-    render();
-
-
-    showToast(
-        task.completed
-        ? "Task completed ✓"
-        : "Task marked incomplete."
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
     );
 
 }
 
 
 /* ============================================================
-   DELETE TASK
-============================================================ */
-
-function deleteTask(id){
-
-    const task =
-        user.weeklyPlans.find(
-            item =>
-                item.id === id
-        );
-
-
-    if(!task)
-        return;
-
-
-    if(
-        !confirm(
-            `Delete "${task.title}" permanently?`
-        )
-    ){
-
-        return;
-
-    }
-
-
-    user.weeklyPlans =
-        user.weeklyPlans.filter(
-            item =>
-                item.id !== id
-        );
-
-
-    saveCurrentUser();
-
-    render();
-
-
-    showToast(
-        "Study task deleted."
-    );
-
-}
-
-
-/* ============================================================
-   STATS
-============================================================ */
-
-function updateStats(){
-
-    const tasks =
-        getWeekTasks();
-
-
-    const total =
-        tasks.length;
-
-
-    const completed =
-        tasks.filter(
-            task =>
-                task.completed
-        ).length;
-
-
-    const hours =
-        tasks.reduce(
-            (
-                total,
-                task
-            ) =>
-                total +
-                Number(
-                    task.hours || 0
-                ),
-            0
-        );
-
-
-    const percent =
-        total
-        ? Math.round(
-            completed /
-            total *
-            100
-        )
-        : 0;
-
-
-    document.getElementById(
-        "totalTasks"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "completedTasks"
-    ).textContent =
-        completed;
-
-
-    document.getElementById(
-        "totalHours"
-    ).textContent =
-        `${hours}h`;
-
-
-    document.getElementById(
-        "completionPercent"
-    ).textContent =
-        `${percent}%`;
-
-}
-
-
-/* ============================================================
-   WEEK NAVIGATION
+   NAVIGATION
 ============================================================ */
 
 document
@@ -2770,9 +3234,30 @@ document
         "click",
         () => {
 
-            weekOffset--;
+            if(selectedWeek === 0){
+
+                selectedWeek =
+                    38;
+
+            }else{
+
+                selectedWeek--;
+
+                if(selectedWeek < 1){
+
+                    selectedWeek =
+                        38;
+
+                }
+
+            }
 
             render();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
 
         }
     );
@@ -2786,9 +3271,30 @@ document
         "click",
         () => {
 
-            weekOffset++;
+            if(selectedWeek === 0){
+
+                selectedWeek =
+                    1;
+
+            }else{
+
+                selectedWeek++;
+
+                if(selectedWeek > 38){
+
+                    selectedWeek =
+                        1;
+
+                }
+
+            }
 
             render();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
 
         }
     );
@@ -2802,9 +3308,46 @@ document
         "click",
         () => {
 
-            weekOffset = 0;
+            selectedWeek =
+                getInitialWeek();
 
             render();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "showAll"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if(selectedWeek === 0){
+
+                selectedWeek =
+                    getInitialWeek();
+
+            }else{
+
+                selectedWeek =
+                    0;
+
+            }
+
+            render();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
 
         }
     );
@@ -2869,16 +3412,20 @@ if(user){
         );
 
 
-    avatar.textContent =
-        user.name
-            .split(" ")
-            .map(
-                word =>
-                    word[0]
-            )
-            .join("")
-            .substring(0,2)
-            .toUpperCase();
+    if(user.name){
+
+        avatar.textContent =
+            user.name
+                .split(" ")
+                .map(
+                    word =>
+                        word[0]
+                )
+                .join("")
+                .substring(0,2)
+                .toUpperCase();
+
+    }
 
 }
 
@@ -2930,39 +3477,8 @@ function showToast(
             );
 
         },
-        2600
+        2200
     );
-
-}
-
-
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
 
 }
 
