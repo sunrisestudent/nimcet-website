@@ -4,33 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NIMCET PrepPro | Dashboard</title>
+<title>NIMCET PrepPro — Home</title>
+
+<meta
+    name="description"
+    content="NIMCET PrepPro — Your complete NIMCET preparation dashboard"
+/>
 
 <style>
 
+/* =========================================================
+   NIMCET PREPPRO
+   PREMIUM HOME DASHBOARD
+   ========================================================= */
+
 :root{
-    --bg:#070b17;
-    --panel:#0d1426;
-    --panel2:#111a30;
-    --border:rgba(255,255,255,.08);
 
-    --primary:#6366f1;
-    --purple:#8b5cf6;
-    --cyan:#22d3ee;
-    --green:#34d399;
-    --orange:#f59e0b;
-    --red:#fb7185;
+    --bg:#f7f9fc;
+    --white:#ffffff;
 
-    --text:#f8fafc;
-    --muted:#94a3b8;
+    --navy:#07152f;
+    --navy-2:#0c2145;
+    --blue:#1769ff;
+    --blue-2:#3b82f6;
+    --sky:#eaf3ff;
 
-    --sidebar:255px;
+    --purple:#7257ff;
+    --cyan:#16b9d5;
 
-    --shadow:0 25px 70px rgba(0,0,0,.32);
+    --green:#0ca678;
+    --green-bg:#e8faf4;
+
+    --orange:#f59f00;
+    --orange-bg:#fff6df;
+
+    --red:#ef4444;
+    --red-bg:#fff0f0;
+
+    --text:#10213d;
+    --text-2:#344765;
+    --muted:#71809a;
+
+    --border:#e7edf5;
+
+    --shadow-sm:
+        0 4px 18px rgba(20,42,80,.06);
+
+    --shadow:
+        0 15px 45px rgba(20,42,80,.09);
+
+    --shadow-lg:
+        0 25px 70px rgba(20,42,80,.13);
+
+    --radius:22px;
+
+    --sidebar:270px;
+
 }
 
 
-/* ================= RESET ================= */
+/* =========================================================
+   RESET
+   ========================================================= */
 
 *{
     margin:0;
@@ -43,587 +78,312 @@ html{
 }
 
 body{
+
     min-height:100vh;
 
     font-family:
         Inter,
+        ui-sans-serif,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
 
+    background:var(--bg);
+
     color:var(--text);
 
-    background:
-        radial-gradient(
-            circle at 20% 0%,
-            rgba(99,102,241,.10),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(34,211,238,.07),
-            transparent 25%
-        ),
-        var(--bg);
-
     overflow-x:hidden;
+
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    border:0;
+}
+
+a{
+    color:inherit;
 }
 
 
-/* ============================================================
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app{
+    min-height:100vh;
+}
+
+
+/* =========================================================
    SIDEBAR
-============================================================= */
+   ========================================================= */
 
 .sidebar{
+
     position:fixed;
 
-    left:0;
     top:0;
+    left:0;
     bottom:0;
 
     width:var(--sidebar);
 
-    padding:22px 15px;
-
-    background:rgba(8,13,27,.95);
+    background:#ffffff;
 
     border-right:1px solid var(--border);
 
-    backdrop-filter:blur(20px);
+    z-index:1000;
 
-    z-index:100;
+    display:flex;
+    flex-direction:column;
+
+    padding:24px 16px;
 
     transition:.3s ease;
 
-    /* IMPORTANT */
     overflow-y:auto;
-    overflow-x:hidden;
 
-    scrollbar-width:thin;
-    scrollbar-color:#334155 transparent;
 }
-
-
-/* Chrome / Edge / Safari */
 
 .sidebar::-webkit-scrollbar{
-    width:6px;
-}
-
-.sidebar::-webkit-scrollbar-track{
-    background:transparent;
+    width:5px;
 }
 
 .sidebar::-webkit-scrollbar-thumb{
-    background:#334155;
-    border-radius:10px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover{
-    background:#475569;
+    background:#d8e0ec;
+    border-radius:20px;
 }
 
 
-/* ================= LOGO ================= */
+/* =========================================================
+   BRAND
+   ========================================================= */
 
-.logo-area{
+.brand{
+
     display:flex;
     align-items:center;
+
     gap:12px;
 
-    padding:5px 12px 25px;
+    padding:4px 10px 28px;
+
 }
 
-.logo{
-    width:43px;
-    height:43px;
+.brand-logo{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
 
     display:grid;
     place-items:center;
 
-    border-radius:13px;
+    color:#fff;
+
+    font-size:18px;
+    font-weight:900;
 
     background:
         linear-gradient(
             135deg,
-            var(--primary),
-            var(--purple)
+            #1769ff,
+            #7257ff
         );
 
-    font-size:20px;
-    font-weight:900;
-
     box-shadow:
-        0 12px 28px rgba(99,102,241,.3);
+        0 10px 25px rgba(23,105,255,.25);
+
 }
 
-.logo-name{
-    font-size:16px;
-    font-weight:800;
+.brand-text{
+
+    font-size:15px;
+    font-weight:850;
+
+    letter-spacing:-.3px;
+
 }
 
-.logo-name span{
-    color:#818cf8;
+.brand-text span{
+    color:var(--blue);
+}
+
+.brand-small{
+
+    margin-top:2px;
+
+    color:#91a0b7;
+
+    font-size:9px;
+
+    font-weight:600;
+
 }
 
 
-/* ================= MENU LABEL ================= */
+/* =========================================================
+   SIDEBAR SECTION
+   ========================================================= */
 
-.menu-label{
-    padding:0 13px;
+.sidebar-label{
+
+    padding:0 12px;
 
     margin:18px 0 9px;
 
-    color:#475569;
+    color:#9aa7ba;
 
     font-size:9px;
+
     font-weight:800;
 
     letter-spacing:1.3px;
 
     text-transform:uppercase;
+
 }
 
 
-/* ================= NAV ================= */
+/* =========================================================
+   NAV
+   ========================================================= */
 
 .nav{
+
     display:flex;
     flex-direction:column;
 
     gap:4px;
 
-    min-height:max-content;
 }
 
 .nav-item{
+
+    position:relative;
+
     display:flex;
     align-items:center;
 
     gap:12px;
 
-    padding:11px 13px;
+    padding:11px 12px;
 
     border-radius:12px;
-
-    color:#7f8da3;
 
     text-decoration:none;
 
+    color:#687993;
+
     font-size:12px;
-    font-weight:600;
-
-    transition:.2s;
-
-    flex-shrink:0;
-}
-
-.nav-item:hover{
-    color:#e2e8f0;
-
-    background:
-        rgba(255,255,255,.045);
-}
-
-.nav-item.active{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            100deg,
-            rgba(99,102,241,.22),
-            rgba(139,92,246,.10)
-        );
-
-    border:
-        1px solid
-        rgba(129,140,248,.12);
-}
-
-.nav-icon{
-    width:28px;
-    height:28px;
-
-    display:grid;
-    place-items:center;
-
-    flex-shrink:0;
-
-    border-radius:8px;
-
-    font-size:14px;
-
-    background:
-        rgba(255,255,255,.035);
-}
-
-.nav-item.active .nav-icon{
-    background:
-        rgba(99,102,241,.2);
-
-    color:#a5b4fc;
-}
-
-
-/* ============================================================
-   SIDEBAR BOTTOM
-============================================================= */
-
-.sidebar-bottom{
-    margin-top:22px;
-
-    padding-bottom:5px;
-}
-
-.upgrade{
-    padding:14px;
-
-    border-radius:15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(99,102,241,.14),
-            rgba(139,92,246,.08)
-        );
-
-    border:
-        1px solid
-        rgba(129,140,248,.12);
-}
-
-.upgrade-title{
-    font-size:11px;
-    font-weight:750;
-}
-
-.upgrade-text{
-    margin-top:5px;
-
-    color:#64748b;
-
-    font-size:9px;
-
-    line-height:1.5;
-}
-
-.logout{
-    width:100%;
-
-    margin-top:9px;
-
-    padding:10px;
-
-    border:0;
-
-    border-radius:11px;
-
-    background:
-        rgba(251,113,133,.06);
-
-    color:#fb7185;
-
-    cursor:pointer;
-
-    font-size:11px;
     font-weight:650;
 
     transition:.2s;
+
 }
 
-.logout:hover{
-    background:
-        rgba(251,113,133,.12);
+.nav-item:hover{
+
+    background:#f2f6fc;
+
+    color:var(--text);
+
 }
 
+.nav-item.active{
 
-/* ============================================================
-   MAIN
-============================================================= */
+    background:#edf4ff;
 
-.main{
-    margin-left:var(--sidebar);
+    color:var(--blue);
 
-    min-height:100vh;
-
-    padding:25px 30px 45px;
 }
 
+.nav-item.active::before{
 
-/* ============================================================
-   TOPBAR
-============================================================= */
-
-.topbar{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:25px;
-}
-
-.page-title h1{
-    font-size:23px;
-
-    letter-spacing:-.7px;
-}
-
-.page-title p{
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:11px;
-}
-
-.top-actions{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.icon-btn{
-    width:38px;
-    height:38px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:11px;
-
-    border:
-        1px solid
-        var(--border);
-
-    background:
-        rgba(255,255,255,.035);
-
-    color:#94a3b8;
-
-    cursor:pointer;
-
-    position:relative;
-}
-
-.icon-btn:hover{
-    color:white;
-
-    border-color:
-        rgba(129,140,248,.25);
-}
-
-.notification-dot{
-    position:absolute;
-
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    top:8px;
-    right:8px;
-
-    background:var(--red);
-
-    box-shadow:
-        0 0 8px var(--red);
-}
-
-.avatar{
-    width:38px;
-    height:38px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #8b5cf6
-        );
-
-    color:white;
-
-    font-size:12px;
-    font-weight:800;
-}
-
-
-/* ============================================================
-   HERO
-============================================================= */
-
-.hero{
-    position:relative;
-
-    padding:28px;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(79,70,229,.20),
-            rgba(139,92,246,.12),
-            rgba(15,23,42,.7)
-        );
-
-    border:
-        1px solid
-        rgba(129,140,248,.12);
-
-    box-shadow:var(--shadow);
-}
-
-.hero::after{
     content:"";
 
     position:absolute;
 
-    width:280px;
-    height:280px;
+    left:0;
+    top:8px;
+    bottom:8px;
 
-    border-radius:50%;
+    width:3px;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(34,211,238,.15),
-            transparent 70%
-        );
+    border-radius:5px;
 
-    right:-90px;
-    top:-110px;
+    background:var(--blue);
+
 }
 
-.hero-content{
-    position:relative;
+.nav-icon{
 
-    z-index:2;
-}
+    width:30px;
+    height:30px;
 
-.hero-badge{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:6px 10px;
-
-    border-radius:50px;
-
-    background:
-        rgba(34,211,238,.08);
-
-    color:#67e8f9;
-
-    font-size:9px;
-
-    font-weight:750;
-
-    text-transform:uppercase;
-
-    letter-spacing:.7px;
-}
-
-.hero h2{
-    margin-top:13px;
-
-    font-size:27px;
-
-    letter-spacing:-1px;
-}
-
-.hero h2 span{
-    color:#a5b4fc;
-}
-
-.hero p{
-    max-width:620px;
-
-    margin-top:7px;
-
-    color:#94a3b8;
-
-    font-size:11px;
-
-    line-height:1.6;
-}
-
-.hero-date{
-    position:absolute;
-
-    right:25px;
-    bottom:24px;
-
-    color:#64748b;
-
-    font-size:10px;
-}
-
-
-/* ============================================================
-   STATS
-============================================================= */
-
-.stats{
     display:grid;
+    place-items:center;
 
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
+    border-radius:9px;
 
-    gap:13px;
+    background:#f5f7fb;
 
-    margin-top:17px;
+    color:#70809a;
+
+    flex-shrink:0;
+
 }
 
-.stat-card{
-    padding:18px;
+.nav-item.active .nav-icon{
+
+    background:#dceaff;
+
+    color:var(--blue);
+
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+   ========================================================= */
+
+.sidebar-bottom{
+
+    margin-top:auto;
+
+    padding-top:20px;
+
+}
+
+.consistency{
+
+    padding:15px;
 
     border-radius:17px;
 
     background:
-        rgba(15,23,42,.72);
+        linear-gradient(
+            135deg,
+            #f0f6ff,
+            #f6f2ff
+        );
 
-    border:
-        1px solid
-        var(--border);
+    border:1px solid #e3ebf8;
 
-    transition:.25s;
 }
 
-.stat-card:hover{
-    transform:translateY(-2px);
+.consistency-icon{
 
-    border-color:
-        rgba(129,140,248,.2);
-
-    box-shadow:
-        0 15px 35px
-        rgba(0,0,0,.2);
-}
-
-.stat-top{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-}
-
-.stat-icon{
     width:34px;
     height:34px;
 
@@ -632,203 +392,1122 @@ body{
 
     border-radius:10px;
 
-    background:
-        rgba(99,102,241,.1);
+    background:#fff;
 
-    color:#a5b4fc;
+    margin-bottom:10px;
+
 }
 
-.stat-value{
-    margin-top:15px;
+.consistency-title{
 
-    font-size:24px;
-
+    font-size:11px;
     font-weight:800;
+
 }
 
-.stat-name{
-    margin-top:3px;
+.consistency-text{
 
-    color:#64748b;
+    margin-top:5px;
 
-    font-size:10px;
-}
-
-.stat-change{
-    color:var(--green);
+    color:#71809a;
 
     font-size:9px;
+
+    line-height:1.5;
+
+}
+
+.logout{
+
+    width:100%;
+
+    margin-top:9px;
+
+    padding:11px;
+
+    border-radius:11px;
+
+    background:#fff5f5;
+
+    color:#e54848;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:700;
+
+}
+
+.logout:hover{
+    background:#ffecec;
 }
 
 
-/* ============================================================
-   CONTENT GRID
-============================================================= */
+/* =========================================================
+   MAIN
+   ========================================================= */
 
-.content-grid{
+.main{
+
+    margin-left:var(--sidebar);
+
+    min-height:100vh;
+
+    padding:0 38px 50px;
+
+}
+
+
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
+
+.top-header{
+
+    height:78px;
+
+    display:flex;
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.mobile-menu{
+
+    display:none;
+
+    width:40px;
+    height:40px;
+
+    border-radius:11px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.breadcrumb{
+
+    color:#8290a5;
+
+    font-size:10px;
+
+}
+
+.breadcrumb strong{
+    color:var(--text);
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+   ========================================================= */
+
+.header-right{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.header-btn{
+
+    width:39px;
+    height:39px;
+
+    border-radius:11px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    color:#60708a;
+
+    cursor:pointer;
+
+    position:relative;
+
+}
+
+.header-btn:hover{
+
+    color:var(--blue);
+
+    border-color:#cdddf6;
+
+}
+
+.notification-dot{
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ff5252;
+
+    top:8px;
+    right:8px;
+
+    border:2px solid #fff;
+
+}
+
+.profile{
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    padding-left:6px;
+
+}
+
+.avatar{
+
+    width:39px;
+    height:39px;
+
+    border-radius:12px;
+
+    display:grid;
+    place-items:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1769ff,
+            #7257ff
+        );
+
+    color:#fff;
+
+    font-size:11px;
+    font-weight:850;
+
+}
+
+.profile-info{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.profile-name{
+
+    font-size:10px;
+    font-weight:800;
+
+}
+
+.profile-role{
+
+    margin-top:2px;
+
+    color:#8b98ab;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+
+    position:relative;
+
+    margin-top:28px;
+
+    min-height:300px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(97,174,255,.30),
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 70% 100%,
+            rgba(114,87,255,.32),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            120deg,
+            #071a3a,
+            #0b3270 55%,
+            #153f82
+        );
+
+    box-shadow:
+        0 25px 65px rgba(9,43,91,.18);
+
+}
+
+
+/* decorative circles */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:390px;
+    height:390px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    right:-120px;
+    top:-170px;
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    right:60px;
+    bottom:-180px;
+
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:700px;
+
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 11px;
+
+    border-radius:50px;
+
+    color:#cfe3ff;
+
+    background:rgba(255,255,255,.09);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    font-size:9px;
+
+    font-weight:750;
+
+    letter-spacing:.4px;
+
+}
+
+.hero-tag span{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#5de0b2;
+
+    box-shadow:
+        0 0 10px #5de0b2;
+
+}
+
+.hero h1{
+
+    margin-top:17px;
+
+    color:#fff;
+
+    font-size:38px;
+
+    line-height:1.08;
+
+    letter-spacing:-1.5px;
+
+}
+
+.hero h1 span{
+    color:#8ec5ff;
+}
+
+.hero-description{
+
+    max-width:610px;
+
+    margin-top:12px;
+
+    color:#b8c8df;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+.hero-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:23px;
+
+}
+
+.primary-btn{
+
+    padding:11px 16px;
+
+    border-radius:11px;
+
+    background:#fff;
+
+    color:#0a2a5b;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.13);
+
+}
+
+.primary-btn:hover{
+    transform:translateY(-1px);
+}
+
+.secondary-btn{
+
+    padding:11px 16px;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:750;
+
+}
+
+
+/* =========================================================
+   HERO NIT VISUAL
+   ========================================================= */
+
+.hero-nit{
+
+    position:absolute;
+
+    right:50px;
+    bottom:32px;
+
+    z-index:2;
+
+    width:225px;
+    height:225px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    display:grid;
+    place-items:center;
+
+}
+
+.nit-circle-inner{
+
+    width:165px;
+    height:165px;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    text-align:center;
+
+}
+
+.nit-circle-icon{
+
+    font-size:38px;
+
+}
+
+.nit-circle-inner strong{
+
+    margin-top:8px;
+
+    color:#fff;
+
+    font-size:13px;
+
+}
+
+.nit-circle-inner small{
+
+    margin-top:4px;
+
+    color:#9db1d0;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   MAIN STATS
+   ========================================================= */
+
+.stats{
+
     display:grid;
 
     grid-template-columns:
-        1.45fr .85fr;
+        repeat(4,minmax(0,1fr));
 
-    gap:17px;
+    gap:14px;
 
     margin-top:17px;
+
 }
 
+.stat{
 
-/* ============================================================
-   PANEL
-============================================================= */
+    padding:18px;
 
-.panel{
-    padding:20px;
+    border-radius:18px;
 
-    border-radius:19px;
+    background:#fff;
 
-    background:
-        rgba(15,23,42,.7);
+    border:1px solid var(--border);
 
-    border:
-        1px solid
-        var(--border);
+    box-shadow:var(--shadow-sm);
+
+    transition:.2s;
+
 }
 
-.panel-header{
+.stat:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.stat-head{
+
     display:flex;
 
     align-items:center;
 
     justify-content:space-between;
 
-    margin-bottom:17px;
 }
 
-.panel-title{
-    font-size:14px;
+.stat-icon{
 
+    width:35px;
+    height:35px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    background:#edf4ff;
+
+    color:var(--blue);
+
+}
+
+.stat-icon.green{
+
+    background:var(--green-bg);
+    color:var(--green);
+
+}
+
+.stat-icon.orange{
+
+    background:var(--orange-bg);
+    color:var(--orange);
+
+}
+
+.stat-icon.purple{
+
+    background:#f1edff;
+    color:var(--purple);
+
+}
+
+.stat-trend{
+
+    color:#0ca678;
+
+    font-size:8px;
     font-weight:750;
+
 }
 
-.panel-subtitle{
+.stat-value{
+
+    margin-top:14px;
+
+    font-size:25px;
+
+    font-weight:850;
+
+    letter-spacing:-.8px;
+
+}
+
+.stat-label{
+
     margin-top:3px;
 
-    color:#64748b;
+    color:#7d8ba0;
 
     font-size:9px;
+
 }
 
-.view-all{
-    color:#818cf8;
+
+/* =========================================================
+   CONTENT GRID
+   ========================================================= */
+
+.content{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.65fr)
+        minmax(300px,.9fr);
+
+    gap:17px;
+
+    margin-top:17px;
+
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow-sm);
+
+    padding:21px;
+
+}
+
+.card + .card{
+    margin-top:17px;
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:flex-start;
+
+    margin-bottom:18px;
+
+}
+
+.card-title{
+
+    font-size:14px;
+    font-weight:820;
+
+    letter-spacing:-.2px;
+
+}
+
+.card-subtitle{
+
+    margin-top:4px;
+
+    color:#8390a4;
+
+    font-size:9px;
+
+}
+
+.card-link{
+
+    color:var(--blue);
+
+    text-decoration:none;
+
+    font-size:9px;
+
+    font-weight:750;
+
+}
+
+
+/* =========================================================
+   NIT CHOICE SECTION
+   ========================================================= */
+
+.nit-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:11px;
+
+}
+
+.nit-card{
+
+    position:relative;
+
+    min-height:190px;
+
+    padding:16px;
+
+    border-radius:17px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f5f9ff,
+            #ffffff
+        );
+
+    border:1px solid #e5edf9;
+
+    transition:.25s;
+
+}
+
+.nit-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#cbdcf5;
+
+    box-shadow:
+        0 15px 35px rgba(30,75,130,.10);
+
+}
+
+.nit-number{
+
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:#e7f0ff;
+
+    color:var(--blue);
+
+    font-size:9px;
+    font-weight:850;
+
+}
+
+.nit-image{
+
+    position:absolute;
+
+    right:-8px;
+    top:-7px;
+
+    width:100px;
+    height:82px;
+
+    border-radius:
+        0 0 0 40px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #cfe1ff,
+            #eef5ff
+        );
+
+    display:grid;
+    place-items:center;
+
+    font-size:30px;
+
+    opacity:.9;
+
+}
+
+.nit-card h3{
+
+    max-width:130px;
+
+    margin-top:28px;
+
+    font-size:12px;
+
+    line-height:1.3;
+
+}
+
+.nit-location{
+
+    margin-top:5px;
+
+    color:#8190a5;
+
+    font-size:8px;
+
+}
+
+.nit-badge{
+
+    display:inline-flex;
+
+    margin-top:12px;
+
+    padding:5px 7px;
+
+    border-radius:6px;
+
+    background:#edf9f5;
+
+    color:#099268;
+
+    font-size:7px;
+
+    font-weight:800;
+
+}
+
+.nit-rank{
+
+    margin-top:9px;
+
+    color:#6e7e95;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   PREPARATION ROADMAP
+   ========================================================= */
+
+.roadmap{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
+
+}
+
+.road{
+
+    position:relative;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#f8faff;
+
+    border:1px solid #e9eef6;
+
+}
+
+.road-number{
+
+    width:27px;
+    height:27px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:50%;
+
+    background:#e9f2ff;
+
+    color:var(--blue);
+
+    font-size:8px;
+    font-weight:850;
+
+}
+
+.road h4{
+
+    margin-top:12px;
 
     font-size:10px;
 
-    text-decoration:none;
 }
 
-.view-all:hover{
-    color:#a5b4fc;
+.road p{
+
+    margin-top:5px;
+
+    color:#7d8ba0;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+}
+
+.road.active{
+
+    background:
+        linear-gradient(
+            145deg,
+            #edf5ff,
+            #f9fbff
+        );
+
+    border-color:#d5e5fb;
+
+}
+
+.road.active .road-number{
+
+    background:var(--blue);
+
+    color:white;
+
 }
 
 
-/* ============================================================
+/* =========================================================
    PROGRESS
-============================================================= */
+   ========================================================= */
 
-.progress-layout{
+.progress-box{
+
     display:flex;
 
     align-items:center;
 
-    gap:25px;
+    gap:22px;
+
 }
 
 .progress-ring{
-    width:130px;
-    height:130px;
 
-    flex-shrink:0;
+    width:135px;
+    height:135px;
 
     border-radius:50%;
 
     display:grid;
-
     place-items:center;
+
+    flex-shrink:0;
 
     background:
         conic-gradient(
-            var(--primary) 0deg,
+            var(--blue) 0deg,
             var(--purple) 0deg,
-            #1e293b 0deg
+            #eaf0f7 0deg
         );
 
     position:relative;
+
 }
 
 .progress-ring::before{
+
     content:"";
 
     position:absolute;
 
-    width:103px;
-    height:103px;
+    width:105px;
+    height:105px;
 
     border-radius:50%;
 
-    background:#0d1426;
+    background:#fff;
+
 }
 
 .progress-center{
-    position:relative;
 
+    position:relative;
     z-index:2;
 
     text-align:center;
+
 }
 
 .progress-number{
-    font-size:23px;
 
-    font-weight:850;
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+
 }
 
-.progress-label{
-    color:#64748b;
+.progress-caption{
+
+    margin-top:2px;
+
+    color:#8a98ab;
 
     font-size:8px;
+
 }
 
-.progress-info{
+.progress-bars{
+
     flex:1;
+
 }
 
-.progress-row{
-    margin-bottom:13px;
+.bar-row{
+
+    margin-bottom:15px;
+
 }
 
-.progress-row-top{
+.bar-top{
+
     display:flex;
 
     justify-content:space-between;
 
     margin-bottom:6px;
 
-    color:#94a3b8;
-
     font-size:9px;
+
 }
 
-.progress-track{
-    height:6px;
+.bar-top span:first-child{
+    color:#63728a;
+}
 
-    overflow:hidden;
+.bar-top span:last-child{
+    color:var(--text);
+    font-weight:750;
+}
+
+.bar-track{
+
+    height:7px;
 
     border-radius:10px;
 
-    background:#1e293b;
+    overflow:hidden;
+
+    background:#edf1f6;
+
 }
 
-.progress-fill{
+.bar-fill{
+
     height:100%;
 
     border-radius:10px;
@@ -836,106 +1515,171 @@ body{
     background:
         linear-gradient(
             90deg,
-            var(--primary),
+            var(--blue),
             var(--purple)
         );
+
 }
 
 
-/* ============================================================
-   TASKS
-============================================================= */
+/* =========================================================
+   TODAY PLAN
+   ========================================================= */
 
-.task{
+.today-task{
+
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:11px;
 
     padding:11px 0;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.045);
+    border-bottom:1px solid #edf1f5;
+
 }
 
-.task:last-child{
+.today-task:last-child{
     border-bottom:0;
 }
 
-.task-check{
-    width:18px;
-    height:18px;
+.task-time{
 
-    flex-shrink:0;
+    min-width:52px;
 
-    border-radius:6px;
+    color:#7e8da4;
 
-    border:
-        1px solid
-        #334155;
+    font-size:8px;
 
-    background:transparent;
-
-    cursor:pointer;
-
-    display:grid;
-
-    place-items:center;
-
-    color:white;
-
-    font-size:9px;
 }
 
-.task-check.completed{
-    background:var(--primary);
+.task-dot{
 
-    border-color:var(--primary);
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--blue);
+
+    box-shadow:
+        0 0 0 4px #eaf2ff;
+
 }
 
 .task-info{
     flex:1;
 }
 
-.task-name{
-    color:#cbd5e1;
+.task-title{
 
-    font-size:10px;
+    font-size:9px;
+    font-weight:750;
 
-    font-weight:650;
 }
 
-.task-time{
+.task-sub{
+
     margin-top:3px;
 
-    color:#64748b;
+    color:#8996a9;
 
     font-size:8px;
+
+}
+
+.task-status{
+
+    padding:5px 7px;
+
+    border-radius:6px;
+
+    background:#edf9f5;
+
+    color:#0b9b71;
+
+    font-size:7px;
+
+    font-weight:800;
+
 }
 
 
-/* ============================================================
-   EMPTY
-============================================================= */
+/* =========================================================
+   WEEKLY TIMETABLE
+   ========================================================= */
 
-.empty{
-    padding:30px 10px;
+.week-strip{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,minmax(0,1fr));
+
+    gap:6px;
+
+}
+
+.day{
 
     text-align:center;
 
-    color:#64748b;
+    padding:9px 4px;
+
+    border-radius:10px;
+
+    background:#f7f9fc;
+
+    border:1px solid #edf1f6;
+
+}
+
+.day-name{
+
+    color:#8896a9;
+
+    font-size:7px;
+
+    font-weight:750;
+
+}
+
+.day-number{
+
+    margin-top:4px;
 
     font-size:10px;
+    font-weight:850;
+
+}
+
+.day.active{
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--blue),
+            #4c7fff
+        );
+
+    border-color:transparent;
+
+}
+
+.day.active .day-name{
+    color:#dceaff;
 }
 
 
-/* ============================================================
-   QUICK ACTIONS
-============================================================= */
+/* =========================================================
+   SUBJECT CARDS
+   ========================================================= */
 
-.quick-actions{
+.subject-grid{
+
     display:grid;
 
     grid-template-columns:
@@ -943,85 +1687,373 @@ body{
 
     gap:10px;
 
-    margin-top:17px;
 }
 
-.quick{
+.subject{
+
     padding:14px;
 
     border-radius:14px;
 
-    background:
-        rgba(255,255,255,.025);
+    background:#f9fbfd;
 
-    border:
-        1px solid
-        rgba(255,255,255,.06);
+    border:1px solid #edf1f6;
 
-    text-decoration:none;
-
-    transition:.2s;
 }
 
-.quick:hover{
-    transform:translateY(-2px);
+.subject-top{
 
-    background:
-        rgba(99,102,241,.07);
+    display:flex;
 
-    border-color:
-        rgba(129,140,248,.18);
+    align-items:center;
+
+    gap:9px;
+
 }
 
-.quick-icon{
+.subject-icon{
+
     width:31px;
     height:31px;
 
     display:grid;
-
     place-items:center;
 
     border-radius:9px;
 
-    background:
-        rgba(99,102,241,.12);
+    background:#edf4ff;
 
-    color:#a5b4fc;
+    color:var(--blue);
+
 }
 
-.quick-name{
-    margin-top:10px;
+.subject-name{
 
-    color:#cbd5e1;
+    font-size:9px;
+    font-weight:800;
 
-    font-size:10px;
+}
 
-    font-weight:700;
+.subject-percent{
+
+    margin-left:auto;
+
+    font-size:8px;
+    color:#71809a;
+
+}
+
+.subject-bar{
+
+    height:5px;
+
+    margin-top:12px;
+
+    border-radius:10px;
+
+    background:#e8edf4;
+
+    overflow:hidden;
+
+}
+
+.subject-fill{
+
+    height:100%;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1769ff,
+            #6d5dfc
+        );
+
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+.right-card{
+
+    padding:20px;
+
+}
+
+
+/* =========================================================
+   EXAM COUNTDOWN
+   ========================================================= */
+
+.countdown{
+
+    padding:18px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071a3a,
+            #124789
+        );
+
+    color:#fff;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.countdown::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    right:-60px;
+    top:-60px;
+
+}
+
+.countdown-label{
+
+    color:#9fb8dc;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.countdown-title{
+
+    margin-top:7px;
+
+    font-size:13px;
+    font-weight:800;
+
+}
+
+.countdown-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:5px;
+
+    margin-top:15px;
+
+}
+
+.count-box{
+
+    padding:9px 4px;
+
+    text-align:center;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.count-value{
+
+    font-size:16px;
+    font-weight:850;
+
+}
+
+.count-name{
+
+    margin-top:2px;
+
+    color:#9eb2cf;
+
+    font-size:6px;
+
+    text-transform:uppercase;
+
+}
+
+
+/* =========================================================
+   FOCUS CARD
+   ========================================================= */
+
+.focus-card{
+
+    margin-top:12px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#f7faff;
+
+    border:1px solid #e8eef7;
+
+}
+
+.focus-label{
+
+    color:#8290a5;
+
+    font-size:8px;
+
+}
+
+.focus-title{
+
+    margin-top:6px;
+
+    font-size:11px;
+    font-weight:800;
+
+}
+
+.focus-text{
+
+    margin-top:5px;
+
+    color:#7c8a9f;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+}
+
+.focus-button{
+
+    display:inline-block;
+
+    margin-top:11px;
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    background:#e9f2ff;
+
+    color:var(--blue);
+
+    text-decoration:none;
+
+    font-size:8px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:8px;
+
+}
+
+.quick{
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    border:1px solid #edf1f6;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.quick:hover{
+
+    background:#f0f6ff;
+
+    border-color:#d9e6f9;
+
+    transform:translateY(-2px);
+
+}
+
+.quick-icon{
+
+    width:29px;
+    height:29px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:#eaf2ff;
+
+    color:var(--blue);
+
+}
+
+.quick-title{
+
+    margin-top:8px;
+
+    font-size:8px;
+    font-weight:800;
+
 }
 
 .quick-desc{
+
     margin-top:3px;
 
-    color:#64748b;
+    color:#8794a8;
 
-    font-size:8px;
+    font-size:7px;
+
 }
 
 
-/* ============================================================
+/* =========================================================
    ACTIVITY
-============================================================= */
+   ========================================================= */
 
 .activity{
+
     display:flex;
 
-    gap:11px;
+    gap:10px;
 
-    padding:11px 0;
+    padding:10px 0;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.045);
+    border-bottom:1px solid #edf1f5;
+
 }
 
 .activity:last-child{
@@ -1029,97 +2061,288 @@ body{
 }
 
 .activity-icon{
-    width:30px;
-    height:30px;
 
-    flex-shrink:0;
+    width:29px;
+    height:29px;
 
     display:grid;
-
     place-items:center;
 
     border-radius:9px;
 
-    background:
-        rgba(99,102,241,.1);
+    background:#edf4ff;
 
-    color:#a5b4fc;
+    color:var(--blue);
 
-    font-size:11px;
+    flex-shrink:0;
+
 }
 
 .activity-text{
+
     flex:1;
 
-    color:#94a3b8;
+    color:#66758d;
 
-    font-size:9px;
+    font-size:8px;
 
     line-height:1.5;
+
 }
 
 .activity-text strong{
-    color:#cbd5e1;
+    color:#263b5a;
 }
 
 .activity-time{
-    color:#475569;
 
-    font-size:8px;
+    margin-top:3px;
+
+    color:#a0abba;
+
+    font-size:7px;
+
 }
 
 
-/* ============================================================
-   MOBILE MENU
-============================================================= */
+/* =========================================================
+   MOTIVATION
+   ========================================================= */
 
-.mobile-menu{
-    display:none;
+.quote{
 
-    width:38px;
-    height:38px;
+    padding:18px;
 
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:11px;
+    border-radius:17px;
 
     background:
-        rgba(255,255,255,.035);
+        linear-gradient(
+            135deg,
+            #f1efff,
+            #f8f7ff
+        );
 
-    color:white;
+    border:1px solid #e8e3ff;
 
-    cursor:pointer;
+}
+
+.quote-mark{
+
+    color:#7257ff;
+
+    font-size:26px;
+    font-weight:900;
+
+    line-height:.5;
+
+}
+
+.quote-text{
+
+    margin-top:8px;
+
+    color:#4f5274;
+
+    font-size:10px;
+
+    line-height:1.6;
+
+    font-weight:650;
+
+}
+
+.quote-author{
+
+    margin-top:9px;
+
+    color:#8a88a9;
+
+    font-size:7px;
+
 }
 
 
-/* ============================================================
-   RESPONSIVE
-============================================================= */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
-@media(max-width:1100px){
+.footer{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:25px;
+
+    padding:18px 3px;
+
+    color:#8b98aa;
+
+    font-size:8px;
+
+}
+
+.footer-links{
+
+    display:flex;
+    gap:15px;
+
+}
+
+.footer-links a{
+
+    text-decoration:none;
+
+}
+
+.footer-links a:hover{
+    color:var(--blue);
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty{
+
+    padding:24px 10px;
+
+    text-align:center;
+
+    color:#8b98ab;
+
+    font-size:9px;
+
+}
+
+.empty a{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    color:var(--blue);
+
+    text-decoration:none;
+
+    font-weight:750;
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    min-width:220px;
+
+    padding:13px 16px;
+
+    border-radius:12px;
+
+    background:#10213d;
+
+    color:#fff;
+
+    box-shadow:var(--shadow-lg);
+
+    font-size:9px;
+
+    transform:
+        translateY(120px);
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:2000;
+
+}
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 1200
+   ========================================================= */
+
+@media(max-width:1200px){
+
+    .main{
+        padding-left:25px;
+        padding-right:25px;
+    }
+
+    .hero-nit{
+        right:25px;
+        opacity:.75;
+    }
+
+    .content{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 1000
+   ========================================================= */
+
+@media(max-width:1000px){
 
     .stats{
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(2,1fr);
     }
 
-    .content-grid{
-        grid-template-columns:1fr;
+    .nit-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
+
+    .roadmap{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
 }
 
 
+/* =========================================================
+   RESPONSIVE 800
+   ========================================================= */
+
 @media(max-width:800px){
 
+    :root{
+        --sidebar:270px;
+    }
+
     .sidebar{
-        transform:translateX(-100%);
 
-        /* Mobile sidebar still scrollable */
-        height:100vh;
+        transform:
+            translateX(-100%);
 
-        overflow-y:auto;
+        box-shadow:
+            20px 0 50px rgba(0,0,0,.12);
+
     }
 
     .sidebar.open{
@@ -1127,90 +2350,234 @@ body{
     }
 
     .main{
+
         margin-left:0;
 
-        padding:18px;
+        padding:
+            0 15px 35px;
+
     }
 
     .mobile-menu{
-        display:grid;
-
-        place-items:center;
+        display:block;
     }
 
-    .topbar{
+    .top-header{
+
         gap:10px;
+
     }
 
-    .page-title{
-        flex:1;
+    .breadcrumb{
+        display:none;
     }
 
-    .hero-date{
-        position:static;
+    .hero{
 
-        margin-top:15px;
+        padding:28px;
+
+        min-height:350px;
+
     }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero-nit{
+        width:150px;
+        height:150px;
+        right:20px;
+        bottom:15px;
+        opacity:.35;
+    }
+
+    .nit-circle-inner{
+        width:110px;
+        height:110px;
+    }
+
 }
 
 
-@media(max-width:550px){
+/* =========================================================
+   RESPONSIVE 600
+   ========================================================= */
+
+@media(max-width:600px){
+
+    .profile-info{
+        display:none;
+    }
+
+    .hero{
+
+        padding:23px;
+
+        min-height:380px;
+
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .hero-description{
+        font-size:10px;
+    }
+
+    .hero-actions{
+        flex-wrap:wrap;
+    }
+
+    .hero-nit{
+
+        width:130px;
+        height:130px;
+
+        right:12px;
+        bottom:12px;
+
+    }
+
+    .nit-circle-inner{
+
+        width:94px;
+        height:94px;
+
+    }
+
+    .nit-circle-icon{
+        font-size:25px;
+    }
 
     .stats{
         grid-template-columns:
-            1fr 1fr;
-
-        gap:9px;
+            repeat(2,1fr);
     }
 
-    .stat-card{
+    .stat{
         padding:14px;
     }
 
     .stat-value{
-        font-size:20px;
+        font-size:21px;
     }
 
-    .progress-layout{
+    .nit-grid{
+        grid-template-columns:1fr;
+    }
+
+    .roadmap{
+        grid-template-columns:1fr;
+    }
+
+    .progress-box{
         flex-direction:column;
+        align-items:stretch;
     }
 
-    .progress-info{
-        width:100%;
+    .progress-ring{
+        margin:auto;
     }
 
-    .hero{
-        padding:20px;
+    .subject-grid{
+        grid-template-columns:1fr;
     }
 
-    .hero h2{
-        font-size:22px;
+    .week-strip{
+        overflow-x:auto;
+        padding-bottom:3px;
     }
 
-    .quick-actions{
-        grid-template-columns:
-            1fr 1fr;
+    .day{
+        min-width:45px;
     }
+
 }
 
 
-@media(max-width:400px){
+/* =========================================================
+   RESPONSIVE 420
+   ========================================================= */
+
+@media(max-width:420px){
 
     .main{
-        padding:13px;
+        padding-left:10px;
+        padding-right:10px;
     }
 
     .stats{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
     }
 
-    .quick-actions{
-        grid-template-columns:1fr;
+    .stat-icon{
+        width:30px;
+        height:30px;
     }
 
-    .top-actions .icon-btn{
+    .stat-value{
+        font-size:19px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .hero{
+        border-radius:21px;
+    }
+
+    .hero-nit{
         display:none;
     }
+
+    .quick-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.hero,
+.stat,
+.card{
+
+    animation:
+        fadeUp .5s ease both;
+
+}
+
+.stat:nth-child(2){
+    animation-delay:.05s;
+}
+
+.stat:nth-child(3){
+    animation-delay:.10s;
+}
+
+.stat:nth-child(4){
+    animation-delay:.15s;
 }
 
 </style>
@@ -1219,28 +2586,45 @@ body{
 
 <body>
 
+<div class="app">
 
-<!-- ============================================================
+
+<!-- =====================================================
      SIDEBAR
-============================================================= -->
+====================================================== -->
 
-<aside class="sidebar" id="sidebar">
+<aside
+    class="sidebar"
+    id="sidebar"
+>
 
 
-    <div class="logo-area">
+    <!-- BRAND -->
 
-        <div class="logo">
+    <div class="brand">
+
+        <div class="brand-logo">
             N
         </div>
 
-        <div class="logo-name">
-            NIMCET <span>PrepPro</span>
+        <div>
+
+            <div class="brand-text">
+                NIMCET <span>PrepPro</span>
+            </div>
+
+            <div class="brand-small">
+                Smart Preparation System
+            </div>
+
         </div>
 
     </div>
 
 
-    <div class="menu-label">
+    <!-- MAIN -->
+
+    <div class="sidebar-label">
         Main
     </div>
 
@@ -1248,172 +2632,173 @@ body{
     <nav class="nav">
 
 
-        <!-- DASHBOARD -->
-
         <a
             href="dashboard.html"
             class="nav-item active"
         >
-            <span class="nav-icon">
-                ⌂
-            </span>
 
-            Dashboard
+            <span class="nav-icon">⌂</span>
+
+            Home
+
         </a>
 
-
-        <!-- SYLLABUS -->
 
         <a
             href="syllabus.html"
             class="nav-item"
         >
-            <span class="nav-icon">
-                ✓
-            </span>
+
+            <span class="nav-icon">✓</span>
 
             Syllabus
+
         </a>
 
-
-        <!-- NOTES -->
-
-        <a
-            href="notes.html"
-            class="nav-item"
-        >
-            <span class="nav-icon">
-                ✎
-            </span>
-
-            Notes
-        </a>
-
-
-        <!-- DOUBTS -->
-
-        <a
-            href="doubts.html"
-            class="nav-item"
-        >
-            <span class="nav-icon">
-                ?
-            </span>
-
-            Doubts
-        </a>
-
-
-        <!-- WEEKLY PLAN -->
 
         <a
             href="weekly-plan.html"
             class="nav-item"
         >
-            <span class="nav-icon">
-                ◷
-            </span>
+
+            <span class="nav-icon">◷</span>
 
             Weekly Plan
+
         </a>
 
-
-        <!-- TIMETABLE -->
 
         <a
             href="timetable.html"
             class="nav-item"
         >
-            <span class="nav-icon">
-                🗓
-            </span>
+
+            <span class="nav-icon">▦</span>
 
             Timetable
+
         </a>
 
 
-        <div class="menu-label">
-            Practice
-        </div>
-
-
-        <!-- MOCK TEST -->
-
         <a
-            href="mock-test.html"
+            href="notes.html"
             class="nav-item"
         >
-            <span class="nav-icon">
-                ▣
-            </span>
 
-            Mock Tests
+            <span class="nav-icon">✎</span>
+
+            Notes
+
         </a>
 
 
-        <!-- PROGRESS -->
-
         <a
-            href="progress.html"
+            href="doubts.html"
             class="nav-item"
         >
-            <span class="nav-icon">
-                ◒
-            </span>
 
-            Progress
-        </a>
+            <span class="nav-icon">?</span>
 
+            Doubts
 
-        <!-- RESOURCES -->
-
-        <a
-            href="resources.html"
-            class="nav-item"
-        >
-            <span class="nav-icon">
-                ▤
-            </span>
-
-            Resources
-        </a>
-
-
-        <div class="menu-label">
-            Account
-        </div>
-
-
-        <!-- PROFILE -->
-
-        <a
-            href="profile.html"
-            class="nav-item"
-        >
-            <span class="nav-icon">
-                ●
-            </span>
-
-            Profile
         </a>
 
 
     </nav>
 
 
-    <!-- SIDEBAR BOTTOM -->
+    <!-- PRACTICE -->
+
+    <div class="sidebar-label">
+        Practice
+    </div>
+
+
+    <nav class="nav">
+
+
+        <a
+            href="mock-test.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">▣</span>
+
+            Mock Tests
+
+        </a>
+
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">◒</span>
+
+            Progress
+
+        </a>
+
+
+        <a
+            href="resources.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">▤</span>
+
+            Resources
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- ACCOUNT -->
+
+    <div class="sidebar-label">
+        Account
+    </div>
+
+
+    <nav class="nav">
+
+
+        <a
+            href="profile.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">●</span>
+
+            Profile
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- BOTTOM -->
 
     <div class="sidebar-bottom">
 
 
-        <div class="upgrade">
+        <div class="consistency">
 
-            <div class="upgrade-title">
-                🎯 Stay consistent
+            <div class="consistency-icon">
+                🎯
             </div>
 
-            <div class="upgrade-text">
-                Small daily progress creates big results.
+            <div class="consistency-title">
+                Build your NIT dream
+            </div>
+
+            <div class="consistency-text">
+                Consistency beats last-minute
+                preparation. Keep moving every day.
             </div>
 
         </div>
@@ -1426,72 +2811,95 @@ body{
             ↪ &nbsp; Logout
         </button>
 
-
     </div>
 
 
 </aside>
 
 
-
-<!-- ============================================================
+<!-- =====================================================
      MAIN
-============================================================= -->
+====================================================== -->
 
 <main class="main">
 
 
-    <!-- TOPBAR -->
+    <!-- HEADER -->
 
-    <header class="topbar">
-
-
-        <button
-            class="mobile-menu"
-            id="mobileMenu"
-            aria-label="Open menu"
-        >
-            ☰
-        </button>
+    <header class="top-header">
 
 
-        <div class="page-title">
+        <div style="display:flex;align-items:center;gap:12px;">
 
-            <h1>
-                Dashboard
-            </h1>
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+            >
+                ☰
+            </button>
 
-            <p>
-                Your personal NIMCET preparation overview
-            </p>
+
+            <div class="breadcrumb">
+
+                PrepPro
+
+                <span style="margin:0 5px;">
+                    /
+                </span>
+
+                <strong>
+                    Home
+                </strong>
+
+            </div>
 
         </div>
 
 
-        <div class="top-actions">
+        <div class="header-right">
 
 
             <button
-                class="icon-btn"
-                type="button"
+                class="header-btn"
+                onclick="showToast('You are all caught up!')"
             >
 
                 🔔
 
-                <span
-                    class="notification-dot"
-                ></span>
+                <span class="notification-dot"></span>
 
             </button>
 
 
             <a
                 href="profile.html"
-                class="avatar"
-                id="avatar"
+                class="profile"
                 style="text-decoration:none;"
             >
-                U
+
+                <div
+                    class="avatar"
+                    id="avatar"
+                >
+                    U
+                </div>
+
+
+                <div class="profile-info">
+
+                    <div
+                        class="profile-name"
+                        id="profileName"
+                    >
+                        Student
+                    </div>
+
+                    <div class="profile-role">
+                        NIMCET Aspirant
+                    </div>
+
+                </div>
+
             </a>
 
 
@@ -1501,10 +2909,9 @@ body{
     </header>
 
 
-
-    <!-- ========================================================
+    <!-- =================================================
          HERO
-    ========================================================= -->
+    ================================================== -->
 
     <section class="hero">
 
@@ -1512,75 +2919,108 @@ body{
         <div class="hero-content">
 
 
-            <div class="hero-badge">
-                ● Your preparation space
+            <div class="hero-tag">
+
+                <span></span>
+
+                NIMCET PREPARATION 2026
+
             </div>
 
 
-            <h2>
+            <h1>
 
-                Good evening,
-
-                <span id="userName">
-                    Student
+                Build your path to
+                <span>
+                    the best NITs.
                 </span>
 
-                👋
-
-            </h2>
+            </h1>
 
 
-            <p>
+            <p class="hero-description">
 
-                Stay focused on your goals.
-                Add your own syllabus,
-                create notes, manage doubts
-                and plan your week according
-                to your preparation strategy.
+                Your preparation starts here.
+                Track your syllabus, follow your
+                weekly plan, practise mock tests,
+                manage notes and keep your NIT
+                target in sight.
 
             </p>
+
+
+            <div class="hero-actions">
+
+
+                <a
+                    href="weekly-plan.html"
+                    class="primary-btn"
+                >
+                    Continue Preparation →
+                </a>
+
+
+                <a
+                    href="timetable.html"
+                    class="secondary-btn"
+                >
+                    View Timetable
+                </a>
+
+
+            </div>
 
 
         </div>
 
 
-        <div
-            class="hero-date"
-            id="currentDate"
-        ></div>
+        <div class="hero-nit">
+
+            <div class="nit-circle-inner">
+
+                <div class="nit-circle-icon">
+                    🎓
+                </div>
+
+                <strong>
+                    NIT Dream
+                </strong>
+
+                <small>
+                    One day at a time
+                </small>
+
+            </div>
+
+        </div>
 
 
     </section>
 
 
-
-    <!-- ========================================================
+    <!-- =================================================
          STATS
-    ========================================================= -->
+    ================================================== -->
 
     <section class="stats">
 
 
-        <!-- TOPICS -->
+        <div class="stat">
 
-        <div class="stat-card">
-
-
-            <div class="stat-top">
+            <div class="stat-head">
 
                 <div class="stat-icon">
                     ✓
                 </div>
 
                 <span
-                    class="stat-change"
-                    id="topicChange"
+                    class="stat-trend"
+                    id="topicTrend"
                 >
                     —
                 </span>
 
             </div>
-
 
             <div
                 class="stat-value"
@@ -1589,32 +3029,26 @@ body{
                 0
             </div>
 
-
-            <div class="stat-name">
-                Completed Topics
+            <div class="stat-label">
+                Topics Completed
             </div>
-
 
         </div>
 
 
-        <!-- NOTES -->
+        <div class="stat">
 
-        <div class="stat-card">
+            <div class="stat-head">
 
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
+                <div class="stat-icon green">
                     ✎
                 </div>
 
-                <span class="stat-change">
+                <span class="stat-trend">
                     Personal
                 </span>
 
             </div>
-
 
             <div
                 class="stat-value"
@@ -1623,35 +3057,29 @@ body{
                 0
             </div>
 
-
-            <div class="stat-name">
-                My Notes
+            <div class="stat-label">
+                Notes Created
             </div>
-
 
         </div>
 
 
-        <!-- DOUBTS -->
+        <div class="stat">
 
-        <div class="stat-card">
+            <div class="stat-head">
 
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
+                <div class="stat-icon orange">
                     ?
                 </div>
 
                 <span
-                    class="stat-change"
+                    class="stat-trend"
                     id="doubtStatus"
                 >
                     —
                 </span>
 
             </div>
-
 
             <div
                 class="stat-value"
@@ -1660,32 +3088,26 @@ body{
                 0
             </div>
 
-
-            <div class="stat-name">
+            <div class="stat-label">
                 Active Doubts
             </div>
-
 
         </div>
 
 
-        <!-- TASKS -->
+        <div class="stat">
 
-        <div class="stat-card">
+            <div class="stat-head">
 
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
+                <div class="stat-icon purple">
                     ◷
                 </div>
 
-                <span class="stat-change">
-                    This week
+                <span class="stat-trend">
+                    Weekly
                 </span>
 
             </div>
-
 
             <div
                 class="stat-value"
@@ -1694,11 +3116,9 @@ body{
                 0
             </div>
 
-
-            <div class="stat-name">
+            <div class="stat-label">
                 Planned Tasks
             </div>
-
 
         </div>
 
@@ -1706,54 +3126,281 @@ body{
     </section>
 
 
-
-    <!-- ========================================================
+    <!-- =================================================
          CONTENT
-    ========================================================= -->
+    ================================================== -->
 
-    <section class="content-grid">
+    <section class="content">
 
 
-        <!-- ====================================================
+        <!-- =================================================
              LEFT
-        ===================================================== -->
+        ================================================== -->
 
         <div>
 
 
-            <!-- PREPARATION PROGRESS -->
+            <!-- NIT CHOICE -->
 
-            <div class="panel">
+            <div class="card">
 
 
-                <div class="panel-header">
-
+                <div class="card-header">
 
                     <div>
 
-                        <div class="panel-title">
-                            Preparation Progress
+                        <div class="card-title">
+                            Your NIT Target Zone
                         </div>
 
-                        <div class="panel-subtitle">
-                            Based on your completed syllabus topics
+                        <div class="card-subtitle">
+                            Keep your target institutes visible
+                            throughout your preparation.
                         </div>
 
                     </div>
 
 
                     <a
-                        href="syllabus.html"
-                        class="view-all"
+                        href="resources.html"
+                        class="card-link"
                     >
-                        Manage →
+                        Explore →
                     </a>
+
+                </div>
+
+
+                <div class="nit-grid">
+
+
+                    <div class="nit-card">
+
+                        <div class="nit-number">
+                            #1
+                        </div>
+
+                        <div class="nit-image">
+                            🏛️
+                        </div>
+
+                        <h3>
+                            NIT Trichy
+                        </h3>
+
+                        <div class="nit-location">
+                            Tiruchirappalli
+                        </div>
+
+                        <div class="nit-badge">
+                            Top Target
+                        </div>
+
+                        <div class="nit-rank">
+                            Strong MCA preference
+                        </div>
+
+                    </div>
+
+
+                    <div class="nit-card">
+
+                        <div class="nit-number">
+                            #2
+                        </div>
+
+                        <div class="nit-image">
+                            🎓
+                        </div>
+
+                        <h3>
+                            NIT Warangal
+                        </h3>
+
+                        <div class="nit-location">
+                            Telangana
+                        </div>
+
+                        <div class="nit-badge">
+                            Dream Choice
+                        </div>
+
+                        <div class="nit-rank">
+                            High-priority target
+                        </div>
+
+                    </div>
+
+
+                    <div class="nit-card">
+
+                        <div class="nit-number">
+                            #3
+                        </div>
+
+                        <div class="nit-image">
+                            🏫
+                        </div>
+
+                        <h3>
+                            NIT Surathkal
+                        </h3>
+
+                        <div class="nit-location">
+                            Karnataka
+                        </div>
+
+                        <div class="nit-badge">
+                            Target
+                        </div>
+
+                        <div class="nit-rank">
+                            Strong preference
+                        </div>
+
+                    </div>
 
 
                 </div>
 
 
-                <div class="progress-layout">
+            </div>
+
+
+            <!-- ROADMAP -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <div class="card-title">
+                            NIMCET Preparation Roadmap
+                        </div>
+
+                        <div class="card-subtitle">
+                            Follow the process instead of studying randomly.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap">
+
+
+                    <div class="road active">
+
+                        <div class="road-number">
+                            01
+                        </div>
+
+                        <h4>
+                            Build Basics
+                        </h4>
+
+                        <p>
+                            Strengthen concepts and
+                            remove fundamentals gaps.
+                        </p>
+
+                    </div>
+
+
+                    <div class="road">
+
+                        <div class="road-number">
+                            02
+                        </div>
+
+                        <h4>
+                            Topic Practice
+                        </h4>
+
+                        <p>
+                            Solve topic-wise questions
+                            every day.
+                        </p>
+
+                    </div>
+
+
+                    <div class="road">
+
+                        <div class="road-number">
+                            03
+                        </div>
+
+                        <h4>
+                            PYQs
+                        </h4>
+
+                        <p>
+                            Analyse previous questions
+                            and recurring concepts.
+                        </p>
+
+                    </div>
+
+
+                    <div class="road">
+
+                        <div class="road-number">
+                            04
+                        </div>
+
+                        <h4>
+                            Mock Tests
+                        </h4>
+
+                        <p>
+                            Improve speed, accuracy
+                            and exam strategy.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <div class="card-title">
+                            Preparation Progress
+                        </div>
+
+                        <div class="card-subtitle">
+                            Your overall preparation snapshot.
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="progress.html"
+                        class="card-link"
+                    >
+                        Full Progress →
+                    </a>
+
+                </div>
+
+
+                <div class="progress-box">
 
 
                     <div
@@ -1761,9 +3408,7 @@ body{
                         id="progressRing"
                     >
 
-
                         <div class="progress-center">
-
 
                             <div
                                 class="progress-number"
@@ -1772,27 +3417,21 @@ body{
                                 0%
                             </div>
 
-
-                            <div class="progress-label">
-                                Completed
+                            <div class="progress-caption">
+                                Overall
                             </div>
 
-
                         </div>
-
 
                     </div>
 
 
-                    <div class="progress-info">
+                    <div class="progress-bars">
 
 
-                        <!-- SYLLABUS -->
+                        <div class="bar-row">
 
-                        <div class="progress-row">
-
-
-                            <div class="progress-row-top">
+                            <div class="bar-top">
 
                                 <span>
                                     Syllabus
@@ -1804,27 +3443,22 @@ body{
 
                             </div>
 
-
-                            <div class="progress-track">
+                            <div class="bar-track">
 
                                 <div
-                                    class="progress-fill"
+                                    class="bar-fill"
                                     id="syllabusBar"
                                     style="width:0%"
                                 ></div>
 
                             </div>
 
-
                         </div>
 
 
-                        <!-- TASKS -->
+                        <div class="bar-row">
 
-                        <div class="progress-row">
-
-
-                            <div class="progress-row-top">
+                            <div class="bar-top">
 
                                 <span>
                                     Weekly Tasks
@@ -1836,27 +3470,22 @@ body{
 
                             </div>
 
-
-                            <div class="progress-track">
+                            <div class="bar-track">
 
                                 <div
-                                    class="progress-fill"
+                                    class="bar-fill"
                                     id="taskBar"
                                     style="width:0%"
                                 ></div>
 
                             </div>
 
-
                         </div>
 
 
-                        <!-- MOCKS -->
+                        <div class="bar-row">
 
-                        <div class="progress-row">
-
-
-                            <div class="progress-row-top">
+                            <div class="bar-top">
 
                                 <span>
                                     Mock Tests
@@ -1868,17 +3497,15 @@ body{
 
                             </div>
 
-
-                            <div class="progress-track">
+                            <div class="bar-track">
 
                                 <div
-                                    class="progress-fill"
+                                    class="bar-fill"
                                     id="mockBar"
                                     style="width:0%"
                                 ></div>
 
                             </div>
-
 
                         </div>
 
@@ -1892,167 +3519,227 @@ body{
             </div>
 
 
+            <!-- WEEKLY TIMETABLE -->
 
-            <!-- QUICK ACTIONS -->
-
-            <div
-                class="panel"
-                style="margin-top:17px;"
-            >
+            <div class="card">
 
 
-                <div class="panel-header">
-
+                <div class="card-header">
 
                     <div>
 
-                        <div class="panel-title">
-                            Quick Actions
+                        <div class="card-title">
+                            This Week
                         </div>
 
-                        <div class="panel-subtitle">
-                            Continue your preparation
+                        <div class="card-subtitle">
+                            Your weekly preparation rhythm.
                         </div>
 
                     </div>
 
 
+                    <a
+                        href="timetable.html"
+                        class="card-link"
+                    >
+                        Open Timetable →
+                    </a>
+
                 </div>
 
 
-                <div class="quick-actions">
+                <div
+                    class="week-strip"
+                    id="weekStrip"
+                >
+                </div>
 
 
-                    <!-- SYLLABUS -->
+                <div
+                    style="
+                        margin-top:15px;
+                    "
+                    id="todayTasks"
+                >
+
+                    <div class="empty">
+                        No tasks planned for today.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SUBJECTS -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <div class="card-title">
+                            Core Subjects
+                        </div>
+
+                        <div class="card-subtitle">
+                            Keep all major areas moving.
+                        </div>
+
+                    </div>
+
 
                     <a
                         href="syllabus.html"
-                        class="quick"
+                        class="card-link"
                     >
-
-                        <div class="quick-icon">
-                            +
-                        </div>
-
-                        <div class="quick-name">
-                            Add Syllabus
-                        </div>
-
-                        <div class="quick-desc">
-                            Create your own topics
-                        </div>
-
+                        Manage →
                     </a>
 
+                </div>
 
-                    <!-- NOTES -->
 
-                    <a
-                        href="notes.html"
-                        class="quick"
-                    >
+                <div class="subject-grid">
 
-                        <div class="quick-icon">
-                            ✎
+
+                    <div class="subject">
+
+                        <div class="subject-top">
+
+                            <div class="subject-icon">
+                                ∑
+                            </div>
+
+                            <div class="subject-name">
+                                Mathematics
+                            </div>
+
+                            <div
+                                class="subject-percent"
+                                id="mathPercent"
+                            >
+                                0%
+                            </div>
+
                         </div>
 
-                        <div class="quick-name">
-                            New Note
+                        <div class="subject-bar">
+
+                            <div
+                                class="subject-fill"
+                                id="mathBar"
+                                style="width:0%"
+                            ></div>
+
                         </div>
 
-                        <div class="quick-desc">
-                            Save your study notes
+                    </div>
+
+
+                    <div class="subject">
+
+                        <div class="subject-top">
+
+                            <div class="subject-icon">
+                                💻
+                            </div>
+
+                            <div class="subject-name">
+                                Computer
+                            </div>
+
+                            <div
+                                class="subject-percent"
+                                id="computerPercent"
+                            >
+                                0%
+                            </div>
+
                         </div>
 
-                    </a>
+                        <div class="subject-bar">
 
+                            <div
+                                class="subject-fill"
+                                id="computerBar"
+                                style="width:0%"
+                            ></div>
 
-                    <!-- DOUBTS -->
-
-                    <a
-                        href="doubts.html"
-                        class="quick"
-                    >
-
-                        <div class="quick-icon">
-                            ?
                         </div>
 
-                        <div class="quick-name">
-                            Add Doubt
+                    </div>
+
+
+                    <div class="subject">
+
+                        <div class="subject-top">
+
+                            <div class="subject-icon">
+                                🧠
+                            </div>
+
+                            <div class="subject-name">
+                                Logical Reasoning
+                            </div>
+
+                            <div
+                                class="subject-percent"
+                                id="reasoningPercent"
+                            >
+                                0%
+                            </div>
+
                         </div>
 
-                        <div class="quick-desc">
-                            Track difficult topics
+                        <div class="subject-bar">
+
+                            <div
+                                class="subject-fill"
+                                id="reasoningBar"
+                                style="width:0%"
+                            ></div>
+
                         </div>
 
-                    </a>
+                    </div>
 
 
-                    <!-- WEEKLY PLAN -->
+                    <div class="subject">
 
-                    <a
-                        href="weekly-plan.html"
-                        class="quick"
-                    >
+                        <div class="subject-top">
 
-                        <div class="quick-icon">
-                            +
+                            <div class="subject-icon">
+                                📖
+                            </div>
+
+                            <div class="subject-name">
+                                General Awareness
+                            </div>
+
+                            <div
+                                class="subject-percent"
+                                id="gaPercent"
+                            >
+                                0%
+                            </div>
+
                         </div>
 
-                        <div class="quick-name">
-                            Plan Week
+                        <div class="subject-bar">
+
+                            <div
+                                class="subject-fill"
+                                id="gaBar"
+                                style="width:0%"
+                            ></div>
+
                         </div>
 
-                        <div class="quick-desc">
-                            Create study tasks
-                        </div>
-
-                    </a>
-
-
-                    <!-- TIMETABLE -->
-
-                    <a
-                        href="timetable.html"
-                        class="quick"
-                    >
-
-                        <div class="quick-icon">
-                            🗓
-                        </div>
-
-                        <div class="quick-name">
-                            Timetable
-                        </div>
-
-                        <div class="quick-desc">
-                            Manage your daily study time
-                        </div>
-
-                    </a>
-
-
-                    <!-- MOCK TEST -->
-
-                    <a
-                        href="mock-test.html"
-                        class="quick"
-                    >
-
-                        <div class="quick-icon">
-                            ▣
-                        </div>
-
-                        <div class="quick-name">
-                            Mock Test
-                        </div>
-
-                        <div class="quick-desc">
-                            Practice NIMCET tests
-                        </div>
-
-                    </a>
+                    </div>
 
 
                 </div>
@@ -2064,57 +3751,250 @@ body{
         </div>
 
 
-
-        <!-- ====================================================
+        <!-- =================================================
              RIGHT
-        ===================================================== -->
+        ================================================== -->
 
         <div>
 
 
+            <!-- COUNTDOWN -->
+
+            <div class="card right-card">
+
+
+                <div class="countdown">
+
+
+                    <div class="countdown-label">
+                        Your preparation clock
+                    </div>
+
+
+                    <div class="countdown-title">
+                        NIMCET Target
+                    </div>
+
+
+                    <div class="countdown-grid">
+
+
+                        <div class="count-box">
+
+                            <div
+                                class="count-value"
+                                id="countDays"
+                            >
+                                --
+                            </div>
+
+                            <div class="count-name">
+                                Days
+                            </div>
+
+                        </div>
+
+
+                        <div class="count-box">
+
+                            <div
+                                class="count-value"
+                                id="countHours"
+                            >
+                                --
+                            </div>
+
+                            <div class="count-name">
+                                Hours
+                            </div>
+
+                        </div>
+
+
+                        <div class="count-box">
+
+                            <div
+                                class="count-value"
+                                id="countMinutes"
+                            >
+                                --
+                            </div>
+
+                            <div class="count-name">
+                                Min
+                            </div>
+
+                        </div>
+
+
+                        <div class="count-box">
+
+                            <div
+                                class="count-value"
+                                id="countSeconds"
+                            >
+                                --
+                            </div>
+
+                            <div class="count-name">
+                                Sec
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-label">
+                        TODAY'S FOCUS
+                    </div>
+
+                    <div
+                        class="focus-title"
+                        id="focusTitle"
+                    >
+                        Start with your highest-priority topic
+                    </div>
+
+                    <div class="focus-text">
+                        Don't try to complete everything.
+                        Finish one meaningful study block first.
+                    </div>
+
+                    <a
+                        href="weekly-plan.html"
+                        class="focus-button"
+                    >
+                        Open today's plan
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
             <!-- TODAY -->
 
-            <div class="panel">
+            <div class="card">
 
 
-                <div class="panel-header">
-
+                <div class="card-header">
 
                     <div>
 
-                        <div class="panel-title">
-                            Today's Plan
+                        <div class="card-title">
+                            Today's Schedule
                         </div>
 
-                        <div class="panel-subtitle">
-                            Your scheduled study tasks
+                        <div class="card-subtitle">
+                            Your next study blocks.
                         </div>
 
                     </div>
 
 
                     <a
-                        href="weekly-plan.html"
-                        class="view-all"
+                        href="timetable.html"
+                        class="card-link"
                     >
                         View →
                     </a>
 
-
                 </div>
 
 
-                <div id="todayTasks">
+                <div id="scheduleList">
+
+                    <div class="today-task">
+
+                        <div class="task-time">
+                            Morning
+                        </div>
+
+                        <div class="task-dot"></div>
+
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                Mathematics
+                            </div>
+
+                            <div class="task-sub">
+                                Concepts + practice
+                            </div>
+
+                        </div>
+
+                        <div class="task-status">
+                            Focus
+                        </div>
+
+                    </div>
 
 
-                    <div class="empty">
+                    <div class="today-task">
 
-                        No tasks planned for today.
+                        <div class="task-time">
+                            Afternoon
+                        </div>
 
-                        <br><br>
+                        <div
+                            class="task-dot"
+                            style="background:#7257ff;"
+                        ></div>
 
-                        Create your weekly plan
-                        to see tasks here.
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                Computer
+                            </div>
+
+                            <div class="task-sub">
+                                Topic revision
+                            </div>
+
+                        </div>
+
+                        <div class="task-status">
+                            Study
+                        </div>
+
+                    </div>
+
+
+                    <div class="today-task">
+
+                        <div class="task-time">
+                            Evening
+                        </div>
+
+                        <div
+                            class="task-dot"
+                            style="background:#0ca678;"
+                        ></div>
+
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                PYQ Practice
+                            </div>
+
+                            <div class="task-sub">
+                                Timed questions
+                            </div>
+
+                        </div>
+
+                        <div class="task-status">
+                            Practice
+                        </div>
 
                     </div>
 
@@ -2125,44 +4005,211 @@ body{
             </div>
 
 
+            <!-- QUICK ACTIONS -->
 
-            <!-- ACTIVITY -->
-
-            <div
-                class="panel"
-                style="margin-top:17px;"
-            >
+            <div class="card">
 
 
-                <div class="panel-header">
-
+                <div class="card-header">
 
                     <div>
 
-                        <div class="panel-title">
-                            Recent Activity
+                        <div class="card-title">
+                            Quick Actions
                         </div>
 
-                        <div class="panel-subtitle">
-                            Your latest preparation activity
+                        <div class="card-subtitle">
+                            Jump directly into preparation.
                         </div>
 
                     </div>
 
+                </div>
+
+
+                <div class="quick-grid">
+
+
+                    <a
+                        href="syllabus.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ✓
+                        </div>
+
+                        <div class="quick-title">
+                            Syllabus
+                        </div>
+
+                        <div class="quick-desc">
+                            Track topics
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="notes.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ✎
+                        </div>
+
+                        <div class="quick-title">
+                            New Note
+                        </div>
+
+                        <div class="quick-desc">
+                            Save concepts
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="doubts.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ?
+                        </div>
+
+                        <div class="quick-title">
+                            Add Doubt
+                        </div>
+
+                        <div class="quick-desc">
+                            Clear confusion
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="mock-test.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ▣
+                        </div>
+
+                        <div class="quick-title">
+                            Mock Test
+                        </div>
+
+                        <div class="quick-desc">
+                            Test yourself
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="weekly-plan.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ◷
+                        </div>
+
+                        <div class="quick-title">
+                            Weekly Plan
+                        </div>
+
+                        <div class="quick-desc">
+                            Plan your week
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="resources.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ▤
+                        </div>
+
+                        <div class="quick-title">
+                            Resources
+                        </div>
+
+                        <div class="quick-desc">
+                            Study material
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <div class="card-title">
+                            Recent Activity
+                        </div>
+
+                        <div class="card-subtitle">
+                            Your latest preparation actions.
+                        </div>
+
+                    </div>
 
                 </div>
 
 
                 <div id="activityList">
 
-
                     <div class="empty">
-
-                        Your activity will appear here
-                        as you use the platform.
-
+                        Your activity will appear here.
                     </div>
 
+                </div>
+
+
+            </div>
+
+
+            <!-- MOTIVATION -->
+
+            <div class="card">
+
+
+                <div class="quote">
+
+                    <div class="quote-mark">
+                        “
+                    </div>
+
+                    <div class="quote-text">
+                        You don't need a perfect day.
+                        You need enough consistent days
+                        to become the student you want to be.
+                    </div>
+
+                    <div class="quote-author">
+                        NIMCET PrepPro • Daily Reminder
+                    </div>
 
                 </div>
 
@@ -2176,21 +4223,58 @@ body{
     </section>
 
 
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div>
+            © 2026 NIMCET PrepPro
+        </div>
+
+        <div class="footer-links">
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+            <a href="resources.html">
+                Resources
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+        </div>
+
+    </footer>
+
+
 </main>
 
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
 
 
 <script>
 
-/* ============================================================
+/* =========================================================
    NIMCET PREPPRO
    DASHBOARD ENGINE
-============================================================= */
+   ========================================================= */
 
 
-/* ============================================================
-   STORAGE
-============================================================= */
+/* =========================================================
+   STORAGE KEYS
+   ========================================================= */
 
 const USERS_KEY =
     "nimcet_preppro_users";
@@ -2199,15 +4283,21 @@ const SESSION_KEY =
     "nimcet_preppro_session";
 
 
+/* =========================================================
+   STORAGE HELPERS
+   ========================================================= */
+
 function getUsers(){
 
     try{
 
         return JSON.parse(
-            localStorage.getItem(USERS_KEY)
+            localStorage.getItem(
+                USERS_KEY
+            )
         ) || [];
 
-    }catch{
+    }catch(error){
 
         return [];
 
@@ -2221,10 +4311,12 @@ function getSession(){
     try{
 
         return JSON.parse(
-            localStorage.getItem(SESSION_KEY)
+            localStorage.getItem(
+                SESSION_KEY
+            )
         );
 
-    }catch{
+    }catch(error){
 
         return null;
 
@@ -2233,11 +4325,12 @@ function getSession(){
 }
 
 
-/* ============================================================
-   AUTH
-============================================================= */
+/* =========================================================
+   AUTHENTICATION
+   ========================================================= */
 
-const session = getSession();
+const session =
+    getSession();
 
 
 if(!session){
@@ -2248,17 +4341,19 @@ if(!session){
 }
 
 
-/* ============================================================
+/* =========================================================
    FIND USER
-============================================================= */
+   ========================================================= */
 
-const users = getUsers();
+const users =
+    getUsers();
 
 
 let user =
     users.find(
         item =>
-            item.id === session?.userId
+            item.id ===
+            session?.userId
     );
 
 
@@ -2274,37 +4369,47 @@ if(!user){
 }
 
 
-/* ============================================================
-   ELEMENTS
-============================================================= */
+/* =========================================================
+   DOM
+   ========================================================= */
 
-const userName =
+const userNameElement =
     document.getElementById(
-        "userName"
+        "profileName"
     );
 
-const avatar =
+const avatarElement =
     document.getElementById(
         "avatar"
     );
 
 
-/* ============================================================
-   USER INFO
-============================================================= */
+/* =========================================================
+   USER
+   ========================================================= */
 
 if(user){
 
-    userName.textContent =
-        user.name
+    const name =
+        user.name ||
+        "Student";
+
+
+    const firstName =
+        name
             .split(" ")[0];
 
-    avatar.textContent =
-        user.name
+
+    userNameElement.textContent =
+        name;
+
+
+    avatarElement.textContent =
+        name
             .split(" ")
             .map(
                 word =>
-                    word[0]
+                    word.charAt(0)
             )
             .join("")
             .substring(0,2)
@@ -2313,35 +4418,9 @@ if(user){
 }
 
 
-/* ============================================================
-   DATE
-============================================================= */
-
-const dateElement =
-    document.getElementById(
-        "currentDate"
-    );
-
-
-const today =
-    new Date();
-
-
-dateElement.textContent =
-    today.toLocaleDateString(
-        "en-IN",
-        {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
-
-
-/* ============================================================
-   COUNTS
-============================================================= */
+/* =========================================================
+   DASHBOARD UPDATE
+   ========================================================= */
 
 function updateDashboard(){
 
@@ -2350,28 +4429,38 @@ function updateDashboard(){
 
 
     const syllabus =
-        user.syllabus || [];
+        Array.isArray(user.syllabus)
+            ? user.syllabus
+            : [];
 
 
     const notes =
-        user.notes || [];
+        Array.isArray(user.notes)
+            ? user.notes
+            : [];
 
 
     const doubts =
-        user.doubts || [];
+        Array.isArray(user.doubts)
+            ? user.doubts
+            : [];
 
 
     const plans =
-        user.weeklyPlans || [];
+        Array.isArray(user.weeklyPlans)
+            ? user.weeklyPlans
+            : [];
 
 
     const mockTests =
-        user.mockTests || [];
+        Array.isArray(user.mockTests)
+            ? user.mockTests
+            : [];
 
 
-    /* --------------------------------
+    /* =====================================================
        SYLLABUS
-    -------------------------------- */
+    ===================================================== */
 
     const totalTopics =
         syllabus.length;
@@ -2379,48 +4468,10 @@ function updateDashboard(){
 
     const completedTopics =
         syllabus.filter(
-            item =>
-                item.completed === true
+            topic =>
+                topic.completed === true
         ).length;
 
-
-    /* --------------------------------
-       DOUBTS
-    -------------------------------- */
-
-    const activeDoubts =
-        doubts.filter(
-            item =>
-                item.status !== "Solved"
-        ).length;
-
-
-    /* --------------------------------
-       TASKS
-    -------------------------------- */
-
-    const totalTasks =
-        plans.length;
-
-
-    const completedTasks =
-        plans.filter(
-            item =>
-                item.completed === true
-        ).length;
-
-
-    /* --------------------------------
-       MOCKS
-    -------------------------------- */
-
-    const totalMocks =
-        mockTests.length;
-
-
-    /* --------------------------------
-       PERCENTAGES
-    -------------------------------- */
 
     const syllabusPercent =
         totalTopics
@@ -2430,6 +4481,21 @@ function updateDashboard(){
                 100
             )
             : 0;
+
+
+    /* =====================================================
+       TASKS
+    ===================================================== */
+
+    const totalTasks =
+        plans.length;
+
+
+    const completedTasks =
+        plans.filter(
+            task =>
+                task.completed === true
+        ).length;
 
 
     const taskPercent =
@@ -2442,14 +4508,35 @@ function updateDashboard(){
             : 0;
 
 
-    const mockPercent =
-        totalMocks
-            ? Math.min(
-                totalMocks * 10,
-                100
-            )
-            : 0;
+    /* =====================================================
+       DOUBTS
+    ===================================================== */
 
+    const activeDoubts =
+        doubts.filter(
+            doubt =>
+                doubt.status !== "Solved"
+        ).length;
+
+
+    /* =====================================================
+       MOCKS
+    ===================================================== */
+
+    const totalMocks =
+        mockTests.length;
+
+
+    const mockPercent =
+        Math.min(
+            totalMocks * 10,
+            100
+        );
+
+
+    /* =====================================================
+       OVERALL
+    ===================================================== */
 
     const overall =
         Math.round(
@@ -2461,109 +4548,259 @@ function updateDashboard(){
         );
 
 
-    /* --------------------------------
-       DISPLAY
-    -------------------------------- */
+    /* =====================================================
+       BASIC COUNTS
+    ===================================================== */
 
-    document.getElementById(
-        "topicCount"
-    ).textContent =
-        completedTopics;
-
-
-    document.getElementById(
-        "notesCount"
-    ).textContent =
-        notes.length;
+    setText(
+        "topicCount",
+        completedTopics
+    );
 
 
-    document.getElementById(
-        "doubtsCount"
-    ).textContent =
-        activeDoubts;
+    setText(
+        "notesCount",
+        notes.length
+    );
 
 
-    document.getElementById(
-        "tasksCount"
-    ).textContent =
-        totalTasks;
+    setText(
+        "doubtsCount",
+        activeDoubts
+    );
 
 
-    document.getElementById(
-        "syllabusProgress"
-    ).textContent =
-        syllabusPercent + "%";
+    setText(
+        "tasksCount",
+        totalTasks
+    );
 
 
-    document.getElementById(
-        "taskProgress"
-    ).textContent =
-        taskPercent + "%";
+    /* =====================================================
+       TREND
+    ===================================================== */
+
+    setText(
+        "topicTrend",
+        totalTopics
+            ? syllabusPercent + "%"
+            : "Start"
+    );
 
 
-    document.getElementById(
-        "mockProgress"
-    ).textContent =
-        mockPercent + "%";
+    setText(
+        "doubtStatus",
+        activeDoubts
+            ? "Review"
+            : "Clear"
+    );
 
 
-    document.getElementById(
-        "syllabusBar"
-    ).style.width =
-        syllabusPercent + "%";
+    /* =====================================================
+       PROGRESS
+    ===================================================== */
+
+    setText(
+        "progressNumber",
+        overall + "%"
+    );
 
 
-    document.getElementById(
-        "taskBar"
-    ).style.width =
-        taskPercent + "%";
+    setText(
+        "syllabusProgress",
+        syllabusPercent + "%"
+    );
 
 
-    document.getElementById(
-        "mockBar"
-    ).style.width =
-        mockPercent + "%";
+    setText(
+        "taskProgress",
+        taskPercent + "%"
+    );
 
 
-    document.getElementById(
-        "progressNumber"
-    ).textContent =
-        overall + "%";
+    setText(
+        "mockProgress",
+        mockPercent + "%"
+    );
 
 
-    /* --------------------------------
+    setWidth(
+        "syllabusBar",
+        syllabusPercent
+    );
+
+
+    setWidth(
+        "taskBar",
+        taskPercent
+    );
+
+
+    setWidth(
+        "mockBar",
+        mockPercent
+    );
+
+
+    /* =====================================================
        RING
-    -------------------------------- */
+    ===================================================== */
 
     const degree =
         overall * 3.6;
 
 
-    document.getElementById(
-        "progressRing"
-    ).style.background =
-        `
-        conic-gradient(
-            #6366f1 0deg,
-            #8b5cf6 ${degree}deg,
-            #1e293b ${degree}deg,
-            #1e293b 360deg
-        )
-        `;
+    const ring =
+        document.getElementById(
+            "progressRing"
+        );
 
 
-    renderTodayTasks();
+    if(ring){
+
+        ring.style.background =
+            `
+            conic-gradient(
+                #1769ff 0deg,
+                #7257ff ${degree}deg,
+                #eaf0f7 ${degree}deg,
+                #eaf0f7 360deg
+            )
+            `;
+
+    }
+
+
+    /* =====================================================
+       SUBJECT PROGRESS
+    ===================================================== */
+
+    calculateSubjectProgress(
+        syllabus
+    );
+
+
+    /* =====================================================
+       TODAY
+    ===================================================== */
+
+    renderTodayTasks(
+        plans
+    );
+
+
+    /* =====================================================
+       ACTIVITY
+    ===================================================== */
 
     renderActivity();
+
 
 }
 
 
-/* ============================================================
-   TODAY TASKS
-============================================================= */
+/* =========================================================
+   SUBJECT PROGRESS
+   ========================================================= */
 
-function renderTodayTasks(){
+function calculateSubjectProgress(
+    syllabus
+){
+
+    const subjects = {
+
+        math:[
+            "math",
+            "mathematics"
+        ],
+
+        computer:[
+            "computer",
+            "computer awareness",
+            "computer fundamentals"
+        ],
+
+        reasoning:[
+            "reasoning",
+            "logical reasoning"
+        ],
+
+        ga:[
+            "general awareness",
+            "gk",
+            "general knowledge"
+        ]
+
+    };
+
+
+    Object.keys(subjects)
+        .forEach(
+            key => {
+
+                const matching =
+                    syllabus.filter(
+                        item => {
+
+                            const subject =
+                                String(
+                                    item.subject ||
+                                    item.category ||
+                                    ""
+                                )
+                                .toLowerCase();
+
+                            return subjects[key]
+                                .some(
+                                    name =>
+                                        subject.includes(name)
+                                );
+
+                        }
+                    );
+
+
+                const completed =
+                    matching.filter(
+                        item =>
+                            item.completed === true
+                    ).length;
+
+
+                const percent =
+                    matching.length
+                        ? Math.round(
+                            completed /
+                            matching.length *
+                            100
+                        )
+                        : 0;
+
+
+                setText(
+                    key + "Percent",
+                    percent + "%"
+                );
+
+
+                setWidth(
+                    key + "Bar",
+                    percent
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TODAY TASKS
+   ========================================================= */
+
+function renderTodayTasks(
+    plans
+){
 
     const container =
         document.getElementById(
@@ -2571,30 +4808,24 @@ function renderTodayTasks(){
         );
 
 
-    const plans =
-        user.weeklyPlans || [];
+    if(!container)
+        return;
 
 
     const now =
         new Date();
 
 
-    const todayString =
-        [
-            now.getFullYear(),
-            String(
-                now.getMonth()+1
-            ).padStart(2,"0"),
-            String(
-                now.getDate()
-            ).padStart(2,"0")
-        ].join("-");
+    const today =
+        formatDateForStorage(
+            now
+        );
 
 
     const tasks =
         plans.filter(
             task =>
-                task.date === todayString
+                task.date === today
         );
 
 
@@ -2606,14 +4837,10 @@ function renderTodayTasks(){
 
                 No tasks planned for today.
 
-                <br><br>
+                <br>
 
                 <a
                     href="weekly-plan.html"
-                    style="
-                        color:#818cf8;
-                        text-decoration:none;
-                    "
                 >
                     + Create today's plan
                 </a>
@@ -2629,31 +4856,30 @@ function renderTodayTasks(){
 
     container.innerHTML =
         tasks
-            .slice(0,6)
+            .slice(0,5)
             .map(
-                (task,index) => `
+                task => `
 
-                <div class="task">
+                <div class="today-task">
 
-                    <button
-                        class="task-check ${
-                            task.completed
-                                ? "completed"
-                                : ""
-                        }"
-                        data-index="${index}"
-                    >
+                    <div class="task-time">
+
                         ${
-                            task.completed
-                                ? "✓"
-                                : ""
+                            escapeHTML(
+                                task.time ||
+                                "Study"
+                            )
                         }
-                    </button>
+
+                    </div>
+
+
+                    <div class="task-dot"></div>
 
 
                     <div class="task-info">
 
-                        <div class="task-name">
+                        <div class="task-title">
 
                             ${
                                 escapeHTML(
@@ -2665,25 +4891,36 @@ function renderTodayTasks(){
                         </div>
 
 
-                        <div class="task-time">
+                        <div class="task-sub">
 
                             ${
                                 escapeHTML(
                                     task.subject ||
-                                    "General"
+                                    "NIMCET Preparation"
                                 )
                             }
 
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="task-status"
+                        style="
                             ${
-                                task.time
-                                    ? " • " +
-                                      escapeHTML(
-                                          task.time
-                                      )
+                                task.completed
+                                    ? "background:#e9f8f2;color:#099268;"
                                     : ""
                             }
+                        "
+                    >
 
-                        </div>
+                        ${
+                            task.completed
+                                ? "Done"
+                                : "Focus"
+                        }
 
                     </div>
 
@@ -2696,9 +4933,116 @@ function renderTodayTasks(){
 }
 
 
-/* ============================================================
+/* =========================================================
+   WEEK STRIP
+   ========================================================= */
+
+function renderWeekStrip(){
+
+    const container =
+        document.getElementById(
+            "weekStrip"
+        );
+
+
+    if(!container)
+        return;
+
+
+    const today =
+        new Date();
+
+
+    const day =
+        today.getDay();
+
+
+    const mondayOffset =
+        day === 0
+            ? -6
+            : 1 - day;
+
+
+    const monday =
+        new Date(
+            today
+        );
+
+
+    monday.setDate(
+        today.getDate() +
+        mondayOffset
+    );
+
+
+    const names = [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+    ];
+
+
+    container.innerHTML =
+        names
+            .map(
+                (
+                    name,
+                    index
+                ) => {
+
+                    const date =
+                        new Date(
+                            monday
+                        );
+
+
+                    date.setDate(
+                        monday.getDate() +
+                        index
+                    );
+
+
+                    const active =
+                        date.toDateString() ===
+                        today.toDateString();
+
+
+                    return `
+
+                        <div
+                            class="day ${
+                                active
+                                    ? "active"
+                                    : ""
+                            }"
+                        >
+
+                            <div class="day-name">
+                                ${name}
+                            </div>
+
+                            <div class="day-number">
+                                ${date.getDate()}
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
    ACTIVITY
-============================================================= */
+   ========================================================= */
 
 function renderActivity(){
 
@@ -2708,14 +5052,17 @@ function renderActivity(){
         );
 
 
+    if(!container)
+        return;
+
+
     const activities = [];
 
 
     /* NOTES */
 
     (user.notes || [])
-        .slice(-3)
-        .reverse()
+        .slice(-4)
         .forEach(
             note => {
 
@@ -2724,15 +5071,12 @@ function renderActivity(){
                     icon:"✎",
 
                     text:
-                        `Created note
-                        <strong>
-                        ${
+                        `Created note <strong>${
                             escapeHTML(
                                 note.title ||
-                                "Untitled note"
+                                "Untitled"
                             )
-                        }
-                        </strong>`,
+                        }</strong>`,
 
                     time:
                         note.createdAt
@@ -2746,8 +5090,7 @@ function renderActivity(){
     /* DOUBTS */
 
     (user.doubts || [])
-        .slice(-3)
-        .reverse()
+        .slice(-4)
         .forEach(
             doubt => {
 
@@ -2756,15 +5099,12 @@ function renderActivity(){
                     icon:"?",
 
                     text:
-                        `Added doubt
-                        <strong>
-                        ${
+                        `Added doubt <strong>${
                             escapeHTML(
                                 doubt.title ||
                                 "New doubt"
                             )
-                        }
-                        </strong>`,
+                        }</strong>`,
 
                     time:
                         doubt.createdAt
@@ -2775,15 +5115,14 @@ function renderActivity(){
         );
 
 
-    /* SYLLABUS */
+    /* COMPLETED TOPICS */
 
     (user.syllabus || [])
         .filter(
-            item =>
-                item.completed
+            topic =>
+                topic.completed
         )
-        .slice(-3)
-        .reverse()
+        .slice(-4)
         .forEach(
             topic => {
 
@@ -2792,15 +5131,12 @@ function renderActivity(){
                     icon:"✓",
 
                     text:
-                        `Completed topic
-                        <strong>
-                        ${
+                        `Completed <strong>${
                             escapeHTML(
                                 topic.title ||
                                 "Topic"
                             )
-                        }
-                        </strong>`,
+                        }</strong>`,
 
                     time:
                         topic.completedAt ||
@@ -2813,13 +5149,19 @@ function renderActivity(){
 
 
     activities.sort(
-        (a,b) =>
-            new Date(
+        (
+            a,
+            b
+        ) => {
+
+            return new Date(
                 b.time || 0
             ) -
             new Date(
                 a.time || 0
-            )
+            );
+
+        }
     );
 
 
@@ -2829,8 +5171,8 @@ function renderActivity(){
 
             <div class="empty">
 
-                Your activity will appear here
-                as you use the platform.
+                Your preparation activity
+                will appear here.
 
             </div>
 
@@ -2847,57 +5189,203 @@ function renderActivity(){
             .map(
                 activity => `
 
-                <div class="activity">
+                    <div class="activity">
 
-                    <div class="activity-icon">
-                        ${activity.icon}
-                    </div>
-
-
-                    <div class="activity-text">
-
-                        ${activity.text}
-
-                        <div class="activity-time">
+                        <div class="activity-icon">
 
                             ${
-                                formatTime(
-                                    activity.time
-                                )
+                                activity.icon
                             }
+
+                        </div>
+
+
+                        <div class="activity-text">
+
+                            ${
+                                activity.text
+                            }
+
+                            <div class="activity-time">
+
+                                ${
+                                    formatActivityTime(
+                                        activity.time
+                                    )
+                                }
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
-
-            `
+                `
             )
             .join("");
 
 }
 
 
-/* ============================================================
-   TIME FORMAT
-============================================================= */
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
 
-function formatTime(date){
+/*
+   IMPORTANT:
+   Yahan aap official NIMCET exam date set kar sakte ho.
+   Agar date final nahi hai to isko target-date
+   configuration ke roop me rakha gaya hai.
+*/
 
-    if(!date)
+const TARGET_DATE =
+    new Date(
+        "2027-06-01T09:00:00"
+    );
+
+
+function updateCountdown(){
+
+    const now =
+        new Date();
+
+
+    let difference =
+        TARGET_DATE -
+        now;
+
+
+    if(difference < 0){
+
+        difference = 0;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60 *
+                    60
+                )
+            ) % 24
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60
+                )
+            ) % 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference /
+                1000
+            ) % 60
+        );
+
+
+    setText(
+        "countDays",
+        days
+    );
+
+
+    setText(
+        "countHours",
+        String(hours)
+            .padStart(2,"0")
+    );
+
+
+    setText(
+        "countMinutes",
+        String(minutes)
+            .padStart(2,"0")
+    );
+
+
+    setText(
+        "countSeconds",
+        String(seconds)
+            .padStart(2,"0")
+    );
+
+}
+
+
+/* =========================================================
+   DATE HELPERS
+   ========================================================= */
+
+function formatDateForStorage(
+    date
+){
+
+    return [
+
+        date.getFullYear(),
+
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0"),
+
+        String(
+            date.getDate()
+        ).padStart(2,"0")
+
+    ].join("-");
+
+}
+
+
+function formatActivityTime(
+    value
+){
+
+    if(!value)
         return "Recently";
 
 
-    const time =
-        new Date(date);
+    const date =
+        new Date(value);
 
 
-    if(isNaN(time))
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
         return "Recently";
 
+    }
 
-    return time.toLocaleDateString(
+
+    return date.toLocaleDateString(
         "en-IN",
         {
             day:"numeric",
@@ -2908,11 +5396,65 @@ function formatTime(date){
 }
 
 
-/* ============================================================
-   ESCAPE HTML
-============================================================= */
+/* =========================================================
+   DOM HELPERS
+   ========================================================= */
 
-function escapeHTML(value){
+function setText(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(element){
+
+        element.textContent =
+            value;
+
+    }
+
+}
+
+
+function setWidth(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(element){
+
+        element.style.width =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    Number(value) || 0
+                )
+            ) + "%";
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(
+    value
+){
 
     return String(value)
 
@@ -2944,9 +5486,55 @@ function escapeHTML(value){
 }
 
 
-/* ============================================================
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+let toastTimer;
+
+
+function showToast(
+    message
+){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================================================
    LOGOUT
-============================================================= */
+   ========================================================= */
 
 document
     .getElementById(
@@ -2971,9 +5559,9 @@ document
     );
 
 
-/* ============================================================
-   MOBILE MENU
-============================================================= */
+/* =========================================================
+   MOBILE SIDEBAR
+   ========================================================= */
 
 const mobileMenu =
     document.getElementById(
@@ -2999,9 +5587,9 @@ mobileMenu.addEventListener(
 );
 
 
-/* ============================================================
-   CLOSE SIDEBAR AFTER CLICK
-============================================================= */
+/* =========================================================
+   CLOSE MOBILE SIDEBAR
+   ========================================================= */
 
 document
     .querySelectorAll(
@@ -3025,11 +5613,67 @@ document
     );
 
 
-/* ============================================================
-   INITIAL LOAD
-============================================================= */
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+renderWeekStrip();
 
 updateDashboard();
+
+updateCountdown();
+
+
+/* =========================================================
+   LIVE COUNTDOWN
+   ========================================================= */
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =========================================================
+   REFRESH WHEN TAB BECOMES ACTIVE
+   ========================================================= */
+
+window.addEventListener(
+    "focus",
+    () => {
+
+        updateDashboard();
+
+        renderWeekStrip();
+
+    }
+);
+
+
+/* =========================================================
+   STORAGE UPDATE
+   ========================================================= */
+
+window.addEventListener(
+    "storage",
+    () => {
+
+        const latestUsers =
+            getUsers();
+
+
+        user =
+            latestUsers.find(
+                item =>
+                    item.id ===
+                    session?.userId
+            );
+
+
+        updateDashboard();
+
+    }
+);
 
 </script>
 
