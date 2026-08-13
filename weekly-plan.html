@@ -1,0 +1,2979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NIMCET PrepPro | Weekly Plan</title>
+
+<style>
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 8% 0%,rgba(99,102,241,.10),transparent 27%),
+        radial-gradient(circle at 90% 15%,rgba(34,211,238,.06),transparent 25%),
+        var(--bg);
+}
+
+button,input,textarea,select{
+    font-family:inherit;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:var(--sidebar);
+    padding:22px 15px;
+    background:rgba(8,13,27,.96);
+    border-right:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    z-index:100;
+    transition:.3s;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:5px 12px 25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+    margin:18px 0 9px;
+    color:#475569;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    color:#7f8da3;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+    background:rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+    background:linear-gradient(
+        100deg,
+        rgba(99,102,241,.22),
+        rgba(139,92,246,.10)
+    );
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    background:rgba(255,255,255,.035);
+    font-size:13px;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:18px;
+}
+
+.logout{
+    width:100%;
+    margin-top:9px;
+    padding:10px;
+    border:0;
+    border-radius:11px;
+    background:rgba(251,113,133,.06);
+    color:#fb7185;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:650;
+}
+
+.logout:hover{
+    background:rgba(251,113,133,.12);
+}
+
+/* MAIN */
+
+.main{
+    margin-left:var(--sidebar);
+    min-height:100vh;
+    padding:25px 30px 50px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
+    color:white;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding:25px;
+    border-radius:21px;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(99,102,241,.14),
+            rgba(34,211,238,.06),
+            rgba(15,23,42,.75)
+        );
+    border:1px solid rgba(129,140,248,.11);
+}
+
+.hero:after{
+    content:"7";
+    position:absolute;
+    right:40px;
+    top:-48px;
+    color:rgba(129,140,248,.06);
+    font-size:190px;
+    font-weight:900;
+}
+
+.badge{
+    display:inline-flex;
+    padding:6px 10px;
+    border-radius:50px;
+    background:rgba(99,102,241,.09);
+    color:#a5b4fc;
+    font-size:9px;
+    font-weight:750;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
+
+.hero h2{
+    margin-top:11px;
+    font-size:25px;
+    letter-spacing:-.9px;
+}
+
+.hero h2 span{
+    color:#818cf8;
+}
+
+.hero p{
+    max-width:700px;
+    margin-top:7px;
+    color:#94a3b8;
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* WEEK SELECTOR */
+
+.week-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:15px;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:rgba(15,23,42,.68);
+}
+
+.week-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.calendar-icon{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    border-radius:11px;
+    background:rgba(99,102,241,.10);
+    color:#a5b4fc;
+    font-size:16px;
+}
+
+.week-text strong{
+    display:block;
+    font-size:11px;
+}
+
+.week-text span{
+    display:block;
+    margin-top:3px;
+    color:#64748b;
+    font-size:9px;
+}
+
+.week-actions{
+    display:flex;
+    gap:7px;
+}
+
+.small-btn{
+    height:34px;
+    padding:0 12px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:9px;
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+    cursor:pointer;
+    font-size:9px;
+    font-weight:650;
+}
+
+.small-btn:hover{
+    color:#fff;
+    background:rgba(255,255,255,.06);
+}
+
+.small-btn.primary{
+    border:0;
+    color:#fff;
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.stat{
+    padding:15px;
+    border-radius:15px;
+    background:rgba(15,23,42,.65);
+    border:1px solid var(--border);
+}
+
+.stat-label{
+    color:#64748b;
+    font-size:9px;
+}
+
+.stat-value{
+    margin-top:6px;
+    font-size:21px;
+    font-weight:800;
+}
+
+.blue{color:#a5b4fc}
+.green{color:#34d399}
+.yellow{color:#fbbf24}
+.cyan{color:#67e8f9}
+
+/* PLAN */
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:22px;
+    margin-bottom:12px;
+}
+
+.section-heading h2{
+    font-size:14px;
+}
+
+.section-heading p{
+    color:#64748b;
+    font-size:9px;
+}
+
+/* DAY CARD */
+
+.days{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.day-card{
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:rgba(15,23,42,.70);
+    overflow:hidden;
+}
+
+.day-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:15px 17px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.day-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.day-number{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:11px;
+    background:rgba(99,102,241,.10);
+    color:#a5b4fc;
+    font-size:12px;
+    font-weight:800;
+}
+
+.day-name{
+    font-size:12px;
+    font-weight:750;
+}
+
+.day-date{
+    margin-top:3px;
+    color:#64748b;
+    font-size:8px;
+}
+
+.day-progress{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.progress-track{
+    width:80px;
+    height:5px;
+    overflow:hidden;
+    border-radius:50px;
+    background:#1e293b;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:50px;
+    background:linear-gradient(90deg,#6366f1,#22d3ee);
+    transition:.3s;
+}
+
+.progress-text{
+    color:#94a3b8;
+    font-size:8px;
+}
+
+.day-tasks{
+    padding:8px;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:12px 10px;
+    border-radius:11px;
+    transition:.2s;
+}
+
+.task:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.task.completed{
+    opacity:.55;
+}
+
+.check{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    border:1px solid #334155;
+    border-radius:6px;
+    background:transparent;
+    color:transparent;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.check:hover{
+    border-color:#6366f1;
+}
+
+.task.completed .check{
+    border-color:#34d399;
+    background:#34d399;
+    color:#052e1b;
+}
+
+.task-main{
+    min-width:0;
+    flex:1;
+}
+
+.task-title{
+    overflow:hidden;
+    color:#dbeafe;
+    font-size:10px;
+    font-weight:700;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.task.completed .task-title{
+    text-decoration:line-through;
+}
+
+.task-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:5px;
+}
+
+.task-tag{
+    padding:3px 6px;
+    border-radius:5px;
+    background:rgba(99,102,241,.08);
+    color:#a5b4fc;
+    font-size:7px;
+    font-weight:700;
+}
+
+.task-hours{
+    color:#64748b;
+    font-size:7px;
+    padding:3px 0;
+}
+
+.task-actions{
+    display:flex;
+    gap:5px;
+}
+
+.task-btn{
+    width:27px;
+    height:27px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:7px;
+    background:rgba(255,255,255,.025);
+    color:#64748b;
+    cursor:pointer;
+    font-size:9px;
+}
+
+.task-btn:hover{
+    color:#fff;
+}
+
+.task-btn.delete:hover{
+    color:#fb7185;
+}
+
+.no-task{
+    padding:18px;
+    text-align:center;
+    color:#475569;
+    font-size:9px;
+}
+
+/* MODAL */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(2,6,23,.78);
+    backdrop-filter:blur(9px);
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(100%,600px);
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:22px;
+    background:#0d1426;
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 35px 90px rgba(0,0,0,.5);
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.close{
+    width:31px;
+    height:31px;
+    border:0;
+    border-radius:9px;
+    background:rgba(255,255,255,.05);
+    color:#94a3b8;
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-label{
+    display:block;
+    margin-bottom:7px;
+    color:#cbd5e1;
+    font-size:10px;
+    font-weight:650;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+    width:100%;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    outline:none;
+    background:#090f1d;
+    color:white;
+    font-size:11px;
+}
+
+.form-input,
+.form-select{
+    height:43px;
+    padding:0 12px;
+}
+
+.form-textarea{
+    min-height:100px;
+    resize:vertical;
+    padding:12px;
+    line-height:1.6;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+    border-color:#6366f1;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:20px;
+}
+
+.cancel-btn{
+    height:40px;
+    padding:0 15px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    background:rgba(255,255,255,.04);
+    color:#94a3b8;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.save-btn{
+    height:40px;
+    padding:0 17px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+    color:white;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:750;
+}
+
+/* EMPTY */
+
+.empty{
+    padding:60px 20px;
+    text-align:center;
+    border:1px dashed rgba(148,163,184,.14);
+    border-radius:17px;
+    color:#64748b;
+}
+
+.empty-icon{
+    width:55px;
+    height:55px;
+    display:grid;
+    place-items:center;
+    margin:0 auto 12px;
+    border-radius:16px;
+    background:rgba(99,102,241,.08);
+    color:#818cf8;
+    font-size:21px;
+}
+
+.empty h3{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.empty p{
+    margin-top:6px;
+    font-size:9px;
+}
+
+/* TOAST */
+
+.toast-container{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.toast{
+    min-width:260px;
+    padding:13px 15px;
+    border-radius:12px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    font-size:10px;
+    animation:toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:3px solid var(--green);
+}
+
+.toast.error{
+    border-left:3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+        place-items:center;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .week-bar{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .day-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .day-progress{
+        width:100%;
+    }
+
+    .progress-track{
+        flex:1;
+    }
+
+    .task{
+        align-items:flex-start;
+    }
+
+    .task-actions{
+        flex-shrink:0;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+        <div class="logo">N</div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+    </div>
+
+    <div class="menu-label">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="syllabus.html" class="nav-item">
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+        <a href="notes.html" class="nav-item">
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+        <a href="doubts.html" class="nav-item">
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+        <a href="weekly-plan.html" class="nav-item active">
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+        <div class="menu-label">Practice</div>
+
+        <a href="mock-test.html" class="nav-item">
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+        <a href="progress.html" class="nav-item">
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+        <a href="resources.html" class="nav-item">
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+        <div class="menu-label">Account</div>
+
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <button class="logout" id="logoutBtn">
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+        <div class="page-title">
+
+            <h1>Weekly Plan</h1>
+
+            <p>
+                Plan your NIMCET preparation one day at a time
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <a href="profile.html" class="avatar" id="avatar">
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            Smart Study Planner
+        </div>
+
+        <h2>
+            Turn your week into a
+            <span>clear preparation plan.</span>
+        </h2>
+
+        <p>
+            Add exactly what you want to study every day,
+            set your target hours and track your completion.
+            Your complete weekly plan stays saved in your account.
+        </p>
+
+    </section>
+
+
+    <!-- WEEK BAR -->
+
+    <section class="week-bar">
+
+        <div class="week-info">
+
+            <div class="calendar-icon">
+                ▣
+            </div>
+
+            <div class="week-text">
+
+                <strong id="weekTitle">
+                    This Week
+                </strong>
+
+                <span id="weekRange">
+                    Loading week...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="week-actions">
+
+            <button
+                class="small-btn"
+                id="prevWeek"
+            >
+                ← Previous
+            </button>
+
+            <button
+                class="small-btn"
+                id="todayWeek"
+            >
+                Today
+            </button>
+
+            <button
+                class="small-btn"
+                id="nextWeek"
+            >
+                Next →
+            </button>
+
+            <button
+                class="small-btn primary"
+                id="addTaskBtn"
+            >
+                + Add Task
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Tasks
+            </div>
+
+            <div
+                class="stat-value blue"
+                id="totalTasks"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Completed
+            </div>
+
+            <div
+                class="stat-value green"
+                id="completedTasks"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Study Hours
+            </div>
+
+            <div
+                class="stat-value cyan"
+                id="totalHours"
+            >
+                0h
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Completion
+            </div>
+
+            <div
+                class="stat-value yellow"
+                id="completionPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DAYS -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Your 7-Day Plan
+            </h2>
+
+            <p>
+                Add tasks according to your preparation strategy
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section
+        class="days"
+        id="days"
+    ></section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                Add Study Task
+            </div>
+
+            <button
+                class="close"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="taskForm">
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    What do you want to study?
+                </label>
+
+                <input
+                    class="form-input"
+                    id="taskTitle"
+                    type="text"
+                    maxlength="150"
+                    placeholder="e.g. Complete Probability PYQs"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Day
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="taskDay"
+                        required
+                    >
+
+                        <option value="0">
+                            Monday
+                        </option>
+
+                        <option value="1">
+                            Tuesday
+                        </option>
+
+                        <option value="2">
+                            Wednesday
+                        </option>
+
+                        <option value="3">
+                            Thursday
+                        </option>
+
+                        <option value="4">
+                            Friday
+                        </option>
+
+                        <option value="5">
+                            Saturday
+                        </option>
+
+                        <option value="6">
+                            Sunday
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Study Hours
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="taskHours"
+                        type="number"
+                        min="0.25"
+                        max="24"
+                        step="0.25"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Subject
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="taskSubject"
+                    >
+
+                        <option value="">
+                            General
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Type
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="taskType"
+                    >
+
+                        <option value="Study">
+                            Study
+                        </option>
+
+                        <option value="Revision">
+                            Revision
+                        </option>
+
+                        <option value="PYQ">
+                            PYQ
+                        </option>
+
+                        <option value="Mock Test">
+                            Mock Test
+                        </option>
+
+                        <option value="Practice">
+                            Practice
+                        </option>
+
+                        <option value="Revision + PYQ">
+                            Revision + PYQ
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Notes / Target
+                </label>
+
+                <textarea
+                    class="form-textarea"
+                    id="taskNotes"
+                    maxlength="1000"
+                    placeholder="e.g. Solve at least 40 questions and revise formulas..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Task
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<script>
+
+/* ============================================================
+   STORAGE
+============================================================ */
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                USERS_KEY
+            )
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* ============================================================
+   AUTH
+============================================================ */
+
+let session = null;
+
+try{
+
+    session =
+        JSON.parse(
+            localStorage.getItem(
+                SESSION_KEY
+            )
+        );
+
+}catch{
+
+    session = null;
+
+}
+
+
+if(!session){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+let users =
+    getUsers();
+
+
+let user =
+    users.find(
+        item =>
+            item.id === session?.userId
+    );
+
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* ============================================================
+   PLAN STORAGE
+============================================================ */
+
+if(!Array.isArray(user.weeklyPlans)){
+
+    user.weeklyPlans = [];
+
+}
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let weekOffset = 0;
+
+let editingTaskId = null;
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const daysContainer =
+    document.getElementById(
+        "days"
+    );
+
+const modalOverlay =
+    document.getElementById(
+        "modalOverlay"
+    );
+
+const taskForm =
+    document.getElementById(
+        "taskForm"
+    );
+
+
+/* ============================================================
+   SAVE USER
+============================================================ */
+
+function saveCurrentUser(){
+
+    const index =
+        users.findIndex(
+            item =>
+                item.id === user.id
+        );
+
+    if(index !== -1){
+
+        users[index] = user;
+
+    }
+
+    saveUsers(users);
+
+}
+
+
+/* ============================================================
+   ID
+============================================================ */
+
+function generateId(){
+
+    return (
+        "task_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2,8)
+    );
+
+}
+
+
+/* ============================================================
+   DATE HELPERS
+============================================================ */
+
+function startOfWeek(date){
+
+    const d =
+        new Date(date);
+
+    const day =
+        d.getDay();
+
+    const diff =
+        day === 0
+        ? -6
+        : 1 - day;
+
+    d.setDate(
+        d.getDate() + diff
+    );
+
+    d.setHours(
+        0,0,0,0
+    );
+
+    return d;
+
+}
+
+
+function getCurrentWeekStart(){
+
+    const monday =
+        startOfWeek(
+            new Date()
+        );
+
+    monday.setDate(
+        monday.getDate() +
+        weekOffset * 7
+    );
+
+    return monday;
+
+}
+
+
+function getWeekKey(){
+
+    const monday =
+        getCurrentWeekStart();
+
+    return formatDateKey(
+        monday
+    );
+
+}
+
+
+function formatDateKey(date){
+
+    const y =
+        date.getFullYear();
+
+
+    const m =
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
+
+
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${y}-${m}-${d}`;
+
+}
+
+
+function getDayDate(
+    weekStart,
+    index
+){
+
+    const date =
+        new Date(
+            weekStart
+        );
+
+
+    date.setDate(
+        date.getDate() + index
+    );
+
+
+    return date;
+
+}
+
+
+/* ============================================================
+   DATE FORMAT
+============================================================ */
+
+function formatPrettyDate(date){
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+function formatShortDate(date){
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short"
+        }
+    );
+
+}
+
+
+/* ============================================================
+   WEEK INFO
+============================================================ */
+
+function updateWeekInfo(){
+
+    const monday =
+        getCurrentWeekStart();
+
+
+    const sunday =
+        getDayDate(
+            monday,
+            6
+        );
+
+
+    let title =
+        "This Week";
+
+
+    if(weekOffset < 0){
+
+        title =
+            `${Math.abs(weekOffset)} Week${
+                Math.abs(weekOffset)>1
+                ? "s"
+                : ""
+            } Ago`;
+
+    }
+
+
+    if(weekOffset > 0){
+
+        title =
+            `${weekOffset} Week${
+                weekOffset>1
+                ? "s"
+                : ""
+            } Ahead`;
+
+    }
+
+
+    document.getElementById(
+        "weekTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "weekRange"
+    ).textContent =
+        `${formatPrettyDate(monday)} — ${formatPrettyDate(sunday)}`;
+
+}
+
+
+/* ============================================================
+   SUBJECTS
+============================================================ */
+
+function getSubjects(){
+
+    if(!Array.isArray(user.syllabus))
+        return [];
+
+
+    return user.syllabus
+        .filter(
+            item =>
+                item &&
+                item.title
+        )
+        .map(
+            item => ({
+                id:item.id,
+                title:item.title
+            })
+        );
+
+}
+
+
+function populateSubjects(){
+
+    const select =
+        document.getElementById(
+            "taskSubject"
+        );
+
+
+    const subjects =
+        getSubjects();
+
+
+    select.innerHTML =
+        `
+        <option value="">
+            General
+        </option>
+
+        ${
+            subjects
+                .map(
+                    subject =>
+                        `
+                        <option
+                            value="${escapeHTML(subject.id)}"
+                        >
+                            ${escapeHTML(
+                                subject.title
+                            )}
+                        </option>
+                        `
+                )
+                .join("")
+        }
+        `;
+
+}
+
+
+function getSubjectName(id){
+
+    if(!id)
+        return "General";
+
+
+    const subject =
+        getSubjects().find(
+            item =>
+                item.id === id
+        );
+
+
+    return subject
+        ? subject.title
+        : "General";
+
+}
+
+
+/* ============================================================
+   GET CURRENT WEEK TASKS
+============================================================ */
+
+function getWeekTasks(){
+
+    const key =
+        getWeekKey();
+
+
+    return user.weeklyPlans.filter(
+        task =>
+            task.weekKey === key
+    );
+
+}
+
+
+/* ============================================================
+   RENDER
+============================================================ */
+
+function render(){
+
+    updateWeekInfo();
+
+    populateSubjects();
+
+    renderDays();
+
+    updateStats();
+
+}
+
+
+/* ============================================================
+   RENDER DAYS
+============================================================ */
+
+function renderDays(){
+
+    const weekStart =
+        getCurrentWeekStart();
+
+
+    const tasks =
+        getWeekTasks();
+
+
+    const names = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
+
+
+    daysContainer.innerHTML =
+        names
+            .map(
+                (name,index) => {
+
+                    const date =
+                        getDayDate(
+                            weekStart,
+                            index
+                        );
+
+
+                    const dayTasks =
+                        tasks.filter(
+                            task =>
+                                task.dayIndex === index
+                        );
+
+
+                    return renderDay(
+                        name,
+                        date,
+                        index,
+                        dayTasks
+                    );
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* ============================================================
+   RENDER DAY
+============================================================ */
+
+function renderDay(
+    name,
+    date,
+    index,
+    tasks
+){
+
+    const completed =
+        tasks.filter(
+            task =>
+                task.completed
+        ).length;
+
+
+    const percent =
+        tasks.length
+        ? Math.round(
+            completed /
+            tasks.length *
+            100
+        )
+        : 0;
+
+
+    return `
+
+        <article class="day-card">
+
+            <div class="day-header">
+
+                <div class="day-left">
+
+                    <div class="day-number">
+                        ${index+1}
+                    </div>
+
+                    <div>
+
+                        <div class="day-name">
+                            ${name}
+                        </div>
+
+                        <div class="day-date">
+                            ${formatShortDate(
+                                date
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="day-progress">
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            style="width:${percent}%"
+                        ></div>
+
+                    </div>
+
+                    <div class="progress-text">
+                        ${completed}/${tasks.length}
+                    </div>
+
+                    <button
+                        class="small-btn primary"
+                        onclick="
+                            openAddModal(${index})
+                        "
+                    >
+                        + Task
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="day-tasks">
+
+                ${
+                    tasks.length
+                    ?
+                    tasks
+                        .map(
+                            task =>
+                                renderTask(
+                                    task
+                                )
+                        )
+                        .join("")
+                    :
+                    `
+                    <div class="no-task">
+                        No study task planned for this day.
+                    </div>
+                    `
+                }
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ============================================================
+   RENDER TASK
+============================================================ */
+
+function renderTask(task){
+
+    const subject =
+        getSubjectName(
+            task.subjectId
+        );
+
+
+    return `
+
+        <div
+            class="
+                task
+                ${task.completed ? "completed" : ""}
+            "
+        >
+
+            <button
+                class="check"
+                onclick="
+                    toggleTask(
+                        '${task.id}'
+                    )
+                "
+                title="Mark complete"
+            >
+                ✓
+            </button>
+
+
+            <div class="task-main">
+
+                <div class="task-title">
+                    ${escapeHTML(
+                        task.title
+                    )}
+                </div>
+
+
+                <div class="task-meta">
+
+                    <span class="task-tag">
+                        ${escapeHTML(
+                            subject
+                        )}
+                    </span>
+
+
+                    <span class="task-tag">
+                        ${escapeHTML(
+                            task.type ||
+                            "Study"
+                        )}
+                    </span>
+
+
+                    <span class="task-hours">
+                        ◷ ${Number(
+                            task.hours || 0
+                        )}h
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="task-actions">
+
+                <button
+                    class="task-btn"
+                    onclick="
+                        editTask(
+                            '${task.id}'
+                        )
+                    "
+                    title="Edit"
+                >
+                    ✎
+                </button>
+
+
+                <button
+                    class="task-btn delete"
+                    onclick="
+                        deleteTask(
+                            '${task.id}'
+                        )
+                    "
+                    title="Delete"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ============================================================
+   OPEN ADD MODAL
+============================================================ */
+
+function openAddModal(dayIndex=null){
+
+    editingTaskId = null;
+
+
+    taskForm.reset();
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Study Task";
+
+
+    document.getElementById(
+        "taskHours"
+    ).value =
+        "1";
+
+
+    populateSubjects();
+
+
+    if(dayIndex !== null){
+
+        document.getElementById(
+            "taskDay"
+        ).value =
+            String(dayIndex);
+
+    }
+
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () =>
+            document
+                .getElementById(
+                    "taskTitle"
+                )
+                .focus(),
+        100
+    );
+
+}
+
+
+/* ============================================================
+   EDIT TASK
+============================================================ */
+
+function editTask(id){
+
+    const task =
+        user.weeklyPlans.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!task)
+        return;
+
+
+    editingTaskId =
+        id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Study Task";
+
+
+    populateSubjects();
+
+
+    document.getElementById(
+        "taskTitle"
+    ).value =
+        task.title || "";
+
+
+    document.getElementById(
+        "taskDay"
+    ).value =
+        String(
+            task.dayIndex
+        );
+
+
+    document.getElementById(
+        "taskHours"
+    ).value =
+        task.hours || 1;
+
+
+    document.getElementById(
+        "taskSubject"
+    ).value =
+        task.subjectId || "";
+
+
+    document.getElementById(
+        "taskType"
+    ).value =
+        task.type || "Study";
+
+
+    document.getElementById(
+        "taskNotes"
+    ).value =
+        task.notes || "";
+
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+/* ============================================================
+   CLOSE MODAL
+============================================================ */
+
+function closeModal(){
+
+    modalOverlay.classList.remove(
+        "show"
+    );
+
+    editingTaskId = null;
+
+    taskForm.reset();
+
+}
+
+
+/* ============================================================
+   MODAL EVENTS
+============================================================ */
+
+document
+    .getElementById(
+        "addTaskBtn"
+    )
+    .addEventListener(
+        "click",
+        () => openAddModal()
+    );
+
+
+document
+    .getElementById(
+        "closeModal"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById(
+        "cancelModal"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+modalOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            modalOverlay
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   SAVE TASK
+============================================================ */
+
+taskForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const title =
+            document
+                .getElementById(
+                    "taskTitle"
+                )
+                .value
+                .trim();
+
+
+        const dayIndex =
+            Number(
+                document
+                    .getElementById(
+                        "taskDay"
+                    )
+                    .value
+            );
+
+
+        const hours =
+            Number(
+                document
+                    .getElementById(
+                        "taskHours"
+                    )
+                    .value
+            );
+
+
+        const subjectId =
+            document
+                .getElementById(
+                    "taskSubject"
+                )
+                .value;
+
+
+        const type =
+            document
+                .getElementById(
+                    "taskType"
+                )
+                .value;
+
+
+        const notes =
+            document
+                .getElementById(
+                    "taskNotes"
+                )
+                .value
+                .trim();
+
+
+        if(!title){
+
+            showToast(
+                "Please enter a study task.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !hours ||
+            hours <= 0
+        ){
+
+            showToast(
+                "Please enter valid study hours.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* EDIT */
+
+        if(editingTaskId){
+
+            const task =
+                user.weeklyPlans.find(
+                    item =>
+                        item.id ===
+                        editingTaskId
+                );
+
+
+            if(task){
+
+                task.title =
+                    title;
+
+                task.dayIndex =
+                    dayIndex;
+
+                task.hours =
+                    hours;
+
+                task.subjectId =
+                    subjectId;
+
+                task.type =
+                    type;
+
+                task.notes =
+                    notes;
+
+                task.updatedAt =
+                    new Date().toISOString();
+
+            }
+
+
+            showToast(
+                "Study task updated."
+            );
+
+        }
+
+
+        /* CREATE */
+
+        else{
+
+            user.weeklyPlans.push({
+
+                id:
+                    generateId(),
+
+                weekKey:
+                    getWeekKey(),
+
+                dayIndex:
+                    dayIndex,
+
+                title:
+                    title,
+
+                hours:
+                    hours,
+
+                subjectId:
+                    subjectId,
+
+                type:
+                    type,
+
+                notes:
+                    notes,
+
+                completed:
+                    false,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            });
+
+
+            showToast(
+                "Study task saved permanently."
+            );
+
+        }
+
+
+        saveCurrentUser();
+
+        closeModal();
+
+        render();
+
+    }
+);
+
+
+/* ============================================================
+   TOGGLE TASK
+============================================================ */
+
+function toggleTask(id){
+
+    const task =
+        user.weeklyPlans.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!task)
+        return;
+
+
+    task.completed =
+        !task.completed;
+
+
+    task.updatedAt =
+        new Date().toISOString();
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        task.completed
+        ? "Task completed ✓"
+        : "Task marked incomplete."
+    );
+
+}
+
+
+/* ============================================================
+   DELETE TASK
+============================================================ */
+
+function deleteTask(id){
+
+    const task =
+        user.weeklyPlans.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!task)
+        return;
+
+
+    if(
+        !confirm(
+            `Delete "${task.title}" permanently?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    user.weeklyPlans =
+        user.weeklyPlans.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        "Study task deleted."
+    );
+
+}
+
+
+/* ============================================================
+   STATS
+============================================================ */
+
+function updateStats(){
+
+    const tasks =
+        getWeekTasks();
+
+
+    const total =
+        tasks.length;
+
+
+    const completed =
+        tasks.filter(
+            task =>
+                task.completed
+        ).length;
+
+
+    const hours =
+        tasks.reduce(
+            (
+                total,
+                task
+            ) =>
+                total +
+                Number(
+                    task.hours || 0
+                ),
+            0
+        );
+
+
+    const percent =
+        total
+        ? Math.round(
+            completed /
+            total *
+            100
+        )
+        : 0;
+
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "totalHours"
+    ).textContent =
+        `${hours}h`;
+
+
+    document.getElementById(
+        "completionPercent"
+    ).textContent =
+        `${percent}%`;
+
+}
+
+
+/* ============================================================
+   WEEK NAVIGATION
+============================================================ */
+
+document
+    .getElementById(
+        "prevWeek"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            weekOffset--;
+
+            render();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "nextWeek"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            weekOffset++;
+
+            render();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "todayWeek"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            weekOffset = 0;
+
+            render();
+
+        }
+    );
+
+
+/* ============================================================
+   LOGOUT
+============================================================ */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+
+document
+    .getElementById(
+        "mobileMenu"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
+
+        }
+    );
+
+
+/* ============================================================
+   AVATAR
+============================================================ */
+
+if(user){
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+
+    avatar.textContent =
+        user.name
+            .split(" ")
+            .map(
+                word =>
+                    word[0]
+            )
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+}
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+function showToast(
+    message,
+    type="success"
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        `toast ${type}`;
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+            setTimeout(
+                () =>
+                    toast.remove(),
+                250
+            );
+
+        },
+        2600
+    );
+
+}
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+render();
+
+</script>
+
+</body>
+</html>

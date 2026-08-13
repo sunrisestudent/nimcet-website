@@ -1,0 +1,3037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | Dashboard</title>
+
+<style>
+
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --sidebar:255px;
+
+    --shadow:0 25px 70px rgba(0,0,0,.32);
+}
+
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(99,102,241,.10),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(34,211,238,.07),
+            transparent 25%
+        ),
+        var(--bg);
+
+    overflow-x:hidden;
+}
+
+
+/* ============================================================
+   SIDEBAR
+============================================================= */
+
+.sidebar{
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:var(--sidebar);
+
+    padding:22px 15px;
+
+    background:rgba(8,13,27,.95);
+
+    border-right:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+    z-index:100;
+
+    transition:.3s ease;
+
+    /* IMPORTANT */
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scrollbar-width:thin;
+    scrollbar-color:#334155 transparent;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.sidebar::-webkit-scrollbar{
+    width:6px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+    background:#475569;
+}
+
+
+/* ================= LOGO ================= */
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:5px 12px 25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    font-size:20px;
+    font-weight:900;
+
+    box-shadow:
+        0 12px 28px rgba(99,102,241,.3);
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+
+/* ================= MENU LABEL ================= */
+
+.menu-label{
+    padding:0 13px;
+
+    margin:18px 0 9px;
+
+    color:#475569;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1.3px;
+
+    text-transform:uppercase;
+}
+
+
+/* ================= NAV ================= */
+
+.nav{
+    display:flex;
+    flex-direction:column;
+
+    gap:4px;
+
+    min-height:max-content;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:11px 13px;
+
+    border-radius:12px;
+
+    color:#7f8da3;
+
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+
+    flex-shrink:0;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+
+    background:
+        rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    flex-shrink:0;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    background:
+        rgba(255,255,255,.035);
+}
+
+.nav-item.active .nav-icon{
+    background:
+        rgba(99,102,241,.2);
+
+    color:#a5b4fc;
+}
+
+
+/* ============================================================
+   SIDEBAR BOTTOM
+============================================================= */
+
+.sidebar-bottom{
+    margin-top:22px;
+
+    padding-bottom:5px;
+}
+
+.upgrade{
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.14),
+            rgba(139,92,246,.08)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.12);
+}
+
+.upgrade-title{
+    font-size:11px;
+    font-weight:750;
+}
+
+.upgrade-text{
+    margin-top:5px;
+
+    color:#64748b;
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+.logout{
+    width:100%;
+
+    margin-top:9px;
+
+    padding:10px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        rgba(251,113,133,.06);
+
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:650;
+
+    transition:.2s;
+}
+
+.logout:hover{
+    background:
+        rgba(251,113,133,.12);
+}
+
+
+/* ============================================================
+   MAIN
+============================================================= */
+
+.main{
+    margin-left:var(--sidebar);
+
+    min-height:100vh;
+
+    padding:25px 30px 45px;
+}
+
+
+/* ============================================================
+   TOPBAR
+============================================================= */
+
+.topbar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:23px;
+
+    letter-spacing:-.7px;
+}
+
+.page-title p{
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:11px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#94a3b8;
+
+    cursor:pointer;
+
+    position:relative;
+}
+
+.icon-btn:hover{
+    color:white;
+
+    border-color:
+        rgba(129,140,248,.25);
+}
+
+.notification-dot{
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    top:8px;
+    right:8px;
+
+    background:var(--red);
+
+    box-shadow:
+        0 0 8px var(--red);
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    color:white;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+
+/* ============================================================
+   HERO
+============================================================= */
+
+.hero{
+    position:relative;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79,70,229,.20),
+            rgba(139,92,246,.12),
+            rgba(15,23,42,.7)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.12);
+
+    box-shadow:var(--shadow);
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34,211,238,.15),
+            transparent 70%
+        );
+
+    right:-90px;
+    top:-110px;
+}
+
+.hero-content{
+    position:relative;
+
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:6px 10px;
+
+    border-radius:50px;
+
+    background:
+        rgba(34,211,238,.08);
+
+    color:#67e8f9;
+
+    font-size:9px;
+
+    font-weight:750;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+}
+
+.hero h2{
+    margin-top:13px;
+
+    font-size:27px;
+
+    letter-spacing:-1px;
+}
+
+.hero h2 span{
+    color:#a5b4fc;
+}
+
+.hero p{
+    max-width:620px;
+
+    margin-top:7px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.hero-date{
+    position:absolute;
+
+    right:25px;
+    bottom:24px;
+
+    color:#64748b;
+
+    font-size:10px;
+}
+
+
+/* ============================================================
+   STATS
+============================================================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:13px;
+
+    margin-top:17px;
+}
+
+.stat-card{
+    padding:18px;
+
+    border-radius:17px;
+
+    background:
+        rgba(15,23,42,.72);
+
+    border:
+        1px solid
+        var(--border);
+
+    transition:.25s;
+}
+
+.stat-card:hover{
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(129,140,248,.2);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.2);
+}
+
+.stat-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.stat-icon{
+    width:34px;
+    height:34px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    background:
+        rgba(99,102,241,.1);
+
+    color:#a5b4fc;
+}
+
+.stat-value{
+    margin-top:15px;
+
+    font-size:24px;
+
+    font-weight:800;
+}
+
+.stat-name{
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:10px;
+}
+
+.stat-change{
+    color:var(--green);
+
+    font-size:9px;
+}
+
+
+/* ============================================================
+   CONTENT GRID
+============================================================= */
+
+.content-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.45fr .85fr;
+
+    gap:17px;
+
+    margin-top:17px;
+}
+
+
+/* ============================================================
+   PANEL
+============================================================= */
+
+.panel{
+    padding:20px;
+
+    border-radius:19px;
+
+    background:
+        rgba(15,23,42,.7);
+
+    border:
+        1px solid
+        var(--border);
+}
+
+.panel-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:17px;
+}
+
+.panel-title{
+    font-size:14px;
+
+    font-weight:750;
+}
+
+.panel-subtitle{
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:9px;
+}
+
+.view-all{
+    color:#818cf8;
+
+    font-size:10px;
+
+    text-decoration:none;
+}
+
+.view-all:hover{
+    color:#a5b4fc;
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================= */
+
+.progress-layout{
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+}
+
+.progress-ring{
+    width:130px;
+    height:130px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:grid;
+
+    place-items:center;
+
+    background:
+        conic-gradient(
+            var(--primary) 0deg,
+            var(--purple) 0deg,
+            #1e293b 0deg
+        );
+
+    position:relative;
+}
+
+.progress-ring::before{
+    content:"";
+
+    position:absolute;
+
+    width:103px;
+    height:103px;
+
+    border-radius:50%;
+
+    background:#0d1426;
+}
+
+.progress-center{
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+}
+
+.progress-number{
+    font-size:23px;
+
+    font-weight:850;
+}
+
+.progress-label{
+    color:#64748b;
+
+    font-size:8px;
+}
+
+.progress-info{
+    flex:1;
+}
+
+.progress-row{
+    margin-bottom:13px;
+}
+
+.progress-row-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:6px;
+
+    color:#94a3b8;
+
+    font-size:9px;
+}
+
+.progress-track{
+    height:6px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:#1e293b;
+}
+
+.progress-fill{
+    height:100%;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--purple)
+        );
+}
+
+
+/* ============================================================
+   TASKS
+============================================================= */
+
+.task{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:11px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.045);
+}
+
+.task:last-child{
+    border-bottom:0;
+}
+
+.task-check{
+    width:18px;
+    height:18px;
+
+    flex-shrink:0;
+
+    border-radius:6px;
+
+    border:
+        1px solid
+        #334155;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    display:grid;
+
+    place-items:center;
+
+    color:white;
+
+    font-size:9px;
+}
+
+.task-check.completed{
+    background:var(--primary);
+
+    border-color:var(--primary);
+}
+
+.task-info{
+    flex:1;
+}
+
+.task-name{
+    color:#cbd5e1;
+
+    font-size:10px;
+
+    font-weight:650;
+}
+
+.task-time{
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+
+/* ============================================================
+   EMPTY
+============================================================= */
+
+.empty{
+    padding:30px 10px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:10px;
+}
+
+
+/* ============================================================
+   QUICK ACTIONS
+============================================================= */
+
+.quick-actions{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:17px;
+}
+
+.quick{
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.quick:hover{
+    transform:translateY(-2px);
+
+    background:
+        rgba(99,102,241,.07);
+
+    border-color:
+        rgba(129,140,248,.18);
+}
+
+.quick-icon{
+    width:31px;
+    height:31px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(99,102,241,.12);
+
+    color:#a5b4fc;
+}
+
+.quick-name{
+    margin-top:10px;
+
+    color:#cbd5e1;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.quick-desc{
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+
+/* ============================================================
+   ACTIVITY
+============================================================= */
+
+.activity{
+    display:flex;
+
+    gap:11px;
+
+    padding:11px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.045);
+}
+
+.activity:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+    width:30px;
+    height:30px;
+
+    flex-shrink:0;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(99,102,241,.1);
+
+    color:#a5b4fc;
+
+    font-size:11px;
+}
+
+.activity-text{
+    flex:1;
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+.activity-text strong{
+    color:#cbd5e1;
+}
+
+.activity-time{
+    color:#475569;
+
+    font-size:8px;
+}
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================= */
+
+.mobile-menu{
+    display:none;
+
+    width:38px;
+    height:38px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================= */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+
+        /* Mobile sidebar still scrollable */
+        height:100vh;
+
+        overflow-y:auto;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+
+        padding:18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+
+        place-items:center;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .page-title{
+        flex:1;
+    }
+
+    .hero-date{
+        position:static;
+
+        margin-top:15px;
+    }
+}
+
+
+@media(max-width:550px){
+
+    .stats{
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:9px;
+    }
+
+    .stat-card{
+        padding:14px;
+    }
+
+    .stat-value{
+        font-size:20px;
+    }
+
+    .progress-layout{
+        flex-direction:column;
+    }
+
+    .progress-info{
+        width:100%;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h2{
+        font-size:22px;
+    }
+
+    .quick-actions{
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width:400px){
+
+    .main{
+        padding:13px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .quick-actions{
+        grid-template-columns:1fr;
+    }
+
+    .top-actions .icon-btn{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ============================================================
+     SIDEBAR
+============================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+
+    <div class="logo-area">
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        Main
+    </div>
+
+
+    <nav class="nav">
+
+
+        <!-- DASHBOARD -->
+
+        <a
+            href="dashboard.html"
+            class="nav-item active"
+        >
+            <span class="nav-icon">
+                ⌂
+            </span>
+
+            Dashboard
+        </a>
+
+
+        <!-- SYLLABUS -->
+
+        <a
+            href="syllabus.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ✓
+            </span>
+
+            Syllabus
+        </a>
+
+
+        <!-- NOTES -->
+
+        <a
+            href="notes.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ✎
+            </span>
+
+            Notes
+        </a>
+
+
+        <!-- DOUBTS -->
+
+        <a
+            href="doubts.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ?
+            </span>
+
+            Doubts
+        </a>
+
+
+        <!-- WEEKLY PLAN -->
+
+        <a
+            href="weekly-plan.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ◷
+            </span>
+
+            Weekly Plan
+        </a>
+
+
+        <!-- TIMETABLE -->
+
+        <a
+            href="timetable.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                🗓
+            </span>
+
+            Timetable
+        </a>
+
+
+        <div class="menu-label">
+            Practice
+        </div>
+
+
+        <!-- MOCK TEST -->
+
+        <a
+            href="mock-test.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ▣
+            </span>
+
+            Mock Tests
+        </a>
+
+
+        <!-- PROGRESS -->
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ◒
+            </span>
+
+            Progress
+        </a>
+
+
+        <!-- RESOURCES -->
+
+        <a
+            href="resources.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ▤
+            </span>
+
+            Resources
+        </a>
+
+
+        <div class="menu-label">
+            Account
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="profile.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">
+                ●
+            </span>
+
+            Profile
+        </a>
+
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="sidebar-bottom">
+
+
+        <div class="upgrade">
+
+            <div class="upgrade-title">
+                🎯 Stay consistent
+            </div>
+
+            <div class="upgrade-text">
+                Small daily progress creates big results.
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            ↪ &nbsp; Logout
+        </button>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- ============================================================
+     MAIN
+============================================================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+            aria-label="Open menu"
+        >
+            ☰
+        </button>
+
+
+        <div class="page-title">
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Your personal NIMCET preparation overview
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+
+            <button
+                class="icon-btn"
+                type="button"
+            >
+
+                🔔
+
+                <span
+                    class="notification-dot"
+                ></span>
+
+            </button>
+
+
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+                style="text-decoration:none;"
+            >
+                U
+            </a>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero">
+
+
+        <div class="hero-content">
+
+
+            <div class="hero-badge">
+                ● Your preparation space
+            </div>
+
+
+            <h2>
+
+                Good evening,
+
+                <span id="userName">
+                    Student
+                </span>
+
+                👋
+
+            </h2>
+
+
+            <p>
+
+                Stay focused on your goals.
+                Add your own syllabus,
+                create notes, manage doubts
+                and plan your week according
+                to your preparation strategy.
+
+            </p>
+
+
+        </div>
+
+
+        <div
+            class="hero-date"
+            id="currentDate"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- ========================================================
+         STATS
+    ========================================================= -->
+
+    <section class="stats">
+
+
+        <!-- TOPICS -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <span
+                    class="stat-change"
+                    id="topicChange"
+                >
+                    —
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="topicCount"
+            >
+                0
+            </div>
+
+
+            <div class="stat-name">
+                Completed Topics
+            </div>
+
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    ✎
+                </div>
+
+                <span class="stat-change">
+                    Personal
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="notesCount"
+            >
+                0
+            </div>
+
+
+            <div class="stat-name">
+                My Notes
+            </div>
+
+
+        </div>
+
+
+        <!-- DOUBTS -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    ?
+                </div>
+
+                <span
+                    class="stat-change"
+                    id="doubtStatus"
+                >
+                    —
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="doubtsCount"
+            >
+                0
+            </div>
+
+
+            <div class="stat-name">
+                Active Doubts
+            </div>
+
+
+        </div>
+
+
+        <!-- TASKS -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    ◷
+                </div>
+
+                <span class="stat-change">
+                    This week
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="tasksCount"
+            >
+                0
+            </div>
+
+
+            <div class="stat-name">
+                Planned Tasks
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================================
+         CONTENT
+    ========================================================= -->
+
+    <section class="content-grid">
+
+
+        <!-- ====================================================
+             LEFT
+        ===================================================== -->
+
+        <div>
+
+
+            <!-- PREPARATION PROGRESS -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <div class="panel-title">
+                            Preparation Progress
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Based on your completed syllabus topics
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="syllabus.html"
+                        class="view-all"
+                    >
+                        Manage →
+                    </a>
+
+
+                </div>
+
+
+                <div class="progress-layout">
+
+
+                    <div
+                        class="progress-ring"
+                        id="progressRing"
+                    >
+
+
+                        <div class="progress-center">
+
+
+                            <div
+                                class="progress-number"
+                                id="progressNumber"
+                            >
+                                0%
+                            </div>
+
+
+                            <div class="progress-label">
+                                Completed
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="progress-info">
+
+
+                        <!-- SYLLABUS -->
+
+                        <div class="progress-row">
+
+
+                            <div class="progress-row-top">
+
+                                <span>
+                                    Syllabus
+                                </span>
+
+                                <span id="syllabusProgress">
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    id="syllabusBar"
+                                    style="width:0%"
+                                ></div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- TASKS -->
+
+                        <div class="progress-row">
+
+
+                            <div class="progress-row-top">
+
+                                <span>
+                                    Weekly Tasks
+                                </span>
+
+                                <span id="taskProgress">
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    id="taskBar"
+                                    style="width:0%"
+                                ></div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- MOCKS -->
+
+                        <div class="progress-row">
+
+
+                            <div class="progress-row-top">
+
+                                <span>
+                                    Mock Tests
+                                </span>
+
+                                <span id="mockProgress">
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    id="mockBar"
+                                    style="width:0%"
+                                ></div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div
+                class="panel"
+                style="margin-top:17px;"
+            >
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <div class="panel-title">
+                            Quick Actions
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Continue your preparation
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <!-- SYLLABUS -->
+
+                    <a
+                        href="syllabus.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            +
+                        </div>
+
+                        <div class="quick-name">
+                            Add Syllabus
+                        </div>
+
+                        <div class="quick-desc">
+                            Create your own topics
+                        </div>
+
+                    </a>
+
+
+                    <!-- NOTES -->
+
+                    <a
+                        href="notes.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ✎
+                        </div>
+
+                        <div class="quick-name">
+                            New Note
+                        </div>
+
+                        <div class="quick-desc">
+                            Save your study notes
+                        </div>
+
+                    </a>
+
+
+                    <!-- DOUBTS -->
+
+                    <a
+                        href="doubts.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ?
+                        </div>
+
+                        <div class="quick-name">
+                            Add Doubt
+                        </div>
+
+                        <div class="quick-desc">
+                            Track difficult topics
+                        </div>
+
+                    </a>
+
+
+                    <!-- WEEKLY PLAN -->
+
+                    <a
+                        href="weekly-plan.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            +
+                        </div>
+
+                        <div class="quick-name">
+                            Plan Week
+                        </div>
+
+                        <div class="quick-desc">
+                            Create study tasks
+                        </div>
+
+                    </a>
+
+
+                    <!-- TIMETABLE -->
+
+                    <a
+                        href="timetable.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            🗓
+                        </div>
+
+                        <div class="quick-name">
+                            Timetable
+                        </div>
+
+                        <div class="quick-desc">
+                            Manage your daily study time
+                        </div>
+
+                    </a>
+
+
+                    <!-- MOCK TEST -->
+
+                    <a
+                        href="mock-test.html"
+                        class="quick"
+                    >
+
+                        <div class="quick-icon">
+                            ▣
+                        </div>
+
+                        <div class="quick-name">
+                            Mock Test
+                        </div>
+
+                        <div class="quick-desc">
+                            Practice NIMCET tests
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ====================================================
+             RIGHT
+        ===================================================== -->
+
+        <div>
+
+
+            <!-- TODAY -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <div class="panel-title">
+                            Today's Plan
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Your scheduled study tasks
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="weekly-plan.html"
+                        class="view-all"
+                    >
+                        View →
+                    </a>
+
+
+                </div>
+
+
+                <div id="todayTasks">
+
+
+                    <div class="empty">
+
+                        No tasks planned for today.
+
+                        <br><br>
+
+                        Create your weekly plan
+                        to see tasks here.
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ACTIVITY -->
+
+            <div
+                class="panel"
+                style="margin-top:17px;"
+            >
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <div class="panel-title">
+                            Recent Activity
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Your latest preparation activity
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div id="activityList">
+
+
+                    <div class="empty">
+
+                        Your activity will appear here
+                        as you use the platform.
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+/* ============================================================
+   NIMCET PREPPRO
+   DASHBOARD ENGINE
+============================================================= */
+
+
+/* ============================================================
+   STORAGE
+============================================================= */
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(USERS_KEY)
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+function getSession(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(SESSION_KEY)
+        );
+
+    }catch{
+
+        return null;
+
+    }
+
+}
+
+
+/* ============================================================
+   AUTH
+============================================================= */
+
+const session = getSession();
+
+
+if(!session){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* ============================================================
+   FIND USER
+============================================================= */
+
+const users = getUsers();
+
+
+let user =
+    users.find(
+        item =>
+            item.id === session?.userId
+    );
+
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* ============================================================
+   ELEMENTS
+============================================================= */
+
+const userName =
+    document.getElementById(
+        "userName"
+    );
+
+const avatar =
+    document.getElementById(
+        "avatar"
+    );
+
+
+/* ============================================================
+   USER INFO
+============================================================= */
+
+if(user){
+
+    userName.textContent =
+        user.name
+            .split(" ")[0];
+
+    avatar.textContent =
+        user.name
+            .split(" ")
+            .map(
+                word =>
+                    word[0]
+            )
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+}
+
+
+/* ============================================================
+   DATE
+============================================================= */
+
+const dateElement =
+    document.getElementById(
+        "currentDate"
+    );
+
+
+const today =
+    new Date();
+
+
+dateElement.textContent =
+    today.toLocaleDateString(
+        "en-IN",
+        {
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+
+/* ============================================================
+   COUNTS
+============================================================= */
+
+function updateDashboard(){
+
+    if(!user)
+        return;
+
+
+    const syllabus =
+        user.syllabus || [];
+
+
+    const notes =
+        user.notes || [];
+
+
+    const doubts =
+        user.doubts || [];
+
+
+    const plans =
+        user.weeklyPlans || [];
+
+
+    const mockTests =
+        user.mockTests || [];
+
+
+    /* --------------------------------
+       SYLLABUS
+    -------------------------------- */
+
+    const totalTopics =
+        syllabus.length;
+
+
+    const completedTopics =
+        syllabus.filter(
+            item =>
+                item.completed === true
+        ).length;
+
+
+    /* --------------------------------
+       DOUBTS
+    -------------------------------- */
+
+    const activeDoubts =
+        doubts.filter(
+            item =>
+                item.status !== "Solved"
+        ).length;
+
+
+    /* --------------------------------
+       TASKS
+    -------------------------------- */
+
+    const totalTasks =
+        plans.length;
+
+
+    const completedTasks =
+        plans.filter(
+            item =>
+                item.completed === true
+        ).length;
+
+
+    /* --------------------------------
+       MOCKS
+    -------------------------------- */
+
+    const totalMocks =
+        mockTests.length;
+
+
+    /* --------------------------------
+       PERCENTAGES
+    -------------------------------- */
+
+    const syllabusPercent =
+        totalTopics
+            ? Math.round(
+                completedTopics /
+                totalTopics *
+                100
+            )
+            : 0;
+
+
+    const taskPercent =
+        totalTasks
+            ? Math.round(
+                completedTasks /
+                totalTasks *
+                100
+            )
+            : 0;
+
+
+    const mockPercent =
+        totalMocks
+            ? Math.min(
+                totalMocks * 10,
+                100
+            )
+            : 0;
+
+
+    const overall =
+        Math.round(
+            (
+                syllabusPercent +
+                taskPercent +
+                mockPercent
+            ) / 3
+        );
+
+
+    /* --------------------------------
+       DISPLAY
+    -------------------------------- */
+
+    document.getElementById(
+        "topicCount"
+    ).textContent =
+        completedTopics;
+
+
+    document.getElementById(
+        "notesCount"
+    ).textContent =
+        notes.length;
+
+
+    document.getElementById(
+        "doubtsCount"
+    ).textContent =
+        activeDoubts;
+
+
+    document.getElementById(
+        "tasksCount"
+    ).textContent =
+        totalTasks;
+
+
+    document.getElementById(
+        "syllabusProgress"
+    ).textContent =
+        syllabusPercent + "%";
+
+
+    document.getElementById(
+        "taskProgress"
+    ).textContent =
+        taskPercent + "%";
+
+
+    document.getElementById(
+        "mockProgress"
+    ).textContent =
+        mockPercent + "%";
+
+
+    document.getElementById(
+        "syllabusBar"
+    ).style.width =
+        syllabusPercent + "%";
+
+
+    document.getElementById(
+        "taskBar"
+    ).style.width =
+        taskPercent + "%";
+
+
+    document.getElementById(
+        "mockBar"
+    ).style.width =
+        mockPercent + "%";
+
+
+    document.getElementById(
+        "progressNumber"
+    ).textContent =
+        overall + "%";
+
+
+    /* --------------------------------
+       RING
+    -------------------------------- */
+
+    const degree =
+        overall * 3.6;
+
+
+    document.getElementById(
+        "progressRing"
+    ).style.background =
+        `
+        conic-gradient(
+            #6366f1 0deg,
+            #8b5cf6 ${degree}deg,
+            #1e293b ${degree}deg,
+            #1e293b 360deg
+        )
+        `;
+
+
+    renderTodayTasks();
+
+    renderActivity();
+
+}
+
+
+/* ============================================================
+   TODAY TASKS
+============================================================= */
+
+function renderTodayTasks(){
+
+    const container =
+        document.getElementById(
+            "todayTasks"
+        );
+
+
+    const plans =
+        user.weeklyPlans || [];
+
+
+    const now =
+        new Date();
+
+
+    const todayString =
+        [
+            now.getFullYear(),
+            String(
+                now.getMonth()+1
+            ).padStart(2,"0"),
+            String(
+                now.getDate()
+            ).padStart(2,"0")
+        ].join("-");
+
+
+    const tasks =
+        plans.filter(
+            task =>
+                task.date === todayString
+        );
+
+
+    if(!tasks.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No tasks planned for today.
+
+                <br><br>
+
+                <a
+                    href="weekly-plan.html"
+                    style="
+                        color:#818cf8;
+                        text-decoration:none;
+                    "
+                >
+                    + Create today's plan
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        tasks
+            .slice(0,6)
+            .map(
+                (task,index) => `
+
+                <div class="task">
+
+                    <button
+                        class="task-check ${
+                            task.completed
+                                ? "completed"
+                                : ""
+                        }"
+                        data-index="${index}"
+                    >
+                        ${
+                            task.completed
+                                ? "✓"
+                                : ""
+                        }
+                    </button>
+
+
+                    <div class="task-info">
+
+                        <div class="task-name">
+
+                            ${
+                                escapeHTML(
+                                    task.title ||
+                                    "Study Task"
+                                )
+                            }
+
+                        </div>
+
+
+                        <div class="task-time">
+
+                            ${
+                                escapeHTML(
+                                    task.subject ||
+                                    "General"
+                                )
+                            }
+
+                            ${
+                                task.time
+                                    ? " • " +
+                                      escapeHTML(
+                                          task.time
+                                      )
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `
+            )
+            .join("");
+
+}
+
+
+/* ============================================================
+   ACTIVITY
+============================================================= */
+
+function renderActivity(){
+
+    const container =
+        document.getElementById(
+            "activityList"
+        );
+
+
+    const activities = [];
+
+
+    /* NOTES */
+
+    (user.notes || [])
+        .slice(-3)
+        .reverse()
+        .forEach(
+            note => {
+
+                activities.push({
+
+                    icon:"✎",
+
+                    text:
+                        `Created note
+                        <strong>
+                        ${
+                            escapeHTML(
+                                note.title ||
+                                "Untitled note"
+                            )
+                        }
+                        </strong>`,
+
+                    time:
+                        note.createdAt
+
+                });
+
+            }
+        );
+
+
+    /* DOUBTS */
+
+    (user.doubts || [])
+        .slice(-3)
+        .reverse()
+        .forEach(
+            doubt => {
+
+                activities.push({
+
+                    icon:"?",
+
+                    text:
+                        `Added doubt
+                        <strong>
+                        ${
+                            escapeHTML(
+                                doubt.title ||
+                                "New doubt"
+                            )
+                        }
+                        </strong>`,
+
+                    time:
+                        doubt.createdAt
+
+                });
+
+            }
+        );
+
+
+    /* SYLLABUS */
+
+    (user.syllabus || [])
+        .filter(
+            item =>
+                item.completed
+        )
+        .slice(-3)
+        .reverse()
+        .forEach(
+            topic => {
+
+                activities.push({
+
+                    icon:"✓",
+
+                    text:
+                        `Completed topic
+                        <strong>
+                        ${
+                            escapeHTML(
+                                topic.title ||
+                                "Topic"
+                            )
+                        }
+                        </strong>`,
+
+                    time:
+                        topic.completedAt ||
+                        topic.createdAt
+
+                });
+
+            }
+        );
+
+
+    activities.sort(
+        (a,b) =>
+            new Date(
+                b.time || 0
+            ) -
+            new Date(
+                a.time || 0
+            )
+    );
+
+
+    if(!activities.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Your activity will appear here
+                as you use the platform.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        activities
+            .slice(0,5)
+            .map(
+                activity => `
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        ${activity.icon}
+                    </div>
+
+
+                    <div class="activity-text">
+
+                        ${activity.text}
+
+                        <div class="activity-time">
+
+                            ${
+                                formatTime(
+                                    activity.time
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `
+            )
+            .join("");
+
+}
+
+
+/* ============================================================
+   TIME FORMAT
+============================================================= */
+
+function formatTime(date){
+
+    if(!date)
+        return "Recently";
+
+
+    const time =
+        new Date(date);
+
+
+    if(isNaN(time))
+        return "Recently";
+
+
+    return time.toLocaleDateString(
+        "en-IN",
+        {
+            day:"numeric",
+            month:"short"
+        }
+    );
+
+}
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ============================================================
+   LOGOUT
+============================================================= */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            sessionStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================= */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
+
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+/* ============================================================
+   CLOSE SIDEBAR AFTER CLICK
+============================================================= */
+
+document
+    .querySelectorAll(
+        ".nav-item"
+    )
+    .forEach(
+        item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    sidebar.classList.remove(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* ============================================================
+   INITIAL LOAD
+============================================================= */
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>

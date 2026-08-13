@@ -1,0 +1,3466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | Timetable</title>
+
+<style>
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+
+    background:
+        radial-gradient(circle at 20% 0%,rgba(99,102,241,.10),transparent 27%),
+        radial-gradient(circle at 90% 20%,rgba(34,211,238,.07),transparent 25%),
+        var(--bg);
+}
+
+
+/* =========================================================
+SIDEBAR
+========================================================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:var(--sidebar);
+
+    padding:22px 15px;
+
+    background:rgba(8,13,27,.96);
+    border-right:1px solid var(--border);
+    backdrop-filter:blur(20px);
+
+    z-index:100;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(129,140,248,.35) transparent;
+
+    transition:.3s;
+}
+
+.sidebar::-webkit-scrollbar{
+    width:5px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:rgba(129,140,248,.30);
+    border-radius:20px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+    background:rgba(129,140,248,.55);
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:5px 12px 25px;
+
+    flex-shrink:0;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+    margin:18px 0 9px;
+
+    color:#475569;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+
+    flex-shrink:0;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+
+    flex-shrink:0;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px 13px;
+
+    border-radius:12px;
+
+    color:#7f8da3;
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+
+    flex-shrink:0;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+    background:rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.035);
+
+    font-size:13px;
+
+    flex-shrink:0;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    position:sticky;
+
+    left:auto;
+    right:auto;
+    bottom:auto;
+
+    margin-top:auto;
+    padding-top:18px;
+
+    flex-shrink:0;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        rgba(8,13,27,.98) 25%
+    );
+}
+
+.logout{
+    width:100%;
+
+    margin-top:9px;
+    padding:10px;
+
+    border:0;
+    border-radius:11px;
+
+    background:rgba(251,113,133,.06);
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:650;
+}
+
+.logout:hover{
+    background:rgba(251,113,133,.12);
+}
+
+
+/* =========================================================
+MAIN
+========================================================= */
+
+.main{
+    margin-left:var(--sidebar);
+
+    min-height:100vh;
+
+    padding:25px 30px 50px;
+}
+
+
+/* =========================================================
+TOPBAR
+========================================================= */
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    color:#fff;
+
+    font-size:11px;
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:white;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.header-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:25px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79,70,229,.17),
+            rgba(139,92,246,.08),
+            rgba(15,23,42,.7)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.header-content{
+    flex:1;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:6px 10px;
+
+    border-radius:50px;
+
+    background:rgba(99,102,241,.1);
+    color:#a5b4fc;
+
+    font-size:9px;
+    font-weight:750;
+
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
+
+.header-card h2{
+    margin-top:11px;
+
+    font-size:25px;
+    letter-spacing:-.9px;
+}
+
+.header-card h2 span{
+    color:#818cf8;
+}
+
+.header-card p{
+    max-width:650px;
+
+    margin-top:7px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+STATS
+========================================================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+
+    width:390px;
+    flex-shrink:0;
+}
+
+.stat{
+    padding:15px;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.16);
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.stat-icon{
+    font-size:15px;
+    margin-bottom:9px;
+}
+
+.stat-value{
+    font-size:18px;
+    font-weight:800;
+}
+
+.stat-label{
+    margin-top:3px;
+
+    color:#64748b;
+    font-size:8px;
+}
+
+
+/* =========================================================
+TOOLBAR
+========================================================= */
+
+.toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:17px;
+    padding:13px;
+
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    background:rgba(15,23,42,.62);
+}
+
+.search{
+    position:relative;
+    flex:1;
+}
+
+.search-icon{
+    position:absolute;
+    left:13px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#64748b;
+    font-size:12px;
+}
+
+.search input{
+    width:100%;
+    height:39px;
+
+    padding:0 13px 0 36px;
+
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.07);
+
+    outline:none;
+
+    background:#0a1120;
+    color:#fff;
+
+    font-size:11px;
+}
+
+.search input:focus{
+    border-color:#6366f1;
+}
+
+select{
+    height:39px;
+
+    padding:0 12px;
+
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.07);
+
+    background:#0a1120;
+    color:#cbd5e1;
+
+    outline:none;
+
+    font-size:10px;
+    cursor:pointer;
+}
+
+select option{
+    background:#0f172a;
+}
+
+.primary-btn{
+    height:39px;
+
+    padding:0 15px;
+
+    border:0;
+    border-radius:10px;
+
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+
+    color:white;
+
+    font-size:10px;
+    font-weight:750;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(99,102,241,.18);
+}
+
+.primary-btn:hover{
+    filter:brightness(1.08);
+}
+
+
+/* =========================================================
+DAY TABS
+ONLY 7 DAYS - NO DATE
+========================================================= */
+
+.day-tabs{
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:7px;
+
+    margin-top:17px;
+}
+
+.day-tab{
+    padding:13px 8px;
+
+    border:1px solid var(--border);
+    border-radius:13px;
+
+    background:rgba(15,23,42,.65);
+
+    color:#64748b;
+
+    cursor:pointer;
+
+    text-align:center;
+
+    transition:.2s;
+}
+
+.day-tab:hover{
+    color:#cbd5e1;
+    border-color:rgba(129,140,248,.18);
+}
+
+.day-tab.active{
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.24),
+            rgba(139,92,246,.13)
+        );
+
+    border-color:rgba(129,140,248,.25);
+
+    box-shadow:0 8px 25px rgba(99,102,241,.08);
+}
+
+.day-name{
+    font-size:9px;
+    font-weight:750;
+
+    text-transform:uppercase;
+}
+
+.day-tab.active .day-name{
+    color:#fff;
+}
+
+
+/* =========================================================
+TIMETABLE
+========================================================= */
+
+.timetable-card{
+    margin-top:15px;
+
+    border:1px solid var(--border);
+    border-radius:18px;
+
+    background:rgba(15,23,42,.68);
+
+    overflow:hidden;
+}
+
+.timetable-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:17px 19px;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.timetable-title{
+    font-size:13px;
+    font-weight:750;
+}
+
+.timetable-subtitle{
+    margin-top:3px;
+
+    color:#64748b;
+    font-size:9px;
+}
+
+.day-session-count{
+    padding:6px 9px;
+
+    border-radius:7px;
+
+    background:rgba(99,102,241,.08);
+    color:#a5b4fc;
+
+    font-size:8px;
+    font-weight:750;
+}
+
+.sessions{
+    padding:7px 19px 18px;
+}
+
+.session{
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:80px 8px 1fr auto;
+
+    align-items:center;
+
+    gap:14px;
+
+    min-height:83px;
+
+    border-bottom:1px solid rgba(255,255,255,.045);
+}
+
+.session:last-child{
+    border-bottom:0;
+}
+
+.session-time{
+    text-align:right;
+}
+
+.start-time{
+    color:#cbd5e1;
+    font-size:10px;
+    font-weight:750;
+}
+
+.end-time{
+    margin-top:3px;
+
+    color:#475569;
+    font-size:8px;
+}
+
+.timeline-dot{
+    position:relative;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#6366f1;
+
+    box-shadow:0 0 0 4px rgba(99,102,241,.08);
+}
+
+.timeline-dot::before{
+    content:"";
+
+    position:absolute;
+
+    top:12px;
+    left:3px;
+
+    width:2px;
+    height:65px;
+
+    background:rgba(99,102,241,.12);
+}
+
+.session:last-child .timeline-dot::before{
+    display:none;
+}
+
+.session.completed .timeline-dot{
+    background:#34d399;
+
+    box-shadow:0 0 0 4px rgba(52,211,153,.08);
+}
+
+.session.completed .session-title{
+    text-decoration:line-through;
+    color:#64748b;
+}
+
+.session-main{
+    min-width:0;
+}
+
+.session-top{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.session-title{
+    overflow:hidden;
+
+    color:#e2e8f0;
+
+    font-size:11px;
+    font-weight:700;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.subject-badge{
+    flex-shrink:0;
+
+    padding:4px 7px;
+
+    border-radius:5px;
+
+    background:rgba(99,102,241,.09);
+    color:#a5b4fc;
+
+    font-size:7px;
+    font-weight:750;
+}
+
+.session-meta{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:7px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+.session-note{
+    margin-top:5px;
+
+    overflow:hidden;
+
+    color:#475569;
+
+    font-size:8px;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.priority{
+    padding:4px 7px;
+
+    border-radius:5px;
+
+    font-size:7px;
+    font-weight:750;
+}
+
+.priority.high{
+    color:#fb7185;
+    background:rgba(251,113,133,.08);
+}
+
+.priority.medium{
+    color:#fbbf24;
+    background:rgba(251,191,36,.08);
+}
+
+.priority.low{
+    color:#34d399;
+    background:rgba(52,211,153,.08);
+}
+
+.session-actions{
+    display:flex;
+    gap:5px;
+}
+
+.small-btn{
+    width:29px;
+    height:29px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:8px;
+
+    background:rgba(255,255,255,.025);
+
+    color:#64748b;
+
+    cursor:pointer;
+}
+
+.small-btn:hover{
+    color:white;
+    background:rgba(255,255,255,.06);
+}
+
+.small-btn.complete:hover{
+    color:#34d399;
+}
+
+.small-btn.delete:hover{
+    color:#fb7185;
+}
+
+
+/* =========================================================
+EMPTY
+========================================================= */
+
+.empty{
+    padding:65px 20px;
+
+    text-align:center;
+
+    border:1px dashed rgba(148,163,184,.14);
+
+    color:#64748b;
+}
+
+.empty-icon{
+    width:55px;
+    height:55px;
+
+    display:grid;
+    place-items:center;
+
+    margin:0 auto 13px;
+
+    border-radius:16px;
+
+    background:rgba(99,102,241,.08);
+    color:#818cf8;
+
+    font-size:20px;
+}
+
+.empty h3{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.empty p{
+    max-width:380px;
+
+    margin:7px auto 0;
+
+    font-size:9px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+MODAL
+========================================================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:500;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(2,6,23,.72);
+
+    backdrop-filter:blur(8px);
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(100%,500px);
+
+    max-height:90vh;
+    overflow:auto;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:#0d1426;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    box-shadow:0 35px 90px rgba(0,0,0,.5);
+
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.modal-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.close{
+    width:31px;
+    height:31px;
+
+    border:0;
+    border-radius:9px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#94a3b8;
+
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#cbd5e1;
+
+    font-size:10px;
+    font-weight:650;
+}
+
+.form-input,
+.form-select{
+    width:100%;
+
+    height:43px;
+
+    padding:0 12px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+
+    outline:none;
+
+    background:#090f1d;
+    color:white;
+
+    font-size:11px;
+}
+
+.form-input:focus,
+.form-select:focus{
+    border-color:#6366f1;
+}
+
+textarea.form-input{
+    height:85px;
+
+    padding-top:12px;
+
+    resize:vertical;
+}
+
+.two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+
+    margin-top:20px;
+}
+
+.cancel-btn{
+    height:40px;
+    padding:0 15px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.04);
+    color:#94a3b8;
+
+    cursor:pointer;
+
+    font-size:10px;
+}
+
+.save-btn{
+    height:40px;
+    padding:0 17px;
+
+    border:0;
+    border-radius:10px;
+
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:750;
+}
+
+
+/* =========================================================
+TOAST
+========================================================= */
+
+.toast-container{
+    position:fixed;
+
+    right:18px;
+    bottom:18px;
+
+    z-index:999;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.toast{
+    min-width:260px;
+
+    padding:13px 15px;
+
+    border-radius:12px;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+    font-size:10px;
+
+    animation:toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:3px solid var(--green);
+}
+
+.toast.error{
+    border-left:3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .stats{
+        width:330px;
+    }
+
+    .day-tabs{
+        overflow-x:auto;
+
+        grid-template-columns:
+            repeat(7,minmax(85px,1fr));
+    }
+}
+
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+        place-items:center;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .page-title{
+        flex:1;
+    }
+
+    .header-card{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .stats{
+        width:100%;
+    }
+}
+
+
+@media(max-width:600px){
+
+    .toolbar{
+        flex-wrap:wrap;
+    }
+
+    .search{
+        flex-basis:100%;
+    }
+
+    .toolbar select{
+        flex:1;
+    }
+
+    .primary-btn{
+        flex:1;
+    }
+
+    .two-col{
+        grid-template-columns:1fr;
+    }
+
+    .session{
+        grid-template-columns:58px 8px 1fr;
+        gap:9px;
+    }
+
+    .session-actions{
+        grid-column:3;
+        margin-top:-5px;
+    }
+
+    .session-time{
+        align-self:start;
+        padding-top:19px;
+    }
+
+    .session-main{
+        padding:15px 0;
+    }
+
+    .header-card h2{
+        font-size:21px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .stat{
+        padding:12px 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        Main
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="syllabus.html" class="nav-item">
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+        <a href="notes.html" class="nav-item">
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+        <a href="doubts.html" class="nav-item">
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+        <a href="weekly-plan.html" class="nav-item">
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+        <a href="timetable.html" class="nav-item active">
+            <span class="nav-icon">▦</span>
+            Timetable
+        </a>
+
+
+        <div class="menu-label">
+            Practice
+        </div>
+
+
+        <a href="mock-test.html" class="nav-item">
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+        <a href="progress.html" class="nav-item">
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+        <a href="resources.html" class="nav-item">
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+
+        <div class="menu-label">
+            Account
+        </div>
+
+
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button class="logout" id="logoutBtn">
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+MAIN
+========================================================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+        <div class="page-title">
+
+            <h1>
+                My Timetable
+            </h1>
+
+            <p>
+                Plan your NIMCET study sessions and stay consistent
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+            >
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HEADER -->
+
+    <section class="header-card">
+
+        <div class="header-content">
+
+            <div class="badge">
+                Personal study schedule
+            </div>
+
+            <h2>
+                Study smarter,
+                <span>every single day.</span>
+            </h2>
+
+            <p>
+                Create your own NIMCET study timetable.
+                Choose the day, time, subject and topic
+                according to your personal study routine.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⏱
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="todayHours"
+                >
+                    0h
+                </div>
+
+                <div class="stat-label">
+                    Today's Study
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ◷
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="weekHours"
+                >
+                    0h
+                </div>
+
+                <div class="stat-label">
+                    Weekly Hours
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completionRate"
+                >
+                    0%
+                </div>
+
+                <div class="stat-label">
+                    Completed
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <section class="toolbar">
+
+        <div class="search">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search sessions, subjects or topics..."
+            >
+
+        </div>
+
+
+        <select id="filterSelect">
+
+            <option value="all">
+                All Sessions
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="completed">
+                Completed
+            </option>
+
+            <option value="high">
+                High Priority
+            </option>
+
+        </select>
+
+
+        <button
+            class="primary-btn"
+            id="addSessionBtn"
+        >
+            + Add Session
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+    ONLY 7 WEEKLY DAYS
+    NO DATE
+    ====================================================== -->
+
+    <section
+        class="day-tabs"
+        id="dayTabs"
+    >
+    </section>
+
+
+    <!-- TIMETABLE -->
+
+    <section class="timetable-card">
+
+        <div class="timetable-header">
+
+            <div>
+
+                <div
+                    class="timetable-title"
+                    id="selectedDayTitle"
+                >
+                    Monday
+                </div>
+
+                <div class="timetable-subtitle">
+                    Your study sessions for this day
+                </div>
+
+            </div>
+
+
+            <div
+                class="day-session-count"
+                id="sessionCount"
+            >
+                0 Sessions
+            </div>
+
+        </div>
+
+
+        <div
+            class="sessions"
+            id="sessions"
+        >
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+SESSION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                Add Study Session
+            </div>
+
+            <button
+                class="close"
+                id="closeModal"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="sessionForm">
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Session Title
+                </label>
+
+                <input
+                    class="form-input"
+                    id="sessionTitle"
+                    type="text"
+                    placeholder="e.g. Probability Practice"
+                    maxlength="80"
+                    required
+                >
+
+            </div>
+
+
+            <div class="two-col">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Subject
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="sessionSubject"
+                        type="text"
+                        placeholder="Mathematics"
+                        maxlength="50"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Topic
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="sessionTopic"
+                        type="text"
+                        placeholder="Probability"
+                        maxlength="80"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-col">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Start Time
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="startTime"
+                        type="time"
+                        value="06:00"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        End Time
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="endTime"
+                        type="time"
+                        value="07:00"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-col">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Priority
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="sessionPriority"
+                    >
+
+                        <option value="high">
+                            High
+                        </option>
+
+                        <option
+                            value="medium"
+                            selected
+                        >
+                            Medium
+                        </option>
+
+                        <option value="low">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Day
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="sessionDay"
+                    >
+
+                        <option value="Monday">
+                            Monday
+                        </option>
+
+                        <option value="Tuesday">
+                            Tuesday
+                        </option>
+
+                        <option value="Wednesday">
+                            Wednesday
+                        </option>
+
+                        <option value="Thursday">
+                            Thursday
+                        </option>
+
+                        <option value="Friday">
+                            Friday
+                        </option>
+
+                        <option value="Saturday">
+                            Saturday
+                        </option>
+
+                        <option value="Sunday">
+                            Sunday
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Session Notes
+                </label>
+
+                <textarea
+                    class="form-input"
+                    id="sessionNotes"
+                    placeholder="What do you want to complete in this session?"
+                    maxlength="300"
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Session
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+TOAST
+========================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<script>
+
+/* =========================================================
+STORAGE
+========================================================= */
+
+const USERS_KEY = "nimcet_preppro_users";
+const SESSION_KEY = "nimcet_preppro_session";
+
+
+/* =========================================================
+GET USERS
+========================================================= */
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(USERS_KEY)
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+AUTH
+========================================================= */
+
+let session = null;
+
+try{
+
+    session = JSON.parse(
+        localStorage.getItem(SESSION_KEY)
+    );
+
+}catch{
+
+    session = null;
+
+}
+
+if(!session){
+
+    window.location.href = "index.html";
+
+}
+
+
+/* =========================================================
+CURRENT USER
+========================================================= */
+
+let users = getUsers();
+
+let user = users.find(
+    item => item.id === session?.userId
+);
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================================================
+TIMETABLE
+========================================================= */
+
+if(!Array.isArray(user.timetable)){
+
+    user.timetable = [];
+
+}
+
+
+/* =========================================================
+WEEK DAYS
+========================================================= */
+
+const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+];
+
+
+/*
+    IMPORTANT:
+
+    Ab current date ka use timetable
+    select karne ke liye nahi ho raha.
+
+    User manually koi bhi day select karega.
+*/
+
+let selectedDay = "Monday";
+
+let editingSessionId = null;
+
+
+/* =========================================================
+ELEMENTS
+========================================================= */
+
+const dayTabs =
+    document.getElementById("dayTabs");
+
+const sessionsContainer =
+    document.getElementById("sessions");
+
+const modalOverlay =
+    document.getElementById("modalOverlay");
+
+const sessionForm =
+    document.getElementById("sessionForm");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+/* =========================================================
+SAVE USER
+========================================================= */
+
+function saveCurrentUser(){
+
+    const index =
+        users.findIndex(
+            item => item.id === user.id
+        );
+
+    if(index !== -1){
+
+        users[index] = user;
+
+    }
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* =========================================================
+GENERATE ID
+========================================================= */
+
+function generateId(){
+
+    return (
+        "session_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2,8)
+    );
+
+}
+
+
+/* =========================================================
+RENDER 7 DAYS
+========================================================= */
+
+function renderDayTabs(){
+
+    dayTabs.innerHTML =
+        days.map(day => {
+
+            return `
+
+                <button
+                    type="button"
+                    class="day-tab ${
+                        day === selectedDay
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="selectDay('${day}')"
+                >
+
+                    <div class="day-name">
+                        ${day}
+                    </div>
+
+                </button>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+SELECT DAY
+========================================================= */
+
+function selectDay(day){
+
+    selectedDay = day;
+
+    renderDayTabs();
+
+    renderSessions();
+
+}
+
+
+/* =========================================================
+OPEN MODAL
+========================================================= */
+
+function openModal(item = null){
+
+    modalOverlay.classList.add("show");
+
+    if(item){
+
+        editingSessionId = item.id;
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Edit Study Session";
+
+
+        document.getElementById(
+            "sessionTitle"
+        ).value =
+            item.title || "";
+
+
+        document.getElementById(
+            "sessionSubject"
+        ).value =
+            item.subject || "";
+
+
+        document.getElementById(
+            "sessionTopic"
+        ).value =
+            item.topic || "";
+
+
+        document.getElementById(
+            "startTime"
+        ).value =
+            item.startTime || "06:00";
+
+
+        document.getElementById(
+            "endTime"
+        ).value =
+            item.endTime || "07:00";
+
+
+        document.getElementById(
+            "sessionPriority"
+        ).value =
+            item.priority || "medium";
+
+
+        document.getElementById(
+            "sessionDay"
+        ).value =
+            item.day || selectedDay;
+
+
+        document.getElementById(
+            "sessionNotes"
+        ).value =
+            item.notes || "";
+
+    }else{
+
+        editingSessionId = null;
+
+        sessionForm.reset();
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Add Study Session";
+
+
+        document.getElementById(
+            "sessionDay"
+        ).value =
+            selectedDay;
+
+
+        document.getElementById(
+            "startTime"
+        ).value =
+            "06:00";
+
+
+        document.getElementById(
+            "endTime"
+        ).value =
+            "07:00";
+
+
+        document.getElementById(
+            "sessionPriority"
+        ).value =
+            "medium";
+
+    }
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById("sessionTitle")
+            .focus();
+
+    },100);
+
+}
+
+
+/* =========================================================
+CLOSE MODAL
+========================================================= */
+
+function closeModal(){
+
+    modalOverlay.classList.remove("show");
+
+    editingSessionId = null;
+
+    sessionForm.reset();
+
+}
+
+
+/* =========================================================
+MODAL EVENTS
+========================================================= */
+
+document
+    .getElementById("addSessionBtn")
+    .addEventListener(
+        "click",
+        () => openModal()
+    );
+
+
+document
+    .getElementById("closeModal")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById("cancelModal")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+modalOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === modalOverlay){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+FORM SUBMIT
+========================================================= */
+
+sessionForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const title =
+            document
+                .getElementById("sessionTitle")
+                .value
+                .trim();
+
+
+        const subject =
+            document
+                .getElementById("sessionSubject")
+                .value
+                .trim();
+
+
+        const topic =
+            document
+                .getElementById("sessionTopic")
+                .value
+                .trim();
+
+
+        const startTime =
+            document
+                .getElementById("startTime")
+                .value;
+
+
+        const endTime =
+            document
+                .getElementById("endTime")
+                .value;
+
+
+        const priority =
+            document
+                .getElementById("sessionPriority")
+                .value;
+
+
+        const day =
+            document
+                .getElementById("sessionDay")
+                .value;
+
+
+        const notes =
+            document
+                .getElementById("sessionNotes")
+                .value
+                .trim();
+
+
+        if(!title || !subject){
+
+            showToast(
+                "Please enter session title and subject.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!startTime || !endTime){
+
+            showToast(
+                "Please select start and end time.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(startTime >= endTime){
+
+            showToast(
+                "End time must be after start time.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* =================================================
+        EDIT EXISTING
+        ================================================= */
+
+        if(editingSessionId){
+
+            const item =
+                user.timetable.find(
+                    session =>
+                        session.id ===
+                        editingSessionId
+                );
+
+
+            if(item){
+
+                item.title = title;
+
+                item.subject = subject;
+
+                item.topic = topic;
+
+                item.startTime = startTime;
+
+                item.endTime = endTime;
+
+                item.priority = priority;
+
+                item.day = day;
+
+                item.notes = notes;
+
+                item.updatedAt =
+                    new Date().toISOString();
+
+            }
+
+
+            showToast(
+                "Study session updated."
+            );
+
+        }
+
+
+        /* =================================================
+        CREATE NEW
+        ================================================= */
+
+        else{
+
+            user.timetable.push({
+
+                id: generateId(),
+
+                title: title,
+
+                subject: subject,
+
+                topic: topic,
+
+                startTime: startTime,
+
+                endTime: endTime,
+
+                priority: priority,
+
+                day: day,
+
+                notes: notes,
+
+                completed: false,
+
+                completedAt: null,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            });
+
+
+            showToast(
+                "Study session created."
+            );
+
+        }
+
+
+        /*
+            User jis day par session create karta hai,
+            save ke baad wahi day automatically select hoga.
+        */
+
+        selectedDay = day;
+
+
+        saveCurrentUser();
+
+        closeModal();
+
+        renderDayTabs();
+
+        renderSessions();
+
+        updateStats();
+
+    }
+);
+
+
+/* =========================================================
+SEARCH
+========================================================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        renderSessions
+    );
+
+
+/* =========================================================
+FILTER
+========================================================= */
+
+document
+    .getElementById("filterSelect")
+    .addEventListener(
+        "change",
+        renderSessions
+    );
+
+
+/* =========================================================
+GET DAY SESSIONS
+========================================================= */
+
+function getDaySessions(){
+
+    let list =
+        user.timetable.filter(
+            session =>
+                session.day ===
+                selectedDay
+        );
+
+
+    const query =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const filter =
+        document
+            .getElementById("filterSelect")
+            .value;
+
+
+    if(query){
+
+        list =
+            list.filter(session => {
+
+                return (
+
+                    (session.title || "")
+                        .toLowerCase()
+                        .includes(query)
+
+                    ||
+
+                    (session.subject || "")
+                        .toLowerCase()
+                        .includes(query)
+
+                    ||
+
+                    (session.topic || "")
+                        .toLowerCase()
+                        .includes(query)
+
+                );
+
+            });
+
+    }
+
+
+    if(filter === "pending"){
+
+        list =
+            list.filter(
+                session =>
+                    !session.completed
+            );
+
+    }
+
+
+    if(filter === "completed"){
+
+        list =
+            list.filter(
+                session =>
+                    session.completed
+            );
+
+    }
+
+
+    if(filter === "high"){
+
+        list =
+            list.filter(
+                session =>
+                    session.priority === "high"
+            );
+
+    }
+
+
+    list.sort(
+        (a,b) =>
+            (a.startTime || "")
+                .localeCompare(
+                    b.startTime || ""
+                )
+    );
+
+
+    return list;
+
+}
+
+
+/* =========================================================
+RENDER SESSIONS
+========================================================= */
+
+function renderSessions(){
+
+    const list =
+        getDaySessions();
+
+
+    document.getElementById(
+        "selectedDayTitle"
+    ).textContent =
+        selectedDay;
+
+
+    document.getElementById(
+        "sessionCount"
+    ).textContent =
+        `${list.length} Session${
+            list.length !== 1
+                ? "s"
+                : ""
+        }`;
+
+
+    if(!list.length){
+
+        sessionsContainer.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ◷
+                </div>
+
+                <h3>
+                    No study sessions
+                </h3>
+
+                <p>
+                    Add your study time for
+                    ${escapeHTML(selectedDay)}.
+                    You decide what to study and when.
+                </p>
+
+                <br>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="openModal()"
+                >
+                    + Add Session
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    sessionsContainer.innerHTML =
+        list
+            .map(
+                item =>
+                    renderSession(item)
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+RENDER SINGLE SESSION
+========================================================= */
+
+function renderSession(item){
+
+    const duration =
+        calculateDuration(
+            item.startTime,
+            item.endTime
+        );
+
+
+    return `
+
+        <article
+            class="session ${
+                item.completed
+                    ? "completed"
+                    : ""
+            }"
+        >
+
+            <div class="session-time">
+
+                <div class="start-time">
+                    ${formatTime(item.startTime)}
+                </div>
+
+                <div class="end-time">
+                    ${formatTime(item.endTime)}
+                </div>
+
+            </div>
+
+
+            <div class="timeline-dot"></div>
+
+
+            <div class="session-main">
+
+                <div class="session-top">
+
+                    <div class="session-title">
+                        ${escapeHTML(item.title)}
+                    </div>
+
+                    <span class="subject-badge">
+                        ${escapeHTML(item.subject)}
+                    </span>
+
+                </div>
+
+
+                <div class="session-meta">
+
+                    <span>
+                        ⏱ ${duration}
+                    </span>
+
+
+                    ${
+                        item.topic
+                        ?
+                        `
+                            <span>
+                                ◈
+                                ${escapeHTML(item.topic)}
+                            </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <span
+                        class="priority ${
+                            item.priority || "medium"
+                        }"
+                    >
+                        ${(
+                            item.priority ||
+                            "medium"
+                        ).toUpperCase()}
+                    </span>
+
+                </div>
+
+
+                ${
+                    item.notes
+                    ?
+                    `
+                        <div class="session-note">
+                            ${escapeHTML(item.notes)}
+                        </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+
+            <div class="session-actions">
+
+                <button
+                    type="button"
+                    class="small-btn complete"
+                    title="${
+                        item.completed
+                            ? "Mark Pending"
+                            : "Mark Complete"
+                    }"
+                    onclick="
+                        toggleSession('${item.id}')
+                    "
+                >
+                    ${
+                        item.completed
+                            ? "✓"
+                            : "○"
+                    }
+                </button>
+
+
+                <button
+                    type="button"
+                    class="small-btn"
+                    title="Edit"
+                    onclick="
+                        editSession('${item.id}')
+                    "
+                >
+                    ✎
+                </button>
+
+
+                <button
+                    type="button"
+                    class="small-btn delete"
+                    title="Delete"
+                    onclick="
+                        deleteSession('${item.id}')
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+CALCULATE DURATION
+========================================================= */
+
+function calculateDuration(
+    start,
+    end
+){
+
+    if(!start || !end)
+        return "0m";
+
+
+    const [sh,sm] =
+        start
+            .split(":")
+            .map(Number);
+
+
+    const [eh,em] =
+        end
+            .split(":")
+            .map(Number);
+
+
+    const minutes =
+        (eh * 60 + em) -
+        (sh * 60 + sm);
+
+
+    if(minutes <= 0)
+        return "0m";
+
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+
+    const mins =
+        minutes % 60;
+
+
+    if(hours && mins){
+
+        return `${hours}h ${mins}m`;
+
+    }
+
+
+    if(hours){
+
+        return `${hours}h`;
+
+    }
+
+
+    return `${mins}m`;
+
+}
+
+
+/* =========================================================
+DURATION HOURS
+========================================================= */
+
+function durationHours(item){
+
+    if(!item.startTime || !item.endTime)
+        return 0;
+
+
+    const [sh,sm] =
+        item.startTime
+            .split(":")
+            .map(Number);
+
+
+    const [eh,em] =
+        item.endTime
+            .split(":")
+            .map(Number);
+
+
+    const minutes =
+        (eh * 60 + em) -
+        (sh * 60 + sm);
+
+
+    return Math.max(
+        0,
+        minutes / 60
+    );
+
+}
+
+
+/* =========================================================
+FORMAT TIME
+========================================================= */
+
+function formatTime(time){
+
+    if(!time)
+        return "--";
+
+
+    const [hour,minute] =
+        time
+            .split(":")
+            .map(Number);
+
+
+    const suffix =
+        hour >= 12
+            ? "PM"
+            : "AM";
+
+
+    const h =
+        hour % 12 || 12;
+
+
+    return (
+        h +
+        ":" +
+        String(minute)
+            .padStart(2,"0") +
+        " " +
+        suffix
+    );
+
+}
+
+
+/* =========================================================
+EDIT
+========================================================= */
+
+function editSession(id){
+
+    const item =
+        user.timetable.find(
+            session =>
+                session.id === id
+        );
+
+
+    if(item){
+
+        openModal(item);
+
+    }
+
+}
+
+
+/* =========================================================
+DELETE
+========================================================= */
+
+function deleteSession(id){
+
+    const item =
+        user.timetable.find(
+            session =>
+                session.id === id
+        );
+
+
+    if(!item)
+        return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${item.title}" from your timetable?`
+        );
+
+
+    if(!confirmed)
+        return;
+
+
+    user.timetable =
+        user.timetable.filter(
+            session =>
+                session.id !== id
+        );
+
+
+    saveCurrentUser();
+
+    renderSessions();
+
+    updateStats();
+
+    showToast(
+        "Study session deleted."
+    );
+
+}
+
+
+/* =========================================================
+TOGGLE COMPLETE
+========================================================= */
+
+function toggleSession(id){
+
+    const item =
+        user.timetable.find(
+            session =>
+                session.id === id
+        );
+
+
+    if(!item)
+        return;
+
+
+    item.completed =
+        !item.completed;
+
+
+    item.completedAt =
+        item.completed
+            ? new Date().toISOString()
+            : null;
+
+
+    item.updatedAt =
+        new Date().toISOString();
+
+
+    saveCurrentUser();
+
+    renderSessions();
+
+    updateStats();
+
+
+    showToast(
+        item.completed
+            ? "Session completed ✓"
+            : "Session marked pending."
+    );
+
+}
+
+
+/* =========================================================
+TODAY HOURS
+=========================================================
+
+NOTE:
+
+"Today's Study" ab bhi current weekday
+ke according total show karega.
+
+Lekin timetable ke andar date nahi hai.
+
+Example:
+Aaj Wednesday hai ->
+Wednesday ke sessions ka total.
+
+========================================================= */
+
+function getCurrentDay(){
+
+    const day =
+        new Date().getDay();
+
+
+    if(day === 0)
+        return "Sunday";
+
+
+    return days[day - 1];
+
+}
+
+
+function getTodaySessions(){
+
+    const today =
+        getCurrentDay();
+
+
+    return user.timetable.filter(
+        item =>
+            item.day === today
+    );
+
+}
+
+
+/* =========================================================
+STATS
+========================================================= */
+
+function updateStats(){
+
+    const all =
+        user.timetable || [];
+
+
+    const today =
+        getTodaySessions();
+
+
+    const todayHours =
+        today.reduce(
+            (total,item) =>
+                total +
+                durationHours(item),
+            0
+        );
+
+
+    const weekHours =
+        all.reduce(
+            (total,item) =>
+                total +
+                durationHours(item),
+            0
+        );
+
+
+    const completed =
+        all.filter(
+            item =>
+                item.completed
+        ).length;
+
+
+    const completion =
+        all.length
+            ? Math.round(
+                completed /
+                all.length *
+                100
+            )
+            : 0;
+
+
+    document.getElementById(
+        "todayHours"
+    ).textContent =
+        formatHours(todayHours);
+
+
+    document.getElementById(
+        "weekHours"
+    ).textContent =
+        formatHours(weekHours);
+
+
+    document.getElementById(
+        "completionRate"
+    ).textContent =
+        completion + "%";
+
+}
+
+
+/* =========================================================
+FORMAT HOURS
+========================================================= */
+
+function formatHours(hours){
+
+    if(hours === 0)
+        return "0h";
+
+
+    if(hours < 1){
+
+        return (
+            Math.round(
+                hours * 60
+            ) + "m"
+        );
+
+    }
+
+
+    const whole =
+        Math.floor(hours);
+
+
+    const mins =
+        Math.round(
+            (hours - whole) * 60
+        );
+
+
+    if(!mins){
+
+        return whole + "h";
+
+    }
+
+
+    return (
+        whole +
+        "h " +
+        mins +
+        "m"
+    );
+
+}
+
+
+/* =========================================================
+ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+LOGOUT
+========================================================= */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* =========================================================
+MOBILE SIDEBAR
+========================================================= */
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+CLOSE SIDEBAR AFTER CLICKING LINK ON MOBILE
+========================================================= */
+
+document
+    .querySelectorAll(".nav-item")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                if(
+                    window.innerWidth <= 800
+                ){
+
+                    sidebar.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+AVATAR
+========================================================= */
+
+if(user){
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+
+    const name =
+        user.name ||
+        user.email ||
+        "User";
+
+
+    avatar.textContent =
+        name
+            .split(" ")
+            .map(
+                word =>
+                    word[0]
+            )
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+}
+
+
+/* =========================================================
+TOAST
+========================================================= */
+
+function showToast(
+    message,
+    type = "success"
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        `toast ${type}`;
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+
+            setTimeout(
+                () =>
+                    toast.remove(),
+                250
+            );
+
+        },
+        2600
+    );
+
+}
+
+
+/* =========================================================
+INITIALIZE
+========================================================= */
+
+renderDayTabs();
+
+renderSessions();
+
+updateStats();
+
+</script>
+
+</body>
+</html>

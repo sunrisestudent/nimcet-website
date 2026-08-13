@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NIMCET PrepPro | Mock Tests</title>
+
+<style>
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 8% 0%,rgba(99,102,241,.11),transparent 28%),
+        radial-gradient(circle at 90% 15%,rgba(34,211,238,.06),transparent 25%),
+        var(--bg);
+}
+
+button,input,textarea,select{
+    font-family:inherit;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:var(--sidebar);
+    padding:22px 15px;
+    background:rgba(8,13,27,.96);
+    border-right:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    z-index:100;
+    transition:.3s;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:5px 12px 25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+    margin:18px 0 9px;
+    color:#475569;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    color:#7f8da3;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+    background:rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+    background:linear-gradient(
+        100deg,
+        rgba(99,102,241,.22),
+        rgba(139,92,246,.10)
+    );
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    background:rgba(255,255,255,.035);
+    font-size:13px;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:18px;
+}
+
+.logout{
+    width:100%;
+    margin-top:9px;
+    padding:10px;
+    border:0;
+    border-radius:11px;
+    background:rgba(251,113,133,.06);
+    color:#fb7185;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:650;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:var(--sidebar);
+    min-height:100vh;
+    padding:25px 30px 50px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn,
+.mobile-menu{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding:26px;
+    border-radius:21px;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(99,102,241,.15),
+            rgba(34,211,238,.055),
+            rgba(15,23,42,.78)
+        );
+    border:1px solid rgba(129,140,248,.11);
+}
+
+.hero:after{
+    content:"TEST";
+    position:absolute;
+    right:25px;
+    top:12px;
+    color:rgba(129,140,248,.035);
+    font-size:70px;
+    font-weight:900;
+}
+
+.badge{
+    display:inline-flex;
+    padding:6px 10px;
+    border-radius:50px;
+    background:rgba(99,102,241,.09);
+    color:#a5b4fc;
+    font-size:9px;
+    font-weight:750;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
+
+.hero h2{
+    margin-top:11px;
+    font-size:25px;
+    letter-spacing:-.9px;
+}
+
+.hero h2 span{
+    color:#818cf8;
+}
+
+.hero p{
+    max-width:700px;
+    margin-top:7px;
+    color:#94a3b8;
+    font-size:11px;
+    line-height:1.65;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.stat{
+    padding:16px;
+    border-radius:15px;
+    background:rgba(15,23,42,.65);
+    border:1px solid var(--border);
+}
+
+.stat-label{
+    color:#64748b;
+    font-size:9px;
+}
+
+.stat-value{
+    margin-top:6px;
+    font-size:21px;
+    font-weight:800;
+}
+
+.blue{color:#a5b4fc}
+.green{color:#34d399}
+.yellow{color:#fbbf24}
+.cyan{color:#67e8f9}
+
+/* TOOLBAR */
+
+.toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:22px;
+    margin-bottom:12px;
+}
+
+.toolbar-left h2{
+    font-size:14px;
+}
+
+.toolbar-left p{
+    margin-top:4px;
+    color:#64748b;
+    font-size:9px;
+}
+
+.toolbar-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.search{
+    width:210px;
+    height:38px;
+    padding:0 12px;
+    outline:none;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:rgba(255,255,255,.035);
+    color:white;
+    font-size:10px;
+}
+
+.search:focus{
+    border-color:#6366f1;
+}
+
+.add-btn{
+    height:38px;
+    padding:0 15px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+    color:#fff;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:750;
+}
+
+/* TEST LIST */
+
+.tests{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+}
+
+.test-card{
+    position:relative;
+    padding:17px;
+    border-radius:16px;
+    background:rgba(15,23,42,.72);
+    border:1px solid var(--border);
+    transition:.2s;
+}
+
+.test-card:hover{
+    border-color:rgba(129,140,248,.18);
+    transform:translateY(-1px);
+}
+
+.test-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.test-title{
+    color:#e2e8f0;
+    font-size:12px;
+    font-weight:750;
+}
+
+.test-date{
+    margin-top:5px;
+    color:#64748b;
+    font-size:8px;
+}
+
+.score-box{
+    min-width:72px;
+    text-align:right;
+}
+
+.score{
+    font-size:22px;
+    font-weight:850;
+}
+
+.score.good{
+    color:#34d399;
+}
+
+.score.average{
+    color:#fbbf24;
+}
+
+.score.low{
+    color:#fb7185;
+}
+
+.score-label{
+    color:#64748b;
+    font-size:7px;
+}
+
+.test-info{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:14px;
+}
+
+.info-tag{
+    padding:5px 7px;
+    border-radius:6px;
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+    font-size:7px;
+}
+
+.info-tag.subject{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.08);
+}
+
+.test-progress{
+    margin-top:14px;
+}
+
+.progress-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+}
+
+.progress-head span{
+    color:#64748b;
+    font-size:7px;
+}
+
+.progress-track{
+    height:5px;
+    overflow:hidden;
+    border-radius:50px;
+    background:#1e293b;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:50px;
+    background:linear-gradient(90deg,#6366f1,#22d3ee);
+}
+
+.test-remarks{
+    margin-top:12px;
+    padding:9px;
+    border-radius:8px;
+    background:rgba(255,255,255,.025);
+    color:#64748b;
+    font-size:8px;
+    line-height:1.5;
+}
+
+.test-actions{
+    display:flex;
+    gap:6px;
+    margin-top:13px;
+}
+
+.test-btn{
+    height:29px;
+    padding:0 10px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:7px;
+    background:rgba(255,255,255,.025);
+    color:#64748b;
+    cursor:pointer;
+    font-size:8px;
+}
+
+.test-btn:hover{
+    color:#fff;
+}
+
+.test-btn.delete:hover{
+    color:#fb7185;
+}
+
+/* EMPTY */
+
+.empty{
+    grid-column:1/-1;
+    padding:65px 20px;
+    text-align:center;
+    border:1px dashed rgba(148,163,184,.14);
+    border-radius:17px;
+    color:#64748b;
+}
+
+.empty-icon{
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    margin:0 auto 13px;
+    border-radius:17px;
+    background:rgba(99,102,241,.08);
+    color:#818cf8;
+    font-size:22px;
+}
+
+.empty h3{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.empty p{
+    margin-top:6px;
+    font-size:9px;
+}
+
+/* MODAL */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(2,6,23,.78);
+    backdrop-filter:blur(9px);
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(100%,620px);
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:22px;
+    background:#0d1426;
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 35px 90px rgba(0,0,0,.5);
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.close{
+    width:31px;
+    height:31px;
+    border:0;
+    border-radius:9px;
+    background:rgba(255,255,255,.05);
+    color:#94a3b8;
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-label{
+    display:block;
+    margin-bottom:7px;
+    color:#cbd5e1;
+    font-size:10px;
+    font-weight:650;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+    width:100%;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    outline:none;
+    background:#090f1d;
+    color:white;
+    font-size:11px;
+}
+
+.form-input,
+.form-select{
+    height:43px;
+    padding:0 12px;
+}
+
+.form-textarea{
+    min-height:85px;
+    resize:vertical;
+    padding:12px;
+    line-height:1.6;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+    border-color:#6366f1;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:20px;
+}
+
+.cancel-btn{
+    height:40px;
+    padding:0 15px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    background:rgba(255,255,255,.04);
+    color:#94a3b8;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.save-btn{
+    height:40px;
+    padding:0 17px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+    color:white;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:750;
+}
+
+/* TOAST */
+
+.toast-container{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.toast{
+    min-width:260px;
+    padding:13px 15px;
+    border-radius:12px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    font-size:10px;
+    animation:toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:3px solid var(--green);
+}
+
+.toast.error{
+    border-left:3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tests{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+        place-items:center;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .toolbar{
+        align-items:stretch;
+        flex-direction:column;
+    }
+
+    .toolbar-right{
+        width:100%;
+    }
+
+    .search{
+        flex:1;
+        width:auto;
+    }
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .test-top{
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        Main
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="syllabus.html" class="nav-item">
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+        <a href="notes.html" class="nav-item">
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+        <a href="doubts.html" class="nav-item">
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+        <a href="weekly-plan.html" class="nav-item">
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+
+        <div class="menu-label">
+            Practice
+        </div>
+
+
+        <a href="mock-test.html" class="nav-item active">
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+        <a href="progress.html" class="nav-item">
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+        <a href="resources.html" class="nav-item">
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+
+        <div class="menu-label">
+            Account
+        </div>
+
+
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+
+        <div class="page-title">
+
+            <h1>
+                Mock Tests
+            </h1>
+
+            <p>
+                Track every mock test and improve your NIMCET score
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+            >
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            Performance Lab
+        </div>
+
+        <h2>
+            Practice.
+            <span>Analyze.</span>
+            Improve.
+        </h2>
+
+        <p>
+            Record your NIMCET mock tests, monitor your marks,
+            accuracy and time, and build a clear history of your
+            preparation performance.
+        </p>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Tests
+            </div>
+
+            <div
+                class="stat-value blue"
+                id="totalTests"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Average Score
+            </div>
+
+            <div
+                class="stat-value green"
+                id="averageScore"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Best Score
+            </div>
+
+            <div
+                class="stat-value yellow"
+                id="bestScore"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Practice
+            </div>
+
+            <div
+                class="stat-value cyan"
+                id="totalPractice"
+            >
+                0h
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <section class="toolbar">
+
+        <div class="toolbar-left">
+
+            <h2>
+                Test History
+            </h2>
+
+            <p>
+                Your saved mock test performance
+            </p>
+
+        </div>
+
+
+        <div class="toolbar-right">
+
+            <input
+                class="search"
+                id="search"
+                type="search"
+                placeholder="Search test..."
+            >
+
+            <button
+                class="add-btn"
+                id="addTestBtn"
+            >
+                + Add Mock Test
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- TESTS -->
+
+    <section
+        class="tests"
+        id="tests"
+    ></section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                Add Mock Test
+            </div>
+
+            <button
+                class="close"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="testForm">
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Test Name
+                </label>
+
+                <input
+                    class="form-input"
+                    id="testName"
+                    type="text"
+                    maxlength="120"
+                    placeholder="e.g. Full Length Mock Test #01"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Date
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="testDate"
+                        type="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Subject
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="testSubject"
+                    >
+                        <option value="">
+                            Full Mock
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Marks Obtained
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="marks"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="e.g. 380"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Total Marks
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="totalMarks"
+                        type="number"
+                        min="1"
+                        step="0.01"
+                        value="1000"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Time Taken (minutes)
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="timeTaken"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="e.g. 120"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Questions Attempted
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="attempted"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="e.g. 80"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Remarks / What to Improve
+                </label>
+
+                <textarea
+                    class="form-textarea"
+                    id="remarks"
+                    maxlength="1000"
+                    placeholder="e.g. Need to improve speed in Mathematics..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Test
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<script>
+
+/* ============================================================
+   STORAGE / AUTH
+============================================================ */
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                USERS_KEY
+            )
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+
+}
+
+
+let session = null;
+
+try{
+
+    session =
+        JSON.parse(
+            localStorage.getItem(
+                SESSION_KEY
+            )
+        );
+
+}catch{
+
+    session = null;
+
+}
+
+
+if(!session){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+let users =
+    getUsers();
+
+
+let user =
+    users.find(
+        item =>
+            item.id === session?.userId
+    );
+
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* ============================================================
+   INITIALIZE USER DATA
+============================================================ */
+
+if(!Array.isArray(user.mockTests)){
+
+    user.mockTests = [];
+
+}
+
+
+/* ============================================================
+   SAVE CURRENT USER
+============================================================ */
+
+function saveCurrentUser(){
+
+    const index =
+        users.findIndex(
+            item =>
+                item.id === user.id
+        );
+
+
+    if(index !== -1){
+
+        users[index] = user;
+
+    }
+
+
+    saveUsers(users);
+
+}
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const testsContainer =
+    document.getElementById(
+        "tests"
+    );
+
+const modalOverlay =
+    document.getElementById(
+        "modalOverlay"
+    );
+
+const testForm =
+    document.getElementById(
+        "testForm"
+    );
+
+const searchInput =
+    document.getElementById(
+        "search"
+    );
+
+
+let editingTestId = null;
+
+
+/* ============================================================
+   ID
+============================================================ */
+
+function generateId(){
+
+    return (
+        "mock_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2,9)
+    );
+
+}
+
+
+/* ============================================================
+   SUBJECTS
+============================================================ */
+
+function getSubjects(){
+
+    if(!Array.isArray(user.syllabus))
+        return [];
+
+
+    return user.syllabus
+        .filter(
+            item =>
+                item &&
+                item.title
+        );
+
+}
+
+
+function populateSubjects(){
+
+    const select =
+        document.getElementById(
+            "testSubject"
+        );
+
+
+    select.innerHTML =
+        `
+        <option value="">
+            Full Mock
+        </option>
+
+        ${
+            getSubjects()
+                .map(
+                    subject =>
+                        `
+                        <option
+                            value="${escapeHTML(subject.id)}"
+                        >
+                            ${escapeHTML(subject.title)}
+                        </option>
+                        `
+                )
+                .join("")
+        }
+        `;
+
+}
+
+
+function getSubjectName(id){
+
+    if(!id)
+        return "Full Mock";
+
+
+    const subject =
+        getSubjects().find(
+            item =>
+                item.id === id
+        );
+
+
+    return subject
+        ? subject.title
+        : "Full Mock";
+
+}
+
+
+/* ============================================================
+   DATE
+============================================================ */
+
+function formatDate(value){
+
+    if(!value)
+        return "-";
+
+
+    const date =
+        new Date(
+            value + "T00:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+function todayISO(){
+
+    const date =
+        new Date();
+
+
+    const y =
+        date.getFullYear();
+
+
+    const m =
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
+
+
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${y}-${m}-${d}`;
+
+}
+
+
+/* ============================================================
+   SCORE
+============================================================ */
+
+function getPercentage(test){
+
+    if(
+        !test.totalMarks ||
+        test.totalMarks <= 0
+    ){
+
+        return 0;
+
+    }
+
+
+    return Math.max(
+        0,
+        Math.min(
+            100,
+            (
+                Number(test.marks || 0) /
+                Number(test.totalMarks)
+            ) * 100
+        )
+    );
+
+}
+
+
+/* ============================================================
+   SCORE CLASS
+============================================================ */
+
+function getScoreClass(percent){
+
+    if(percent >= 70)
+        return "good";
+
+
+    if(percent >= 45)
+        return "average";
+
+
+    return "low";
+
+}
+
+
+/* ============================================================
+   RENDER
+============================================================ */
+
+function render(){
+
+    populateSubjects();
+
+    renderTests();
+
+    updateStats();
+
+}
+
+
+/* ============================================================
+   RENDER TESTS
+============================================================ */
+
+function renderTests(){
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    let tests =
+        [...user.mockTests]
+            .sort(
+                (a,b) =>
+                    new Date(
+                        b.date || b.createdAt
+                    ) -
+                    new Date(
+                        a.date || a.createdAt
+                    )
+            );
+
+
+    if(search){
+
+        tests =
+            tests.filter(
+                test => {
+
+                    const subject =
+                        getSubjectName(
+                            test.subjectId
+                        );
+
+
+                    return (
+                        test.name
+                            .toLowerCase()
+                            .includes(search)
+                        ||
+                        subject
+                            .toLowerCase()
+                            .includes(search)
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(!tests.length){
+
+        testsContainer.innerHTML =
+            `
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    No mock tests yet
+                </h3>
+
+                <p>
+                    Start recording your mock tests
+                    to build your performance history.
+                </p>
+
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    testsContainer.innerHTML =
+        tests
+            .map(
+                test =>
+                    renderTest(
+                        test
+                    )
+            )
+            .join("");
+
+}
+
+
+/* ============================================================
+   RENDER SINGLE TEST
+============================================================ */
+
+function renderTest(test){
+
+    const percent =
+        getPercentage(
+            test
+        );
+
+
+    const scoreClass =
+        getScoreClass(
+            percent
+        );
+
+
+    const subject =
+        getSubjectName(
+            test.subjectId
+        );
+
+
+    const hours =
+        Math.floor(
+            Number(
+                test.timeTaken || 0
+            ) / 60
+        );
+
+
+    const minutes =
+        Number(
+            test.timeTaken || 0
+        ) % 60;
+
+
+    const timeText =
+        hours
+        ? `${hours}h ${minutes}m`
+        : `${minutes}m`;
+
+
+    return `
+
+        <article
+            class="test-card"
+        >
+
+            <div class="test-top">
+
+                <div>
+
+                    <div class="test-title">
+                        ${escapeHTML(
+                            test.name
+                        )}
+                    </div>
+
+                    <div class="test-date">
+                        ${formatDate(
+                            test.date
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <div
+                        class="score ${scoreClass}"
+                    >
+                        ${percent.toFixed(1)}%
+                    </div>
+
+                    <div class="score-label">
+                        ${Number(
+                            test.marks || 0
+                        )} /
+                        ${Number(
+                            test.totalMarks || 0
+                        )}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="test-info">
+
+                <span class="info-tag subject">
+                    ${escapeHTML(
+                        subject
+                    )}
+                </span>
+
+
+                <span class="info-tag">
+                    ◷ ${timeText}
+                </span>
+
+
+                <span class="info-tag">
+                    🎯 ${Number(
+                        test.attempted || 0
+                    )} attempted
+                </span>
+
+            </div>
+
+
+            <div class="test-progress">
+
+                <div class="progress-head">
+
+                    <span>
+                        Score
+                    </span>
+
+                    <span>
+                        ${percent.toFixed(1)}%
+                    </span>
+
+                </div>
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${percent}%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            ${
+                test.remarks
+                ?
+                `
+                <div class="test-remarks">
+                    ${escapeHTML(
+                        test.remarks
+                    )}
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            <div class="test-actions">
+
+                <button
+                    class="test-btn"
+                    onclick="
+                        editTest(
+                            '${test.id}'
+                        )
+                    "
+                >
+                    ✎ Edit
+                </button>
+
+
+                <button
+                    class="test-btn delete"
+                    onclick="
+                        deleteTest(
+                            '${test.id}'
+                        )
+                    "
+                >
+                    × Delete
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ============================================================
+   OPEN MODAL
+============================================================ */
+
+function openAddModal(){
+
+    editingTestId = null;
+
+
+    testForm.reset();
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Mock Test";
+
+
+    document.getElementById(
+        "testDate"
+    ).value =
+        todayISO();
+
+
+    document.getElementById(
+        "totalMarks"
+    ).value =
+        "1000";
+
+
+    populateSubjects();
+
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () =>
+            document
+                .getElementById(
+                    "testName"
+                )
+                .focus(),
+        100
+    );
+
+}
+
+
+/* ============================================================
+   EDIT
+============================================================ */
+
+function editTest(id){
+
+    const test =
+        user.mockTests.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!test)
+        return;
+
+
+    editingTestId =
+        id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Mock Test";
+
+
+    populateSubjects();
+
+
+    document.getElementById(
+        "testName"
+    ).value =
+        test.name || "";
+
+
+    document.getElementById(
+        "testDate"
+    ).value =
+        test.date || todayISO();
+
+
+    document.getElementById(
+        "testSubject"
+    ).value =
+        test.subjectId || "";
+
+
+    document.getElementById(
+        "marks"
+    ).value =
+        test.marks ?? "";
+
+
+    document.getElementById(
+        "totalMarks"
+    ).value =
+        test.totalMarks ?? 1000;
+
+
+    document.getElementById(
+        "timeTaken"
+    ).value =
+        test.timeTaken ?? "";
+
+
+    document.getElementById(
+        "attempted"
+    ).value =
+        test.attempted ?? "";
+
+
+    document.getElementById(
+        "remarks"
+    ).value =
+        test.remarks || "";
+
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+/* ============================================================
+   CLOSE
+============================================================ */
+
+function closeModal(){
+
+    modalOverlay.classList.remove(
+        "show"
+    );
+
+
+    editingTestId = null;
+
+
+    testForm.reset();
+
+}
+
+
+/* ============================================================
+   MODAL EVENTS
+============================================================ */
+
+document
+    .getElementById(
+        "addTestBtn"
+    )
+    .addEventListener(
+        "click",
+        openAddModal
+    );
+
+
+document
+    .getElementById(
+        "closeModal"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById(
+        "cancelModal"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+modalOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            modalOverlay
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   SAVE TEST
+============================================================ */
+
+testForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById(
+                    "testName"
+                )
+                .value
+                .trim();
+
+
+        const date =
+            document
+                .getElementById(
+                    "testDate"
+                )
+                .value;
+
+
+        const subjectId =
+            document
+                .getElementById(
+                    "testSubject"
+                )
+                .value;
+
+
+        const marks =
+            Number(
+                document
+                    .getElementById(
+                        "marks"
+                    )
+                    .value
+            );
+
+
+        const totalMarks =
+            Number(
+                document
+                    .getElementById(
+                        "totalMarks"
+                    )
+                    .value
+            );
+
+
+        const timeTaken =
+            Number(
+                document
+                    .getElementById(
+                        "timeTaken"
+                    )
+                    .value
+            );
+
+
+        const attempted =
+            Number(
+                document
+                    .getElementById(
+                        "attempted"
+                    )
+                    .value || 0
+            );
+
+
+        const remarks =
+            document
+                .getElementById(
+                    "remarks"
+                )
+                .value
+                .trim();
+
+
+        if(!name){
+
+            showToast(
+                "Please enter test name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!date){
+
+            showToast(
+                "Please select test date.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(marks) ||
+            marks < 0
+        ){
+
+            showToast(
+                "Enter valid marks.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(totalMarks) ||
+            totalMarks <= 0
+        ){
+
+            showToast(
+                "Enter valid total marks.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(marks > totalMarks){
+
+            showToast(
+                "Marks cannot exceed total marks.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(timeTaken) ||
+            timeTaken <= 0
+        ){
+
+            showToast(
+                "Enter valid time taken.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            attempted < 0
+        ){
+
+            showToast(
+                "Questions attempted cannot be negative.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* EDIT */
+
+        if(editingTestId){
+
+            const test =
+                user.mockTests.find(
+                    item =>
+                        item.id ===
+                        editingTestId
+                );
+
+
+            if(test){
+
+                test.name =
+                    name;
+
+                test.date =
+                    date;
+
+                test.subjectId =
+                    subjectId;
+
+                test.marks =
+                    marks;
+
+                test.totalMarks =
+                    totalMarks;
+
+                test.timeTaken =
+                    timeTaken;
+
+                test.attempted =
+                    attempted;
+
+                test.remarks =
+                    remarks;
+
+                test.updatedAt =
+                    new Date()
+                        .toISOString();
+
+            }
+
+
+            showToast(
+                "Mock test updated successfully."
+            );
+
+        }
+
+
+        /* CREATE */
+
+        else{
+
+            user.mockTests.push({
+
+                id:
+                    generateId(),
+
+                name:
+                    name,
+
+                date:
+                    date,
+
+                subjectId:
+                    subjectId,
+
+                marks:
+                    marks,
+
+                totalMarks:
+                    totalMarks,
+
+                timeTaken:
+                    timeTaken,
+
+                attempted:
+                    attempted,
+
+                remarks:
+                    remarks,
+
+                createdAt:
+                    new Date()
+                        .toISOString(),
+
+                updatedAt:
+                    new Date()
+                        .toISOString()
+
+            });
+
+
+            showToast(
+                "Mock test saved permanently."
+            );
+
+        }
+
+
+        saveCurrentUser();
+
+        closeModal();
+
+        render();
+
+    }
+);
+
+
+/* ============================================================
+   DELETE
+============================================================ */
+
+function deleteTest(id){
+
+    const test =
+        user.mockTests.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!test)
+        return;
+
+
+    if(
+        !confirm(
+            `Delete "${test.name}" permanently?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    user.mockTests =
+        user.mockTests.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        "Mock test deleted."
+    );
+
+}
+
+
+/* ============================================================
+   STATISTICS
+============================================================ */
+
+function updateStats(){
+
+    const tests =
+        user.mockTests;
+
+
+    const total =
+        tests.length;
+
+
+    const percentages =
+        tests.map(
+            test =>
+                getPercentage(
+                    test
+                )
+        );
+
+
+    const average =
+        total
+        ?
+        percentages.reduce(
+            (a,b) =>
+                a+b,
+            0
+        ) / total
+        :
+        0;
+
+
+    const best =
+        total
+        ?
+        Math.max(
+            ...percentages
+        )
+        :
+        0;
+
+
+    const totalMinutes =
+        tests.reduce(
+            (
+                total,
+                test
+            ) =>
+                total +
+                Number(
+                    test.timeTaken || 0
+                ),
+            0
+        );
+
+
+    const practiceHours =
+        totalMinutes / 60;
+
+
+    document.getElementById(
+        "totalTests"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "averageScore"
+    ).textContent =
+        `${average.toFixed(1)}%`;
+
+
+    document.getElementById(
+        "bestScore"
+    ).textContent =
+        `${best.toFixed(1)}%`;
+
+
+    document.getElementById(
+        "totalPractice"
+    ).textContent =
+        `${practiceHours.toFixed(1)}h`;
+
+}
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+searchInput.addEventListener(
+    "input",
+    renderTests
+);
+
+
+/* ============================================================
+   LOGOUT
+============================================================ */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+
+document
+    .getElementById(
+        "mobileMenu"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
+
+        }
+    );
+
+
+/* ============================================================
+   AVATAR
+============================================================ */
+
+if(user){
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+
+    avatar.textContent =
+        user.name
+            .split(" ")
+            .map(
+                word =>
+                    word[0]
+            )
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+}
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+function showToast(
+    message,
+    type="success"
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        `toast ${type}`;
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+            setTimeout(
+                () =>
+                    toast.remove(),
+                250
+            );
+
+        },
+        2600
+    );
+
+}
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+render();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,3573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | Progress</title>
+
+<style>
+
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --yellow:#fbbf24;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    color:var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 5% 0%,
+            rgba(99,102,241,.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 95% 10%,
+            rgba(34,211,238,.06),
+            transparent 25%
+        ),
+        var(--bg);
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:var(--sidebar);
+
+    padding:22px 15px;
+
+    background:rgba(8,13,27,.97);
+
+    border-right:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+    z-index:100;
+
+    transition:.3s;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:
+        5px
+        12px
+        25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+
+    margin:
+        18px 0
+        9px;
+
+    color:#475569;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1.3px;
+
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:
+        11px
+        13px;
+
+    border-radius:12px;
+
+    color:#7f8da3;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+
+    background:
+        rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-size:13px;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+
+    background:
+        rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    position:absolute;
+
+    left:15px;
+    right:15px;
+    bottom:18px;
+}
+
+.logout{
+    width:100%;
+
+    padding:10px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        rgba(251,113,133,.06);
+
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:650;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+    margin-left:var(--sidebar);
+
+    min-height:100vh;
+
+    padding:
+        25px
+        30px
+        55px;
+}
+
+.topbar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.icon-btn,
+.mobile-menu{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#94a3b8;
+
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:26px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(99,102,241,.15),
+            rgba(34,211,238,.055),
+            rgba(15,23,42,.78)
+        );
+
+    border:
+        1px solid
+        rgba(129,140,248,.11);
+}
+
+.hero:after{
+    content:"PROGRESS";
+
+    position:absolute;
+
+    right:25px;
+    top:7px;
+
+    color:
+        rgba(129,140,248,.035);
+
+    font-size:70px;
+
+    font-weight:900;
+}
+
+.badge{
+    display:inline-flex;
+
+    padding:
+        6px
+        10px;
+
+    border-radius:50px;
+
+    background:
+        rgba(99,102,241,.09);
+
+    color:#a5b4fc;
+
+    font-size:9px;
+
+    font-weight:750;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+}
+
+.hero h2{
+    margin-top:11px;
+
+    font-size:25px;
+
+    letter-spacing:-.9px;
+}
+
+.hero h2 span{
+    color:#818cf8;
+}
+
+.hero p{
+    max-width:700px;
+
+    margin-top:7px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    line-height:1.65;
+}
+
+/* =========================================================
+   MAIN STATS
+========================================================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+.stat{
+    padding:17px;
+
+    border-radius:15px;
+
+    background:
+        rgba(15,23,42,.70);
+
+    border:
+        1px solid
+        var(--border);
+}
+
+.stat-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.stat-label{
+    color:#64748b;
+
+    font-size:9px;
+}
+
+.stat-icon{
+    width:30px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    background:
+        rgba(99,102,241,.08);
+
+    color:#a5b4fc;
+}
+
+.stat-value{
+    margin-top:7px;
+
+    font-size:22px;
+
+    font-weight:850;
+}
+
+.stat-note{
+    margin-top:4px;
+
+    color:#475569;
+
+    font-size:8px;
+}
+
+.blue{
+    color:#a5b4fc;
+}
+
+.green{
+    color:#34d399;
+}
+
+.yellow{
+    color:#fbbf24;
+}
+
+.cyan{
+    color:#67e8f9;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.content-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.35fr
+        .65fr;
+
+    gap:14px;
+
+    margin-top:15px;
+}
+
+.panel{
+    padding:19px;
+
+    border-radius:17px;
+
+    background:
+        rgba(13,20,38,.78);
+
+    border:
+        1px solid
+        var(--border);
+}
+
+.panel-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:17px;
+}
+
+.panel-title{
+    font-size:13px;
+
+    font-weight:750;
+}
+
+.panel-subtitle{
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+/* =========================================================
+   OVERALL PROGRESS
+========================================================= */
+
+.overall{
+    display:grid;
+
+    grid-template-columns:
+        170px
+        1fr;
+
+    gap:25px;
+
+    align-items:center;
+}
+
+.circle{
+    position:relative;
+
+    width:155px;
+    height:155px;
+
+    display:grid;
+
+    place-items:center;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:
+        conic-gradient(
+            #6366f1
+            var(--progress),
+            #1e293b
+            var(--progress)
+        );
+}
+
+.circle:after{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:#0d1426;
+}
+
+.circle-content{
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+}
+
+.circle-value{
+    font-size:27px;
+
+    font-weight:900;
+}
+
+.circle-label{
+    margin-top:2px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+.metric{
+    margin-bottom:16px;
+}
+
+.metric:last-child{
+    margin-bottom:0;
+}
+
+.metric-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:6px;
+}
+
+.metric-head span:first-child{
+    color:#94a3b8;
+
+    font-size:9px;
+}
+
+.metric-head span:last-child{
+    color:#cbd5e1;
+
+    font-size:9px;
+
+    font-weight:700;
+}
+
+.track{
+    height:6px;
+
+    overflow:hidden;
+
+    border-radius:50px;
+
+    background:#1e293b;
+}
+
+.fill{
+    height:100%;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    transition:
+        width .5s ease;
+}
+
+.fill.green{
+    background:
+        linear-gradient(
+            90deg,
+            #10b981,
+            #34d399
+        );
+}
+
+.fill.cyan{
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #22d3ee
+        );
+}
+
+.fill.yellow{
+    background:
+        linear-gradient(
+            90deg,
+            #d97706,
+            #fbbf24
+        );
+}
+
+/* =========================================================
+   PREPARATION SCORE
+========================================================= */
+
+.prep-score{
+    text-align:center;
+
+    padding:12px 0 7px;
+}
+
+.prep-number{
+    font-size:48px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #22d3ee
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.prep-label{
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:9px;
+}
+
+.score-message{
+    margin-top:17px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    background:
+        rgba(99,102,241,.055);
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+/* =========================================================
+   SUBJECT PROGRESS
+========================================================= */
+
+.subject-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.subject-row{
+    padding:12px;
+
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.035);
+}
+
+.subject-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:7px;
+}
+
+.subject-name{
+    color:#cbd5e1;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.subject-percent{
+    color:#a5b4fc;
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+.subject-meta{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:6px;
+
+    color:#475569;
+
+    font-size:7px;
+}
+
+.subject-track{
+    height:5px;
+
+    overflow:hidden;
+
+    border-radius:50px;
+
+    background:#1e293b;
+}
+
+.subject-fill{
+    height:100%;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #22d3ee
+        );
+}
+
+/* =========================================================
+   RECENT TESTS
+========================================================= */
+
+.test-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.test-row{
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.test-number{
+    width:31px;
+    height:31px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(99,102,241,.09);
+
+    color:#a5b4fc;
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+.test-details{
+    flex:1;
+
+    min-width:0;
+}
+
+.test-name{
+    overflow:hidden;
+
+    color:#cbd5e1;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+.test-date{
+    margin-top:3px;
+
+    color:#475569;
+
+    font-size:7px;
+}
+
+.test-score{
+    font-size:12px;
+
+    font-weight:850;
+}
+
+.test-score.good{
+    color:#34d399;
+}
+
+.test-score.average{
+    color:#fbbf24;
+}
+
+.test-score.low{
+    color:#fb7185;
+}
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+.insights{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+}
+
+.insight{
+    padding:14px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.04);
+}
+
+.insight-icon{
+    width:32px;
+    height:32px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(99,102,241,.09);
+
+    color:#a5b4fc;
+
+    font-size:13px;
+}
+
+.insight-title{
+    margin-top:10px;
+
+    color:#94a3b8;
+
+    font-size:8px;
+}
+
+.insight-value{
+    margin-top:3px;
+
+    color:#f1f5f9;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.insight-desc{
+    margin-top:4px;
+
+    color:#475569;
+
+    font-size:7px;
+
+    line-height:1.4;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+    padding:35px 15px;
+
+    text-align:center;
+
+    border:
+        1px dashed
+        rgba(148,163,184,.12);
+
+    border-radius:13px;
+
+    color:#64748b;
+}
+
+.empty-icon{
+    width:45px;
+    height:45px;
+
+    display:grid;
+    place-items:center;
+
+    margin:0 auto 10px;
+
+    border-radius:13px;
+
+    background:
+        rgba(99,102,241,.07);
+
+    color:#818cf8;
+
+    font-size:18px;
+}
+
+.empty h3{
+    color:#cbd5e1;
+
+    font-size:12px;
+}
+
+.empty p{
+    margin-top:5px;
+
+    font-size:8px;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast-container{
+    position:fixed;
+
+    right:18px;
+    bottom:18px;
+
+    z-index:999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.toast{
+    min-width:250px;
+
+    padding:12px 14px;
+
+    border-radius:11px;
+
+    background:#111827;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35);
+
+    font-size:9px;
+
+    animation:
+        toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:
+        3px solid
+        var(--green);
+}
+
+@keyframes toastIn{
+
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:
+            translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:
+            translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+
+        padding:
+            18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+    }
+
+    .overall{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .insights{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .page-title h1{
+        font-size:20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="logo-area">
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        Main
+    </div>
+
+
+    <nav class="nav">
+
+        <a
+            href="dashboard.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+
+        <a
+            href="syllabus.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+
+        <a
+            href="notes.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+
+        <a
+            href="doubts.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+
+        <a
+            href="weekly-plan.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+
+        <div class="menu-label">
+            Practice
+        </div>
+
+
+        <a
+            href="mock-test.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+
+        <a
+            href="progress.html"
+            class="nav-item active"
+        >
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+
+        <a
+            href="resources.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+
+        <div class="menu-label">
+            Account
+        </div>
+
+
+        <a
+            href="profile.html"
+            class="nav-item"
+        >
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+
+        <div class="page-title">
+
+            <h1>
+                Progress & Analytics
+            </h1>
+
+            <p>
+                Understand your preparation and improve every day
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+            >
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="badge">
+            Preparation Analytics
+        </div>
+
+
+        <h2>
+            Your preparation,
+            <span>visualized.</span>
+        </h2>
+
+
+        <p>
+            Your syllabus, notes, doubts, weekly plan and mock
+            test activity are combined here to give you a clear
+            picture of your NIMCET preparation.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    Syllabus Completed
+                </div>
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div
+                class="stat-value blue"
+                id="syllabusStat"
+            >
+                0%
+            </div>
+
+
+            <div
+                class="stat-note"
+                id="syllabusNote"
+            >
+                0 of 0 topics
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    Mock Tests
+                </div>
+
+                <div class="stat-icon">
+                    ▣
+                </div>
+
+            </div>
+
+
+            <div
+                class="stat-value green"
+                id="mockStat"
+            >
+                0
+            </div>
+
+
+            <div class="stat-note">
+                Tests attempted
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    Average Score
+                </div>
+
+                <div class="stat-icon">
+                    %
+                </div>
+
+            </div>
+
+
+            <div
+                class="stat-value yellow"
+                id="averageStat"
+            >
+                0%
+            </div>
+
+
+            <div class="stat-note">
+                Mock test average
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    Study Hours
+                </div>
+
+                <div class="stat-icon">
+                    ◷
+                </div>
+
+            </div>
+
+
+            <div
+                class="stat-value cyan"
+                id="hoursStat"
+            >
+                0h
+            </div>
+
+
+            <div class="stat-note">
+                From weekly plans
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OVERALL + PREP SCORE
+    ====================================================== -->
+
+    <section class="content-grid">
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        Overall Preparation
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Combined progress from your study data
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="overall">
+
+
+                <div
+                    class="circle"
+                    id="overallCircle"
+                    style="--progress:0%"
+                >
+
+                    <div class="circle-content">
+
+                        <div
+                            class="circle-value"
+                            id="overallPercent"
+                        >
+                            0%
+                        </div>
+
+                        <div class="circle-label">
+                            Overall
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-head">
+
+                            <span>
+                                Syllabus
+                            </span>
+
+                            <span id="metricSyllabus">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="track">
+
+                            <div
+                                class="fill"
+                                id="fillSyllabus"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-head">
+
+                            <span>
+                                Weekly Plan
+                            </span>
+
+                            <span id="metricPlan">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="track">
+
+                            <div
+                                class="fill green"
+                                id="fillPlan"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-head">
+
+                            <span>
+                                Mock Performance
+                            </span>
+
+                            <span id="metricMock">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="track">
+
+                            <div
+                                class="fill cyan"
+                                id="fillMock"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-head">
+
+                            <span>
+                                Notes & Doubts
+                            </span>
+
+                            <span id="metricKnowledge">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="track">
+
+                            <div
+                                class="fill yellow"
+                                id="fillKnowledge"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        Preparation Score
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Your current readiness
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prep-score">
+
+                <div
+                    class="prep-number"
+                    id="prepScore"
+                >
+                    0
+                </div>
+
+                <div class="prep-label">
+                    / 100 Preparation Score
+                </div>
+
+
+                <div
+                    class="score-message"
+                    id="scoreMessage"
+                >
+                    Start adding your study data to calculate your
+                    preparation score.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUBJECT PROGRESS
+    ====================================================== -->
+
+    <section
+        class="panel"
+        style="margin-top:15px"
+    >
+
+        <div class="panel-header">
+
+            <div>
+
+                <div class="panel-title">
+                    Subject-wise Progress
+                </div>
+
+                <div class="panel-subtitle">
+                    Track your syllabus completion by subject
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="subject-list"
+            id="subjectList"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RECENT MOCKS + INSIGHTS
+    ====================================================== -->
+
+    <section class="content-grid">
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        Recent Mock Tests
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Your latest performance
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="test-list"
+                id="testList"
+            ></div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        Smart Insights
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Automatically generated from your data
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="insights"
+                id="insights"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<script>
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                USERS_KEY
+            )
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+
+let session = null;
+
+try{
+
+    session =
+        JSON.parse(
+            localStorage.getItem(
+                SESSION_KEY
+            )
+        );
+
+}catch{
+
+    session = null;
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+if(!session){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+let users =
+    getUsers();
+
+
+let user =
+    users.find(
+        item =>
+            item.id === session?.userId
+    );
+
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================================================
+   DATA SAFETY
+========================================================= */
+
+if(!Array.isArray(user.syllabus))
+    user.syllabus = [];
+
+if(!Array.isArray(user.notes))
+    user.notes = [];
+
+if(!Array.isArray(user.doubts))
+    user.doubts = [];
+
+if(!Array.isArray(user.weeklyPlans))
+    user.weeklyPlans = [];
+
+if(!Array.isArray(user.mockTests))
+    user.mockTests = [];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function clamp(
+    value,
+    min=0,
+    max=100
+){
+
+    return Math.max(
+        min,
+        Math.min(
+            max,
+            Number(value) || 0
+        )
+    );
+
+}
+
+
+function percentage(
+    completed,
+    total
+){
+
+    if(!total)
+        return 0;
+
+    return clamp(
+        (completed / total) * 100
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function formatDate(value){
+
+    if(!value)
+        return "-";
+
+
+    const date =
+        new Date(
+            value.includes("T")
+                ? value
+                : value + "T00:00:00"
+        );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return "-";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SYLLABUS ANALYSIS
+========================================================= */
+
+function getSyllabusData(){
+
+    const items =
+        user.syllabus || [];
+
+
+    if(!items.length){
+
+        return {
+            total:0,
+            completed:0,
+            percent:0
+        };
+
+    }
+
+
+    let total = 0;
+
+    let completed = 0;
+
+
+    items.forEach(
+        item => {
+
+            /*
+             Supported structures:
+
+             item.completed = true
+
+             item.status = "completed"
+
+             item.progress = 100
+            */
+
+            total++;
+
+
+            const done =
+                item.completed === true ||
+                item.status === "completed" ||
+                Number(item.progress) >= 100;
+
+
+            if(done){
+
+                completed++;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        total,
+
+        completed,
+
+        percent:
+            percentage(
+                completed,
+                total
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   SUBJECT DATA
+========================================================= */
+
+function getSubjectData(){
+
+    const subjects =
+        user.syllabus || [];
+
+
+    if(!subjects.length)
+        return [];
+
+
+    return subjects.map(
+        (item,index) => {
+
+            const completed =
+                item.completed === true ||
+                item.status === "completed" ||
+                Number(item.progress) >= 100
+                    ? 1
+                    : 0;
+
+
+            const percent =
+                Number.isFinite(
+                    Number(item.progress)
+                )
+                ?
+                clamp(
+                    Number(item.progress)
+                )
+                :
+                completed
+                    ? 100
+                    : 0;
+
+
+            return {
+
+                id:
+                    item.id ||
+                    index,
+
+                title:
+                    item.title ||
+                    item.name ||
+                    `Topic ${index+1}`,
+
+                completed,
+
+                percent
+
+            };
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WEEKLY PLAN ANALYSIS
+========================================================= */
+
+function getPlanData(){
+
+    const plans =
+        user.weeklyPlans || [];
+
+
+    let totalTasks = 0;
+
+    let completedTasks = 0;
+
+    let studyMinutes = 0;
+
+
+    plans.forEach(
+        plan => {
+
+            /*
+             Different possible structures
+             are supported.
+            */
+
+            if(
+                Array.isArray(
+                    plan.tasks
+                )
+            ){
+
+                plan.tasks.forEach(
+                    task => {
+
+                        totalTasks++;
+
+
+                        if(
+                            task.completed === true ||
+                            task.status === "completed" ||
+                            task.done === true
+                        ){
+
+                            completedTasks++;
+
+                        }
+
+
+                        studyMinutes +=
+                            Number(
+                                task.minutes ||
+                                task.duration ||
+                                task.studyMinutes ||
+                                0
+                            );
+
+                    }
+                );
+
+            }
+
+
+            /*
+             If the weekly-plan page stores
+             a direct completion property.
+            */
+
+            else if(
+                typeof plan.completed ===
+                "boolean"
+            ){
+
+                totalTasks++;
+
+
+                if(plan.completed)
+                    completedTasks++;
+
+
+                studyMinutes +=
+                    Number(
+                        plan.minutes ||
+                        plan.studyMinutes ||
+                        0
+                    );
+
+            }
+
+
+            /*
+             Some structures may use
+             dailyPlans.
+            */
+
+            if(
+                Array.isArray(
+                    plan.dailyPlans
+                )
+            ){
+
+                plan.dailyPlans.forEach(
+                    day => {
+
+                        if(
+                            Array.isArray(
+                                day.tasks
+                            )
+                        ){
+
+                            day.tasks.forEach(
+                                task => {
+
+                                    totalTasks++;
+
+
+                                    if(
+                                        task.completed === true ||
+                                        task.done === true ||
+                                        task.status === "completed"
+                                    ){
+
+                                        completedTasks++;
+
+                                    }
+
+
+                                    studyMinutes +=
+                                        Number(
+                                            task.minutes ||
+                                            task.duration ||
+                                            0
+                                        );
+
+                                }
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+       If explicit studyHours exists
+    */
+
+    plans.forEach(
+        plan => {
+
+            if(
+                !plan.tasks &&
+                !plan.dailyPlans
+            ){
+
+                studyMinutes +=
+                    Number(
+                        plan.studyMinutes ||
+                        0
+                    );
+
+                studyMinutes +=
+                    Number(
+                        plan.studyHours ||
+                        0
+                    ) * 60;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        totalTasks,
+
+        completedTasks,
+
+        percent:
+            percentage(
+                completedTasks,
+                totalTasks
+            ),
+
+        studyMinutes
+
+    };
+
+}
+
+
+/* =========================================================
+   MOCK DATA
+========================================================= */
+
+function getMockData(){
+
+    const tests =
+        user.mockTests || [];
+
+
+    if(!tests.length){
+
+        return {
+
+            count:0,
+
+            average:0,
+
+            best:0,
+
+            totalMinutes:0,
+
+            tests:[]
+
+        };
+
+    }
+
+
+    const percentages =
+        tests.map(
+            test => {
+
+                const marks =
+                    Number(
+                        test.marks || 0
+                    );
+
+                const total =
+                    Number(
+                        test.totalMarks || 0
+                    );
+
+
+                if(
+                    total <= 0
+                )
+                    return 0;
+
+
+                return clamp(
+                    (marks / total) * 100
+                );
+
+            }
+        );
+
+
+    const average =
+        percentages.reduce(
+            (a,b) => a+b,
+            0
+        ) /
+        percentages.length;
+
+
+    const best =
+        Math.max(
+            ...percentages
+        );
+
+
+    const totalMinutes =
+        tests.reduce(
+            (
+                sum,
+                test
+            ) =>
+                sum +
+                Number(
+                    test.timeTaken || 0
+                ),
+            0
+        );
+
+
+    return {
+
+        count:
+            tests.length,
+
+        average,
+
+        best,
+
+        totalMinutes,
+
+        tests
+
+    };
+
+}
+
+
+/* =========================================================
+   KNOWLEDGE DATA
+========================================================= */
+
+function getKnowledgeData(){
+
+    const notes =
+        user.notes || [];
+
+
+    const doubts =
+        user.doubts || [];
+
+
+    let solvedDoubts = 0;
+
+
+    doubts.forEach(
+        doubt => {
+
+            if(
+                doubt.solved === true ||
+                doubt.status === "solved" ||
+                doubt.status === "resolved"
+            ){
+
+                solvedDoubts++;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        notes:
+            notes.length,
+
+        doubts:
+            doubts.length,
+
+        solvedDoubts
+
+    };
+
+}
+
+
+/* =========================================================
+   CALCULATE OVERALL
+========================================================= */
+
+function calculate(){
+
+    const syllabus =
+        getSyllabusData();
+
+
+    const plan =
+        getPlanData();
+
+
+    const mock =
+        getMockData();
+
+
+    const knowledge =
+        getKnowledgeData();
+
+
+    /*
+       Knowledge score.
+
+       We don't want having fewer notes
+       to punish the user heavily.
+
+       10+ notes = full note component.
+       Solved doubts also contribute.
+    */
+
+    const noteScore =
+        clamp(
+            (
+                Math.min(
+                    knowledge.notes,
+                    10
+                ) / 10
+            ) * 60
+        );
+
+
+    const doubtScore =
+        knowledge.doubts
+            ?
+            (
+                knowledge.solvedDoubts /
+                knowledge.doubts
+            ) * 40
+            :
+            0;
+
+
+    const knowledgeScore =
+        knowledge.notes ||
+        knowledge.doubts
+            ?
+            clamp(
+                noteScore +
+                doubtScore
+            )
+            :
+            0;
+
+
+    /*
+       Preparation score weights
+    */
+
+    const overall =
+        (
+            syllabus.percent * .40
+            +
+            plan.percent * .20
+            +
+            mock.average * .30
+            +
+            knowledgeScore * .10
+        );
+
+
+    return {
+
+        syllabus,
+
+        plan,
+
+        mock,
+
+        knowledge,
+
+        knowledgeScore,
+
+        overall:
+            clamp(overall)
+
+    };
+
+}
+
+
+/* =========================================================
+   UPDATE TOP STATS
+========================================================= */
+
+function renderStats(data){
+
+    document.getElementById(
+        "syllabusStat"
+    ).textContent =
+        `${data.syllabus.percent.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "syllabusNote"
+    ).textContent =
+        `${data.syllabus.completed} of ${data.syllabus.total} topics`;
+
+
+    document.getElementById(
+        "mockStat"
+    ).textContent =
+        data.mock.count;
+
+
+    document.getElementById(
+        "averageStat"
+    ).textContent =
+        `${data.mock.average.toFixed(1)}%`;
+
+
+    document.getElementById(
+        "hoursStat"
+    ).textContent =
+        `${(
+            data.plan.studyMinutes / 60
+        ).toFixed(1)}h`;
+
+}
+
+
+/* =========================================================
+   OVERALL SECTION
+========================================================= */
+
+function renderOverall(data){
+
+    const overall =
+        data.overall;
+
+
+    const circle =
+        document.getElementById(
+            "overallCircle"
+        );
+
+
+    circle.style.setProperty(
+        "--progress",
+        `${overall}%`
+    );
+
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent =
+        `${overall.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "metricSyllabus"
+    ).textContent =
+        `${data.syllabus.percent.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "fillSyllabus"
+    ).style.width =
+        `${data.syllabus.percent}%`;
+
+
+    document.getElementById(
+        "metricPlan"
+    ).textContent =
+        `${data.plan.percent.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "fillPlan"
+    ).style.width =
+        `${data.plan.percent}%`;
+
+
+    document.getElementById(
+        "metricMock"
+    ).textContent =
+        `${data.mock.average.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "fillMock"
+    ).style.width =
+        `${data.mock.average}%`;
+
+
+    document.getElementById(
+        "metricKnowledge"
+    ).textContent =
+        `${data.knowledgeScore.toFixed(0)}%`;
+
+
+    document.getElementById(
+        "fillKnowledge"
+    ).style.width =
+        `${data.knowledgeScore}%`;
+
+}
+
+
+/* =========================================================
+   PREPARATION SCORE
+========================================================= */
+
+function renderPrepScore(data){
+
+    const score =
+        data.overall;
+
+
+    document.getElementById(
+        "prepScore"
+    ).textContent =
+        Math.round(score);
+
+
+    let message =
+        "";
+
+
+    if(score >= 85){
+
+        message =
+            "Excellent preparation! Keep taking mocks and focus on maintaining consistency.";
+
+    }
+
+    else if(score >= 70){
+
+        message =
+            "Great progress! Strengthen weak subjects and increase mock-test frequency.";
+
+    }
+
+    else if(score >= 50){
+
+        message =
+            "Good start. Focus on completing the syllabus and following your weekly plan consistently.";
+
+    }
+
+    else if(score >= 25){
+
+        message =
+            "Your preparation is building up. Start with a fixed weekly routine and regular revision.";
+
+    }
+
+    else{
+
+        message =
+            "Let's get started! Add your syllabus, notes, doubts and weekly study plan.";
+
+    }
+
+
+    document.getElementById(
+        "scoreMessage"
+    ).textContent =
+        message;
+
+}
+
+
+/* =========================================================
+   SUBJECT PROGRESS
+========================================================= */
+
+function renderSubjects(){
+
+    const container =
+        document.getElementById(
+            "subjectList"
+        );
+
+
+    const subjects =
+        getSubjectData();
+
+
+    if(!subjects.length){
+
+        container.innerHTML =
+            `
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📚
+                </div>
+
+                <h3>
+                    No syllabus added yet
+                </h3>
+
+                <p>
+                    Add your subjects and topics from
+                    the Syllabus page.
+                </p>
+
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        subjects
+            .map(
+                subject =>
+                    `
+
+                    <div class="subject-row">
+
+                        <div class="subject-head">
+
+                            <div class="subject-name">
+                                ${escapeHTML(
+                                    subject.title
+                                )}
+                            </div>
+
+                            <div class="subject-percent">
+                                ${subject.percent.toFixed(0)}%
+                            </div>
+
+                        </div>
+
+
+                        <div class="subject-track">
+
+                            <div
+                                class="subject-fill"
+                                style="
+                                    width:${subject.percent}%
+                                "
+                            ></div>
+
+                        </div>
+
+
+                        <div class="subject-meta">
+
+                            <span>
+                                ${
+                                    subject.completed
+                                    ? "Completed"
+                                    : "In Progress"
+                                }
+                            </span>
+
+                            <span>
+                                ${
+                                    subject.percent >= 75
+                                    ? "Strong"
+                                    :
+                                    subject.percent >= 40
+                                    ? "Improving"
+                                    :
+                                    "Needs Focus"
+                                }
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   RECENT TESTS
+========================================================= */
+
+function renderTests(data){
+
+    const container =
+        document.getElementById(
+            "testList"
+        );
+
+
+    const tests =
+        [...data.mock.tests]
+            .sort(
+                (a,b) =>
+                    new Date(
+                        b.date ||
+                        b.createdAt ||
+                        0
+                    ) -
+                    new Date(
+                        a.date ||
+                        a.createdAt ||
+                        0
+                    )
+            )
+            .slice(
+                0,
+                6
+            );
+
+
+    if(!tests.length){
+
+        container.innerHTML =
+            `
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    No mock tests yet
+                </h3>
+
+                <p>
+                    Your latest mock tests will appear here.
+                </p>
+
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        tests
+            .map(
+                (test,index) => {
+
+                    const marks =
+                        Number(
+                            test.marks || 0
+                        );
+
+                    const total =
+                        Number(
+                            test.totalMarks || 0
+                        );
+
+
+                    const percent =
+                        total > 0
+                        ?
+                        clamp(
+                            marks /
+                            total *
+                            100
+                        )
+                        :
+                        0;
+
+
+                    const cls =
+                        percent >= 70
+                        ? "good"
+                        :
+                        percent >= 45
+                        ? "average"
+                        :
+                        "low";
+
+
+                    return `
+
+                    <div class="test-row">
+
+                        <div class="test-number">
+                            ${index + 1}
+                        </div>
+
+
+                        <div class="test-details">
+
+                            <div class="test-name">
+                                ${escapeHTML(
+                                    test.name ||
+                                    "Mock Test"
+                                )}
+                            </div>
+
+                            <div class="test-date">
+                                ${formatDate(
+                                    test.date ||
+                                    test.createdAt
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="test-score ${cls}"
+                        >
+                            ${percent.toFixed(1)}%
+                        </div>
+
+                    </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+function renderInsights(data){
+
+    const container =
+        document.getElementById(
+            "insights"
+        );
+
+
+    const insights = [];
+
+
+    /*
+       Best subject
+    */
+
+    const subjects =
+        getSubjectData();
+
+
+    if(subjects.length){
+
+        const best =
+            [...subjects]
+                .sort(
+                    (a,b) =>
+                        b.percent -
+                        a.percent
+                )[0];
+
+
+        insights.push({
+
+            icon:"🏆",
+
+            title:"Best Area",
+
+            value:
+                `${best.percent.toFixed(0)}%`,
+
+            desc:
+                best.title
+
+        });
+
+    }
+
+    else{
+
+        insights.push({
+
+            icon:"📚",
+
+            title:"Syllabus",
+
+            value:"Not Started",
+
+            desc:
+                "Add topics to start tracking progress."
+
+        });
+
+    }
+
+
+    /*
+       Weak area
+    */
+
+    if(subjects.length){
+
+        const weak =
+            [...subjects]
+                .sort(
+                    (a,b) =>
+                        a.percent -
+                        b.percent
+                )[0];
+
+
+        insights.push({
+
+            icon:"🎯",
+
+            title:"Focus Area",
+
+            value:
+                `${weak.percent.toFixed(0)}%`,
+
+            desc:
+                weak.title
+
+        });
+
+    }
+
+    else{
+
+        insights.push({
+
+            icon:"🎯",
+
+            title:"Focus",
+
+            value:"Start",
+
+            desc:
+                "Build your weekly study routine."
+
+        });
+
+    }
+
+
+    /*
+       Mock score
+    */
+
+    if(data.mock.count){
+
+        insights.push({
+
+            icon:"🧪",
+
+            title:"Best Mock",
+
+            value:
+                `${data.mock.best.toFixed(1)}%`,
+
+            desc:
+                `${data.mock.count} test(s) attempted`
+
+        });
+
+    }
+
+    else{
+
+        insights.push({
+
+            icon:"🧪",
+
+            title:"Mock Tests",
+
+            value:"0",
+
+            desc:
+                "Take your first mock test."
+
+        });
+
+    }
+
+
+    container.innerHTML =
+        insights
+            .map(
+                insight =>
+                    `
+
+                    <div class="insight">
+
+                        <div class="insight-icon">
+                            ${insight.icon}
+                        </div>
+
+                        <div class="insight-title">
+                            ${insight.title}
+                        </div>
+
+                        <div class="insight-value">
+                            ${escapeHTML(
+                                insight.value
+                            )}
+                        </div>
+
+                        <div class="insight-desc">
+                            ${escapeHTML(
+                                insight.desc
+                            )}
+                        </div>
+
+                    </div>
+
+                    `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+if(user){
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+
+    const name =
+        user.name ||
+        user.username ||
+        "User";
+
+
+    avatar.textContent =
+        name
+            .split(" ")
+            .map(
+                word =>
+                    word[0]
+            )
+            .join("")
+            .substring(
+                0,
+                2
+            )
+            .toUpperCase();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+document
+    .getElementById(
+        "mobileMenu"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
+
+        }
+    );
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        "toast success";
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+
+            setTimeout(
+                () =>
+                    toast.remove(),
+                250
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+   REFRESH DATA
+========================================================= */
+
+function refreshProgress(){
+
+    /*
+       Re-read user from localStorage
+       so changes made by other pages
+       are reflected after navigation.
+    */
+
+    users =
+        getUsers();
+
+
+    const freshUser =
+        users.find(
+            item =>
+                item.id ===
+                user.id
+        );
+
+
+    if(freshUser){
+
+        user =
+            freshUser;
+
+    }
+
+
+    const data =
+        calculate();
+
+
+    renderStats(
+        data
+    );
+
+
+    renderOverall(
+        data
+    );
+
+
+    renderPrepScore(
+        data
+    );
+
+
+    renderSubjects();
+
+
+    renderTests(
+        data
+    );
+
+
+    renderInsights(
+        data
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+refreshProgress();
+
+
+/*
+   Automatically refresh when page
+   becomes visible again.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if(
+            document.visibilityState ===
+            "visible"
+        ){
+
+            refreshProgress();
+
+        }
+
+    }
+);
+
+
+/*
+   Also refresh periodically.
+*/
+
+setInterval(
+    refreshProgress,
+    3000
+);
+
+</script>
+
+</body>
+</html>

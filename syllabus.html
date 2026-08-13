@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | NIMCET 2026 Syllabus</title>
+
+<style>
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+
+    background:
+        radial-gradient(circle at 20% 0%,rgba(99,102,241,.10),transparent 27%),
+        radial-gradient(circle at 90% 20%,rgba(34,211,238,.07),transparent 25%),
+        var(--bg);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:var(--sidebar);
+    padding:22px 15px;
+
+    background:rgba(8,13,27,.94);
+    border-right:1px solid var(--border);
+    backdrop-filter:blur(20px);
+
+    z-index:100;
+    transition:.3s;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:5px 12px 25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+    margin:18px 0 9px;
+
+    color:#475569;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px 13px;
+
+    border-radius:12px;
+
+    color:#7f8da3;
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+    background:rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+    background:rgba(255,255,255,.035);
+
+    font-size:13px;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:18px;
+}
+
+.logout{
+    width:100%;
+    margin-top:9px;
+    padding:10px;
+
+    border:0;
+    border-radius:11px;
+
+    background:rgba(251,113,133,.06);
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:650;
+}
+
+.logout:hover{
+    background:rgba(251,113,133,.12);
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:var(--sidebar);
+    min-height:100vh;
+    padding:25px 30px 50px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,var(--primary),var(--purple));
+
+    color:#fff;
+
+    font-size:11px;
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:white;
+
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.header-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:25px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79,70,229,.17),
+            rgba(139,92,246,.08),
+            rgba(15,23,42,.7)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.header-content{
+    flex:1;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:6px 10px;
+
+    border-radius:50px;
+
+    background:rgba(99,102,241,.1);
+    color:#a5b4fc;
+
+    font-size:9px;
+    font-weight:750;
+
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
+
+.header-card h2{
+    margin-top:11px;
+
+    font-size:25px;
+    letter-spacing:-.9px;
+}
+
+.header-card h2 span{
+    color:#818cf8;
+}
+
+.header-card p{
+    max-width:700px;
+
+    margin-top:7px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+    line-height:1.7;
+}
+
+.progress-summary{
+    width:190px;
+    flex-shrink:0;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:rgba(0,0,0,.16);
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:9px;
+
+    font-size:10px;
+}
+
+.progress-top span:last-child{
+    color:#a5b4fc;
+    font-weight:750;
+}
+
+.progress-track{
+    height:7px;
+    overflow:hidden;
+    border-radius:20px;
+    background:#1e293b;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--purple),
+            var(--cyan)
+        );
+
+    transition:.5s;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:17px;
+}
+
+.stat{
+    padding:16px;
+
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    background:rgba(15,23,42,.62);
+}
+
+.stat-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.stat-icon{
+    width:34px;
+    height:34px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    background:rgba(99,102,241,.1);
+    color:#a5b4fc;
+}
+
+.stat-label{
+    margin-top:11px;
+    color:#64748b;
+    font-size:9px;
+}
+
+.stat-value{
+    margin-top:3px;
+    font-size:19px;
+    font-weight:800;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:17px;
+    padding:13px;
+
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    background:rgba(15,23,42,.62);
+}
+
+.search{
+    position:relative;
+    flex:1;
+}
+
+.search-icon{
+    position:absolute;
+
+    left:13px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#64748b;
+    font-size:12px;
+}
+
+.search input{
+    width:100%;
+    height:39px;
+
+    padding:0 13px 0 36px;
+
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.07);
+
+    outline:none;
+
+    background:#0a1120;
+    color:#fff;
+
+    font-size:11px;
+}
+
+.search input:focus{
+    border-color:#6366f1;
+}
+
+select{
+    height:39px;
+
+    padding:0 12px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    background:#0a1120;
+    color:#cbd5e1;
+
+    outline:none;
+
+    font-size:10px;
+    cursor:pointer;
+}
+
+select option{
+    background:#0f172a;
+}
+
+/* ================= SUBJECT GRID ================= */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:15px;
+
+    margin-top:17px;
+}
+
+/* ================= SUBJECT CARD ================= */
+
+.subject-card{
+    padding:19px;
+
+    border-radius:18px;
+
+    background:rgba(15,23,42,.68);
+    border:1px solid var(--border);
+
+    transition:.25s;
+}
+
+.subject-card:hover{
+    border-color:rgba(129,140,248,.18);
+    transform:translateY(-2px);
+}
+
+.subject-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    gap:12px;
+}
+
+.subject-title-wrap{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.subject-icon{
+    width:42px;
+    height:42px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.17),
+            rgba(139,92,246,.12)
+        );
+
+    color:#a5b4fc;
+    font-size:16px;
+}
+
+.subject-name{
+    font-size:14px;
+    font-weight:750;
+}
+
+.subject-meta{
+    margin-top:4px;
+    color:#64748b;
+    font-size:9px;
+}
+
+.subject-number{
+    padding:5px 8px;
+
+    border-radius:7px;
+
+    background:rgba(34,211,238,.07);
+    color:#67e8f9;
+
+    font-size:8px;
+    font-weight:800;
+}
+
+/* ================= PROGRESS ================= */
+
+.subject-progress{
+    margin-top:15px;
+}
+
+.subject-progress-top{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:6px;
+
+    color:#64748b;
+    font-size:8px;
+}
+
+.subject-progress-top strong{
+    color:#a5b4fc;
+}
+
+.subject-bar{
+    height:5px;
+    overflow:hidden;
+    border-radius:20px;
+    background:#1e293b;
+}
+
+.subject-bar-fill{
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    transition:.4s;
+}
+
+/* ================= CHAPTER ================= */
+
+.chapter{
+    margin-top:12px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.045);
+    border-radius:12px;
+
+    background:rgba(255,255,255,.018);
+}
+
+.chapter-header{
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.chapter-header:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.chapter-arrow{
+    width:22px;
+    height:22px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:7px;
+
+    background:rgba(99,102,241,.09);
+
+    color:#a5b4fc;
+
+    font-size:9px;
+
+    transition:.25s;
+}
+
+.chapter.open .chapter-arrow{
+    transform:rotate(90deg);
+}
+
+.chapter-title{
+    flex:1;
+
+    color:#cbd5e1;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.chapter-count{
+    color:#475569;
+    font-size:8px;
+}
+
+.chapter-body{
+    display:none;
+
+    padding:0 12px 8px;
+}
+
+.chapter.open .chapter-body{
+    display:block;
+}
+
+/* ================= TOPIC ================= */
+
+.topic{
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    padding:9px 0;
+
+    border-top:1px solid rgba(255,255,255,.04);
+}
+
+.check{
+    width:19px;
+    height:19px;
+
+    display:grid;
+    place-items:center;
+
+    flex-shrink:0;
+
+    border:1px solid #334155;
+    border-radius:6px;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:9px;
+
+    cursor:pointer;
+}
+
+.check.done{
+    border-color:#6366f1;
+    background:#6366f1;
+}
+
+.topic-info{
+    flex:1;
+    min-width:0;
+}
+
+.topic-name{
+    color:#cbd5e1;
+
+    font-size:10px;
+
+    line-height:1.4;
+}
+
+.topic.done .topic-name{
+    color:#64748b;
+    text-decoration:line-through;
+}
+
+.topic-status{
+    margin-top:2px;
+
+    color:#475569;
+
+    font-size:7px;
+}
+
+.topic-status.done-status{
+    color:#34d399;
+}
+
+.topic-number{
+    color:#475569;
+    font-size:8px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    grid-column:1/-1;
+
+    padding:65px 20px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    border:1px dashed rgba(148,163,184,.14);
+
+    background:rgba(15,23,42,.4);
+
+    color:#64748b;
+}
+
+.empty-icon{
+    width:55px;
+    height:55px;
+
+    display:grid;
+    place-items:center;
+
+    margin:0 auto 13px;
+
+    border-radius:16px;
+
+    background:rgba(99,102,241,.08);
+    color:#818cf8;
+
+    font-size:20px;
+}
+
+.empty h3{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.empty p{
+    max-width:380px;
+
+    margin:7px auto 0;
+
+    font-size:9px;
+    line-height:1.6;
+}
+
+/* ================= TOAST ================= */
+
+.toast-container{
+    position:fixed;
+
+    right:18px;
+    bottom:18px;
+
+    z-index:999;
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.toast{
+    min-width:260px;
+
+    padding:13px 15px;
+
+    border-radius:12px;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+    font-size:10px;
+
+    animation:toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:3px solid var(--green);
+}
+
+.toast.error{
+    border-left:3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .subject-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+        place-items:center;
+    }
+
+    .header-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .progress-summary{
+        width:100%;
+    }
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .toolbar{
+        flex-wrap:wrap;
+    }
+
+    .search{
+        flex-basis:100%;
+    }
+
+    .toolbar select{
+        flex:1;
+    }
+
+    .header-card{
+        padding:20px;
+    }
+
+    .header-card h2{
+        font-size:21px;
+    }
+
+    .subject-card{
+        padding:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+        <div class="logo">N</div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+    </div>
+
+    <div class="menu-label">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="syllabus.html" class="nav-item active">
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+        <a href="notes.html" class="nav-item">
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+        <a href="doubts.html" class="nav-item">
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+        <a href="weekly-plan.html" class="nav-item">
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+        <div class="menu-label">Practice</div>
+
+        <a href="mock-test.html" class="nav-item">
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+        <a href="progress.html" class="nav-item">
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+        <a href="resources.html" class="nav-item">
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+        <div class="menu-label">Account</div>
+
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <button class="logout" id="logoutBtn">
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+        <div class="page-title">
+
+            <h1>NIMCET 2026 Syllabus</h1>
+
+            <p>
+                Track every topic of your NIMCET preparation
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <a href="profile.html" class="avatar" id="avatar">
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="header-card">
+
+        <div class="header-content">
+
+            <div class="badge">
+                NIMCET 2026 • Revised Syllabus
+            </div>
+
+            <h2>
+                Master the syllabus,
+                <span>one topic at a time.</span>
+            </h2>
+
+            <p>
+                Complete the NIMCET 2026 syllabus systematically.
+                Mark every topic as completed and your preparation
+                progress will automatically be saved to your account.
+            </p>
+
+        </div>
+
+        <div class="progress-summary">
+
+            <div class="progress-top">
+
+                <span>
+                    Overall Progress
+                </span>
+
+                <span id="overallPercent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="overallBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">📚</div>
+
+            </div>
+
+            <div class="stat-label">
+                SUBJECTS
+            </div>
+
+            <div class="stat-value" id="subjectCount">
+                4
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">◈</div>
+
+            </div>
+
+            <div class="stat-label">
+                TOTAL TOPICS
+            </div>
+
+            <div class="stat-value" id="topicCount">
+                0
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">✓</div>
+
+            </div>
+
+            <div class="stat-label">
+                COMPLETED
+            </div>
+
+            <div class="stat-value" id="completedCount">
+                0
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">🎯</div>
+
+            </div>
+
+            <div class="stat-label">
+                REMAINING
+            </div>
+
+            <div class="stat-value" id="remainingCount">
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= TOOLBAR ================= -->
+
+    <section class="toolbar">
+
+        <div class="search">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="Search syllabus topic..."
+            >
+
+        </div>
+
+        <select id="filterSelect">
+
+            <option value="all">
+                All Topics
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="completed">
+                Completed
+            </option>
+
+        </select>
+
+        <select id="subjectSelect">
+
+            <option value="all">
+                All Subjects
+            </option>
+
+        </select>
+
+    </section>
+
+    <!-- ================= SUBJECTS ================= -->
+
+    <section
+        class="subject-grid"
+        id="subjectGrid"
+    ></section>
+
+</main>
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+<script>
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+const USERS_KEY = "nimcet_preppro_users";
+const SESSION_KEY = "nimcet_preppro_session";
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(USERS_KEY)
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+}
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+
+}
+
+let session = null;
+
+try{
+
+    session = JSON.parse(
+        localStorage.getItem(SESSION_KEY)
+    );
+
+}catch{
+
+    session = null;
+
+}
+
+if(!session){
+
+    window.location.href = "index.html";
+
+}
+
+let users = getUsers();
+
+let user = users.find(
+    item => item.id === session?.userId
+);
+
+if(!user){
+
+    localStorage.removeItem(SESSION_KEY);
+
+    window.location.href = "index.html";
+
+}
+
+
+/* =========================================================
+   NIMCET 2026 OFFICIAL SYLLABUS DATA
+========================================================= */
+
+const NIMCET_SYLLABUS = [
+
+{
+    id:"math",
+    title:"Mathematics",
+    icon:"∑",
+    questions:50,
+
+    chapters:[
+
+        {
+            id:"math-set",
+            title:"Set Theory and Logic",
+
+            topics:[
+                "Concepts of Sets",
+                "Unions",
+                "Intersection",
+                "Difference",
+                "Symmetric Difference",
+                "Cartesian Product",
+                "Cardinality",
+                "Functions and Relations",
+                "Venn Diagrams",
+                "Truth Tables",
+                "Connectives",
+                "Tautology and Contradictions"
+            ]
+        },
+
+        {
+            id:"math-probability",
+            title:"Probability and Statistics",
+
+            topics:[
+                "Basic concepts of probability theory",
+                "Averages",
+                "Dependent and independent events",
+                "Bayes' Theorem",
+                "Mean",
+                "Median",
+                "Mode",
+                "Mean deviation",
+                "Standard deviation",
+                "Variance",
+                "Moments",
+                "Frequency distributions"
+            ]
+        },
+
+        {
+            id:"math-algebra",
+            title:"Algebra",
+
+            topics:[
+                "Fundamental operations in algebra",
+                "Quadratic equations with real coefficients",
+                "Relation between roots and coefficients",
+                "Symmetric functions of roots and their sums",
+                "Indices",
+                "Logarithms",
+                "Exponentials",
+                "Arithmetic Progressions",
+                "Geometric Progressions",
+                "Harmonic Progressions",
+                "Finite sums of powers of natural numbers",
+                "Matrices and determinants",
+                "Simultaneous linear equations",
+                "Permutations and Combinations",
+                "Binomial Theorem"
+            ]
+        },
+
+        {
+            id:"math-coordinate",
+            title:"Coordinate Geometry",
+
+            topics:[
+                "Rectangular Cartesian coordinates",
+                "Distance formulae",
+                "Equation of a line — various forms",
+                "Intersection of lines",
+                "Pair of straight lines",
+                "Equations of a circle",
+                "Parabola",
+                "Ellipse",
+                "Hyperbola",
+                "Section formula",
+                "Tangents and normal to circles and conics"
+            ]
+        },
+
+        {
+            id:"math-calculus",
+            title:"Calculus",
+
+            topics:[
+                "Functions on real numbers",
+                "Limits of functions",
+                "Left and right limits",
+                "Limits at infinity",
+                "Continuous functions",
+                "Applications of the Intermediate Value Theorem",
+                "Differentiation",
+                "Applications of differentiation",
+                "Tangents",
+                "Normals",
+                "Maxima and minima",
+                "Rolle's Theorem",
+                "Mean Value Theorem",
+                "Integration of functions by parts",
+                "Integration by substitution",
+                "Integration by partial fraction",
+                "Integration of odd and even functions",
+                "Periodic functions",
+                "Definite integrals",
+                "Area computations"
+            ]
+        },
+
+        {
+            id:"math-trigonometry",
+            title:"Trigonometry",
+
+            topics:[
+                "Trigonometric functions",
+                "Trigonometric identities",
+                "Principal value of inverse trigonometric functions",
+                "Properties of triangles",
+                "Solution of triangles",
+                "Heights and distances",
+                "Trigonometric equations",
+                "General solutions of trigonometric equations"
+            ]
+        }
+
+    ]
+},
+
+{
+    id:"reasoning",
+    title:"Analytical Ability & Logical Reasoning",
+    icon:"◎",
+    questions:40,
+
+    chapters:[
+
+        {
+            id:"reasoning-core",
+            title:"Verbal, Non-Verbal & Logical Reasoning",
+
+            topics:[
+                "Verbal Reasoning",
+                "Non-verbal Reasoning",
+                "Deductive Reasoning",
+                "Inductive Reasoning",
+                "Blood Relations",
+                "Coding-Decoding",
+                "Direction Test",
+                "Seating Arrangement",
+                "Puzzles",
+                "Input-Output",
+                "Syllogism",
+                "Alphanumeric Series",
+                "Mirror Images",
+                "Statements and Conclusions",
+                "Statements and Arguments"
+            ]
+        },
+
+        {
+            id:"reasoning-problem",
+            title:"Problem Solving & Data Analysis",
+
+            topics:[
+                "Problem Solving",
+                "Critical Thinking",
+                "Data Interpretation",
+                "Numerical Reasoning",
+                "Data Sufficiency",
+                "Data Visualization"
+            ]
+        }
+
+    ]
+},
+
+{
+    id:"computer",
+    title:"Computer Awareness",
+    icon:"⌘",
+    questions:20,
+
+    chapters:[
+
+        {
+            id:"computer-basics",
+            title:"Computer Basics",
+
+            topics:[
+                "Organization of a computer",
+                "Central Processing Unit (CPU)",
+                "Structure of instructions in CPU",
+                "Input/Output devices",
+                "Computer memory",
+                "Back-up devices"
+            ]
+        },
+
+        {
+            id:"computer-data",
+            title:"Data Representation",
+
+            topics:[
+                "Representation of characters",
+                "Representation of integers",
+                "Representation of fractions",
+                "Binary representation",
+                "Hexadecimal representation",
+                "Binary arithmetic — addition",
+                "Binary arithmetic — subtraction",
+                "Binary arithmetic — multiplication",
+                "Binary arithmetic — division",
+                "Simple arithmetic",
+                "Two's complement arithmetic",
+                "Floating point representation of numbers",
+                "Boolean algebra"
+            ]
+        },
+
+        {
+            id:"computer-hardware",
+            title:"Computer Hardware",
+
+            topics:[
+                "Keyboard",
+                "Mouse",
+                "Scanner",
+                "Monitor",
+                "Printer",
+                "Speakers",
+                "Hard drives",
+                "SSD",
+                "USB drives",
+                "RAM",
+                "ROM",
+                "Cache memory"
+            ]
+        },
+
+        {
+            id:"computer-software",
+            title:"Computer Software",
+
+            topics:[
+                "Operating Systems",
+                "Windows",
+                "macOS",
+                "Linux",
+                "Android",
+                "System Software",
+                "Utility programs",
+                "Device drivers",
+                "Application Software",
+                "Basic application software concepts and tools"
+            ]
+        },
+
+        {
+            id:"computer-internet",
+            title:"Internet and Email",
+
+            topics:[
+                "Web Browsing",
+                "Understanding how the Internet works",
+                "How to navigate the Internet",
+                "Sending emails",
+                "Receiving emails",
+                "Managing emails",
+                "Online Security",
+                "Online threats",
+                "Online safety measures"
+            ]
+        }
+
+    ]
+},
+
+{
+    id:"english",
+    title:"General English",
+    icon:"A",
+    questions:10,
+
+    chapters:[
+
+        {
+            id:"english-core",
+            title:"General English",
+
+            topics:[
+                "Comprehension of written text",
+                "Usage of words",
+                "Vocabulary",
+                "Grammatical Patterns",
+                "Usage of sentence forms",
+                "Sounds",
+                "Word formation processes",
+                "Meaning of words",
+                "Meaning of phrases",
+                "Technical writing",
+                "Accuracy in English expressions",
+                "Fluency in English expressions required for technical education"
+            ]
+        }
+
+    ]
+}];
+
+
+/* =========================================================
+   CREATE USER-SPECIFIC PROGRESS
+========================================================= */
+
+function initializeSyllabus(){
+
+    if(!user.syllabusProgress){
+
+        user.syllabusProgress = {};
+
+        NIMCET_SYLLABUS.forEach(subject => {
+
+            subject.chapters.forEach(chapter => {
+
+                chapter.topics.forEach((topic,index) => {
+
+                    const id = makeTopicId(
+                        subject.id,
+                        chapter.id,
+                        index
+                    );
+
+                    user.syllabusProgress[id] = false;
+
+                });
+
+            });
+
+        });
+
+        saveCurrentUser();
+
+    }
+
+}
+
+function makeTopicId(
+    subjectId,
+    chapterId,
+    index
+){
+
+    return `${subjectId}__${chapterId}__${index}`;
+
+}
+
+initializeSyllabus();
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const subjectGrid =
+    document.getElementById("subjectGrid");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const filterSelect =
+    document.getElementById("filterSelect");
+
+const subjectSelect =
+    document.getElementById("subjectSelect");
+
+
+/* =========================================================
+   SUBJECT FILTER OPTIONS
+========================================================= */
+
+function buildSubjectFilter(){
+
+    subjectSelect.innerHTML = `
+        <option value="all">
+            All Subjects
+        </option>
+    `;
+
+    NIMCET_SYLLABUS.forEach(subject => {
+
+        subjectSelect.innerHTML += `
+            <option value="${subject.id}">
+                ${escapeHTML(subject.title)}
+            </option>
+        `;
+
+    });
+
+}
+
+
+/* =========================================================
+   SAVE USER
+========================================================= */
+
+function saveCurrentUser(){
+
+    const index = users.findIndex(
+        item => item.id === user.id
+    );
+
+    if(index !== -1){
+
+        users[index] = user;
+
+    }
+
+    saveUsers(users);
+
+}
+
+
+/* =========================================================
+   TOPIC STATUS
+========================================================= */
+
+function isCompleted(topicId){
+
+    return !!user.syllabusProgress[topicId];
+
+}
+
+function toggleTopic(topicId){
+
+    user.syllabusProgress[topicId] =
+        !isCompleted(topicId);
+
+    saveCurrentUser();
+
+    render();
+
+    showToast(
+        user.syllabusProgress[topicId]
+            ? "Topic completed ✓"
+            : "Topic marked pending"
+    );
+
+}
+
+
+/* =========================================================
+   CALCULATE STATS
+========================================================= */
+
+function getStats(){
+
+    let total = 0;
+    let completed = 0;
+
+    NIMCET_SYLLABUS.forEach(subject => {
+
+        subject.chapters.forEach(chapter => {
+
+            chapter.topics.forEach((topic,index) => {
+
+                total++;
+
+                const id = makeTopicId(
+                    subject.id,
+                    chapter.id,
+                    index
+                );
+
+                if(isCompleted(id)){
+                    completed++;
+                }
+
+            });
+
+        });
+
+    });
+
+    return {
+        total,
+        completed,
+        remaining:total-completed,
+        percent:total
+            ? Math.round(completed/total*100)
+            : 0
+    };
+
+}
+
+
+/* =========================================================
+   SUBJECT STATS
+========================================================= */
+
+function getSubjectStats(subject){
+
+    let total = 0;
+    let completed = 0;
+
+    subject.chapters.forEach(chapter => {
+
+        chapter.topics.forEach((topic,index) => {
+
+            total++;
+
+            const id = makeTopicId(
+                subject.id,
+                chapter.id,
+                index
+            );
+
+            if(isCompleted(id)){
+                completed++;
+            }
+
+        });
+
+    });
+
+    return {
+        total,
+        completed,
+        percent:total
+            ? Math.round(completed/total*100)
+            : 0
+    };
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+    const query =
+        searchInput.value.trim().toLowerCase();
+
+    const filter =
+        filterSelect.value;
+
+    const selectedSubject =
+        subjectSelect.value;
+
+    let subjects = NIMCET_SYLLABUS;
+
+    if(selectedSubject !== "all"){
+
+        subjects =
+            subjects.filter(
+                subject =>
+                    subject.id === selectedSubject
+            );
+
+    }
+
+    const html = subjects
+        .map(subject =>
+            renderSubject(
+                subject,
+                query,
+                filter
+            )
+        )
+        .filter(Boolean)
+        .join("");
+
+    if(!html){
+
+        subjectGrid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⌕
+                </div>
+
+                <h3>
+                    No matching topics
+                </h3>
+
+                <p>
+                    Try another search keyword
+                    or change the selected filter.
+                </p>
+
+            </div>
+
+        `;
+
+    }else{
+
+        subjectGrid.innerHTML = html;
+
+    }
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   RENDER SUBJECT
+========================================================= */
+
+function renderSubject(
+    subject,
+    query,
+    filter
+){
+
+    const stats =
+        getSubjectStats(subject);
+
+    let hasVisibleTopic = false;
+
+    let chaptersHTML = "";
+
+    subject.chapters.forEach(
+        (chapter,chapterIndex) => {
+
+            let visibleTopics = [];
+
+            chapter.topics.forEach(
+                (topic,index) => {
+
+                    const id =
+                        makeTopicId(
+                            subject.id,
+                            chapter.id,
+                            index
+                        );
+
+                    const completed =
+                        isCompleted(id);
+
+                    const matchesSearch =
+                        !query ||
+                        subject.title
+                            .toLowerCase()
+                            .includes(query) ||
+                        chapter.title
+                            .toLowerCase()
+                            .includes(query) ||
+                        topic
+                            .toLowerCase()
+                            .includes(query);
+
+                    const matchesFilter =
+                        filter === "all" ||
+                        (filter === "completed" && completed) ||
+                        (filter === "pending" && !completed);
+
+                    if(
+                        matchesSearch &&
+                        matchesFilter
+                    ){
+
+                        visibleTopics.push({
+                            topic,
+                            index,
+                            id,
+                            completed
+                        });
+
+                    }
+
+                }
+            );
+
+            if(!visibleTopics.length){
+                return;
+            }
+
+            hasVisibleTopic = true;
+
+            chaptersHTML += `
+
+                <div
+                    class="chapter ${chapterIndex === 0 ? "open" : ""}"
+                >
+
+                    <div
+                        class="chapter-header"
+                        onclick="toggleChapter(this)"
+                    >
+
+                        <div class="chapter-arrow">
+                            ›
+                        </div>
+
+                        <div class="chapter-title">
+                            ${escapeHTML(chapter.title)}
+                        </div>
+
+                        <div class="chapter-count">
+                            ${visibleTopics.length}/${chapter.topics.length}
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-body">
+
+                        ${visibleTopics.map(item =>
+                            renderTopic(
+                                subject.id,
+                                item
+                            )
+                        ).join("")}
+
+                    </div>
+
+                </div>
+            `;
+
+        }
+    );
+
+    if(!hasVisibleTopic){
+        return "";
+    }
+
+    return `
+
+        <article class="subject-card">
+
+            <div class="subject-header">
+
+                <div class="subject-title-wrap">
+
+                    <div class="subject-icon">
+                        ${subject.icon}
+                    </div>
+
+                    <div>
+
+                        <div class="subject-name">
+                            ${escapeHTML(subject.title)}
+                        </div>
+
+                        <div class="subject-meta">
+                            ${stats.completed} of
+                            ${stats.total}
+                            topics completed
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="subject-number">
+                    ${subject.questions} QUESTIONS
+                </div>
+
+            </div>
+
+            <div class="subject-progress">
+
+                <div class="subject-progress-top">
+
+                    <span>
+                        Subject Progress
+                    </span>
+
+                    <strong>
+                        ${stats.percent}%
+                    </strong>
+
+                </div>
+
+                <div class="subject-bar">
+
+                    <div
+                        class="subject-bar-fill"
+                        style="width:${stats.percent}%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div>
+                ${chaptersHTML}
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER TOPIC
+========================================================= */
+
+function renderTopic(
+    subjectId,
+    item
+){
+
+    return `
+
+        <div
+            class="topic ${
+                item.completed ? "done" : ""
+            }"
+        >
+
+            <button
+                class="check ${
+                    item.completed ? "done" : ""
+                }"
+                onclick="
+                    toggleTopic('${item.id}')
+                "
+            >
+                ${
+                    item.completed
+                        ? "✓"
+                        : ""
+                }
+            </button>
+
+            <div class="topic-info">
+
+                <div class="topic-name">
+                    ${escapeHTML(item.topic)}
+                </div>
+
+                <div
+                    class="topic-status ${
+                        item.completed
+                            ? "done-status"
+                            : ""
+                    }"
+                >
+                    ${
+                        item.completed
+                            ? "Completed"
+                            : "Not completed"
+                    }
+                </div>
+
+            </div>
+
+            <div class="topic-number">
+                #${item.index + 1}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CHAPTER TOGGLE
+========================================================= */
+
+function toggleChapter(element){
+
+    const chapter =
+        element.parentElement;
+
+    chapter.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+    const stats = getStats();
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent =
+        stats.percent + "%";
+
+    document.getElementById(
+        "overallBar"
+    ).style.width =
+        stats.percent + "%";
+
+    document.getElementById(
+        "subjectCount"
+    ).textContent =
+        NIMCET_SYLLABUS.length;
+
+    document.getElementById(
+        "topicCount"
+    ).textContent =
+        stats.total;
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        stats.completed;
+
+    document.getElementById(
+        "remainingCount"
+    ).textContent =
+        stats.remaining;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+filterSelect.addEventListener(
+    "change",
+    render
+);
+
+subjectSelect.addEventListener(
+    "change",
+    render
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+if(user){
+
+    const avatar =
+        document.getElementById("avatar");
+
+    const name =
+        user.name || "User";
+
+    avatar.textContent =
+        name
+            .split(" ")
+            .map(word => word[0])
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message,
+    type="success"
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        `toast ${type}`;
+
+    toast.textContent =
+        message;
+
+    container.appendChild(toast);
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity = "0";
+
+            setTimeout(
+                () => toast.remove(),
+                250
+            );
+
+        },
+        2200
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+buildSubjectFilter();
+render();
+
+</script>
+
+</body>
+</html>

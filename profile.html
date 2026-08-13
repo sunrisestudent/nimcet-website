@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | Profile</title>
+
+<style>
+:root{
+    --bg:#070b17;
+    --panel:#0d1426;
+    --panel2:#111a30;
+    --border:rgba(255,255,255,.08);
+
+    --primary:#6366f1;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --sidebar:255px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(99,102,241,.10),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(34,211,238,.07),
+            transparent 25%
+        ),
+        var(--bg);
+}
+
+/* =========================================================
+SIDEBAR
+========================================================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:var(--sidebar);
+
+    padding:22px 15px;
+
+    background:rgba(8,13,27,.96);
+    border-right:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+    z-index:100;
+
+    transition:.3s;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scrollbar-width:thin;
+    scrollbar-color:#334155 transparent;
+}
+
+.sidebar::-webkit-scrollbar{
+    width:5px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+    background:#475569;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:5px 12px 25px;
+}
+
+.logo{
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    font-size:20px;
+    font-weight:900;
+
+    flex-shrink:0;
+}
+
+.logo-name{
+    font-size:16px;
+    font-weight:800;
+}
+
+.logo-name span{
+    color:#818cf8;
+}
+
+.menu-label{
+    padding:0 13px;
+    margin:18px 0 9px;
+
+    color:#475569;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px 13px;
+
+    border-radius:12px;
+
+    color:#7f8da3;
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:#e2e8f0;
+    background:rgba(255,255,255,.045);
+}
+
+.nav-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.10)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+}
+
+.nav-icon{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.035);
+
+    font-size:13px;
+
+    flex-shrink:0;
+}
+
+.nav-item.active .nav-icon{
+    color:#a5b4fc;
+    background:rgba(99,102,241,.18);
+}
+
+.sidebar-bottom{
+    margin-top:20px;
+    padding-bottom:10px;
+}
+
+.logout{
+    width:100%;
+
+    padding:10px;
+
+    border:0;
+    border-radius:11px;
+
+    background:rgba(251,113,133,.06);
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:650;
+}
+
+.logout:hover{
+    background:rgba(251,113,133,.12);
+}
+
+/* =========================================================
+MAIN
+========================================================= */
+
+.main{
+    margin-left:var(--sidebar);
+
+    min-height:100vh;
+
+    padding:25px 30px 50px;
+}
+
+/* =========================================================
+TOPBAR
+========================================================= */
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:23px;
+}
+
+.page-title h1{
+    font-size:24px;
+    letter-spacing:-.8px;
+}
+
+.page-title p{
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:#94a3b8;
+
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    color:#fff;
+
+    font-size:11px;
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+.mobile-menu{
+    display:none;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.035);
+    color:white;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+PROFILE HERO
+========================================================= */
+
+.profile-hero{
+    display:flex;
+    align-items:center;
+    gap:22px;
+
+    padding:25px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79,70,229,.18),
+            rgba(139,92,246,.08),
+            rgba(15,23,42,.75)
+        );
+
+    border:1px solid rgba(129,140,248,.12);
+
+    margin-bottom:16px;
+}
+
+.big-avatar{
+    width:82px;
+    height:82px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #8b5cf6
+        );
+
+    color:white;
+
+    font-size:25px;
+    font-weight:850;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 15px 35px rgba(99,102,241,.22);
+}
+
+.hero-info{
+    min-width:0;
+}
+
+.hero-info h2{
+    font-size:22px;
+    letter-spacing:-.5px;
+}
+
+.hero-info p{
+    margin-top:5px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+.profile-badge{
+    display:inline-flex;
+
+    margin-top:10px;
+
+    padding:5px 9px;
+
+    border-radius:50px;
+
+    background:rgba(52,211,153,.08);
+    color:#34d399;
+
+    font-size:8px;
+    font-weight:750;
+}
+
+/* =========================================================
+GRID
+========================================================= */
+
+.profile-grid{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.5fr)
+        minmax(280px,1fr);
+
+    gap:15px;
+}
+
+.card{
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    background:
+        rgba(15,23,42,.68);
+
+    overflow:hidden;
+}
+
+.card-header{
+    padding:17px 19px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+.card-title{
+    font-size:13px;
+    font-weight:750;
+}
+
+.card-subtitle{
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:9px;
+}
+
+.card-body{
+    padding:19px;
+}
+
+/* =========================================================
+FORM
+========================================================= */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#cbd5e1;
+
+    font-size:10px;
+    font-weight:650;
+}
+
+.form-input,
+.form-select{
+    width:100%;
+
+    height:43px;
+
+    padding:0 12px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:#090f1d;
+
+    color:white;
+
+    font-size:11px;
+
+    transition:.2s;
+}
+
+.form-input:focus,
+.form-select:focus{
+    border-color:#6366f1;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,102,241,.08);
+}
+
+.form-input::placeholder{
+    color:#475569;
+}
+
+.form-input:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+.two-col{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+}
+
+.save-row{
+    display:flex;
+    justify-content:flex-end;
+
+    margin-top:5px;
+}
+
+.save-btn{
+    height:40px;
+
+    padding:0 17px;
+
+    border:0;
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:750;
+
+    box-shadow:
+        0 8px 20px
+        rgba(99,102,241,.18);
+}
+
+.save-btn:hover{
+    filter:brightness(1.08);
+}
+
+/* =========================================================
+STATS CARD
+========================================================= */
+
+.stat-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.profile-stat{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(255,255,255,.04);
+}
+
+.stat-icon{
+    width:35px;
+    height:35px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    background:rgba(99,102,241,.09);
+
+    color:#a5b4fc;
+
+    font-size:14px;
+}
+
+.stat-info{
+    flex:1;
+}
+
+.stat-name{
+    color:#64748b;
+
+    font-size:8px;
+}
+
+.stat-value{
+    margin-top:3px;
+
+    color:#e2e8f0;
+
+    font-size:12px;
+    font-weight:750;
+}
+
+/* =========================================================
+SECURITY
+========================================================= */
+
+.security-box{
+    margin-top:15px;
+}
+
+.password-note{
+    margin-bottom:15px;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:rgba(245,158,11,.06);
+
+    border:1px solid rgba(245,158,11,.09);
+
+    color:#fbbf24;
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+/* =========================================================
+DANGER
+========================================================= */
+
+.danger-card{
+    margin-top:15px;
+
+    border-color:
+        rgba(251,113,133,.10);
+}
+
+.danger-button{
+    width:100%;
+
+    height:40px;
+
+    border:1px solid
+        rgba(251,113,133,.14);
+
+    border-radius:10px;
+
+    background:
+        rgba(251,113,133,.05);
+
+    color:#fb7185;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.danger-button:hover{
+    background:
+        rgba(251,113,133,.10);
+}
+
+/* =========================================================
+TOAST
+========================================================= */
+
+.toast-container{
+    position:fixed;
+
+    right:18px;
+    bottom:18px;
+
+    z-index:999;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.toast{
+    min-width:260px;
+
+    padding:13px 15px;
+
+    border-radius:12px;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35);
+
+    font-size:10px;
+
+    animation:
+        toastIn .25s ease;
+}
+
+.toast.success{
+    border-left:
+        3px solid var(--green);
+}
+
+.toast.error{
+    border-left:
+        3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+
+        padding:
+            18px;
+    }
+
+    .mobile-menu{
+        display:grid;
+        place-items:center;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+    .page-title{
+        flex:1;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .profile-hero{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .two-col{
+        grid-template-columns:1fr;
+    }
+
+    .profile-hero{
+        padding:20px;
+    }
+
+    .big-avatar{
+        width:70px;
+        height:70px;
+
+        border-radius:20px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-name">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+    <div class="menu-label">
+        Main
+    </div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="syllabus.html" class="nav-item">
+            <span class="nav-icon">✓</span>
+            Syllabus
+        </a>
+
+        <a href="notes.html" class="nav-item">
+            <span class="nav-icon">✎</span>
+            Notes
+        </a>
+
+        <a href="doubts.html" class="nav-item">
+            <span class="nav-icon">?</span>
+            Doubts
+        </a>
+
+        <a href="weekly-plan.html" class="nav-item">
+            <span class="nav-icon">◷</span>
+            Weekly Plan
+        </a>
+
+        <a href="timetable.html" class="nav-item">
+            <span class="nav-icon">▦</span>
+            Timetable
+        </a>
+
+        <div class="menu-label">
+            Practice
+        </div>
+
+        <a href="mock-test.html" class="nav-item">
+            <span class="nav-icon">▣</span>
+            Mock Tests
+        </a>
+
+        <a href="progress.html" class="nav-item">
+            <span class="nav-icon">◒</span>
+            Progress
+        </a>
+
+        <a href="resources.html" class="nav-item">
+            <span class="nav-icon">▤</span>
+            Resources
+        </a>
+
+        <div class="menu-label">
+            Account
+        </div>
+
+        <a href="profile.html" class="nav-item active">
+            <span class="nav-icon">●</span>
+            Profile
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            ↪ &nbsp; Logout
+        </button>
+
+    </div>
+
+</aside>
+
+<!-- =========================================================
+MAIN
+========================================================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+        <div class="page-title">
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your NIMCET PrepPro account
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button
+                class="icon-btn"
+                type="button"
+                onclick="showToast('Notifications are coming soon.')"
+            >
+                🔔
+            </button>
+
+            <a
+                href="profile.html"
+                class="avatar"
+                id="topAvatar"
+            >
+                U
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- =====================================================
+    PROFILE HERO
+    ====================================================== -->
+
+    <section class="profile-hero">
+
+        <div
+            class="big-avatar"
+            id="bigAvatar"
+        >
+            U
+        </div>
+
+        <div class="hero-info">
+
+            <h2 id="heroName">
+                User
+            </h2>
+
+            <p id="heroEmail">
+                user@example.com
+            </p>
+
+            <span class="profile-badge">
+                ● NIMCET Aspirant
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+    PROFILE GRID
+    ====================================================== -->
+
+    <div class="profile-grid">
+
+        <!-- PERSONAL INFORMATION -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Personal Information
+                </div>
+
+                <div class="card-subtitle">
+                    Update your basic profile details
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <form id="profileForm">
+
+                    <div class="two-col">
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Full Name
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="name"
+                                type="text"
+                                placeholder="Your full name"
+                                maxlength="60"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Email
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="email"
+                                type="email"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="two-col">
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Mobile Number
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="phone"
+                                type="tel"
+                                placeholder="Your mobile number"
+                                maxlength="15"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                NIMCET Target Year
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="targetYear"
+                            >
+                                <option value="">
+                                    Select Year
+                                </option>
+
+                                <option value="2027">
+                                    NIMCET 2027
+                                </option>
+
+                                <option value="2028">
+                                    NIMCET 2028
+                                </option>
+
+                                <option value="2029">
+                                    NIMCET 2029
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="two-col">
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Daily Study Goal
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="studyGoal"
+                            >
+
+                                <option value="2">
+                                    2 Hours
+                                </option>
+
+                                <option value="3">
+                                    3 Hours
+                                </option>
+
+                                <option value="4">
+                                    4 Hours
+                                </option>
+
+                                <option value="5">
+                                    5 Hours
+                                </option>
+
+                                <option value="6">
+                                    6 Hours
+                                </option>
+
+                                <option value="7">
+                                    7 Hours
+                                </option>
+
+                                <option value="8">
+                                    8 Hours
+                                </option>
+
+                                <option value="10">
+                                    10 Hours
+                                </option>
+
+                                <option value="12">
+                                    12 Hours
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Preferred Study Time
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="studyTime"
+                            >
+
+                                <option value="morning">
+                                    Morning
+                                </option>
+
+                                <option value="afternoon">
+                                    Afternoon
+                                </option>
+
+                                <option value="evening">
+                                    Evening
+                                </option>
+
+                                <option value="night">
+                                    Night
+                                </option>
+
+                                <option value="flexible">
+                                    Flexible
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            About Me
+                        </label>
+
+                        <textarea
+                            class="form-input"
+                            id="about"
+                            maxlength="250"
+                            style="height:90px;padding-top:12px;resize:vertical;"
+                            placeholder="Write something about your NIMCET preparation..."
+                        ></textarea>
+
+                    </div>
+
+                    <div class="save-row">
+
+                        <button
+                            type="submit"
+                            class="save-btn"
+                        >
+                            ✓ Save Profile
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT COLUMN -->
+
+        <div>
+
+            <!-- ACCOUNT STATS -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+                        Preparation Overview
+                    </div>
+
+                    <div class="card-subtitle">
+                        Your current study data
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="stat-list">
+
+                        <div class="profile-stat">
+
+                            <div class="stat-icon">
+                                ⏱
+                            </div>
+
+                            <div class="stat-info">
+
+                                <div class="stat-name">
+                                    Timetable Sessions
+                                </div>
+
+                                <div
+                                    class="stat-value"
+                                    id="totalSessions"
+                                >
+                                    0
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="profile-stat">
+
+                            <div class="stat-icon">
+                                ✓
+                            </div>
+
+                            <div class="stat-info">
+
+                                <div class="stat-name">
+                                    Completed Sessions
+                                </div>
+
+                                <div
+                                    class="stat-value"
+                                    id="completedSessions"
+                                >
+                                    0
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="profile-stat">
+
+                            <div class="stat-icon">
+                                ◷
+                            </div>
+
+                            <div class="stat-info">
+
+                                <div class="stat-name">
+                                    Daily Study Goal
+                                </div>
+
+                                <div
+                                    class="stat-value"
+                                    id="goalDisplay"
+                                >
+                                    0 Hours
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="profile-stat">
+
+                            <div class="stat-icon">
+                                🔥
+                            </div>
+
+                            <div class="stat-info">
+
+                                <div class="stat-name">
+                                    Preparation Status
+                                </div>
+
+                                <div
+                                    class="stat-value"
+                                    id="statusDisplay"
+                                >
+                                    Getting Started
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- PASSWORD -->
+
+            <section class="card security-box">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+                        Security
+                    </div>
+
+                    <div class="card-subtitle">
+                        Change your account password
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="password-note">
+                        Your password is stored locally in this demo
+                        application. Do not use a sensitive real password.
+                    </div>
+
+                    <form id="passwordForm">
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Current Password
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="currentPassword"
+                                type="password"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                New Password
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="newPassword"
+                                type="password"
+                                minlength="6"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Confirm New Password
+                            </label>
+
+                            <input
+                                class="form-input"
+                                id="confirmPassword"
+                                type="password"
+                                minlength="6"
+                                required
+                            >
+
+                        </div>
+
+                        <button
+                            class="save-btn"
+                            type="submit"
+                        >
+                            🔐 Change Password
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+            <!-- DANGER -->
+
+            <section class="card danger-card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+                        Account
+                    </div>
+
+                    <div class="card-subtitle">
+                        Account actions
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <button
+                        class="danger-button"
+                        id="logoutBtn2"
+                    >
+                        ↪ Logout from Account
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =========================================================
+TOAST
+========================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+<script>
+
+/* =========================================================
+STORAGE
+========================================================= */
+
+const USERS_KEY =
+    "nimcet_preppro_users";
+
+const SESSION_KEY =
+    "nimcet_preppro_session";
+
+/* =========================================================
+GET USERS
+========================================================= */
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                USERS_KEY
+            )
+        ) || [];
+
+    }catch{
+
+        return [];
+
+    }
+
+}
+
+/* =========================================================
+AUTH
+========================================================= */
+
+let session = null;
+
+try{
+
+    session =
+        JSON.parse(
+            localStorage.getItem(
+                SESSION_KEY
+            )
+        );
+
+}catch{
+
+    session = null;
+
+}
+
+if(!session){
+
+    window.location.href =
+        "index.html";
+
+}
+
+/* =========================================================
+CURRENT USER
+========================================================= */
+
+let users =
+    getUsers();
+
+let user =
+    users.find(
+        item =>
+            item.id === session?.userId
+    );
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+/* =========================================================
+USER DEFAULTS
+========================================================= */
+
+if(!user.timetable){
+
+    user.timetable = [];
+
+}
+
+if(!user.profile){
+
+    user.profile = {};
+
+}
+
+/* =========================================================
+ELEMENTS
+========================================================= */
+
+const nameInput =
+    document.getElementById(
+        "name"
+    );
+
+const emailInput =
+    document.getElementById(
+        "email"
+    );
+
+const phoneInput =
+    document.getElementById(
+        "phone"
+    );
+
+const targetYearInput =
+    document.getElementById(
+        "targetYear"
+    );
+
+const studyGoalInput =
+    document.getElementById(
+        "studyGoal"
+    );
+
+const studyTimeInput =
+    document.getElementById(
+        "studyTime"
+    );
+
+const aboutInput =
+    document.getElementById(
+        "about"
+    );
+
+/* =========================================================
+SAVE USER
+========================================================= */
+
+function saveCurrentUser(){
+
+    const index =
+        users.findIndex(
+            item =>
+                item.id === user.id
+        );
+
+    if(index !== -1){
+
+        users[index] =
+            user;
+
+    }
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+
+}
+
+/* =========================================================
+INITIAL PROFILE
+========================================================= */
+
+function loadProfile(){
+
+    const profile =
+        user.profile || {};
+
+    nameInput.value =
+        user.name ||
+        profile.name ||
+        "";
+
+    emailInput.value =
+        user.email ||
+        "";
+
+    phoneInput.value =
+        profile.phone ||
+        user.phone ||
+        "";
+
+    targetYearInput.value =
+        profile.targetYear ||
+        "";
+
+    studyGoalInput.value =
+        profile.studyGoal ||
+        "6";
+
+    studyTimeInput.value =
+        profile.studyTime ||
+        "morning";
+
+    aboutInput.value =
+        profile.about ||
+        "";
+
+    updateUserDisplay();
+
+}
+
+/* =========================================================
+INITIAL AVATAR
+========================================================= */
+
+function getInitials(name){
+
+    name =
+        String(name || "User")
+            .trim();
+
+    if(!name){
+
+        return "U";
+
+    }
+
+    const words =
+        name.split(/\s+/);
+
+    return words
+        .map(
+            word =>
+                word.charAt(0)
+        )
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
+
+}
+
+/* =========================================================
+UPDATE DISPLAY
+========================================================= */
+
+function updateUserDisplay(){
+
+    const name =
+        nameInput.value.trim() ||
+        user.name ||
+        "User";
+
+    const email =
+        user.email ||
+        "user@example.com";
+
+    const initials =
+        getInitials(name);
+
+    document.getElementById(
+        "bigAvatar"
+    ).textContent =
+        initials;
+
+    document.getElementById(
+        "topAvatar"
+    ).textContent =
+        initials;
+
+    document.getElementById(
+        "heroName"
+    ).textContent =
+        name;
+
+    document.getElementById(
+        "heroEmail"
+    ).textContent =
+        email;
+
+    document.getElementById(
+        "goalDisplay"
+    ).textContent =
+        (
+            studyGoalInput.value ||
+            6
+        ) + " Hours";
+
+}
+
+/* =========================================================
+PROFILE FORM
+========================================================= */
+
+document
+    .getElementById(
+        "profileForm"
+    )
+    .addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+            const name =
+                nameInput.value.trim();
+
+            if(!name){
+
+                showToast(
+                    "Please enter your name.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            user.name =
+                name;
+
+            user.profile = {
+
+                ...(user.profile || {}),
+
+                name:
+                    name,
+
+                phone:
+                    phoneInput.value.trim(),
+
+                targetYear:
+                    targetYearInput.value,
+
+                studyGoal:
+                    studyGoalInput.value,
+
+                studyTime:
+                    studyTimeInput.value,
+
+                about:
+                    aboutInput.value.trim()
+
+            };
+
+            /*
+             * Some existing pages may directly use
+             * user.phone, so keep it synced too.
+             */
+
+            user.phone =
+                phoneInput.value.trim();
+
+            user.updatedAt =
+                new Date().toISOString();
+
+            saveCurrentUser();
+
+            updateUserDisplay();
+
+            updateStats();
+
+            showToast(
+                "Profile updated successfully."
+            );
+
+        }
+    );
+
+/* =========================================================
+PASSWORD CHANGE
+========================================================= */
+
+document
+    .getElementById(
+        "passwordForm"
+    )
+    .addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+            const current =
+                document.getElementById(
+                    "currentPassword"
+                ).value;
+
+            const newPassword =
+                document.getElementById(
+                    "newPassword"
+                ).value;
+
+            const confirmPassword =
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
+
+            /*
+             * Different login systems sometimes use
+             * password or pass. Support both.
+             */
+
+            const savedPassword =
+                user.password ??
+                user.pass ??
+                "";
+
+            if(current !== savedPassword){
+
+                showToast(
+                    "Current password is incorrect.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if(newPassword.length < 6){
+
+                showToast(
+                    "New password must be at least 6 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if(newPassword !== confirmPassword){
+
+                showToast(
+                    "New passwords do not match.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if(
+                user.password !== undefined
+            ){
+
+                user.password =
+                    newPassword;
+
+            }else{
+
+                user.pass =
+                    newPassword;
+
+            }
+
+            user.updatedAt =
+                new Date().toISOString();
+
+            saveCurrentUser();
+
+            document
+                .getElementById(
+                    "passwordForm"
+                )
+                .reset();
+
+            showToast(
+                "Password changed successfully."
+            );
+
+        }
+    );
+
+/* =========================================================
+STATS
+========================================================= */
+
+function updateStats(){
+
+    const timetable =
+        user.timetable || [];
+
+    const total =
+        timetable.length;
+
+    const completed =
+        timetable.filter(
+            item =>
+                item.completed
+        ).length;
+
+    document.getElementById(
+        "totalSessions"
+    ).textContent =
+        total;
+
+    document.getElementById(
+        "completedSessions"
+    ).textContent =
+        completed;
+
+    const goal =
+        user.profile?.studyGoal ||
+        "6";
+
+    document.getElementById(
+        "goalDisplay"
+    ).textContent =
+        goal + " Hours";
+
+    let status =
+        "Getting Started";
+
+    if(total >= 5){
+
+        status =
+            "Building Routine";
+
+    }
+
+    if(total >= 10){
+
+        status =
+            "Serious Preparation";
+
+    }
+
+    if(total >= 20){
+
+        status =
+            "Highly Consistent";
+
+    }
+
+    if(
+        total > 0 &&
+        completed === total
+    ){
+
+        status =
+            "All Sessions Completed";
+
+    }
+
+    document.getElementById(
+        "statusDisplay"
+    ).textContent =
+        status;
+
+}
+
+/* =========================================================
+LOGOUT
+========================================================= */
+
+function logout(){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        logout
+    );
+
+document
+    .getElementById(
+        "logoutBtn2"
+    )
+    .addEventListener(
+        "click",
+        logout
+    );
+
+/* =========================================================
+MOBILE SIDEBAR
+========================================================= */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+/* =========================================================
+CLOSE MOBILE SIDEBAR
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".nav-item"
+    )
+    .forEach(
+        item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    sidebar.classList.remove(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+/* =========================================================
+TOAST
+========================================================= */
+
+function showToast(
+    message,
+    type="success"
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+    toast.className =
+        `toast ${type}`;
+
+    toast.textContent =
+        message;
+
+    container.appendChild(
+        toast
+    );
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+            setTimeout(
+                () =>
+                    toast.remove(),
+                250
+            );
+
+        },
+        2600
+    );
+
+}
+
+/* =========================================================
+INITIALIZE
+========================================================= */
+
+loadProfile();
+
+updateStats();
+
+</script>
+
+</body>
+</html>
