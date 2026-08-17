@@ -3,23 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NIMCET PrepPro | Notes</title>
+
+<title>NIMCET PrepPro | Study Notes</title>
 
 <style>
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
-    --bg:#070b17;
+    --bg:#070b16;
+    --bg2:#0a1020;
     --panel:#0d1426;
-    --panel2:#111a30;
+    --panel2:#111a2e;
+    --panel3:#151f36;
+
     --border:rgba(255,255,255,.08);
+    --border2:rgba(129,140,248,.16);
+
     --primary:#6366f1;
-    --purple:#8b5cf6;
+    --primary2:#8b5cf6;
     --cyan:#22d3ee;
     --green:#34d399;
-    --orange:#f59e0b;
+    --yellow:#fbbf24;
     --red:#fb7185;
+
     --text:#f8fafc;
     --muted:#94a3b8;
-    --sidebar:255px;
+    --muted2:#64748b;
+
+    --sidebar:245px;
 }
 
 *{
@@ -28,68 +41,121 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     color:var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
     background:
-        radial-gradient(circle at 15% 0%,rgba(99,102,241,.10),transparent 28%),
-        radial-gradient(circle at 90% 20%,rgba(34,211,238,.06),transparent 25%),
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(99,102,241,.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(34,211,238,.06),
+            transparent 24%
+        ),
         var(--bg);
 }
 
-button,input,textarea,select{
-    font-family:inherit;
+button,
+input,
+select{
+    font:inherit;
 }
 
+button{
+    border:0;
+}
 
-/* ================= SIDEBAR ================= */
+button:focus-visible,
+input:focus-visible{
+    outline:2px solid rgba(129,140,248,.55);
+    outline-offset:2px;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar{
     position:fixed;
+    z-index:100;
     left:0;
     top:0;
     bottom:0;
+
     width:var(--sidebar);
-    padding:22px 15px;
-    background:rgba(8,13,27,.95);
+
+    padding:20px 14px;
+
+    background:rgba(7,12,25,.94);
     border-right:1px solid var(--border);
-    backdrop-filter:blur(20px);
-    z-index:100;
-    transition:.3s;
+
+    backdrop-filter:blur(22px);
+
+    transition:.3s ease;
 }
 
 .logo-area{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:5px 12px 25px;
+    gap:11px;
+
+    padding:4px 10px 24px;
 }
 
 .logo{
-    width:43px;
-    height:43px;
+    width:42px;
+    height:42px;
+
     display:grid;
     place-items:center;
+
     border-radius:13px;
-    background:linear-gradient(135deg,var(--primary),var(--purple));
-    font-size:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    font-size:18px;
     font-weight:900;
+
+    box-shadow:
+        0 8px 25px rgba(99,102,241,.22);
 }
 
-.logo-name{
-    font-size:16px;
+.logo-title{
+    font-size:15px;
     font-weight:800;
 }
 
-.logo-name span{
+.logo-title span{
     color:#818cf8;
 }
 
 .menu-label{
-    padding:0 13px;
-    margin:18px 0 9px;
+    margin:17px 0 8px;
+    padding:0 12px;
+
     color:#475569;
+
     font-size:9px;
     font-weight:800;
     letter-spacing:1.3px;
@@ -105,13 +171,19 @@ button,input,textarea,select{
 .nav-item{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:11px 13px;
-    border-radius:12px;
+    gap:11px;
+
+    padding:10px 12px;
+
     color:#7f8da3;
+
+    border-radius:11px;
+
     text-decoration:none;
-    font-size:12px;
-    font-weight:600;
+
+    font-size:11px;
+    font-weight:650;
+
     transition:.2s;
 }
 
@@ -122,63 +194,104 @@ button,input,textarea,select{
 
 .nav-item.active{
     color:#fff;
-    background:linear-gradient(100deg,rgba(99,102,241,.22),rgba(139,92,246,.10));
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(99,102,241,.22),
+            rgba(139,92,246,.08)
+        );
+
     border:1px solid rgba(129,140,248,.12);
 }
 
 .nav-icon{
     width:28px;
     height:28px;
+
     display:grid;
     place-items:center;
+
     border-radius:8px;
+
     background:rgba(255,255,255,.035);
+
     font-size:13px;
 }
 
 .nav-item.active .nav-icon{
     color:#a5b4fc;
-    background:rgba(99,102,241,.18);
+    background:rgba(99,102,241,.16);
 }
 
 .sidebar-bottom{
     position:absolute;
-    left:15px;
-    right:15px;
-    bottom:18px;
+    left:14px;
+    right:14px;
+    bottom:17px;
 }
 
 .logout{
     width:100%;
-    margin-top:9px;
+
     padding:10px;
-    border:0;
-    border-radius:11px;
+
+    border-radius:10px;
+
     background:rgba(251,113,133,.06);
-    color:#fb7185;
+    color:var(--red);
+
     cursor:pointer;
-    font-size:11px;
-    font-weight:650;
+
+    font-size:10px;
+    font-weight:700;
+
+    transition:.2s;
 }
 
 .logout:hover{
     background:rgba(251,113,133,.12);
 }
 
-
-/* ================= MAIN ================= */
+/* =========================================================
+   MAIN
+========================================================= */
 
 .main{
-    margin-left:var(--sidebar);
     min-height:100vh;
-    padding:25px 30px 50px;
+
+    margin-left:var(--sidebar);
+
+    padding:24px 30px 50px;
 }
+
+/* =========================================================
+   TOPBAR
+========================================================= */
 
 .topbar{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:23px;
+
+    gap:15px;
+
+    margin-bottom:22px;
+}
+
+.mobile-menu{
+    display:none;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid var(--border);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.035);
+    color:white;
+
+    cursor:pointer;
 }
 
 .page-title h1{
@@ -188,96 +301,123 @@ button,input,textarea,select{
 
 .page-title p{
     margin-top:5px;
+
     color:var(--muted);
+
     font-size:11px;
 }
 
 .top-actions{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:9px;
 }
 
 .icon-btn{
     width:38px;
     height:38px;
+
     display:grid;
     place-items:center;
+
     border:1px solid var(--border);
     border-radius:11px;
+
     background:rgba(255,255,255,.035);
+
     color:#94a3b8;
+
     cursor:pointer;
 }
 
 .avatar{
     width:38px;
     height:38px;
+
     display:grid;
     place-items:center;
+
     border-radius:12px;
-    background:linear-gradient(135deg,var(--primary),var(--purple));
-    color:#fff;
-    font-size:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    font-size:10px;
     font-weight:800;
+
     text-decoration:none;
 }
 
-.mobile-menu{
-    display:none;
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    border-radius:11px;
-    background:rgba(255,255,255,.035);
-    color:white;
-    cursor:pointer;
-}
-
-
-/* ================= HERO ================= */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     position:relative;
+
     overflow:hidden;
-    padding:25px;
+
+    padding:24px;
+
     border-radius:21px;
+
     background:
         linear-gradient(
             120deg,
-            rgba(79,70,229,.18),
+            rgba(79,70,229,.17),
             rgba(139,92,246,.08),
-            rgba(15,23,42,.75)
+            rgba(15,23,42,.78)
         );
+
     border:1px solid rgba(129,140,248,.12);
 }
 
-.hero:after{
+.hero::after{
     content:"";
+
     position:absolute;
-    width:220px;
-    height:220px;
+
+    width:230px;
+    height:230px;
+
     right:-90px;
-    top:-100px;
+    top:-110px;
+
     border-radius:50%;
+
     background:rgba(99,102,241,.10);
-    filter:blur(10px);
+
+    filter:blur(12px);
+
+    pointer-events:none;
 }
 
-.badge{
+.hero-badge{
     display:inline-flex;
+
     padding:6px 10px;
+
     border-radius:50px;
+
     background:rgba(99,102,241,.1);
+
     color:#a5b4fc;
+
     font-size:9px;
     font-weight:750;
+    letter-spacing:.5px;
     text-transform:uppercase;
-    letter-spacing:.6px;
 }
 
 .hero h2{
-    margin-top:11px;
+    margin-top:10px;
+
     font-size:25px;
     letter-spacing:-.9px;
 }
@@ -287,68 +427,84 @@ button,input,textarea,select{
 }
 
 .hero p{
-    max-width:680px;
+    max-width:700px;
+
     margin-top:7px;
+
     color:#94a3b8;
+
     font-size:11px;
-    line-height:1.6;
+    line-height:1.65;
 }
 
-
-/* ================= STATS ================= */
+/* =========================================================
+   STATS
+========================================================= */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
     gap:12px;
+
     margin-top:15px;
 }
 
 .stat{
     padding:15px;
-    border-radius:15px;
-    background:rgba(15,23,42,.65);
+
     border:1px solid var(--border);
+    border-radius:15px;
+
+    background:rgba(15,23,42,.62);
 }
 
 .stat-label{
     color:#64748b;
+
     font-size:9px;
 }
 
 .stat-value{
     margin-top:6px;
+
     font-size:21px;
-    font-weight:800;
+    font-weight:850;
 }
 
-.stat-value.blue{
+.stat-blue{
     color:#a5b4fc;
 }
 
-.stat-value.yellow{
-    color:#fbbf24;
-}
-
-.stat-value.green{
+.stat-green{
     color:#34d399;
 }
 
-.stat-value.cyan{
+.stat-cyan{
     color:#22d3ee;
 }
 
+.stat-yellow{
+    color:#fbbf24;
+}
 
-/* ================= TOOLBAR ================= */
+/* =========================================================
+   TOOLBAR
+========================================================= */
 
 .toolbar{
     display:flex;
     align-items:center;
-    gap:10px;
+
+    gap:9px;
+
     margin-top:17px;
-    padding:13px;
+    padding:12px;
+
     border:1px solid var(--border);
     border-radius:16px;
+
     background:rgba(15,23,42,.62);
 }
 
@@ -359,21 +515,29 @@ button,input,textarea,select{
 
 .search-icon{
     position:absolute;
+
     left:13px;
     top:50%;
+
     transform:translateY(-50%);
+
     color:#64748b;
 }
 
 .search input{
     width:100%;
     height:39px;
-    padding:0 13px 0 36px;
-    border-radius:10px;
+
+    padding:0 13px 0 35px;
+
     border:1px solid rgba(255,255,255,.07);
+    border-radius:10px;
+
     outline:none;
-    background:#0a1120;
-    color:#fff;
+
+    background:#090f1d;
+    color:white;
+
     font-size:11px;
 }
 
@@ -381,212 +545,688 @@ button,input,textarea,select{
     border-color:#6366f1;
 }
 
-select{
+.filter-btn{
     height:39px;
-    padding:0 12px;
-    border-radius:10px;
+
+    padding:0 13px;
+
     border:1px solid rgba(255,255,255,.07);
-    background:#0a1120;
-    color:#cbd5e1;
-    outline:none;
+    border-radius:10px;
+
+    background:#090f1d;
+    color:#94a3b8;
+
+    cursor:pointer;
+
     font-size:10px;
 }
 
-select option{
-    background:#0f172a;
+.filter-btn.active{
+    color:#c7d2fe;
+    border-color:rgba(99,102,241,.3);
+    background:rgba(99,102,241,.1);
 }
 
 .primary-btn{
     height:39px;
+
     padding:0 15px;
-    border:0;
+
     border-radius:10px;
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
     color:white;
+
+    cursor:pointer;
+
     font-size:10px;
     font-weight:750;
-    cursor:pointer;
+
+    box-shadow:
+        0 8px 22px rgba(79,70,229,.16);
 }
 
-
-/* ================= NOTES GRID ================= */
-
-.notes-grid{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:15px;
-    margin-top:17px;
+.primary-btn:hover{
+    filter:brightness(1.08);
 }
 
-.note-card{
-    position:relative;
-    min-height:205px;
-    display:flex;
-    flex-direction:column;
-    padding:18px;
-    border-radius:18px;
-    background:rgba(15,23,42,.70);
-    border:1px solid var(--border);
-    transition:.25s;
-}
+/* =========================================================
+   BREADCRUMB / VIEW HEADER
+========================================================= */
 
-.note-card:hover{
-    transform:translateY(-3px);
-    border-color:rgba(129,140,248,.22);
-    box-shadow:0 18px 40px rgba(0,0,0,.18);
-}
-
-.note-card.important{
-    border-color:rgba(245,158,11,.20);
-}
-
-.note-top{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.note-title{
-    color:#f1f5f9;
-    font-size:13px;
-    font-weight:750;
-    line-height:1.35;
-}
-
-.star{
-    border:0;
-    background:transparent;
-    color:#475569;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.star.active{
-    color:#fbbf24;
-}
-
-.note-meta{
+.view-header{
     display:flex;
     align-items:center;
-    gap:7px;
-    margin-top:10px;
-    flex-wrap:wrap;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:19px;
+    margin-bottom:11px;
 }
 
-.tag{
-    padding:4px 7px;
-    border-radius:6px;
-    color:#a5b4fc;
-    background:rgba(99,102,241,.09);
-    font-size:8px;
+.breadcrumb{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    color:#64748b;
+
+    font-size:10px;
+}
+
+.breadcrumb button{
+    padding:5px 8px;
+
+    border-radius:7px;
+
+    background:transparent;
+
+    color:#818cf8;
+
+    cursor:pointer;
+
+    font-size:10px;
+}
+
+.breadcrumb button:hover{
+    background:rgba(99,102,241,.08);
+}
+
+.breadcrumb .current{
+    color:#e2e8f0;
     font-weight:700;
 }
 
-.note-date{
-    color:#475569;
-    font-size:8px;
+.view-actions{
+    display:flex;
+    gap:7px;
 }
 
-.note-content{
-    flex:1;
-    margin-top:14px;
+.small-btn{
+    height:33px;
+
+    padding:0 11px;
+
+    border:1px solid var(--border);
+    border-radius:9px;
+
+    background:rgba(255,255,255,.035);
+
     color:#94a3b8;
-    font-size:10px;
-    line-height:1.7;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
 
-.note-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-top:14px;
-    margin-top:13px;
-    border-top:1px solid rgba(255,255,255,.05);
-}
-
-.note-actions{
-    display:flex;
-    gap:5px;
-}
-
-.action-btn{
-    width:29px;
-    height:29px;
-    display:grid;
-    place-items:center;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:8px;
-    background:rgba(255,255,255,.025);
-    color:#64748b;
     cursor:pointer;
+
+    font-size:9px;
 }
 
-.action-btn:hover{
+.small-btn:hover{
     color:white;
     background:rgba(255,255,255,.06);
 }
 
-.action-btn.delete:hover{
+/* =========================================================
+   SUBJECT GRID
+========================================================= */
+
+.subject-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:14px;
+}
+
+.subject-card{
+    position:relative;
+
+    min-height:190px;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:17px;
+
+    border:1px solid var(--border);
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,26,48,.82),
+            rgba(10,16,32,.76)
+        );
+
+    transition:.22s;
+}
+
+.subject-card:hover{
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(129,140,248,.25);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.18);
+}
+
+.subject-card.pinned{
+    border-color:
+        rgba(34,211,238,.2);
+}
+
+.subject-card.important{
+    border-color:
+        rgba(245,158,11,.22);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.subject-icon{
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.2),
+            rgba(139,92,246,.12)
+        );
+
+    color:#a5b4fc;
+
+    font-size:19px;
+}
+
+.card-menu{
+    position:relative;
+}
+
+.menu-btn{
+    width:29px;
+    height:29px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.035);
+    color:#64748b;
+
+    cursor:pointer;
+}
+
+.menu-btn:hover{
+    color:white;
+    background:rgba(255,255,255,.07);
+}
+
+.dropdown{
+    position:absolute;
+
+    right:0;
+    top:34px;
+
+    z-index:20;
+
+    min-width:145px;
+
+    padding:6px;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:#111827;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.4);
+
+    display:none;
+}
+
+.dropdown.show{
+    display:block;
+}
+
+.dropdown button{
+    width:100%;
+
+    padding:8px 9px;
+
+    border-radius:7px;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font-size:9px;
+}
+
+.dropdown button:hover{
+    background:rgba(255,255,255,.06);
+}
+
+.dropdown button.danger{
     color:#fb7185;
 }
 
-.word-count{
-    color:#475569;
+.subject-title{
+    margin-top:14px;
+
+    color:#f8fafc;
+
+    font-size:15px;
+    font-weight:800;
+
+    line-height:1.3;
+}
+
+.subject-description{
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+.card-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:auto;
+    padding-top:15px;
+}
+
+.counts{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.count-pill{
+    padding:5px 7px;
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#64748b;
+
     font-size:8px;
 }
 
+.open-subject{
+    padding:7px 9px;
 
-/* ================= EMPTY ================= */
+    border-radius:8px;
+
+    background:rgba(99,102,241,.1);
+
+    color:#a5b4fc;
+
+    cursor:pointer;
+
+    font-size:8px;
+    font-weight:700;
+}
+
+.open-subject:hover{
+    background:rgba(99,102,241,.17);
+}
+
+/* =========================================================
+   CHAPTER LIST
+========================================================= */
+
+.chapter-list{
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.chapter-card{
+    overflow:visible;
+
+    border:1px solid var(--border);
+    border-radius:15px;
+
+    background:rgba(15,23,42,.68);
+
+    transition:.2s;
+}
+
+.chapter-card:hover{
+    border-color:rgba(129,140,248,.18);
+}
+
+.chapter-header{
+    min-height:66px;
+
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    padding:11px 13px;
+
+    cursor:pointer;
+}
+
+.folder-icon{
+    width:39px;
+    height:39px;
+
+    flex-shrink:0;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:11px;
+
+    background:rgba(245,158,11,.09);
+
+    color:#fbbf24;
+
+    font-size:17px;
+}
+
+.chapter-main{
+    min-width:0;
+    flex:1;
+}
+
+.chapter-name{
+    overflow:hidden;
+
+    color:#e2e8f0;
+
+    font-size:12px;
+    font-weight:750;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.chapter-meta{
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:8px;
+}
+
+.chapter-actions{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.circle-btn{
+    width:30px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#64748b;
+
+    cursor:pointer;
+}
+
+.circle-btn:hover{
+    color:white;
+    background:rgba(255,255,255,.07);
+}
+
+.circle-btn.star-active{
+    color:#fbbf24;
+}
+
+.circle-btn.pin-active{
+    color:#22d3ee;
+}
+
+.expand-icon{
+    color:#64748b;
+    font-size:11px;
+
+    transition:.2s;
+}
+
+.chapter-card.expanded
+.expand-icon{
+    transform:rotate(90deg);
+}
+
+.lecture-container{
+    display:none;
+
+    padding:0 13px 13px 63px;
+}
+
+.chapter-card.expanded
+.lecture-container{
+    display:block;
+}
+
+.lecture-list{
+    display:flex;
+    flex-direction:column;
+
+    gap:6px;
+
+    padding-top:3px;
+}
+
+.lecture-row{
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    min-height:45px;
+
+    padding:7px 9px;
+
+    border:1px solid rgba(255,255,255,.045);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.018);
+
+    cursor:pointer;
+
+    transition:.18s;
+}
+
+.lecture-row:hover{
+    background:rgba(99,102,241,.065);
+
+    border-color:
+        rgba(129,140,248,.15);
+
+    transform:translateX(2px);
+}
+
+.lecture-icon{
+    width:29px;
+    height:29px;
+
+    flex-shrink:0;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:rgba(34,211,238,.07);
+
+    color:#22d3ee;
+
+    font-size:12px;
+}
+
+.lecture-name{
+    min-width:0;
+    flex:1;
+
+    overflow:hidden;
+
+    color:#cbd5e1;
+
+    font-size:10px;
+    font-weight:650;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.lecture-status{
+    display:flex;
+    align-items:center;
+    gap:3px;
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+.lecture-star.active{
+    color:#fbbf24;
+}
+
+.lecture-pin.active{
+    color:#22d3ee;
+}
+
+.add-row{
+    width:100%;
+
+    margin-top:7px;
+    padding:8px;
+
+    border:1px dashed rgba(129,140,248,.13);
+    border-radius:9px;
+
+    background:transparent;
+
+    color:#818cf8;
+
+    cursor:pointer;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+.add-row:hover{
+    background:rgba(99,102,241,.05);
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty{
     grid-column:1/-1;
+
     padding:70px 20px;
+
     text-align:center;
-    border-radius:18px;
+
     border:1px dashed rgba(148,163,184,.14);
-    background:rgba(15,23,42,.4);
-    color:#64748b;
+    border-radius:18px;
+
+    background:rgba(15,23,42,.38);
 }
 
 .empty-icon{
     width:58px;
     height:58px;
+
     display:grid;
     place-items:center;
+
     margin:0 auto 13px;
+
     border-radius:17px;
+
     background:rgba(99,102,241,.08);
+
     color:#818cf8;
+
     font-size:22px;
 }
 
 .empty h3{
     color:#cbd5e1;
+
     font-size:14px;
 }
 
 .empty p{
-    max-width:400px;
-    margin:7px auto 0;
+    max-width:420px;
+
+    margin:7px auto 15px;
+
+    color:#64748b;
+
     font-size:9px;
+
     line-height:1.6;
 }
 
-
-/* ================= MODAL ================= */
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal-overlay{
     position:fixed;
     inset:0;
+
     z-index:500;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
-    background:rgba(2,6,23,.75);
+
+    background:rgba(2,6,23,.78);
+
     backdrop-filter:blur(9px);
 }
 
@@ -595,22 +1235,27 @@ select option{
 }
 
 .modal{
-    width:min(100%,560px);
-    max-height:90vh;
-    overflow:auto;
-    padding:25px;
-    border-radius:22px;
-    background:#0d1426;
+    width:min(100%,500px);
+
+    padding:23px;
+
     border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 35px 90px rgba(0,0,0,.5);
-    animation:modalIn .25s ease;
+    border-radius:20px;
+
+    background:#0d1426;
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.5);
+
+    animation:modalIn .2s ease;
 }
 
 @keyframes modalIn{
     from{
         opacity:0;
-        transform:translateY(15px) scale(.98);
+        transform:translateY(12px) scale(.98);
     }
+
     to{
         opacity:1;
         transform:translateY(0) scale(1);
@@ -621,166 +1266,193 @@ select option{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:20px;
+
+    margin-bottom:19px;
 }
 
 .modal-title{
-    font-size:18px;
+    font-size:17px;
     font-weight:800;
 }
 
 .close{
     width:31px;
     height:31px;
-    border:0;
+
+    display:grid;
+    place-items:center;
+
     border-radius:9px;
+
     background:rgba(255,255,255,.05);
+
     color:#94a3b8;
+
     cursor:pointer;
+
+    font-size:18px;
+}
+
+.close:hover{
+    color:white;
 }
 
 .form-group{
-    margin-bottom:15px;
+    margin-bottom:14px;
 }
 
 .form-label{
     display:block;
+
     margin-bottom:7px;
+
     color:#cbd5e1;
+
     font-size:10px;
     font-weight:650;
 }
 
 .form-input,
-.form-select,
 .form-textarea{
     width:100%;
+
     border:1px solid rgba(255,255,255,.08);
     border-radius:10px;
+
     outline:none;
+
     background:#090f1d;
     color:white;
+
     font-size:11px;
 }
 
-.form-input,
-.form-select{
+.form-input{
     height:43px;
     padding:0 12px;
 }
 
 .form-textarea{
-    min-height:190px;
+    min-height:90px;
+
     resize:vertical;
-    padding:12px;
-    line-height:1.6;
+
+    padding:11px 12px;
+
+    line-height:1.5;
 }
 
 .form-input:focus,
-.form-select:focus,
 .form-textarea:focus{
     border-color:#6366f1;
-}
-
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.checkbox-row{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    margin-top:5px;
-    color:#94a3b8;
-    font-size:10px;
-    cursor:pointer;
-}
-
-.checkbox-row input{
-    accent-color:#6366f1;
 }
 
 .modal-buttons{
     display:flex;
     justify-content:flex-end;
+
     gap:8px;
-    margin-top:20px;
+
+    margin-top:19px;
+}
+
+.cancel-btn,
+.save-btn{
+    height:39px;
+
+    padding:0 15px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:700;
 }
 
 .cancel-btn{
-    height:40px;
-    padding:0 15px;
     border:1px solid rgba(255,255,255,.08);
-    border-radius:10px;
+
     background:rgba(255,255,255,.04);
+
     color:#94a3b8;
-    cursor:pointer;
-    font-size:10px;
 }
 
 .save-btn{
-    height:40px;
-    padding:0 17px;
-    border:0;
-    border-radius:10px;
-    background:linear-gradient(100deg,#4f46e5,#7c3aed);
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
     color:white;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:750;
 }
 
-
-/* ================= TOAST ================= */
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast-container{
     position:fixed;
+
     right:18px;
     bottom:18px;
-    z-index:999;
+
+    z-index:1000;
+
     display:flex;
     flex-direction:column;
+
     gap:8px;
 }
 
 .toast{
-    min-width:260px;
-    padding:13px 15px;
-    border-radius:12px;
-    background:#111827;
-    border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
-    font-size:10px;
-    animation:toastIn .25s ease;
-}
+    min-width:250px;
 
-.toast.success{
-    border-left:3px solid var(--green);
+    padding:12px 14px;
+
+    border:1px solid rgba(255,255,255,.09);
+    border-left:3px solid #34d399;
+    border-radius:11px;
+
+    background:#111827;
+
+    color:#e2e8f0;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
+
+    font-size:10px;
+
+    animation:toastIn .2s ease;
 }
 
 .toast.error{
-    border-left:3px solid var(--red);
+    border-left-color:#fb7185;
 }
 
 @keyframes toastIn{
     from{
         opacity:0;
-        transform:translateX(15px);
+        transform:translateX(12px);
     }
+
     to{
         opacity:1;
         transform:translateX(0);
     }
 }
 
-
-/* ================= RESPONSIVE ================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:1100px){
-    .notes-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+
+    .subject-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 }
 
@@ -804,10 +1476,6 @@ select option{
         place-items:center;
     }
 
-    .topbar{
-        gap:10px;
-    }
-
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
@@ -819,21 +1487,12 @@ select option{
     .search{
         flex-basis:100%;
     }
-
 }
 
 @media(max-width:600px){
 
-    .notes-grid{
+    .subject-grid{
         grid-template-columns:1fr;
-    }
-
-    .form-row{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
     }
 
     .hero{
@@ -844,9 +1503,29 @@ select option{
         font-size:21px;
     }
 
-    .toolbar select,
-    .toolbar .primary-btn{
-        flex:1;
+    .view-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .lecture-container{
+        padding-left:13px;
+    }
+
+    .chapter-actions .circle-btn:nth-child(1){
+        display:none;
+    }
+
+    .stats{
+        gap:8px;
+    }
+
+    .stat{
+        padding:12px;
+    }
+
+    .stat-value{
+        font-size:18px;
     }
 }
 </style>
@@ -854,19 +1533,27 @@ select option{
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar" id="sidebar">
 
     <div class="logo-area">
-        <div class="logo">N</div>
 
-        <div class="logo-name">
+        <div class="logo">
+            N
+        </div>
+
+        <div class="logo-title">
             NIMCET <span>PrepPro</span>
         </div>
+
     </div>
 
-    <div class="menu-label">Main</div>
+    <div class="menu-label">
+        Main
+    </div>
 
     <nav class="nav">
 
@@ -882,7 +1569,7 @@ select option{
 
         <a href="notes.html" class="nav-item active">
             <span class="nav-icon">✎</span>
-            Notes
+            My Notes
         </a>
 
         <a href="doubts.html" class="nav-item">
@@ -895,7 +1582,13 @@ select option{
             Weekly Plan
         </a>
 
-        <div class="menu-label">Practice</div>
+    </nav>
+
+    <div class="menu-label">
+        Practice
+    </div>
+
+    <nav class="nav">
 
         <a href="mock-test.html" class="nav-item">
             <span class="nav-icon">▣</span>
@@ -912,7 +1605,13 @@ select option{
             Resources
         </a>
 
-        <div class="menu-label">Account</div>
+    </nav>
+
+    <div class="menu-label">
+        Account
+    </div>
+
+    <nav class="nav">
 
         <a href="profile.html" class="nav-item">
             <span class="nav-icon">●</span>
@@ -932,23 +1631,35 @@ select option{
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main class="main">
 
     <header class="topbar">
 
-        <button class="mobile-menu" id="mobileMenu">
-            ☰
-        </button>
+        <div style="display:flex;align-items:center;gap:10px;">
 
-        <div class="page-title">
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+            >
+                ☰
+            </button>
 
-            <h1>My Notes</h1>
+            <div class="page-title">
 
-            <p>
-                Keep your important NIMCET concepts organized
-            </p>
+                <h1>
+                    My Study Notebook
+                </h1>
+
+                <p>
+                    Organize your NIMCET preparation
+                    from Subject to Lecture.
+                </p>
+
+            </div>
 
         </div>
 
@@ -958,7 +1669,11 @@ select option{
                 🔔
             </button>
 
-            <a href="profile.html" class="avatar" id="avatar">
+            <a
+                href="profile.html"
+                class="avatar"
+                id="avatar"
+            >
                 U
             </a>
 
@@ -967,61 +1682,35 @@ select option{
     </header>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <section class="hero">
 
-        <div class="badge">
-            Personal Knowledge Base
-        </div>
+        <span class="hero-badge">
+            Personal Study Workspace
+        </span>
 
         <h2>
-            Your ideas,
-            <span>always with you.</span>
+            Build your
+            <span>NIMCET knowledge base.</span>
         </h2>
 
         <p>
-            Create your own study notes, save important concepts,
-            organize them by subject and quickly find anything
-            whenever you need it.
+            Create subjects, organize chapters,
+            add lectures and open any lecture
+            to continue your notes.
         </p>
 
     </section>
 
 
-    <!-- ================= STATS ================= -->
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
 
     <section class="stats">
-
-        <div class="stat">
-
-            <div class="stat-label">
-                Total Notes
-            </div>
-
-            <div
-                class="stat-value blue"
-                id="totalNotes"
-            >
-                0
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div class="stat-label">
-                Important
-            </div>
-
-            <div
-                class="stat-value yellow"
-                id="importantNotes"
-            >
-                0
-            </div>
-
-        </div>
 
         <div class="stat">
 
@@ -1030,7 +1719,7 @@ select option{
             </div>
 
             <div
-                class="stat-value green"
+                class="stat-value stat-blue"
                 id="subjectCount"
             >
                 0
@@ -1041,12 +1730,42 @@ select option{
         <div class="stat">
 
             <div class="stat-label">
-                Words Written
+                Chapters
             </div>
 
             <div
-                class="stat-value cyan"
-                id="wordCount"
+                class="stat-value stat-green"
+                id="chapterCount"
+            >
+                0
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Lectures
+            </div>
+
+            <div
+                class="stat-value stat-cyan"
+                id="lectureCount"
+            >
+                0
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Important
+            </div>
+
+            <div
+                class="stat-value stat-yellow"
+                id="importantCount"
             >
                 0
             </div>
@@ -1056,7 +1775,9 @@ select option{
     </section>
 
 
-    <!-- ================= TOOLBAR ================= -->
+    <!-- =====================================================
+         TOOLBAR
+    ====================================================== -->
 
     <section class="toolbar">
 
@@ -1067,56 +1788,104 @@ select option{
             </span>
 
             <input
-                id="searchInput"
                 type="search"
-                placeholder="Search notes, subjects or tags..."
+                id="searchInput"
+                placeholder="Search subjects, chapters or lectures..."
             >
 
         </div>
 
-        <select id="subjectFilter">
-            <option value="all">
-                All Subjects
-            </option>
-        </select>
+        <button
+            class="filter-btn"
+            id="importantFilter"
+        >
+            ⭐ Important
+        </button>
 
-        <select id="noteFilter">
+        <button
+            class="filter-btn"
+            id="pinnedFilter"
+        >
+            📌 Pinned
+        </button>
 
-            <option value="all">
-                All Notes
-            </option>
-
-            <option value="important">
-                Important
-            </option>
-
-            <option value="normal">
-                Normal
-            </option>
-
-        </select>
+        <button
+            class="filter-btn"
+            id="expandAllBtn"
+        >
+            Expand All
+        </button>
 
         <button
             class="primary-btn"
-            id="addNoteBtn"
+            id="addSubjectBtn"
         >
-            + New Note
+            + New Subject
         </button>
 
     </section>
 
 
-    <!-- ================= NOTES ================= -->
+    <!-- =====================================================
+         VIEW HEADER
+    ====================================================== -->
+
+    <div class="view-header">
+
+        <div class="breadcrumb">
+
+            <button
+                id="homeBreadcrumb"
+                style="display:none;"
+            >
+                Subjects
+            </button>
+
+            <span
+                id="breadcrumbSeparator"
+                style="display:none;"
+            >
+                /
+            </span>
+
+            <span
+                class="current"
+                id="viewTitle"
+            >
+                All Subjects
+            </span>
+
+        </div>
+
+        <div class="view-actions">
+
+            <button
+                class="small-btn"
+                id="collapseAllBtn"
+            >
+                Collapse All
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
 
     <section
-        class="notes-grid"
-        id="notesGrid"
+        class="subject-grid"
+        id="subjectGrid"
     ></section>
 
 </main>
 
 
-<!-- ================= NOTE MODAL ================= -->
+<!-- =========================================================
+     MODAL
+========================================================= -->
 
 <div
     class="modal-overlay"
@@ -1131,7 +1900,7 @@ select option{
                 class="modal-title"
                 id="modalTitle"
             >
-                Create New Note
+                Create Subject
             </div>
 
             <button
@@ -1144,92 +1913,43 @@ select option{
         </div>
 
 
-        <form id="noteForm">
+        <form id="entityForm">
 
             <div class="form-group">
 
                 <label class="form-label">
-                    Note Title
+                    Name
                 </label>
 
                 <input
                     class="form-input"
-                    id="noteTitle"
+                    id="entityName"
                     type="text"
                     maxlength="100"
-                    placeholder="e.g. Important Probability Formulas"
+                    placeholder="e.g. Mathematics"
                     required
                 >
 
             </div>
 
 
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Subject
-                    </label>
-
-                    <select
-                        class="form-select"
-                        id="noteSubject"
-                    >
-                        <option value="">
-                            General
-                        </option>
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Tag
-                    </label>
-
-                    <input
-                        class="form-input"
-                        id="noteTag"
-                        type="text"
-                        maxlength="30"
-                        placeholder="Formula / Revision"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
+            <div
+                class="form-group"
+                id="descriptionGroup"
+            >
 
                 <label class="form-label">
-                    Note Content
+                    Short Description
                 </label>
 
                 <textarea
                     class="form-textarea"
-                    id="noteContent"
-                    maxlength="10000"
-                    placeholder="Write your notes here..."
-                    required
+                    id="entityDescription"
+                    maxlength="250"
+                    placeholder="e.g. Complete NIMCET Mathematics preparation"
                 ></textarea>
 
             </div>
-
-
-            <label class="checkbox-row">
-
-                <input
-                    type="checkbox"
-                    id="noteImportant"
-                >
-
-                Mark this note as important ⭐
-
-            </label>
 
 
             <div class="modal-buttons">
@@ -1246,7 +1966,7 @@ select option{
                     type="submit"
                     class="save-btn"
                 >
-                    Save Note
+                    Save
                 </button>
 
             </div>
@@ -1258,7 +1978,9 @@ select option{
 </div>
 
 
-<!-- ================= TOAST ================= -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
 <div
     class="toast-container"
@@ -1268,9 +1990,9 @@ select option{
 
 <script>
 
-/* ============================================================
+/* =========================================================
    STORAGE
-============================================================ */
+========================================================= */
 
 const USERS_KEY =
     "nimcet_preppro_users";
@@ -1308,9 +2030,9 @@ function saveUsers(users){
 }
 
 
-/* ============================================================
-   AUTH CHECK
-============================================================ */
+/* =========================================================
+   AUTH
+========================================================= */
 
 let session = null;
 
@@ -1361,57 +2083,71 @@ if(!user){
 }
 
 
-/* ============================================================
-   INITIALIZE USER DATA
-============================================================ */
+/* =========================================================
+   DATA MIGRATION
+========================================================= */
 
-if(!Array.isArray(user.notes)){
+/*
+   New structure:
 
-    user.notes = [];
+   user.studyNotes = {
+       subjects: [
+           {
+               id,
+               name,
+               description,
+               pinned,
+               important,
+               chapters: [
+                   {
+                       id,
+                       name,
+                       pinned,
+                       important,
+                       lectures: [
+                           {
+                               id,
+                               name,
+                               pinned,
+                               important,
+                               noteId
+                           }
+                       ]
+                   }
+               ]
+           }
+       ]
+   }
+*/
+
+function initializeStudyData(){
+
+    if(
+        !user.studyNotes ||
+        typeof user.studyNotes !== "object"
+    ){
+
+        user.studyNotes = {
+            subjects:[]
+        };
+
+    }
+
+    if(
+        !Array.isArray(
+            user.studyNotes.subjects
+        )
+    ){
+
+        user.studyNotes.subjects = [];
+
+    }
 
 }
 
 
-/* ============================================================
-   ELEMENTS
-============================================================ */
+initializeStudyData();
 
-const notesGrid =
-    document.getElementById(
-        "notesGrid"
-    );
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
-
-const subjectFilter =
-    document.getElementById(
-        "subjectFilter"
-    );
-
-const noteFilter =
-    document.getElementById(
-        "noteFilter"
-    );
-
-const modalOverlay =
-    document.getElementById(
-        "modalOverlay"
-    );
-
-const noteForm =
-    document.getElementById(
-        "noteForm"
-    );
-
-let editingNoteId = null;
-
-
-/* ============================================================
-   SAVE CURRENT USER
-============================================================ */
 
 function saveCurrentUser(){
 
@@ -1432,245 +2168,2748 @@ function saveCurrentUser(){
 }
 
 
-/* ============================================================
-   ID GENERATOR
-============================================================ */
+/* =========================================================
+   ID
+========================================================= */
 
-function generateId(){
+function generateId(prefix){
 
     return (
-        "note_" +
+        prefix +
+        "_" +
         Date.now().toString(36) +
         "_" +
         Math.random()
             .toString(36)
-            .substring(2,9)
+            .substring(2,8)
     );
 
 }
 
 
-/* ============================================================
-   SUBJECTS
-============================================================ */
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentView = "subjects";
+
+let currentSubjectId = null;
+
+let editingType = null;
+
+let editingId = null;
+
+let importantOnly = false;
+
+let pinnedOnly = false;
+
+let expandedChapters =
+    new Set();
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const subjectGrid =
+    document.getElementById(
+        "subjectGrid"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const modalOverlay =
+    document.getElementById(
+        "modalOverlay"
+    );
+
+const entityForm =
+    document.getElementById(
+        "entityForm"
+    );
+
+const entityName =
+    document.getElementById(
+        "entityName"
+    );
+
+const entityDescription =
+    document.getElementById(
+        "entityDescription"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+const descriptionGroup =
+    document.getElementById(
+        "descriptionGroup"
+    );
+
+const viewTitle =
+    document.getElementById(
+        "viewTitle"
+    );
+
+const homeBreadcrumb =
+    document.getElementById(
+        "homeBreadcrumb"
+    );
+
+const breadcrumbSeparator =
+    document.getElementById(
+        "breadcrumbSeparator"
+    );
+
+
+/* =========================================================
+   SUBJECT HELPERS
+========================================================= */
 
 function getSubjects(){
 
-    const subjects = [];
-
-    if(Array.isArray(user.syllabus)){
-
-        user.syllabus.forEach(
-            subject => {
-
-                if(
-                    subject &&
-                    subject.title
-                ){
-
-                    subjects.push({
-                        id:subject.id,
-                        title:subject.title
-                    });
-
-                }
-
-            }
-        );
-
-    }
-
-    return subjects;
+    return user
+        .studyNotes
+        .subjects || [];
 
 }
 
 
-/* ============================================================
-   SUBJECT DROPDOWNS
-============================================================ */
+function findSubject(id){
 
-function populateSubjects(){
+    return getSubjects().find(
+        subject =>
+            subject.id === id
+    );
 
-    const subjects =
-        getSubjects();
-
-
-    const currentValue =
-        document.getElementById(
-            "noteSubject"
-        ).value;
+}
 
 
-    const filterValue =
-        subjectFilter.value;
+function findChapter(
+    subjectId,
+    chapterId
+){
+
+    const subject =
+        findSubject(subjectId);
+
+    if(!subject)
+        return null;
+
+    return (
+        subject.chapters || []
+    ).find(
+        chapter =>
+            chapter.id === chapterId
+    ) || null;
+
+}
 
 
-    const options =
+function findLecture(
+    subjectId,
+    chapterId,
+    lectureId
+){
+
+    const chapter =
+        findChapter(
+            subjectId,
+            chapterId
+        );
+
+    if(!chapter)
+        return null;
+
+    return (
+        chapter.lectures || []
+    ).find(
+        lecture =>
+            lecture.id === lectureId
+    ) || null;
+
+}
+
+
+/* =========================================================
+   COUNTS
+========================================================= */
+
+function chapterTotal(subject){
+
+    return Array.isArray(
+        subject.chapters
+    )
+        ? subject.chapters.length
+        : 0;
+
+}
+
+
+function lectureTotal(subject){
+
+    return (
+        subject.chapters || []
+    ).reduce(
+        (
+            total,
+            chapter
+        ) =>
+            total +
+            (
+                Array.isArray(
+                    chapter.lectures
+                )
+                    ? chapter.lectures.length
+                    : 0
+            ),
+        0
+    );
+
+}
+
+
+function totalChapters(){
+
+    return getSubjects().reduce(
+        (
+            total,
+            subject
+        ) =>
+            total +
+            chapterTotal(subject),
+        0
+    );
+
+}
+
+
+function totalLectures(){
+
+    return getSubjects().reduce(
+        (
+            total,
+            subject
+        ) =>
+            total +
+            lectureTotal(subject),
+        0
+    );
+
+}
+
+
+function importantTotal(){
+
+    let total = 0;
+
+    getSubjects().forEach(
+        subject => {
+
+            if(subject.important)
+                total++;
+
+            (
+                subject.chapters || []
+            ).forEach(
+                chapter => {
+
+                    if(chapter.important)
+                        total++;
+
+                    (
+                        chapter.lectures || []
+                    ).forEach(
+                        lecture => {
+
+                            if(
+                                lecture.important
+                            ){
+
+                                total++;
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+    return total;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function updateStats(){
+
+    document.getElementById(
+        "subjectCount"
+    ).textContent =
+        getSubjects().length;
+
+    document.getElementById(
+        "chapterCount"
+    ).textContent =
+        totalChapters();
+
+    document.getElementById(
+        "lectureCount"
+    ).textContent =
+        totalLectures();
+
+    document.getElementById(
+        "importantCount"
+    ).textContent =
+        importantTotal();
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+    updateStats();
+
+    updateBreadcrumb();
+
+    if(currentView === "subjects"){
+
+        renderSubjects();
+
+    }else{
+
+        renderChapters();
+
+    }
+
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+function updateBreadcrumb(){
+
+    if(currentView === "subjects"){
+
+        homeBreadcrumb.style.display =
+            "none";
+
+        breadcrumbSeparator.style.display =
+            "none";
+
+        viewTitle.textContent =
+            "All Subjects";
+
+    }else{
+
+        const subject =
+            findSubject(
+                currentSubjectId
+            );
+
+        homeBreadcrumb.style.display =
+            "inline-block";
+
+        breadcrumbSeparator.style.display =
+            "inline";
+
+        viewTitle.textContent =
+            subject
+                ? subject.name
+                : "Subject";
+
+    }
+
+}
+
+
+/* =========================================================
+   SEARCH MATCH
+========================================================= */
+
+function matchesSearch(
+    value
+){
+
+    const search =
+        searchInput
+            .value
+            .trim()
+            .toLowerCase();
+
+    if(!search)
+        return true;
+
+    return String(
+        value || ""
+    )
+        .toLowerCase()
+        .includes(search);
+
+}
+
+
+/* =========================================================
+   FILTER SUBJECT
+========================================================= */
+
+function subjectMatchesFilter(
+    subject
+){
+
+    if(
+        importantOnly &&
+        !subject.important
+    ){
+
+        return false;
+
+    }
+
+    if(
+        pinnedOnly &&
+        !subject.pinned
+    ){
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* =========================================================
+   RENDER SUBJECTS
+========================================================= */
+
+function renderSubjects(){
+
+    let subjects =
+        [...getSubjects()];
+
+
+    const search =
+        searchInput
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if(search){
+
+        subjects =
+            subjects.filter(
+                subject => {
+
+                    if(
+                        matchesSearch(
+                            subject.name
+                        )
+                    ){
+
+                        return true;
+
+                    }
+
+
+                    if(
+                        matchesSearch(
+                            subject.description
+                        )
+                    ){
+
+                        return true;
+
+                    }
+
+
+                    return (
+                        subject.chapters || []
+                    ).some(
+                        chapter => {
+
+                            if(
+                                matchesSearch(
+                                    chapter.name
+                                )
+                            ){
+
+                                return true;
+
+                            }
+
+                            return (
+                                chapter.lectures || []
+                            ).some(
+                                lecture =>
+                                    matchesSearch(
+                                        lecture.name
+                                    )
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(
+        importantOnly ||
+        pinnedOnly
+    ){
+
+        subjects =
+            subjects.filter(
+                subject => {
+
+                    if(
+                        subjectMatchesFilter(
+                            subject
+                        )
+                    ){
+
+                        return true;
+
+                    }
+
+                    /*
+                       If filter is enabled,
+                       also show subject when
+                       child item is matching.
+                    */
+
+                    return (
+                        subject.chapters || []
+                    ).some(
+                        chapter => {
+
+                            if(
+                                importantOnly &&
+                                chapter.important
+                            ){
+
+                                return true;
+
+                            }
+
+                            if(
+                                pinnedOnly &&
+                                chapter.pinned
+                            ){
+
+                                return true;
+
+                            }
+
+                            return (
+                                chapter.lectures || []
+                            ).some(
+                                lecture => {
+
+                                    if(
+                                        importantOnly &&
+                                        lecture.important
+                                    ){
+
+                                        return true;
+
+                                    }
+
+                                    if(
+                                        pinnedOnly &&
+                                        lecture.pinned
+                                    ){
+
+                                        return true;
+
+                                    }
+
+                                    return false;
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(!subjects.length){
+
+        subjectGrid.innerHTML =
+            emptyState(
+                "📚",
+                search ||
+                importantOnly ||
+                pinnedOnly
+                    ? "Nothing found"
+                    : "No subjects yet",
+                search ||
+                importantOnly ||
+                pinnedOnly
+                    ? "Try another search or remove the active filters."
+                    : "Create your first subject and start organizing your NIMCET preparation.",
+                "Create Subject"
+            );
+
+        return;
+
+    }
+
+
+    subjectGrid.innerHTML =
         subjects
             .map(
-                subject =>
-                    `
-                    <option value="${escapeHTML(subject.id)}">
-                        ${escapeHTML(subject.title)}
-                    </option>
-                    `
+                renderSubject
             )
             .join("");
 
-
-    document.getElementById(
-        "noteSubject"
-    ).innerHTML =
-        `
-        <option value="">
-            General
-        </option>
-        ${options}
-        `;
-
-
-    subjectFilter.innerHTML =
-        `
-        <option value="all">
-            All Subjects
-        </option>
-        ${options}
-        `;
-
-
-    if(
-        subjects.some(
-            s => s.id === currentValue
-        )
-    ){
-
-        document.getElementById(
-            "noteSubject"
-        ).value =
-            currentValue;
-
-    }
-
-
-    if(
-        subjects.some(
-            s => s.id === filterValue
-        )
-    ){
-
-        subjectFilter.value =
-            filterValue;
-
-    }
-
 }
 
 
-/* ============================================================
-   SUBJECT NAME
-============================================================ */
+/* =========================================================
+   SUBJECT CARD
+========================================================= */
 
-function getSubjectName(id){
+function renderSubject(
+    subject
+){
 
-    if(!id)
-        return "General";
+    const chapters =
+        chapterTotal(
+            subject
+        );
 
-
-    const subject =
-        getSubjects().find(
-            item =>
-                item.id === id
+    const lectures =
+        lectureTotal(
+            subject
         );
 
 
-    return subject
-        ? subject.title
-        : "General";
+    return `
+
+        <article
+            class="
+                subject-card
+                ${subject.pinned ? "pinned" : ""}
+                ${subject.important ? "important" : ""}
+            "
+        >
+
+            <div class="card-top">
+
+                <button
+                    class="subject-icon"
+                    title="Open subject"
+                    onclick="
+                        openSubject(
+                            '${subject.id}'
+                        )
+                    "
+                >
+                    📘
+                </button>
+
+
+                <div class="card-menu">
+
+                    <button
+                        class="menu-btn"
+                        onclick="
+                            toggleMenu(
+                                this
+                            )
+                        "
+                    >
+                        ⋮
+                    </button>
+
+                    <div class="dropdown">
+
+                        <button
+                            onclick="
+                                openEdit(
+                                    'subject',
+                                    '${subject.id}'
+                                )
+                            "
+                        >
+                            ✎ Rename
+                        </button>
+
+                        <button
+                            onclick="
+                                toggleImportant(
+                                    'subject',
+                                    '${subject.id}'
+                                )
+                            "
+                        >
+                            ${subject.important
+                                ? "★ Remove Important"
+                                : "☆ Mark Important"}
+                        </button>
+
+                        <button
+                            onclick="
+                                togglePinned(
+                                    'subject',
+                                    '${subject.id}'
+                                )
+                            "
+                        >
+                            ${subject.pinned
+                                ? "📌 Unpin"
+                                : "📌 Pin Subject"}
+                        </button>
+
+                        <button
+                            class="danger"
+                            onclick="
+                                deleteEntity(
+                                    'subject',
+                                    '${subject.id}'
+                                )
+                            "
+                        >
+                            × Delete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="subject-title"
+                onclick="
+                    openSubject(
+                        '${subject.id}'
+                    )
+                "
+                style="cursor:pointer;"
+            >
+                ${escapeHTML(
+                    subject.name
+                )}
+            </div>
+
+
+            <div class="subject-description">
+
+                ${escapeHTML(
+                    subject.description ||
+                    "Organize chapters and lectures for this subject."
+                )}
+
+            </div>
+
+
+            <div class="card-bottom">
+
+                <div class="counts">
+
+                    <span class="count-pill">
+                        📖 ${chapters} Chapters
+                    </span>
+
+                    <span class="count-pill">
+                        🎓 ${lectures} Lectures
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="open-subject"
+                    onclick="
+                        openSubject(
+                            '${subject.id}'
+                        )
+                    "
+                >
+                    Open →
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
 
 }
 
 
-/* ============================================================
-   MODAL
-============================================================ */
+/* =========================================================
+   OPEN SUBJECT
+========================================================= */
 
-function openModal(note=null){
+function openSubject(
+    subjectId
+){
+
+    const subject =
+        findSubject(
+            subjectId
+        );
+
+    if(!subject)
+        return;
+
+    currentSubjectId =
+        subjectId;
+
+    currentView =
+        "chapters";
+
+    searchInput.value =
+        "";
+
+    importantOnly =
+        false;
+
+    pinnedOnly =
+        false;
+
+    document
+        .getElementById(
+            "importantFilter"
+        )
+        .classList.remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "pinnedFilter"
+        )
+        .classList.remove(
+            "active"
+        );
+
+    render();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   RENDER CHAPTERS
+========================================================= */
+
+function renderChapters(){
+
+    const subject =
+        findSubject(
+            currentSubjectId
+        );
+
+
+    if(!subject){
+
+        goHome();
+
+        return;
+
+    }
+
+
+    let chapters =
+        [...(
+            subject.chapters || []
+        )];
+
+
+    const search =
+        searchInput
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if(search){
+
+        chapters =
+            chapters.filter(
+                chapter => {
+
+                    if(
+                        matchesSearch(
+                            chapter.name
+                        )
+                    ){
+
+                        return true;
+
+                    }
+
+                    return (
+                        chapter.lectures || []
+                    ).some(
+                        lecture =>
+                            matchesSearch(
+                                lecture.name
+                            )
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(importantOnly){
+
+        chapters =
+            chapters.filter(
+                chapter => {
+
+                    if(chapter.important)
+                        return true;
+
+                    return (
+                        chapter.lectures || []
+                    ).some(
+                        lecture =>
+                            lecture.important
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(pinnedOnly){
+
+        chapters =
+            chapters.filter(
+                chapter => {
+
+                    if(chapter.pinned)
+                        return true;
+
+                    return (
+                        chapter.lectures || []
+                    ).some(
+                        lecture =>
+                            lecture.pinned
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(!chapters.length){
+
+        subjectGrid.innerHTML =
+            emptyState(
+                "📖",
+                "No chapters found",
+                "Create a chapter to organize lectures inside this subject.",
+                "Create Chapter"
+            );
+
+        return;
+
+    }
+
+
+    subjectGrid.className =
+        "chapter-list";
+
+
+    subjectGrid.innerHTML =
+        chapters
+            .map(
+                chapter =>
+                    renderChapter(
+                        chapter,
+                        subject
+                    )
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   CHAPTER
+========================================================= */
+
+function renderChapter(
+    chapter,
+    subject
+){
+
+    const lectures =
+        chapter.lectures || [];
+
+
+    const isExpanded =
+        expandedChapters.has(
+            chapter.id
+        );
+
+
+    return `
+
+        <article
+            class="
+                chapter-card
+                ${isExpanded ? "expanded" : ""}
+            "
+            data-chapter-id="${chapter.id}"
+        >
+
+            <div
+                class="chapter-header"
+                onclick="
+                    toggleChapter(
+                        '${chapter.id}'
+                    )
+                "
+            >
+
+                <div class="folder-icon">
+                    📂
+                </div>
+
+
+                <div class="chapter-main">
+
+                    <div class="chapter-name">
+
+                        ${escapeHTML(
+                            chapter.name
+                        )}
+
+                    </div>
+
+                    <div class="chapter-meta">
+
+                        ${lectures.length}
+                        ${lectures.length === 1
+                            ? "Lecture"
+                            : "Lectures"}
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="chapter-actions"
+                    onclick="
+                        event.stopPropagation()
+                    "
+                >
+
+                    <button
+                        class="
+                            circle-btn
+                            ${chapter.important
+                                ? "star-active"
+                                : ""}
+                        "
+                        title="Important"
+                        onclick="
+                            toggleImportant(
+                                'chapter',
+                                '${chapter.id}'
+                            )
+                        "
+                    >
+                        ${chapter.important
+                            ? "★"
+                            : "☆"}
+                    </button>
+
+
+                    <button
+                        class="
+                            circle-btn
+                            ${chapter.pinned
+                                ? "pin-active"
+                                : ""}
+                        "
+                        title="Pin"
+                        onclick="
+                            togglePinned(
+                                'chapter',
+                                '${chapter.id}'
+                            )
+                        "
+                    >
+                        📌
+                    </button>
+
+
+                    <button
+                        class="circle-btn"
+                        title="Rename"
+                        onclick="
+                            openEdit(
+                                'chapter',
+                                '${chapter.id}'
+                            )
+                        "
+                    >
+                        ✎
+                    </button>
+
+
+                    <button
+                        class="circle-btn"
+                        title="Delete"
+                        onclick="
+                            deleteEntity(
+                                'chapter',
+                                '${chapter.id}'
+                            )
+                        "
+                    >
+                        ×
+                    </button>
+
+
+                    <span class="expand-icon">
+                        ›
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="lecture-container">
+
+                <div class="lecture-list">
+
+                    ${
+                        lectures.length
+                            ? lectures
+                                .map(
+                                    lecture =>
+                                        renderLecture(
+                                            lecture
+                                        )
+                                )
+                                .join("")
+                            : `
+                                <div
+                                    style="
+                                        padding:12px;
+                                        color:#64748b;
+                                        font-size:9px;
+                                    "
+                                >
+                                    No lectures yet.
+                                </div>
+                            `
+                    }
+
+
+                    <button
+                        class="add-row"
+                        onclick="
+                            openCreate(
+                                'lecture',
+                                '${chapter.id}'
+                            )
+                        "
+                    >
+                        + Add Lecture
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LECTURE
+========================================================= */
+
+function renderLecture(
+    lecture
+){
+
+    return `
+
+        <div
+            class="lecture-row"
+            onclick="
+                openLecture(
+                    '${lecture.id}'
+                )
+            "
+        >
+
+            <div class="lecture-icon">
+                ▶
+            </div>
+
+
+            <div class="lecture-name">
+
+                ${escapeHTML(
+                    lecture.name
+                )}
+
+            </div>
+
+
+            <div class="lecture-status">
+
+                <span
+                    class="
+                        lecture-star
+                        ${lecture.important
+                            ? "active"
+                            : ""}
+                    "
+                    onclick="
+                        event.stopPropagation();
+                        toggleImportant(
+                            'lecture',
+                            '${lecture.id}'
+                        )
+                    "
+                    title="Important"
+                >
+                    ${lecture.important
+                        ? "★"
+                        : "☆"}
+                </span>
+
+
+                <span
+                    class="
+                        lecture-pin
+                        ${lecture.pinned
+                            ? "active"
+                            : ""}
+                    "
+                    onclick="
+                        event.stopPropagation();
+                        togglePinned(
+                            'lecture',
+                            '${lecture.id}'
+                        )
+                    "
+                    title="Pin"
+                >
+                    📌
+                </span>
+
+
+                <span
+                    onclick="
+                        event.stopPropagation();
+                        openEdit(
+                            'lecture',
+                            '${lecture.id}'
+                        )
+                    "
+                    title="Rename"
+                    style="
+                        cursor:pointer;
+                        margin-left:4px;
+                    "
+                >
+                    ⋮
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   OPEN LECTURE
+========================================================= */
+
+function openLecture(
+    lectureId
+){
+
+    const subject =
+        findSubject(
+            currentSubjectId
+        );
+
+    if(!subject)
+        return;
+
+
+    let chapter = null;
+
+    let lecture = null;
+
+
+    for(
+        const item
+        of subject.chapters || []
+    ){
+
+        const found =
+            (
+                item.lectures || []
+            ).find(
+                item2 =>
+                    item2.id ===
+                    lectureId
+            );
+
+        if(found){
+
+            chapter =
+                item;
+
+            lecture =
+                found;
+
+            break;
+
+        }
+
+    }
+
+
+    if(!chapter || !lecture)
+        return;
+
+
+    /*
+       Actual note editor is separate:
+       note.html
+    */
+
+    const url =
+        "note.html" +
+        "?subject=" +
+        encodeURIComponent(
+            subject.id
+        ) +
+        "&chapter=" +
+        encodeURIComponent(
+            chapter.id
+        ) +
+        "&lecture=" +
+        encodeURIComponent(
+            lecture.id
+        );
+
+
+    window.location.href =
+        url;
+
+}
+
+
+/* =========================================================
+   TOGGLE CHAPTER
+========================================================= */
+
+function toggleChapter(
+    chapterId
+){
+
+    if(
+        expandedChapters.has(
+            chapterId
+        )
+    ){
+
+        expandedChapters.delete(
+            chapterId
+        );
+
+    }else{
+
+        expandedChapters.add(
+            chapterId
+        );
+
+    }
+
+    render();
+
+}
+
+
+/* =========================================================
+   CREATE
+========================================================= */
+
+function openCreate(
+    type,
+    parentId=null
+){
+
+    editingType =
+        type;
+
+    editingId =
+        null;
+
+
+    modalTitle.textContent =
+        type === "subject"
+            ? "Create Subject"
+            : type === "chapter"
+                ? "Create Chapter"
+                : "Create Lecture";
+
+
+    entityName.value =
+        "";
+
+    entityDescription.value =
+        "";
+
+
+    descriptionGroup.style.display =
+        type === "subject"
+            ? "block"
+            : "none";
+
+
+    entityName.placeholder =
+        type === "subject"
+            ? "e.g. Mathematics"
+            : type === "chapter"
+                ? "e.g. Trigonometry"
+                : "e.g. Lecture 01 – Measurement of Angles";
+
 
     modalOverlay.classList.add(
         "show"
     );
 
 
-    if(note){
-
-        editingNoteId =
-            note.id;
-
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Edit Note";
-
-
-        document.getElementById(
-            "noteTitle"
-        ).value =
-            note.title || "";
-
-
-        document.getElementById(
-            "noteSubject"
-        ).value =
-            note.subjectId || "";
-
-
-        document.getElementById(
-            "noteTag"
-        ).value =
-            note.tag || "";
-
-
-        document.getElementById(
-            "noteContent"
-        ).value =
-            note.content || "";
-
-
-        document.getElementById(
-            "noteImportant"
-        ).checked =
-            !!note.important;
-
-    }else{
-
-        editingNoteId = null;
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Create New Note";
-
-
-        noteForm.reset();
-
-        populateSubjects();
-
-    }
-
-
     setTimeout(
         () =>
-            document
-                .getElementById(
-                    "noteTitle"
-                )
-                .focus(),
+            entityName.focus(),
         100
     );
 
 }
 
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+function openEdit(
+    type,
+    id
+){
+
+    editingType =
+        type;
+
+    editingId =
+        id;
+
+
+    let item = null;
+
+
+    if(type === "subject"){
+
+        item =
+            findSubject(id);
+
+    }
+
+    else if(type === "chapter"){
+
+        item =
+            findChapter(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+    else if(type === "lecture"){
+
+        item =
+            findLectureEverywhere(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+
+    if(!item)
+        return;
+
+
+    modalTitle.textContent =
+        type === "subject"
+            ? "Rename Subject"
+            : type === "chapter"
+                ? "Rename Chapter"
+                : "Rename Lecture";
+
+
+    entityName.value =
+        item.name || "";
+
+
+    entityDescription.value =
+        item.description || "";
+
+
+    descriptionGroup.style.display =
+        type === "subject"
+            ? "block"
+            : "none";
+
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            entityName.focus();
+
+            entityName.select();
+
+        },
+        100
+    );
+
+}
+
+
+/* =========================================================
+   FIND LECTURE
+========================================================= */
+
+function findLectureEverywhere(
+    subjectId,
+    lectureId
+){
+
+    const subject =
+        findSubject(
+            subjectId
+        );
+
+    if(!subject)
+        return null;
+
+
+    for(
+        const chapter
+        of subject.chapters || []
+    ){
+
+        const lecture =
+            (
+                chapter.lectures || []
+            ).find(
+                item =>
+                    item.id ===
+                    lectureId
+            );
+
+        if(lecture)
+            return lecture;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   SAVE MODAL
+========================================================= */
+
+entityForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const name =
+            entityName
+                .value
+                .trim();
+
+
+        const description =
+            entityDescription
+                .value
+                .trim();
+
+
+        if(!name){
+
+            showToast(
+                "Please enter a name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* ======================
+           CREATE SUBJECT
+        ====================== */
+
+        if(
+            editingType ===
+            "subject" &&
+            !editingId
+        ){
+
+            const duplicate =
+                getSubjects().some(
+                    subject =>
+                        subject.name
+                            .toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+
+            if(duplicate){
+
+                showToast(
+                    "This subject already exists.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            user.studyNotes.subjects.unshift({
+
+                id:
+                    generateId(
+                        "subject"
+                    ),
+
+                name:
+                    name,
+
+                description:
+                    description,
+
+                pinned:
+                    false,
+
+                important:
+                    false,
+
+                chapters:
+                    [],
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            });
+
+
+            saveCurrentUser();
+
+            closeModal();
+
+            render();
+
+            showToast(
+                "Subject created successfully."
+            );
+
+            return;
+
+        }
+
+
+        /* ======================
+           CREATE CHAPTER
+        ====================== */
+
+        if(
+            editingType ===
+            "chapter" &&
+            !editingId
+        ){
+
+            const subject =
+                findSubject(
+                    currentSubjectId
+                );
+
+
+            if(!subject)
+                return;
+
+
+            if(!Array.isArray(
+                subject.chapters
+            )){
+
+                subject.chapters = [];
+
+            }
+
+
+            const duplicate =
+                subject.chapters.some(
+                    chapter =>
+                        chapter.name
+                            .toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+
+            if(duplicate){
+
+                showToast(
+                    "This chapter already exists.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const chapter = {
+
+                id:
+                    generateId(
+                        "chapter"
+                    ),
+
+                name:
+                    name,
+
+                pinned:
+                    false,
+
+                important:
+                    false,
+
+                lectures:
+                    [],
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            };
+
+
+            subject.chapters.push(
+                chapter
+            );
+
+
+            saveCurrentUser();
+
+            closeModal();
+
+            expandedChapters.add(
+                chapter.id
+            );
+
+            render();
+
+            showToast(
+                "Chapter created successfully."
+            );
+
+            return;
+
+        }
+
+
+        /* ======================
+           CREATE LECTURE
+        ====================== */
+
+        if(
+            editingType ===
+            "lecture" &&
+            !editingId
+        ){
+
+            const subject =
+                findSubject(
+                    currentSubjectId
+                );
+
+
+            if(!subject)
+                return;
+
+
+            /*
+               parentId was used to
+               open the modal.
+               Store it temporarily.
+            */
+
+            const chapterId =
+                window.__creatingChapterId;
+
+
+            const chapter =
+                findChapter(
+                    currentSubjectId,
+                    chapterId
+                );
+
+
+            if(!chapter)
+                return;
+
+
+            if(!Array.isArray(
+                chapter.lectures
+            )){
+
+                chapter.lectures = [];
+
+            }
+
+
+            const duplicate =
+                chapter.lectures.some(
+                    lecture =>
+                        lecture.name
+                            .toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+
+            if(duplicate){
+
+                showToast(
+                    "This lecture already exists.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            chapter.lectures.push({
+
+                id:
+                    generateId(
+                        "lecture"
+                    ),
+
+                name:
+                    name,
+
+                pinned:
+                    false,
+
+                important:
+                    false,
+
+                noteId:
+                    null,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            });
+
+
+            saveCurrentUser();
+
+            closeModal();
+
+            expandedChapters.add(
+                chapter.id
+            );
+
+            render();
+
+            showToast(
+                "Lecture created successfully."
+            );
+
+            return;
+
+        }
+
+
+        /* ======================
+           EDIT SUBJECT
+        ====================== */
+
+        if(
+            editingType ===
+            "subject" &&
+            editingId
+        ){
+
+            const subject =
+                findSubject(
+                    editingId
+                );
+
+
+            if(subject){
+
+                subject.name =
+                    name;
+
+                subject.description =
+                    description;
+
+                subject.updatedAt =
+                    new Date().toISOString();
+
+            }
+
+        }
+
+
+        /* ======================
+           EDIT CHAPTER
+        ====================== */
+
+        if(
+            editingType ===
+            "chapter" &&
+            editingId
+        ){
+
+            const chapter =
+                findChapter(
+                    currentSubjectId,
+                    editingId
+                );
+
+
+            if(chapter){
+
+                chapter.name =
+                    name;
+
+                chapter.updatedAt =
+                    new Date().toISOString();
+
+            }
+
+        }
+
+
+        /* ======================
+           EDIT LECTURE
+        ====================== */
+
+        if(
+            editingType ===
+            "lecture" &&
+            editingId
+        ){
+
+            const lecture =
+                findLectureEverywhere(
+                    currentSubjectId,
+                    editingId
+                );
+
+
+            if(lecture){
+
+                lecture.name =
+                    name;
+
+                lecture.updatedAt =
+                    new Date().toISOString();
+
+            }
+
+        }
+
+
+        saveCurrentUser();
+
+        closeModal();
+
+        render();
+
+        showToast(
+            "Updated successfully."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "addSubjectBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if(
+                currentView ===
+                "subjects"
+            ){
+
+                openCreate(
+                    "subject"
+                );
+
+            }else{
+
+                openCreate(
+                    "chapter"
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ADD LECTURE OVERRIDE
+========================================================= */
+
+const originalOpenCreate =
+    openCreate;
+
+
+/*
+   We need to remember which
+   chapter receives a lecture.
+*/
+
+window.__creatingChapterId =
+    null;
+
+
+function openCreateLecture(
+    chapterId
+){
+
+    window.__creatingChapterId =
+        chapterId;
+
+    originalOpenCreate(
+        "lecture",
+        chapterId
+    );
+
+}
+
+
+/*
+   Replace calls generated
+   inside cards.
+*/
+
+window.openCreate =
+    function(
+        type,
+        parentId=null
+    ){
+
+        if(
+            type ===
+            "lecture"
+        ){
+
+            openCreateLecture(
+                parentId
+            );
+
+        }else{
+
+            originalOpenCreate(
+                type,
+                parentId
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function deleteEntity(
+    type,
+    id
+){
+
+    let name =
+        "this item";
+
+
+    if(type === "subject"){
+
+        const subject =
+            findSubject(id);
+
+        if(!subject)
+            return;
+
+        name =
+            subject.name;
+
+
+        if(
+            !confirm(
+                `Delete "${name}" and all its chapters and lectures?`
+            )
+        ){
+
+            return;
+
+        }
+
+
+        user.studyNotes.subjects =
+            user.studyNotes.subjects.filter(
+                subject =>
+                    subject.id !== id
+            );
+
+
+        saveCurrentUser();
+
+        render();
+
+        showToast(
+            "Subject deleted."
+        );
+
+        return;
+
+    }
+
+
+    if(type === "chapter"){
+
+        const subject =
+            findSubject(
+                currentSubjectId
+            );
+
+        if(!subject)
+            return;
+
+
+        const chapter =
+            findChapter(
+                currentSubjectId,
+                id
+            );
+
+        if(!chapter)
+            return;
+
+
+        name =
+            chapter.name;
+
+
+        if(
+            !confirm(
+                `Delete "${name}" and all its lectures?`
+            )
+        ){
+
+            return;
+
+        }
+
+
+        subject.chapters =
+            subject.chapters.filter(
+                chapter =>
+                    chapter.id !== id
+            );
+
+
+        expandedChapters.delete(
+            id
+        );
+
+
+        saveCurrentUser();
+
+        render();
+
+        showToast(
+            "Chapter deleted."
+        );
+
+        return;
+
+    }
+
+
+    if(type === "lecture"){
+
+        const subject =
+            findSubject(
+                currentSubjectId
+            );
+
+        if(!subject)
+            return;
+
+
+        let foundChapter =
+            null;
+
+
+        let lecture =
+            null;
+
+
+        for(
+            const chapter
+            of subject.chapters || []
+        ){
+
+            const found =
+                (
+                    chapter.lectures || []
+                ).find(
+                    item =>
+                        item.id === id
+                );
+
+            if(found){
+
+                foundChapter =
+                    chapter;
+
+                lecture =
+                    found;
+
+                break;
+
+            }
+
+        }
+
+
+        if(
+            !foundChapter ||
+            !lecture
+        )
+            return;
+
+
+        name =
+            lecture.name;
+
+
+        if(
+            !confirm(
+                `Delete "${name}" permanently?`
+            )
+        ){
+
+            return;
+
+        }
+
+
+        foundChapter.lectures =
+            foundChapter.lectures.filter(
+                item =>
+                    item.id !== id
+            );
+
+
+        saveCurrentUser();
+
+        render();
+
+        showToast(
+            "Lecture deleted."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   IMPORTANT
+========================================================= */
+
+function toggleImportant(
+    type,
+    id
+){
+
+    let item = null;
+
+
+    if(type === "subject"){
+
+        item =
+            findSubject(id);
+
+    }
+
+    else if(type === "chapter"){
+
+        item =
+            findChapter(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+    else if(type === "lecture"){
+
+        item =
+            findLectureEverywhere(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+
+    if(!item)
+        return;
+
+
+    item.important =
+        !item.important;
+
+
+    item.updatedAt =
+        new Date().toISOString();
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        item.important
+            ? "Marked important ⭐"
+            : "Removed from important."
+    );
+
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+function togglePinned(
+    type,
+    id
+){
+
+    let item = null;
+
+
+    if(type === "subject"){
+
+        item =
+            findSubject(id);
+
+    }
+
+    else if(type === "chapter"){
+
+        item =
+            findChapter(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+    else if(type === "lecture"){
+
+        item =
+            findLectureEverywhere(
+                currentSubjectId,
+                id
+            );
+
+    }
+
+
+    if(!item)
+        return;
+
+
+    item.pinned =
+        !item.pinned;
+
+
+    item.updatedAt =
+        new Date().toISOString();
+
+
+    saveCurrentUser();
+
+    render();
+
+
+    showToast(
+        item.pinned
+            ? "Pinned 📌"
+            : "Unpinned."
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        render();
+
+    }
+);
+
+
+/* =========================================================
+   IMPORTANT FILTER
+========================================================= */
+
+document
+    .getElementById(
+        "importantFilter"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            importantOnly =
+                !importantOnly;
+
+            this.classList.toggle(
+                "active",
+                importantOnly
+            );
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   PIN FILTER
+========================================================= */
+
+document
+    .getElementById(
+        "pinnedFilter"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            pinnedOnly =
+                !pinnedOnly;
+
+            this.classList.toggle(
+                "active",
+                pinnedOnly
+            );
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+homeBreadcrumb.addEventListener(
+    "click",
+    goHome
+);
+
+
+function goHome(){
+
+    currentView =
+        "subjects";
+
+    currentSubjectId =
+        null;
+
+    searchInput.value =
+        "";
+
+    importantOnly =
+        false;
+
+    pinnedOnly =
+        false;
+
+
+    document
+        .getElementById(
+            "importantFilter"
+        )
+        .classList.remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "pinnedFilter"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    subjectGrid.className =
+        "subject-grid";
+
+
+    render();
+
+}
+
+
+/* =========================================================
+   EXPAND ALL
+========================================================= */
+
+document
+    .getElementById(
+        "expandAllBtn"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            if(
+                currentView ===
+                "subjects"
+            ){
+
+                this.textContent =
+                    "Subjects view";
+
+                return;
+
+            }
+
+
+            const subject =
+                findSubject(
+                    currentSubjectId
+                );
+
+
+            if(!subject)
+                return;
+
+
+            (
+                subject.chapters || []
+            ).forEach(
+                chapter => {
+
+                    expandedChapters.add(
+                        chapter.id
+                    );
+
+                }
+            );
+
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   COLLAPSE ALL
+========================================================= */
+
+document
+    .getElementById(
+        "collapseAllBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            expandedChapters.clear();
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+function toggleMenu(
+    button
+){
+
+    document
+        .querySelectorAll(
+            ".dropdown.show"
+        )
+        .forEach(
+            menu =>
+                menu.classList.remove(
+                    "show"
+                )
+        );
+
+
+    const menu =
+        button.nextElementSibling;
+
+
+    if(menu){
+
+        menu.classList.toggle(
+            "show"
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if(
+            !event.target.closest(
+                ".card-menu"
+            )
+        ){
+
+            document
+                .querySelectorAll(
+                    ".dropdown.show"
+                )
+                .forEach(
+                    menu =>
+                        menu.classList.remove(
+                            "show"
+                        )
+                );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
 
 function closeModal(){
 
@@ -1678,25 +4917,18 @@ function closeModal(){
         "show"
     );
 
-    editingNoteId = null;
+    editingType =
+        null;
 
-    noteForm.reset();
+    editingId =
+        null;
+
+    window.__creatingChapterId =
+        null;
+
+    entityForm.reset();
 
 }
-
-
-/* ============================================================
-   MODAL EVENTS
-============================================================ */
-
-document
-    .getElementById(
-        "addNoteBtn"
-    )
-    .addEventListener(
-        "click",
-        () => openModal()
-    );
 
 
 document
@@ -1736,768 +4968,81 @@ modalOverlay.addEventListener(
 );
 
 
-/* ============================================================
-   SAVE NOTE
-============================================================ */
+/* =========================================================
+   ESCAPE
+========================================================= */
 
-noteForm.addEventListener(
-    "submit",
+document.addEventListener(
+    "keydown",
     event => {
 
-        event.preventDefault();
+        if(
+            event.key ===
+            "Escape"
+        ){
 
-
-        const title =
-            document
-                .getElementById(
-                    "noteTitle"
-                )
-                .value
-                .trim();
-
-
-        const subjectId =
-            document
-                .getElementById(
-                    "noteSubject"
-                )
-                .value;
-
-
-        const tag =
-            document
-                .getElementById(
-                    "noteTag"
-                )
-                .value
-                .trim();
-
-
-        const content =
-            document
-                .getElementById(
-                    "noteContent"
-                )
-                .value
-                .trim();
-
-
-        const important =
-            document
-                .getElementById(
-                    "noteImportant"
-                )
-                .checked;
-
-
-        if(!title){
-
-            showToast(
-                "Please enter a note title.",
-                "error"
-            );
-
-            return;
+            closeModal();
 
         }
 
 
-        if(!content){
+        /*
+           Ctrl + K
+           Search shortcut
+        */
 
-            showToast(
-                "Please write some note content.",
-                "error"
-            );
+        if(
+            (event.ctrlKey ||
+             event.metaKey) &&
+            event.key.toLowerCase() === "k"
+        ){
 
-            return;
+            event.preventDefault();
+
+            searchInput.focus();
 
         }
 
 
-        /* EDIT */
+        /*
+           Ctrl + N
+           New Subject / Chapter
+        */
 
-        if(editingNoteId){
+        if(
+            (event.ctrlKey ||
+             event.metaKey) &&
+            event.key.toLowerCase() === "n"
+        ){
 
-            const note =
-                user.notes.find(
-                    item =>
-                        item.id ===
-                        editingNoteId
+            event.preventDefault();
+
+            if(
+                currentView ===
+                "subjects"
+            ){
+
+                openCreate(
+                    "subject"
                 );
 
+            }else{
 
-            if(note){
-
-                note.title =
-                    title;
-
-                note.subjectId =
-                    subjectId;
-
-                note.tag =
-                    tag || "General";
-
-                note.content =
-                    content;
-
-                note.important =
-                    important;
-
-                note.updatedAt =
-                    new Date().toISOString();
+                openCreate(
+                    "chapter"
+                );
 
             }
 
-
-            showToast(
-                "Note updated successfully."
-            );
-
         }
-
-
-        /* CREATE */
-
-        else{
-
-            user.notes.unshift({
-
-                id:
-                    generateId(),
-
-                title:
-                    title,
-
-                subjectId:
-                    subjectId,
-
-                tag:
-                    tag || "General",
-
-                content:
-                    content,
-
-                important:
-                    important,
-
-                createdAt:
-                    new Date().toISOString(),
-
-                updatedAt:
-                    new Date().toISOString()
-
-            });
-
-
-            showToast(
-                "Note saved permanently."
-            );
-
-        }
-
-
-        saveCurrentUser();
-
-        closeModal();
-
-        render();
 
     }
 );
 
 
-/* ============================================================
-   RENDER
-============================================================ */
-
-function render(){
-
-    populateSubjects();
-
-
-    let notes =
-        [...user.notes];
-
-
-    const search =
-        searchInput
-            .value
-            .trim()
-            .toLowerCase();
-
-
-    const selectedSubject =
-        subjectFilter.value;
-
-
-    const selectedFilter =
-        noteFilter.value;
-
-
-    /* SEARCH */
-
-    if(search){
-
-        notes =
-            notes.filter(
-                note => {
-
-                    return (
-
-                        (note.title || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        (note.content || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        (note.tag || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        getSubjectName(
-                            note.subjectId
-                        )
-                            .toLowerCase()
-                            .includes(search)
-
-                    );
-
-                }
-            );
-
-    }
-
-
-    /* SUBJECT */
-
-    if(
-        selectedSubject !==
-        "all"
-    ){
-
-        notes =
-            notes.filter(
-                note =>
-                    note.subjectId ===
-                    selectedSubject
-            );
-
-    }
-
-
-    /* IMPORTANT */
-
-    if(
-        selectedFilter ===
-        "important"
-    ){
-
-        notes =
-            notes.filter(
-                note =>
-                    note.important
-            );
-
-    }
-
-
-    if(
-        selectedFilter ===
-        "normal"
-    ){
-
-        notes =
-            notes.filter(
-                note =>
-                    !note.important
-            );
-
-    }
-
-
-    if(!notes.length){
-
-        notesGrid.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    ${search ? "⌕" : "✎"}
-                </div>
-
-                <h3>
-                    ${
-                        search
-                        ? "No notes found"
-                        : "Your notes are empty"
-                    }
-                </h3>
-
-                <p>
-                    ${
-                        search
-                        ? "Try another keyword or change your filters."
-                        : "Create your first note and start building your personal knowledge base."
-                    }
-                </p>
-
-            </div>
-
-        `;
-
-    }else{
-
-        notesGrid.innerHTML =
-            notes
-                .map(
-                    note =>
-                        renderNote(note)
-                )
-                .join("");
-
-    }
-
-
-    updateStats();
-
-}
-
-
-/* ============================================================
-   NOTE CARD
-============================================================ */
-
-function renderNote(note){
-
-    const subject =
-        getSubjectName(
-            note.subjectId
-        );
-
-
-    const date =
-        formatDate(
-            note.updatedAt ||
-            note.createdAt
-        );
-
-
-    const words =
-        countWords(
-            note.content
-        );
-
-
-    return `
-
-        <article
-            class="
-                note-card
-                ${note.important ? "important" : ""}
-            "
-        >
-
-            <div class="note-top">
-
-                <div class="note-title">
-                    ${escapeHTML(
-                        note.title
-                    )}
-                </div>
-
-
-                <button
-                    class="
-                        star
-                        ${note.important ? "active" : ""}
-                    "
-                    title="Toggle important"
-                    onclick="
-                        toggleImportant(
-                            '${note.id}'
-                        )
-                    "
-                >
-                    ${note.important ? "★" : "☆"}
-                </button>
-
-            </div>
-
-
-            <div class="note-meta">
-
-                <span class="tag">
-                    ${escapeHTML(
-                        subject
-                    )}
-                </span>
-
-                <span class="tag">
-                    ${escapeHTML(
-                        note.tag ||
-                        "General"
-                    )}
-                </span>
-
-                <span class="note-date">
-                    ${date}
-                </span>
-
-            </div>
-
-
-            <div class="note-content">
-                ${escapeHTML(
-                    note.content
-                )}
-            </div>
-
-
-            <div class="note-footer">
-
-                <span class="word-count">
-                    ${words} words
-                </span>
-
-
-                <div class="note-actions">
-
-                    <button
-                        class="action-btn"
-                        title="Edit"
-                        onclick="
-                            editNote(
-                                '${note.id}'
-                            )
-                        "
-                    >
-                        ✎
-                    </button>
-
-
-                    <button
-                        class="action-btn delete"
-                        title="Delete"
-                        onclick="
-                            deleteNote(
-                                '${note.id}'
-                            )
-                        "
-                    >
-                        ×
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-/* ============================================================
-   EDIT NOTE
-============================================================ */
-
-function editNote(id){
-
-    const note =
-        user.notes.find(
-            item =>
-                item.id === id
-        );
-
-
-    if(note){
-
-        populateSubjects();
-
-        openModal(note);
-
-    }
-
-}
-
-
-/* ============================================================
-   DELETE NOTE
-============================================================ */
-
-function deleteNote(id){
-
-    const note =
-        user.notes.find(
-            item =>
-                item.id === id
-        );
-
-
-    if(!note)
-        return;
-
-
-    const confirmDelete =
-        confirm(
-            `Delete "${note.title}" permanently?`
-        );
-
-
-    if(!confirmDelete)
-        return;
-
-
-    user.notes =
-        user.notes.filter(
-            item =>
-                item.id !== id
-        );
-
-
-    saveCurrentUser();
-
-    render();
-
-
-    showToast(
-        "Note deleted."
-    );
-
-}
-
-
-/* ============================================================
-   IMPORTANT
-============================================================ */
-
-function toggleImportant(id){
-
-    const note =
-        user.notes.find(
-            item =>
-                item.id === id
-        );
-
-
-    if(!note)
-        return;
-
-
-    note.important =
-        !note.important;
-
-
-    note.updatedAt =
-        new Date().toISOString();
-
-
-    saveCurrentUser();
-
-    render();
-
-
-    showToast(
-        note.important
-            ? "Note marked important ⭐"
-            : "Removed from important."
-    );
-
-}
-
-
-/* ============================================================
-   STATS
-============================================================ */
-
-function updateStats(){
-
-    const notes =
-        user.notes || [];
-
-
-    const total =
-        notes.length;
-
-
-    const important =
-        notes.filter(
-            note =>
-                note.important
-        ).length;
-
-
-    const subjects =
-        new Set(
-            notes
-                .map(
-                    note =>
-                        note.subjectId
-                )
-                .filter(Boolean)
-        ).size;
-
-
-    const words =
-        notes.reduce(
-            (
-                total,
-                note
-            ) =>
-                total +
-                countWords(
-                    note.content
-                ),
-            0
-        );
-
-
-    document.getElementById(
-        "totalNotes"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "importantNotes"
-    ).textContent =
-        important;
-
-
-    document.getElementById(
-        "subjectCount"
-    ).textContent =
-        subjects;
-
-
-    document.getElementById(
-        "wordCount"
-    ).textContent =
-        formatNumber(words);
-
-}
-
-
-/* ============================================================
-   WORD COUNT
-============================================================ */
-
-function countWords(text){
-
-    if(!text)
-        return 0;
-
-
-    return text
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean)
-        .length;
-
-}
-
-
-function formatNumber(number){
-
-    return number.toLocaleString(
-        "en-IN"
-    );
-
-}
-
-
-/* ============================================================
-   DATE
-============================================================ */
-
-function formatDate(date){
-
-    if(!date)
-        return "Recently";
-
-
-    const d =
-        new Date(date);
-
-
-    if(
-        Number.isNaN(
-            d.getTime()
-        )
-    ){
-
-        return "Recently";
-
-    }
-
-
-    return d.toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"short",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-/* ============================================================
-   SEARCH / FILTER
-============================================================ */
-
-searchInput.addEventListener(
-    "input",
-    render
-);
-
-subjectFilter.addEventListener(
-    "change",
-    render
-);
-
-noteFilter.addEventListener(
-    "change",
-    render
-);
-
-
-/* ============================================================
-   LOGOUT
-============================================================ */
-
-document
-    .getElementById(
-        "logoutBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            localStorage.removeItem(
-                SESSION_KEY
-            );
-
-            window.location.href =
-                "index.html";
-
-        }
-    );
-
-
-/* ============================================================
+/* =========================================================
    MOBILE SIDEBAR
-============================================================ */
+========================================================= */
 
 document
     .getElementById(
@@ -2519,9 +5064,32 @@ document
     );
 
 
-/* ============================================================
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                SESSION_KEY
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+/* =========================================================
    AVATAR
-============================================================ */
+========================================================= */
 
 if(user){
 
@@ -2531,9 +5099,15 @@ if(user){
         );
 
 
+    const name =
+        user.name ||
+        user.email ||
+        "User";
+
+
     avatar.textContent =
-        user.name
-            .split(" ")
+        name
+            .split(/\s+/)
             .map(
                 word =>
                     word[0]
@@ -2545,9 +5119,117 @@ if(user){
 }
 
 
-/* ============================================================
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+function emptyState(
+    icon,
+    title,
+    message,
+    buttonText
+){
+
+    return `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                ${icon}
+            </div>
+
+            <h3>
+                ${escapeHTML(title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(message)}
+            </p>
+
+            ${
+                buttonText
+                    ? `
+                        <button
+                            class="primary-btn"
+                            onclick="
+                                createFromEmpty()
+                            "
+                        >
+                            + ${escapeHTML(
+                                buttonText
+                            )}
+                        </button>
+                    `
+                    : ""
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+function createFromEmpty(){
+
+    if(
+        currentView ===
+        "subjects"
+    ){
+
+        openCreate(
+            "subject"
+        );
+
+    }else{
+
+        openCreate(
+            "chapter"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
    TOAST
-============================================================ */
+========================================================= */
 
 function showToast(
     message,
@@ -2585,10 +5267,13 @@ function showToast(
             toast.style.opacity =
                 "0";
 
+            toast.style.transform =
+                "translateX(12px)";
+
             setTimeout(
                 () =>
                     toast.remove(),
-                250
+                220
             );
 
         },
@@ -2598,42 +5283,45 @@ function showToast(
 }
 
 
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
+/* =========================================================
+   FIX SUBJECT GRID CLASS
+========================================================= */
 
-function escapeHTML(value){
+function resetGridClass(){
 
-    return String(value ?? "")
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+    if(
+        currentView ===
+        "subjects"
+    ){
+
+        subjectGrid.className =
+            "subject-grid";
+
+    }
 
 }
 
 
-/* ============================================================
-   INITIALIZE
-============================================================ */
+/* =========================================================
+   PATCH RENDER
+========================================================= */
 
-populateSubjects();
+const originalRender =
+    render;
+
+render =
+    function(){
+
+        resetGridClass();
+
+        originalRender();
+
+    };
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 render();
 
