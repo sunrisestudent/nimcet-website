@@ -2663,36 +2663,10 @@ function getUsers(){
 
 function saveUsers(users){
 
-    try{
-        const data = JSON.stringify(users);
-
-        localStorage.setItem(
-            USERS_KEY,
-            data
-        );
-
-        // Verify that the browser actually stored the data.
-        const check = localStorage.getItem(USERS_KEY);
-        if(check !== data){
-            throw new Error("LocalStorage verification failed");
-        }
-
-        return true;
-
-    }catch(error){
-
-        console.error("NIMCET PrepPro: data save failed", error);
-
-        // Keep the current data in memory even if browser storage is full.
-        try{
-            sessionStorage.setItem(
-                USERS_KEY,
-                JSON.stringify(users)
-            );
-        }catch(e){}
-
-        return false;
-    }
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
 }
 
 
@@ -2768,10 +2742,27 @@ if(!Array.isArray(user.notes)){
     user.notes = [];
 }
 
-if(!Array.isArray(user.lectures)){
-    user.lectures = [];
-}
+// Find the lecture inside the real Subject > Chapter > Lecture tree.
+let currentLecture = null;
+let currentChapter = null;
+let currentSubject = null;
 
+if(lectureId && Array.isArray(user.studyNotes?.subjects)){
+    outer:
+    for(const subject of user.studyNotes.subjects){
+        for(const chapter of (subject.chapters || [])){
+            const lecture = (chapter.lectures || []).find(
+                l => l.id === lectureId
+            );
+            if(lecture){
+                currentSubject = subject;
+                currentChapter = chapter;
+                currentLecture = lecture;
+                break outer;
+            }
+        }
+    }
+}
 
 /* =========================================================
    CURRENT NOTE
@@ -2779,58 +2770,51 @@ if(!Array.isArray(user.lectures)){
 
 let currentNote = null;
 
+// 1. Exact noteId from notes.html
 if(noteId){
-
-    currentNote =
-        user.notes.find(
-            n => n.id === noteId
-        );
-
+    currentNote = user.notes.find(
+        n => n.id === noteId
+    ) || null;
 }
 
+// 2. If no noteId was supplied, use the note linked to this lecture.
+if(!currentNote && currentLecture?.noteId){
+    currentNote = user.notes.find(
+        n => n.id === currentLecture.noteId
+    ) || null;
+}
 
+// 3. Migration fallback for notes created before this fix.
+if(!currentNote && lectureId){
+    currentNote = user.notes.find(
+        n => n.lectureId === lectureId
+    ) || null;
+}
+
+// 4. Create the note only when absolutely necessary.
 if(!currentNote){
-
     currentNote = {
-
-        id:
-            "note_" +
-            Date.now().toString(36) +
-            "_" +
-            Math.random()
-                .toString(36)
-                .slice(2,8),
-
-        lectureId:
-            lectureId || "",
-
-        title:
-            "Untitled Note",
-
-        content:
-            "",
-
-        objects:
-            [],
-
-        important:
-            false,
-
-        pinned:
-            false,
-
-        createdAt:
-            new Date().toISOString(),
-
-        updatedAt:
-            new Date().toISOString()
-
+        id: "note_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,8),
+        lectureId: lectureId || "",
+        subjectId: currentSubject?.id || params.get("subject") || "",
+        chapterId: currentChapter?.id || params.get("chapter") || "",
+        title: currentLecture?.name || "Untitled Note",
+        content: "",
+        objects: [],
+        important: !!currentLecture?.important,
+        pinned: !!currentLecture?.pinned,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
     };
+    user.notes.unshift(currentNote);
+}
 
-    user.notes.unshift(
-        currentNote
-    );
-
+// Keep the lecture -> note relationship permanently synchronized.
+if(currentLecture){
+    currentLecture.noteId = currentNote.id;
+    currentNote.lectureId = currentLecture.id;
+    currentNote.subjectId = currentSubject?.id || currentNote.subjectId || "";
+    currentNote.chapterId = currentChapter?.id || currentNote.chapterId || "";
 }
 
 
@@ -2906,59 +2890,51 @@ const insertMenu =
 let saveTimer = null;
 
 function saveCurrentUser(){
-
-    const index =
-        users.findIndex(
-            u => u.id === user.id
-        );
+    const index = users.findIndex(
+        u => u.id === user.id
+    );
 
     if(index === -1){
-        console.warn("NIMCET PrepPro: current user not found while saving");
-        setSaveState("error");
-        return false;
+        throw new Error("Current user was not found.");
     }
 
-    // Replace the user object in the users array so every change
-    // made to notes is persisted with the logged-in account.
     users[index] = user;
 
-    return saveUsers(users);
+    const payload = JSON.stringify(users);
+    localStorage.setItem(USERS_KEY, payload);
+
+    // Verify that the browser actually accepted the data.
+    const saved = localStorage.getItem(USERS_KEY);
+    if(saved !== payload){
+        throw new Error("Browser storage verification failed.");
+    }
 }
 
 
 function saveNote(){
-
     try{
-        if(!currentNote || !user){
-            throw new Error("Current note/user is missing");
-        }
-
         currentNote.title =
             noteName.value.trim() ||
-            "Untitled Note";
+            (currentLecture?.name || "Untitled Note");
 
-        currentNote.content =
-            editor.innerHTML;
+        currentNote.content = editor.innerHTML;
+        currentNote.objects = getObjectsFromDOM();
+        currentNote.updatedAt = new Date().toISOString();
 
-        currentNote.objects =
-            getObjectsFromDOM();
-
-        currentNote.updatedAt =
-            new Date().toISOString();
-
-        const saved = saveCurrentUser();
-
-        if(saved){
-            setSaveState("saved");
-            return true;
+        if(currentLecture){
+            currentLecture.noteId = currentNote.id;
+            currentLecture.updatedAt = new Date().toISOString();
+            currentLecture.important = !!currentNote.important;
+            currentLecture.pinned = !!currentNote.pinned;
         }
 
-        throw new Error("User data could not be stored");
-
+        saveCurrentUser();
+        setSaveState("saved");
+        return true;
     }catch(error){
-
-        console.error("NIMCET PrepPro: note save failed", error);
+        console.error("Note save failed:", error);
         setSaveState("error");
+        showToast("Note save failed. Browser storage may be full.", "error");
         return false;
     }
 }
@@ -2985,14 +2961,11 @@ function setSaveState(state){
         state;
 
     if(state === "saving"){
-        saveText.textContent =
-            "Saving...";
+        saveText.textContent = "Saving...";
     }else if(state === "error"){
-        saveText.textContent =
-            "Save failed";
+        saveText.textContent = "Save failed";
     }else{
-        saveText.textContent =
-            "Saved";
+        saveText.textContent = "Saved";
     }
 }
 
@@ -3015,18 +2988,10 @@ editor.innerHTML =
 ========================================================= */
 
 function getLecture(){
-
-    if(!lectureId)
-        return null;
-
-    return user.lectures.find(
-        l => l.id === lectureId
-    ) || null;
+    return currentLecture || null;
 }
 
-
-const lecture =
-    getLecture();
+const lecture = getLecture();
 
 
 if(lecture){
@@ -5915,11 +5880,14 @@ document
         "click",
         () => {
 
-            saveNote();
-
-            showToast(
-                "Note saved successfully."
-            );
+            /*
+               Save the note first.
+               If saving succeeds, immediately return
+               to the Study Notebook (notes.html).
+            */
+            if(saveNote()){
+                window.location.href = "notes.html";
+            }
 
         }
     );
