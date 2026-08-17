@@ -1,0 +1,6819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIMCET PrepPro | Note Editor</title>
+
+<style>
+/* =========================================================
+   NIMCET PREPPRO NOTE EDITOR
+   Professional Word / Docs inspired workspace
+========================================================= */
+
+:root{
+    --bg:#070b14;
+    --bg2:#0a1020;
+    --panel:#0d1424;
+    --panel2:#111a2d;
+    --panel3:#151f35;
+    --page:#ffffff;
+    --pageText:#172033;
+
+    --border:rgba(255,255,255,.08);
+    --border2:rgba(255,255,255,.13);
+
+    --primary:#6366f1;
+    --primary2:#7c3aed;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --yellow:#fbbf24;
+    --red:#fb7185;
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --muted2:#64748b;
+
+    --sidebar:260px;
+    --toolbar:58px;
+    --topbar:48px;
+
+    --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(99,102,241,.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(34,211,238,.07),
+            transparent 25%
+        ),
+        var(--bg);
+
+    color:var(--text);
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.topbar{
+    height:var(--topbar);
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 14px;
+
+    background:
+        rgba(7,11,20,.96);
+
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+    z-index:1000;
+}
+
+.brand-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:240px;
+}
+
+.logo{
+    width:29px;
+    height:29px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    font-size:12px;
+    font-weight:900;
+
+    box-shadow:
+        0 8px 20px rgba(99,102,241,.25);
+}
+
+.brand-text{
+    font-size:12px;
+    font-weight:800;
+}
+
+.brand-text span{
+    color:#818cf8;
+}
+
+.note-name-area{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    max-width:420px;
+}
+
+.note-name{
+    min-width:120px;
+    max-width:300px;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+    color:#e2e8f0;
+
+    font-size:12px;
+    font-weight:700;
+
+    padding:5px 7px;
+    border-radius:6px;
+}
+
+.note-name:hover,
+.note-name:focus{
+    background:rgba(255,255,255,.05);
+}
+
+.save-status{
+    display:flex;
+    align-items:center;
+    gap:5px;
+
+    color:#64748b;
+    font-size:9px;
+}
+
+.save-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#64748b;
+}
+
+.save-status.saved .save-dot{
+    background:var(--green);
+}
+
+.save-status.saving .save-dot{
+    background:var(--yellow);
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.3;
+    }
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.top-btn{
+    min-width:31px;
+    height:31px;
+
+    display:grid;
+    place-items:center;
+
+    padding:0 8px;
+
+    border:1px solid transparent;
+    border-radius:7px;
+
+    background:transparent;
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+.top-btn:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.top-btn.primary{
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color:white;
+}
+
+.top-btn.danger:hover{
+    color:#fb7185;
+}
+
+.avatar{
+    width:30px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+    font-size:9px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
+.workspace{
+    flex:1;
+    min-height:0;
+
+    display:flex;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.sidebar{
+    position:relative;
+
+    width:var(--sidebar);
+    flex-shrink:0;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+        rgba(9,14,27,.97);
+
+    border-right:1px solid var(--border);
+
+    transition:
+        width .25s ease,
+        transform .25s ease;
+
+    z-index:500;
+}
+
+.sidebar.collapsed{
+    width:0;
+    overflow:hidden;
+}
+
+.sidebar-head{
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 12px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.sidebar-title{
+    font-size:10px;
+    font-weight:800;
+    color:#cbd5e1;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+.sidebar-content{
+    flex:1;
+    overflow:auto;
+    padding:12px;
+}
+
+.sidebar-section{
+    margin-bottom:20px;
+}
+
+.sidebar-section-title{
+    margin-bottom:8px;
+
+    color:#475569;
+
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.context-card{
+    padding:11px;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.context-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:6px 0;
+
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.context-icon{
+    width:24px;
+    height:24px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:6px;
+
+    background:rgba(99,102,241,.08);
+    color:#a5b4fc;
+}
+
+.context-value{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    color:#e2e8f0;
+}
+
+.outline-item{
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    padding:7px 8px;
+
+    border-radius:7px;
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+    cursor:pointer;
+}
+
+.outline-item:hover{
+    background:rgba(255,255,255,.04);
+    color:white;
+}
+
+.outline-item.h1{
+    color:#e2e8f0;
+    font-weight:700;
+}
+
+.outline-item.h2{
+    padding-left:18px;
+}
+
+.outline-item.h3{
+    padding-left:28px;
+}
+
+.study-tools{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+}
+
+.study-tool{
+    min-height:52px;
+
+    padding:8px;
+
+    border:1px solid var(--border);
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    color:#94a3b8;
+
+    text-align:left;
+
+    font-size:8px;
+}
+
+.study-tool:hover{
+    border-color:rgba(129,140,248,.25);
+    background:rgba(99,102,241,.06);
+    color:white;
+}
+
+.study-tool strong{
+    display:block;
+    margin-bottom:3px;
+
+    color:#cbd5e1;
+    font-size:9px;
+}
+
+
+/* =========================================================
+   MAIN EDITOR
+========================================================= */
+
+.editor-area{
+    flex:1;
+    min-width:0;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+        #101827;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar{
+    min-height:var(--toolbar);
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    gap:4px;
+
+    padding:6px 10px;
+
+    background:
+        rgba(13,20,36,.98);
+
+    border-bottom:1px solid var(--border);
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    scrollbar-width:thin;
+
+    z-index:400;
+}
+
+.toolbar::-webkit-scrollbar{
+    height:4px;
+}
+
+.toolbar::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
+}
+
+.tool-group{
+    display:flex;
+    align-items:center;
+    gap:3px;
+
+    padding-right:6px;
+    margin-right:3px;
+
+    border-right:1px solid var(--border);
+}
+
+.tool-group:last-child{
+    border-right:0;
+}
+
+.tool{
+    min-width:29px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    padding:0 7px;
+
+    border:1px solid transparent;
+    border-radius:6px;
+
+    background:transparent;
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+.tool:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.tool.active{
+    color:#c7d2fe;
+    background:rgba(99,102,241,.16);
+    border-color:rgba(99,102,241,.2);
+}
+
+.tool-label{
+    font-size:10px;
+}
+
+.toolbar-select{
+    height:30px;
+
+    padding:0 8px;
+
+    border:1px solid var(--border);
+    border-radius:6px;
+
+    outline:none;
+
+    background:#0a1120;
+    color:#cbd5e1;
+
+    font-size:9px;
+}
+
+.toolbar-select:focus{
+    border-color:#6366f1;
+}
+
+.color-tool{
+    position:relative;
+}
+
+.color-tool input{
+    position:absolute;
+    width:1px;
+    height:1px;
+    opacity:0;
+}
+
+
+/* =========================================================
+   CANVAS AREA
+========================================================= */
+
+.canvas-area{
+    flex:1;
+    min-height:0;
+
+    position:relative;
+
+    overflow:auto;
+
+    padding:45px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(99,102,241,.04),
+            transparent 35%
+        ),
+        #111827;
+}
+
+.canvas-inner{
+    width:max-content;
+    min-width:100%;
+    min-height:100%;
+
+    display:flex;
+    justify-content:center;
+
+    padding-bottom:80px;
+}
+
+
+/* =========================================================
+   DOCUMENT PAGE
+========================================================= */
+
+.page{
+    position:relative;
+
+    width:900px;
+    min-height:1165px;
+
+    padding:72px 76px;
+
+    background:var(--page);
+    color:var(--pageText);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.4);
+
+    transform-origin:top center;
+
+    transition:transform .15s ease;
+}
+
+.page::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    border:1px solid rgba(15,23,42,.06);
+}
+
+
+/* =========================================================
+   DOCUMENT EDITOR
+========================================================= */
+
+.document-editor{
+    position:relative;
+
+    min-height:1020px;
+
+    outline:none;
+
+    color:#172033;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    word-break:break-word;
+}
+
+.document-editor:empty::before{
+    content:
+        "Start writing your NIMCET notes here...";
+
+    color:#a8b0bf;
+
+    pointer-events:none;
+}
+
+.document-editor h1{
+    font-size:32px;
+    line-height:1.2;
+    margin:0 0 15px;
+}
+
+.document-editor h2{
+    font-size:25px;
+    line-height:1.3;
+    margin:20px 0 10px;
+}
+
+.document-editor h3{
+    font-size:20px;
+    line-height:1.35;
+    margin:18px 0 8px;
+}
+
+.document-editor h4{
+    font-size:17px;
+    margin:15px 0 7px;
+}
+
+.document-editor p{
+    margin:0 0 9px;
+}
+
+.document-editor blockquote{
+    margin:15px 0;
+    padding:13px 17px;
+
+    border-left:4px solid #6366f1;
+
+    background:#f1f5ff;
+    color:#475569;
+
+    border-radius:0 8px 8px 0;
+}
+
+.document-editor pre{
+    margin:15px 0;
+    padding:15px;
+
+    border-radius:9px;
+
+    background:#111827;
+    color:#e2e8f0;
+
+    overflow:auto;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size:12px;
+}
+
+.document-editor table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin:15px 0;
+}
+
+.document-editor th,
+.document-editor td{
+    border:1px solid #cbd5e1;
+    padding:8px 10px;
+    min-width:70px;
+}
+
+.document-editor th{
+    background:#eef2ff;
+}
+
+.document-editor a{
+    color:#4f46e5;
+    text-decoration:underline;
+}
+
+
+/* =========================================================
+   FLOATING OBJECT SYSTEM
+========================================================= */
+
+.object-layer{
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:20;
+}
+
+.editor-object{
+    position:absolute;
+
+    pointer-events:auto;
+
+    user-select:none;
+
+    cursor:move;
+
+    outline:2px solid transparent;
+
+    outline-offset:2px;
+}
+
+.editor-object.selected{
+    outline:2px solid #6366f1;
+}
+
+.object-content{
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+}
+
+
+/* IMAGE */
+
+.image-object img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:contain;
+
+    pointer-events:none;
+
+    user-select:none;
+}
+
+
+/* SHAPES */
+
+.shape-object{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:13px;
+    font-weight:700;
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.shape-rectangle{
+    background:#6366f1;
+}
+
+.shape-rounded{
+    background:#8b5cf6;
+    border-radius:18px;
+}
+
+.shape-circle{
+    background:#06b6d4;
+    border-radius:50%;
+}
+
+.shape-ellipse{
+    background:#22c55e;
+    border-radius:50%;
+}
+
+.shape-diamond{
+    background:#f59e0b;
+
+    transform:rotate(45deg);
+}
+
+.shape-triangle{
+    width:0!important;
+    height:0!important;
+
+    border-left:70px solid transparent;
+    border-right:70px solid transparent;
+    border-bottom:120px solid #ef4444;
+
+    background:transparent;
+}
+
+.shape-star{
+    background:#f59e0b;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 93%,
+            50% 72%,
+            21% 93%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+        );
+}
+
+.shape-arrow{
+    background:#3b82f6;
+
+    clip-path:
+        polygon(
+            0 35%,
+            65% 35%,
+            65% 10%,
+            100% 50%,
+            65% 90%,
+            65% 65%,
+            0 65%
+        );
+}
+
+.shape-line{
+    height:4px!important;
+
+    background:#172033;
+
+    border-radius:10px;
+}
+
+
+/* TEXT BOX */
+
+.textbox-object{
+    display:flex;
+    align-items:center;
+
+    padding:8px;
+
+    background:rgba(255,255,255,.7);
+
+    border:1px dashed #64748b;
+
+    color:#172033;
+
+    font-size:14px;
+}
+
+
+/* STUDY CARD */
+
+.study-card-object{
+    padding:13px;
+
+    border-radius:10px;
+
+    background:#eef2ff;
+
+    border-left:5px solid #6366f1;
+
+    color:#172033;
+
+    overflow:auto;
+}
+
+.study-card-object strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+
+/* VIDEO */
+
+.video-object{
+    background:#020617;
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+}
+
+.video-object iframe{
+    width:100%;
+    height:100%;
+
+    border:0;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   OBJECT HANDLES
+========================================================= */
+
+.resize-handle{
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    background:white;
+
+    border:2px solid #6366f1;
+
+    border-radius:3px;
+
+    z-index:10;
+}
+
+.resize-nw{
+    left:-6px;
+    top:-6px;
+
+    cursor:nwse-resize;
+}
+
+.resize-ne{
+    right:-6px;
+    top:-6px;
+
+    cursor:nesw-resize;
+}
+
+.resize-sw{
+    left:-6px;
+    bottom:-6px;
+
+    cursor:nesw-resize;
+}
+
+.resize-se{
+    right:-6px;
+    bottom:-6px;
+
+    cursor:nwse-resize;
+}
+
+.rotate-handle{
+    position:absolute;
+
+    left:50%;
+    top:-30px;
+
+    width:13px;
+    height:13px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:#6366f1;
+
+    border:2px solid white;
+
+    cursor:grab;
+}
+
+.rotate-line{
+    position:absolute;
+
+    left:50%;
+    top:-18px;
+
+    width:1px;
+    height:18px;
+
+    background:#6366f1;
+
+    transform:translateX(-50%);
+}
+
+
+/* =========================================================
+   BOTTOM BAR
+========================================================= */
+
+.statusbar{
+    height:31px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 12px;
+
+    background:#0b1220;
+
+    border-top:1px solid var(--border);
+
+    color:#64748b;
+
+    font-size:8px;
+
+    z-index:300;
+}
+
+.status-left,
+.status-right{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.status-control{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.zoom-btn{
+    width:22px;
+    height:20px;
+
+    border:0;
+
+    border-radius:4px;
+
+    background:transparent;
+
+    color:#94a3b8;
+}
+
+.zoom-btn:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:3000;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(2,6,23,.75);
+
+    backdrop-filter:blur(8px);
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(100%,540px);
+    max-height:90vh;
+
+    overflow:auto;
+
+    padding:22px;
+
+    border-radius:16px;
+
+    background:#0d1426;
+
+    border:1px solid var(--border2);
+
+    box-shadow:var(--shadow);
+}
+
+.modal-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:18px;
+}
+
+.modal-title{
+    font-size:15px;
+    font-weight:800;
+}
+
+.close-btn{
+    width:30px;
+    height:30px;
+
+    border:0;
+    border-radius:7px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#94a3b8;
+
+    font-size:17px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-label{
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#cbd5e1;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    outline:none;
+
+    background:#080e1b;
+
+    color:white;
+
+    font-size:10px;
+}
+
+.form-input,
+.form-select{
+    height:38px;
+
+    padding:0 10px;
+}
+
+.form-textarea{
+    min-height:110px;
+
+    resize:vertical;
+
+    padding:10px;
+
+    line-height:1.5;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+    border-color:#6366f1;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+
+    gap:7px;
+
+    margin-top:18px;
+}
+
+.modal-btn{
+    height:36px;
+
+    padding:0 14px;
+
+    border-radius:7px;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    font-size:9px;
+}
+
+.modal-btn.primary{
+    border:0;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color:white;
+}
+
+
+/* =========================================================
+   INSERT MENU
+========================================================= */
+
+.insert-menu{
+    position:fixed;
+
+    min-width:190px;
+
+    display:none;
+
+    padding:6px;
+
+    z-index:2500;
+
+    border:1px solid var(--border2);
+
+    border-radius:10px;
+
+    background:#0d1426;
+
+    box-shadow:var(--shadow);
+}
+
+.insert-menu.show{
+    display:block;
+}
+
+.insert-item{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    padding:8px;
+
+    border:0;
+    border-radius:6px;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    text-align:left;
+
+    font-size:9px;
+}
+
+.insert-item:hover{
+    background:rgba(99,102,241,.1);
+    color:white;
+}
+
+.insert-icon{
+    width:22px;
+    height:22px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:5px;
+
+    background:rgba(255,255,255,.05);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast-container{
+    position:fixed;
+
+    right:18px;
+    bottom:45px;
+
+    z-index:5000;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.toast{
+    min-width:240px;
+
+    padding:11px 13px;
+
+    border-radius:9px;
+
+    background:#111827;
+
+    border:1px solid var(--border2);
+
+    box-shadow:var(--shadow);
+
+    color:#e2e8f0;
+
+    font-size:9px;
+
+    animation:toastIn .2s ease;
+}
+
+.toast.success{
+    border-left:3px solid var(--green);
+}
+
+.toast.error{
+    border-left:3px solid var(--red);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================================================
+   FIND BAR
+========================================================= */
+
+.findbar{
+    position:absolute;
+
+    top:8px;
+    right:15px;
+
+    z-index:1200;
+
+    display:none;
+
+    width:330px;
+
+    padding:7px;
+
+    border:1px solid var(--border2);
+
+    border-radius:8px;
+
+    background:#0d1426;
+
+    box-shadow:var(--shadow);
+}
+
+.findbar.show{
+    display:flex;
+    gap:5px;
+}
+
+.findbar input{
+    flex:1;
+
+    height:29px;
+
+    border:1px solid var(--border);
+
+    border-radius:6px;
+
+    background:#080e1b;
+
+    color:white;
+
+    outline:none;
+
+    padding:0 8px;
+
+    font-size:9px;
+}
+
+.findbar button{
+    height:29px;
+
+    padding:0 8px;
+
+    border:0;
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#94a3b8;
+
+    font-size:9px;
+}
+
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+body.distraction .sidebar{
+    width:0;
+    overflow:hidden;
+}
+
+body.distraction .topbar{
+    display:none;
+}
+
+body.distraction .toolbar{
+    position:fixed;
+
+    left:10px;
+    right:10px;
+    top:10px;
+
+    border:1px solid var(--border2);
+
+    border-radius:10px;
+
+    box-shadow:var(--shadow);
+
+    z-index:5000;
+}
+
+body.distraction .canvas-area{
+    padding-top:75px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .brand-text,
+    .note-name-area{
+        display:none;
+    }
+
+    .brand-area{
+        min-width:auto;
+    }
+
+    .canvas-area{
+        padding:25px;
+    }
+
+    .page{
+        width:820px;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:absolute;
+
+        left:0;
+        top:var(--topbar);
+        bottom:0;
+
+        width:280px;
+
+        box-shadow:var(--shadow);
+    }
+
+    .sidebar.collapsed{
+        width:0;
+    }
+
+    .canvas-area{
+        padding:15px;
+    }
+
+    .page{
+        width:760px;
+
+        padding:50px;
+    }
+
+    .top-btn{
+        min-width:28px;
+    }
+
+    .top-actions .hide-mobile{
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+
+    body{
+        background:white!important;
+        overflow:visible!important;
+    }
+
+    .topbar,
+    .sidebar,
+    .toolbar,
+    .statusbar,
+    .findbar,
+    .toast-container{
+        display:none!important;
+    }
+
+    .editor-area,
+    .workspace,
+    .canvas-area,
+    .canvas-inner{
+        display:block!important;
+
+        overflow:visible!important;
+
+        padding:0!important;
+
+        background:white!important;
+    }
+
+    .page{
+        width:100%!important;
+
+        min-height:auto!important;
+
+        box-shadow:none!important;
+
+        margin:0!important;
+
+        padding:50px!important;
+    }
+
+    .editor-object{
+        print-color-adjust:exact;
+        -webkit-print-color-adjust:exact;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="app" id="app">
+
+<!-- =======================================================
+     TOP BAR
+======================================================= -->
+
+<header class="topbar">
+
+    <div class="brand-area">
+
+        <button
+            class="top-btn"
+            id="sidebarToggle"
+            title="Toggle sidebar"
+        >
+            ☰
+        </button>
+
+        <div class="logo">
+            N
+        </div>
+
+        <div class="brand-text">
+            NIMCET <span>PrepPro</span>
+        </div>
+
+    </div>
+
+
+    <div class="note-name-area">
+
+        <input
+            class="note-name"
+            id="noteName"
+            value="Untitled Note"
+            maxlength="100"
+        >
+
+        <div
+            class="save-status saved"
+            id="saveStatus"
+        >
+            <span class="save-dot"></span>
+            <span id="saveText">Saved</span>
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="top-btn"
+            id="undoBtn"
+            title="Undo (Ctrl+Z)"
+        >
+            ↶
+        </button>
+
+        <button
+            class="top-btn"
+            id="redoBtn"
+            title="Redo (Ctrl+Y)"
+        >
+            ↷
+        </button>
+
+        <button
+            class="top-btn"
+            id="findBtn"
+            title="Find (Ctrl+F)"
+        >
+            ⌕
+        </button>
+
+        <button
+            class="top-btn"
+            id="importantBtn"
+            title="Important"
+        >
+            ☆
+        </button>
+
+        <button
+            class="top-btn"
+            id="pinBtn"
+            title="Pin"
+        >
+            📌
+        </button>
+
+        <button
+            class="top-btn hide-mobile"
+            id="printBtn"
+            title="Print"
+        >
+            🖨
+        </button>
+
+        <button
+            class="top-btn"
+            id="fullscreenBtn"
+            title="Distraction Free"
+        >
+            ⛶
+        </button>
+
+        <button
+            class="top-btn primary"
+            id="saveBtn"
+        >
+            Save
+        </button>
+
+        <div
+            class="avatar"
+            id="avatar"
+        >
+            U
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =======================================================
+     WORKSPACE
+======================================================= -->
+
+<div class="workspace">
+
+
+<!-- =======================================================
+     SIDEBAR
+======================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-head">
+
+        <div class="sidebar-title">
+            Study Workspace
+        </div>
+
+        <button
+            class="top-btn"
+            id="sidebarClose"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="sidebar-content">
+
+
+        <!-- CONTEXT -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-title">
+                Current Location
+            </div>
+
+            <div class="context-card">
+
+                <div class="context-row">
+
+                    <div class="context-icon">
+                        📚
+                    </div>
+
+                    <div>
+                        <div class="context-value" id="contextSubject">
+                            NIMCET
+                        </div>
+                        <div style="font-size:8px;color:#64748b;">
+                            Subject
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="context-row">
+
+                    <div class="context-icon">
+                        📖
+                    </div>
+
+                    <div>
+                        <div class="context-value" id="contextChapter">
+                            Study Chapter
+                        </div>
+                        <div style="font-size:8px;color:#64748b;">
+                            Chapter
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="context-row">
+
+                    <div class="context-icon">
+                        🎓
+                    </div>
+
+                    <div>
+                        <div class="context-value" id="contextLecture">
+                            Lecture
+                        </div>
+                        <div style="font-size:8px;color:#64748b;">
+                            Lecture
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OUTLINE -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-title">
+                Document Outline
+            </div>
+
+            <div id="outline">
+                <div
+                    class="outline-item"
+                    style="color:#64748b;"
+                >
+                    Write headings to create outline
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- STUDY TOOLS -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-title">
+                Study Blocks
+            </div>
+
+            <div class="study-tools">
+
+                <button
+                    class="study-tool"
+                    data-study="formula"
+                >
+                    <strong>📐 Formula</strong>
+                    Add formula block
+                </button>
+
+                <button
+                    class="study-tool"
+                    data-study="important"
+                >
+                    <strong>⭐ Important</strong>
+                    Important concept
+                </button>
+
+                <button
+                    class="study-tool"
+                    data-study="tip"
+                >
+                    <strong>💡 Tip</strong>
+                    Quick trick
+                </button>
+
+                <button
+                    class="study-tool"
+                    data-study="warning"
+                >
+                    <strong>⚠ Warning</strong>
+                    Common mistake
+                </button>
+
+                <button
+                    class="study-tool"
+                    data-study="example"
+                >
+                    <strong>🧠 Example</strong>
+                    Solved example
+                </button>
+
+                <button
+                    class="study-tool"
+                    data-study="doubt"
+                >
+                    <strong>❓ Doubt</strong>
+                    Question to revisit
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENT INFO -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-title">
+                Document Info
+            </div>
+
+            <div class="context-card">
+
+                <div class="context-row">
+                    <span>Words</span>
+                    <span
+                        style="margin-left:auto;color:#e2e8f0;"
+                        id="sidebarWords"
+                    >
+                        0
+                    </span>
+                </div>
+
+                <div class="context-row">
+                    <span>Characters</span>
+                    <span
+                        style="margin-left:auto;color:#e2e8f0;"
+                        id="sidebarChars"
+                    >
+                        0
+                    </span>
+                </div>
+
+                <div class="context-row">
+                    <span>Objects</span>
+                    <span
+                        style="margin-left:auto;color:#e2e8f0;"
+                        id="sidebarObjects"
+                    >
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =======================================================
+     EDITOR AREA
+======================================================= -->
+
+<main class="editor-area">
+
+
+<!-- =======================================================
+     TOOLBAR
+======================================================= -->
+
+<div class="toolbar" id="toolbar">
+
+
+    <!-- HISTORY -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            id="tbUndo"
+            title="Undo"
+        >
+            ↶
+        </button>
+
+        <button
+            class="tool"
+            id="tbRedo"
+            title="Redo"
+        >
+            ↷
+        </button>
+
+    </div>
+
+
+    <!-- STYLE -->
+
+    <div class="tool-group">
+
+        <select
+            class="toolbar-select"
+            id="formatBlock"
+        >
+            <option value="p">
+                Paragraph
+            </option>
+
+            <option value="h1">
+                Heading 1
+            </option>
+
+            <option value="h2">
+                Heading 2
+            </option>
+
+            <option value="h3">
+                Heading 3
+            </option>
+
+            <option value="h4">
+                Heading 4
+            </option>
+
+            <option value="blockquote">
+                Quote
+            </option>
+
+            <option value="pre">
+                Code
+            </option>
+        </select>
+
+
+        <select
+            class="toolbar-select"
+            id="fontFamily"
+        >
+            <option value="Arial">
+                Arial
+            </option>
+
+            <option value="Georgia">
+                Georgia
+            </option>
+
+            <option value="Verdana">
+                Verdana
+            </option>
+
+            <option value="Tahoma">
+                Tahoma
+            </option>
+
+            <option value="Courier New">
+                Courier
+            </option>
+
+            <option value="Times New Roman">
+                Times New Roman
+            </option>
+        </select>
+
+
+        <select
+            class="toolbar-select"
+            id="fontSize"
+        >
+            <option value="2">12</option>
+            <option value="3" selected>14</option>
+            <option value="4">16</option>
+            <option value="5">18</option>
+            <option value="6">24</option>
+            <option value="7">32</option>
+        </select>
+
+    </div>
+
+
+    <!-- TEXT -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            data-command="bold"
+            title="Bold Ctrl+B"
+        >
+            <b>B</b>
+        </button>
+
+        <button
+            class="tool"
+            data-command="italic"
+            title="Italic Ctrl+I"
+        >
+            <i>I</i>
+        </button>
+
+        <button
+            class="tool"
+            data-command="underline"
+            title="Underline Ctrl+U"
+        >
+            <u>U</u>
+        </button>
+
+        <button
+            class="tool"
+            data-command="strikeThrough"
+            title="Strikethrough"
+        >
+            <s>S</s>
+        </button>
+
+        <button
+            class="tool"
+            data-command="superscript"
+            title="Superscript"
+        >
+            X²
+        </button>
+
+        <button
+            class="tool"
+            data-command="subscript"
+            title="Subscript"
+        >
+            X₂
+        </button>
+
+    </div>
+
+
+    <!-- COLORS -->
+
+    <div class="tool-group">
+
+        <label
+            class="tool color-tool"
+            title="Text color"
+        >
+            A
+            <input
+                type="color"
+                id="textColor"
+                value="#172033"
+            >
+        </label>
+
+        <label
+            class="tool color-tool"
+            title="Highlight"
+        >
+            🖍
+            <input
+                type="color"
+                id="highlightColor"
+                value="#fff3a3"
+            >
+        </label>
+
+    </div>
+
+
+    <!-- ALIGNMENT -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            data-command="justifyLeft"
+            title="Align left"
+        >
+            ≡
+        </button>
+
+        <button
+            class="tool"
+            data-command="justifyCenter"
+            title="Center"
+        >
+            ☰
+        </button>
+
+        <button
+            class="tool"
+            data-command="justifyRight"
+            title="Align right"
+        >
+            ≡
+        </button>
+
+        <button
+            class="tool"
+            data-command="justifyFull"
+            title="Justify"
+        >
+            ▤
+        </button>
+
+    </div>
+
+
+    <!-- LISTS -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            data-command="insertUnorderedList"
+            title="Bulleted list"
+        >
+            •☰
+        </button>
+
+        <button
+            class="tool"
+            data-command="insertOrderedList"
+            title="Numbered list"
+        >
+            1☰
+        </button>
+
+        <button
+            class="tool"
+            id="checklistBtn"
+            title="Checklist"
+        >
+            ☑
+        </button>
+
+        <button
+            class="tool"
+            data-command="outdent"
+            title="Decrease indent"
+        >
+            ⇤
+        </button>
+
+        <button
+            class="tool"
+            data-command="indent"
+            title="Increase indent"
+        >
+            ⇥
+        </button>
+
+    </div>
+
+
+    <!-- LINK -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            id="linkBtn"
+            title="Insert link Ctrl+K"
+        >
+            🔗
+        </button>
+
+    </div>
+
+
+    <!-- INSERT -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            id="insertBtn"
+        >
+            ＋ Insert
+        </button>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            id="tableBtn"
+            title="Insert table"
+        >
+            ▦
+        </button>
+
+    </div>
+
+
+    <!-- SYMBOL -->
+
+    <div class="tool-group">
+
+        <button
+            class="tool"
+            id="symbolBtn"
+        >
+            Ω
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     FIND BAR
+======================================================= -->
+
+<div
+    class="findbar"
+    id="findbar"
+>
+
+    <input
+        id="findInput"
+        placeholder="Find..."
+    >
+
+    <input
+        id="replaceInput"
+        placeholder="Replace..."
+    >
+
+    <button id="findNext">
+        Find
+    </button>
+
+    <button id="replaceAll">
+        Replace
+    </button>
+
+    <button id="closeFind">
+        ×
+    </button>
+
+</div>
+
+
+<!-- =======================================================
+     CANVAS
+======================================================= -->
+
+<div
+    class="canvas-area"
+    id="canvasArea"
+>
+
+    <div class="canvas-inner">
+
+        <section
+            class="page"
+            id="page"
+        >
+
+            <div
+                class="document-editor"
+                id="editor"
+                contenteditable="true"
+                spellcheck="true"
+            ></div>
+
+            <div
+                class="object-layer"
+                id="objectLayer"
+            ></div>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     STATUS BAR
+======================================================= -->
+
+<div class="statusbar">
+
+    <div class="status-left">
+
+        <div class="status-control">
+            <span>Page</span>
+            <span style="color:#cbd5e1;">1 / 1</span>
+        </div>
+
+        <div class="status-control">
+            <span id="statusWords">
+                0 words
+            </span>
+        </div>
+
+        <div class="status-control">
+            <span id="statusSelection">
+                No object selected
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="status-right">
+
+        <button
+            class="zoom-btn"
+            id="zoomOut"
+        >
+            −
+        </button>
+
+        <span id="zoomValue">
+            100%
+        </span>
+
+        <button
+            class="zoom-btn"
+            id="zoomIn"
+        >
+            +
+        </button>
+
+        <button
+            class="zoom-btn"
+            id="zoomReset"
+        >
+            Reset
+        </button>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     INSERT MENU
+======================================================= -->
+
+<div
+    class="insert-menu"
+    id="insertMenu"
+>
+
+    <button
+        class="insert-item"
+        data-insert="image"
+    >
+        <span class="insert-icon">🖼</span>
+        Image
+    </button>
+
+    <button
+        class="insert-item"
+        data-insert="textbox"
+    >
+        <span class="insert-icon">T</span>
+        Text Box
+    </button>
+
+    <button
+        class="insert-item"
+        data-insert="shape"
+    >
+        <span class="insert-icon">◆</span>
+        Shape
+    </button>
+
+    <button
+        class="insert-item"
+        data-insert="video"
+    >
+        <span class="insert-icon">▶</span>
+        YouTube / Video
+    </button>
+
+    <button
+        class="insert-item"
+        data-insert="study"
+    >
+        <span class="insert-icon">💡</span>
+        Study Block
+    </button>
+
+    <button
+        class="insert-item"
+        data-insert="pagebreak"
+    >
+        <span class="insert-icon">↵</span>
+        Page Break
+    </button>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL
+======================================================= -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                Insert
+            </div>
+
+            <button
+                class="close-btn"
+                id="modalClose"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<script>
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const USERS_KEY = "nimcet_preppro_users";
+const SESSION_KEY = "nimcet_preppro_session";
+
+
+function getUsers(){
+
+    try{
+        return JSON.parse(
+            localStorage.getItem(USERS_KEY)
+        ) || [];
+    }catch{
+        return [];
+    }
+}
+
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        USERS_KEY,
+        JSON.stringify(users)
+    );
+}
+
+
+/* =========================================================
+   SESSION
+========================================================= */
+
+let session = null;
+
+try{
+    session = JSON.parse(
+        localStorage.getItem(SESSION_KEY)
+    );
+}catch{
+    session = null;
+}
+
+
+/*
+   Login system ke saath compatible.
+*/
+
+if(!session){
+
+    window.location.href = "index.html";
+
+}
+
+
+let users = getUsers();
+
+let user = users.find(
+    u => u.id === session?.userId
+);
+
+
+if(!user){
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+    window.location.href = "index.html";
+
+}
+
+
+/* =========================================================
+   URL CONTEXT
+========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const lectureId =
+    params.get("lectureId") ||
+    params.get("lecture") ||
+    "";
+
+const noteId =
+    params.get("noteId") ||
+    params.get("note") ||
+    "";
+
+
+/* =========================================================
+   USER DATA
+========================================================= */
+
+if(!Array.isArray(user.notes)){
+    user.notes = [];
+}
+
+if(!Array.isArray(user.lectures)){
+    user.lectures = [];
+}
+
+
+/* =========================================================
+   CURRENT NOTE
+========================================================= */
+
+let currentNote = null;
+
+if(noteId){
+
+    currentNote =
+        user.notes.find(
+            n => n.id === noteId
+        );
+
+}
+
+
+if(!currentNote){
+
+    currentNote = {
+
+        id:
+            "note_" +
+            Date.now().toString(36) +
+            "_" +
+            Math.random()
+                .toString(36)
+                .slice(2,8),
+
+        lectureId:
+            lectureId || "",
+
+        title:
+            "Untitled Note",
+
+        content:
+            "",
+
+        objects:
+            [],
+
+        important:
+            false,
+
+        pinned:
+            false,
+
+        createdAt:
+            new Date().toISOString(),
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+    user.notes.unshift(
+        currentNote
+    );
+
+}
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const editor =
+    document.getElementById(
+        "editor"
+    );
+
+const objectLayer =
+    document.getElementById(
+        "objectLayer"
+    );
+
+const page =
+    document.getElementById(
+        "page"
+    );
+
+const canvasArea =
+    document.getElementById(
+        "canvasArea"
+    );
+
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
+
+const saveStatus =
+    document.getElementById(
+        "saveStatus"
+    );
+
+const saveText =
+    document.getElementById(
+        "saveText"
+    );
+
+const noteName =
+    document.getElementById(
+        "noteName"
+    );
+
+const modalOverlay =
+    document.getElementById(
+        "modalOverlay"
+    );
+
+const modalBody =
+    document.getElementById(
+        "modalBody"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+const insertMenu =
+    document.getElementById(
+        "insertMenu"
+    );
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+let saveTimer = null;
+
+function saveCurrentUser(){
+
+    const index =
+        users.findIndex(
+            u => u.id === user.id
+        );
+
+    if(index !== -1){
+        users[index] = user;
+    }
+
+    saveUsers(users);
+}
+
+
+function saveNote(){
+
+    currentNote.title =
+        noteName.value.trim() ||
+        "Untitled Note";
+
+    currentNote.content =
+        editor.innerHTML;
+
+    currentNote.objects =
+        getObjectsFromDOM();
+
+    currentNote.updatedAt =
+        new Date().toISOString();
+
+    saveCurrentUser();
+
+    setSaveState("saved");
+}
+
+
+function autoSave(){
+
+    setSaveState("saving");
+
+    clearTimeout(saveTimer);
+
+    saveTimer =
+        setTimeout(
+            saveNote,
+            500
+        );
+}
+
+
+function setSaveState(state){
+
+    saveStatus.className =
+        "save-status " +
+        state;
+
+    if(state === "saving"){
+        saveText.textContent =
+            "Saving...";
+    }else{
+        saveText.textContent =
+            "Saved";
+    }
+}
+
+
+/* =========================================================
+   INIT NOTE
+========================================================= */
+
+noteName.value =
+    currentNote.title ||
+    "Untitled Note";
+
+editor.innerHTML =
+    currentNote.content ||
+    "";
+
+
+/* =========================================================
+   CONTEXT
+========================================================= */
+
+function getLecture(){
+
+    if(!lectureId)
+        return null;
+
+    return user.lectures.find(
+        l => l.id === lectureId
+    ) || null;
+}
+
+
+const lecture =
+    getLecture();
+
+
+if(lecture){
+
+    document.getElementById(
+        "contextLecture"
+    ).textContent =
+        lecture.title ||
+        lecture.name ||
+        "Lecture";
+
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+if(user){
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+    const name =
+        user.name ||
+        "User";
+
+    avatar.textContent =
+        name
+            .split(/\s+/)
+            .map(
+                x => x[0]
+            )
+            .join("")
+            .slice(0,2)
+            .toUpperCase();
+
+}
+
+
+/* =========================================================
+   COMMAND
+========================================================= */
+
+function command(
+    cmd,
+    value=null
+){
+
+    editor.focus();
+
+    try{
+
+        document.execCommand(
+            cmd,
+            false,
+            value
+        );
+
+    }catch(e){}
+
+    autoSave();
+    updateStats();
+    updateToolbarState();
+}
+
+
+/* =========================================================
+   TOOLBAR COMMANDS
+========================================================= */
+
+document
+    .querySelectorAll(
+        "[data-command]"
+    )
+    .forEach(btn => {
+
+        btn.addEventListener(
+            "click",
+            () => {
+
+                command(
+                    btn.dataset.command
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   FORMAT BLOCK
+========================================================= */
+
+document
+    .getElementById(
+        "formatBlock"
+    )
+    .addEventListener(
+        "change",
+        function(){
+
+            command(
+                "formatBlock",
+                this.value
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   FONT
+========================================================= */
+
+document
+    .getElementById(
+        "fontFamily"
+    )
+    .addEventListener(
+        "change",
+        function(){
+
+            command(
+                "fontName",
+                this.value
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "fontSize"
+    )
+    .addEventListener(
+        "change",
+        function(){
+
+            command(
+                "fontSize",
+                this.value
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+document
+    .getElementById(
+        "textColor"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            command(
+                "foreColor",
+                this.value
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "highlightColor"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            command(
+                "hiliteColor",
+                this.value
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CHECKLIST
+========================================================= */
+
+document
+    .getElementById(
+        "checklistBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            editor.focus();
+
+            document.execCommand(
+                "insertHTML",
+                false,
+                `
+                <div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            style="margin-right:7px;"
+                        >
+                        Checklist item
+                    </label>
+                </div>
+                `
+            );
+
+            autoSave();
+
+        }
+    );
+
+
+/* =========================================================
+   LINK
+========================================================= */
+
+document
+    .getElementById(
+        "linkBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            const url =
+                prompt(
+                    "Enter URL:",
+                    "https://"
+                );
+
+            if(!url)
+                return;
+
+            command(
+                "createLink",
+                url
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+document
+    .getElementById(
+        "tableBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openModal(
+                "Insert Table",
+                `
+                <div class="form-group">
+                    <label class="form-label">
+                        Rows
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="tableRows"
+                        type="number"
+                        min="1"
+                        max="20"
+                        value="3"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Columns
+                    </label>
+
+                    <input
+                        class="form-input"
+                        id="tableCols"
+                        type="number"
+                        min="1"
+                        max="12"
+                        value="3"
+                    >
+                </div>
+
+                <div class="modal-buttons">
+
+                    <button
+                        class="modal-btn"
+                        onclick="closeModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="modal-btn primary"
+                        id="createTable"
+                    >
+                        Insert Table
+                    </button>
+
+                </div>
+                `
+            );
+
+
+            setTimeout(
+                () => {
+
+                    document
+                        .getElementById(
+                            "createTable"
+                        )
+                        .onclick =
+                        () => {
+
+                            const rows =
+                                Math.max(
+                                    1,
+                                    Math.min(
+                                        20,
+                                        Number(
+                                            document
+                                            .getElementById(
+                                                "tableRows"
+                                            ).value
+                                        )
+                                    )
+                                );
+
+                            const cols =
+                                Math.max(
+                                    1,
+                                    Math.min(
+                                        12,
+                                        Number(
+                                            document
+                                            .getElementById(
+                                                "tableCols"
+                                            ).value
+                                        )
+                                    )
+                                );
+
+
+                            let html =
+                                "<table><tbody>";
+
+                            for(
+                                let r=0;
+                                r<rows;
+                                r++
+                            ){
+
+                                html += "<tr>";
+
+                                for(
+                                    let c=0;
+                                    c<cols;
+                                    c++
+                                ){
+
+                                    html +=
+                                        r === 0
+                                        ?
+                                        "<th>Heading</th>"
+                                        :
+                                        "<td>Cell</td>";
+
+                                }
+
+                                html += "</tr>";
+
+                            }
+
+                            html +=
+                                "</tbody></table>";
+
+
+                            editor.focus();
+
+                            document.execCommand(
+                                "insertHTML",
+                                false,
+                                html
+                            );
+
+                            closeModal();
+
+                            autoSave();
+
+                        };
+
+                },
+                50
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SYMBOLS
+========================================================= */
+
+document
+    .getElementById(
+        "symbolBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openModal(
+                "Math & Study Symbols",
+                `
+                <div
+                    style="
+                        display:grid;
+                        grid-template-columns:
+                            repeat(6,1fr);
+                        gap:6px;
+                    "
+                >
+
+                    ${[
+                        "π",
+                        "√",
+                        "∞",
+                        "θ",
+                        "α",
+                        "β",
+                        "γ",
+                        "Δ",
+                        "Σ",
+                        "∑",
+                        "∫",
+                        "≈",
+                        "≠",
+                        "≤",
+                        "≥",
+                        "±",
+                        "×",
+                        "÷",
+                        "→",
+                        "←",
+                        "↔",
+                        "∴",
+                        "∵",
+                        "°"
+                    ].map(
+                        s =>
+                        `
+                        <button
+                            class="modal-btn"
+                            style="
+                                font-size:16px;
+                                height:42px;
+                            "
+                            onclick="
+                                insertSymbol(
+                                    '${s}'
+                                )
+                            "
+                        >
+                            ${s}
+                        </button>
+                        `
+                    ).join("")}
+
+                </div>
+                `
+            );
+
+        }
+    );
+
+
+function insertSymbol(symbol){
+
+    editor.focus();
+
+    document.execCommand(
+        "insertText",
+        false,
+        symbol
+    );
+
+    closeModal();
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   INSERT MENU
+========================================================= */
+
+document
+    .getElementById(
+        "insertBtn"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            const rect =
+                event.currentTarget
+                    .getBoundingClientRect();
+
+            insertMenu.style.left =
+                rect.left + "px";
+
+            insertMenu.style.top =
+                (rect.bottom + 5) + "px";
+
+            insertMenu.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if(
+            !insertMenu.contains(
+                event.target
+            ) &&
+            event.target.id !==
+                "insertBtn"
+        ){
+
+            insertMenu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INSERT MENU ACTIONS
+========================================================= */
+
+document
+    .querySelectorAll(
+        "[data-insert]"
+    )
+    .forEach(
+        item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    const type =
+                        item.dataset.insert;
+
+                    insertMenu.classList.remove(
+                        "show"
+                    );
+
+                    handleInsert(
+                        type
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+function handleInsert(type){
+
+    if(type === "image"){
+        openImageDialog();
+    }
+
+    if(type === "textbox"){
+        createTextBox();
+    }
+
+    if(type === "shape"){
+        openShapeDialog();
+    }
+
+    if(type === "video"){
+        openVideoDialog();
+    }
+
+    if(type === "study"){
+        openStudyDialog();
+    }
+
+    if(type === "pagebreak"){
+
+        editor.focus();
+
+        document.execCommand(
+            "insertHTML",
+            false,
+            `
+            <div
+                style="
+                    page-break-after:always;
+                    border-bottom:
+                        1px dashed #94a3b8;
+                    margin:30px 0;
+                "
+            >
+                <br>
+            </div>
+            `
+        );
+
+        autoSave();
+
+    }
+
+}
+
+
+/* =========================================================
+   IMAGE INSERT
+========================================================= */
+
+function openImageDialog(){
+
+    openModal(
+        "Insert Image",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                Select Image
+            </label>
+
+            <input
+                class="form-input"
+                type="file"
+                id="imageFile"
+                accept="image/*"
+                style="padding:9px;"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Or Image URL
+            </label>
+
+            <input
+                class="form-input"
+                id="imageUrl"
+                placeholder="https://example.com/image.jpg"
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="insertImage"
+            >
+                Insert Image
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "insertImage"
+        )
+        .onclick =
+        () => {
+
+            const file =
+                document
+                    .getElementById(
+                        "imageFile"
+                    )
+                    .files[0];
+
+            const url =
+                document
+                    .getElementById(
+                        "imageUrl"
+                    )
+                    .value
+                    .trim();
+
+
+            if(file){
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    e => {
+
+                        createImageObject(
+                            e.target.result
+                        );
+
+                        closeModal();
+
+                    };
+
+                reader.readAsDataURL(
+                    file
+                );
+
+                return;
+
+            }
+
+
+            if(url){
+
+                createImageObject(
+                    url
+                );
+
+                closeModal();
+
+                return;
+
+            }
+
+
+            showToast(
+                "Please select an image.",
+                "error"
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   CREATE IMAGE OBJECT
+========================================================= */
+
+function createImageObject(src){
+
+    const obj = {
+
+        id:
+            generateId("img"),
+
+        type:
+            "image",
+
+        src:
+            src,
+
+        x:
+            120,
+
+        y:
+            120,
+
+        width:
+            300,
+
+        height:
+            220,
+
+        rotation:
+            0
+
+    };
+
+
+    currentNote.objects.push(
+        obj
+    );
+
+    renderObject(
+        obj
+    );
+
+    selectObject(
+        obj.id
+    );
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   TEXT BOX
+========================================================= */
+
+function createTextBox(){
+
+    const obj = {
+
+        id:
+            generateId("text"),
+
+        type:
+            "textbox",
+
+        text:
+            "Type your text here",
+
+        x:
+            150,
+
+        y:
+            180,
+
+        width:
+            260,
+
+        height:
+            90,
+
+        rotation:
+            0
+
+    };
+
+
+    currentNote.objects.push(
+        obj
+    );
+
+    renderObject(
+        obj
+    );
+
+    selectObject(
+        obj.id
+    );
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   SHAPE DIALOG
+========================================================= */
+
+function openShapeDialog(){
+
+    openModal(
+        "Insert Shape",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                Shape
+            </label>
+
+            <select
+                class="form-select"
+                id="shapeType"
+            >
+
+                <option value="rectangle">
+                    Rectangle
+                </option>
+
+                <option value="rounded">
+                    Rounded Rectangle
+                </option>
+
+                <option value="circle">
+                    Circle
+                </option>
+
+                <option value="ellipse">
+                    Oval
+                </option>
+
+                <option value="diamond">
+                    Diamond
+                </option>
+
+                <option value="triangle">
+                    Triangle
+                </option>
+
+                <option value="star">
+                    Star
+                </option>
+
+                <option value="arrow">
+                    Arrow
+                </option>
+
+                <option value="line">
+                    Line
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Color
+            </label>
+
+            <input
+                class="form-input"
+                id="shapeColor"
+                type="color"
+                value="#6366f1"
+                style="padding:4px;"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Text
+            </label>
+
+            <input
+                class="form-input"
+                id="shapeText"
+                placeholder="Optional text"
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="insertShape"
+            >
+                Insert Shape
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "insertShape"
+        )
+        .onclick =
+        () => {
+
+            createShapeObject({
+
+                shape:
+                    document
+                        .getElementById(
+                            "shapeType"
+                        ).value,
+
+                color:
+                    document
+                        .getElementById(
+                            "shapeColor"
+                        ).value,
+
+                text:
+                    document
+                        .getElementById(
+                            "shapeText"
+                        ).value
+
+            });
+
+            closeModal();
+
+        };
+
+}
+
+
+/* =========================================================
+   CREATE SHAPE
+========================================================= */
+
+function createShapeObject(data){
+
+    const obj = {
+
+        id:
+            generateId("shape"),
+
+        type:
+            "shape",
+
+        shape:
+            data.shape,
+
+        color:
+            data.color,
+
+        text:
+            data.text || "",
+
+        x:
+            170,
+
+        y:
+            180,
+
+        width:
+            220,
+
+        height:
+            130,
+
+        rotation:
+            0
+
+    };
+
+
+    currentNote.objects.push(
+        obj
+    );
+
+    renderObject(
+        obj
+    );
+
+    selectObject(
+        obj.id
+    );
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+function openVideoDialog(){
+
+    openModal(
+        "Insert YouTube / Video",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                YouTube URL
+            </label>
+
+            <input
+                class="form-input"
+                id="videoUrl"
+                placeholder="https://www.youtube.com/watch?v=..."
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="insertVideo"
+            >
+                Insert Video
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "insertVideo"
+        )
+        .onclick =
+        () => {
+
+            const url =
+                document
+                    .getElementById(
+                        "videoUrl"
+                    )
+                    .value
+                    .trim();
+
+            const videoId =
+                getYouTubeId(
+                    url
+                );
+
+            if(!videoId){
+
+                showToast(
+                    "Enter a valid YouTube URL.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const obj = {
+
+                id:
+                    generateId("video"),
+
+                type:
+                    "video",
+
+                videoId:
+                    videoId,
+
+                x:
+                    130,
+
+                y:
+                    220,
+
+                width:
+                    420,
+
+                height:
+                    240,
+
+                rotation:
+                    0
+
+            };
+
+
+            currentNote.objects.push(
+                obj
+            );
+
+            renderObject(
+                obj
+            );
+
+            selectObject(
+                obj.id
+            );
+
+            closeModal();
+
+            autoSave();
+
+        };
+
+}
+
+
+function getYouTubeId(url){
+
+    try{
+
+        const u =
+            new URL(url);
+
+        if(
+            u.hostname.includes(
+                "youtu.be"
+            )
+        ){
+            return u.pathname.slice(1);
+        }
+
+        if(
+            u.hostname.includes(
+                "youtube.com"
+            )
+        ){
+            return u.searchParams.get(
+                "v"
+            );
+        }
+
+    }catch{}
+
+    return null;
+
+}
+
+
+/* =========================================================
+   STUDY BLOCK
+========================================================= */
+
+function openStudyDialog(){
+
+    openModal(
+        "Study Block",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                Type
+            </label>
+
+            <select
+                class="form-select"
+                id="studyType"
+            >
+
+                <option value="formula">
+                    📐 Formula
+                </option>
+
+                <option value="important">
+                    ⭐ Important
+                </option>
+
+                <option value="tip">
+                    💡 Tip
+                </option>
+
+                <option value="warning">
+                    ⚠ Warning
+                </option>
+
+                <option value="example">
+                    🧠 Example
+                </option>
+
+                <option value="doubt">
+                    ❓ Doubt
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Heading
+            </label>
+
+            <input
+                class="form-input"
+                id="studyHeading"
+                value="Important Concept"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Content
+            </label>
+
+            <textarea
+                class="form-textarea"
+                id="studyContent"
+            >Write your study content here...</textarea>
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="insertStudy"
+            >
+                Insert
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "insertStudy"
+        )
+        .onclick =
+        () => {
+
+            createStudyObject({
+
+                type:
+                    document
+                        .getElementById(
+                            "studyType"
+                        ).value,
+
+                heading:
+                    document
+                        .getElementById(
+                            "studyHeading"
+                        ).value,
+
+                content:
+                    document
+                        .getElementById(
+                            "studyContent"
+                        ).value
+
+            });
+
+            closeModal();
+
+        };
+
+}
+
+
+function createStudyObject(data){
+
+    const obj = {
+
+        id:
+            generateId("study"),
+
+        type:
+            "study",
+
+        studyType:
+            data.type,
+
+        heading:
+            data.heading,
+
+        content:
+            data.content,
+
+        x:
+            130,
+
+        y:
+            300,
+
+        width:
+            430,
+
+        height:
+            145,
+
+        rotation:
+            0
+
+    };
+
+
+    currentNote.objects.push(
+        obj
+    );
+
+    renderObject(
+        obj
+    );
+
+    selectObject(
+        obj.id
+    );
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   OBJECT ID
+========================================================= */
+
+function generateId(prefix="obj"){
+
+    return (
+        prefix +
+        "_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+            .toString(36)
+            .slice(2,8)
+    );
+
+}
+
+
+/* =========================================================
+   RENDER OBJECT
+========================================================= */
+
+function renderObject(obj){
+
+    const old =
+        document.getElementById(
+            obj.id
+        );
+
+    if(old)
+        old.remove();
+
+
+    const el =
+        document.createElement(
+            "div"
+        );
+
+
+    el.id =
+        obj.id;
+
+    el.className =
+        "editor-object";
+
+
+    el.dataset.id =
+        obj.id;
+
+
+    el.style.left =
+        obj.x + "px";
+
+    el.style.top =
+        obj.y + "px";
+
+    el.style.width =
+        obj.width + "px";
+
+    el.style.height =
+        obj.height + "px";
+
+    el.style.transform =
+        `rotate(${obj.rotation || 0}deg)`;
+
+
+    /* IMAGE */
+
+    if(obj.type === "image"){
+
+        el.classList.add(
+            "image-object"
+        );
+
+        el.innerHTML = `
+
+            <div class="object-content">
+
+                <img
+                    src="${escapeHTML(obj.src)}"
+                    draggable="false"
+                >
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* SHAPE */
+
+    else if(obj.type === "shape"){
+
+        el.classList.add(
+            "shape-object",
+            "shape-" + obj.shape
+        );
+
+        el.style.background =
+            obj.shape === "triangle" ||
+            obj.shape === "star" ||
+            obj.shape === "arrow"
+            ? obj.color
+            : obj.color;
+
+        el.innerHTML =
+            `
+            <div class="object-content">
+                ${escapeHTML(obj.text || "")}
+            </div>
+            `;
+
+    }
+
+
+    /* TEXT BOX */
+
+    else if(obj.type === "textbox"){
+
+        el.classList.add(
+            "textbox-object"
+        );
+
+        el.innerHTML =
+            `
+            <div
+                class="object-content"
+                contenteditable="true"
+            >
+                ${escapeHTML(
+                    obj.text ||
+                    "Type your text here"
+                )}
+            </div>
+            `;
+
+        const content =
+            el.querySelector(
+                ".object-content"
+            );
+
+        content.addEventListener(
+            "input",
+            () => {
+
+                obj.text =
+                    content.innerText;
+
+                autoSave();
+
+            }
+        );
+
+    }
+
+
+    /* VIDEO */
+
+    else if(obj.type === "video"){
+
+        el.classList.add(
+            "video-object"
+        );
+
+        el.innerHTML =
+            `
+            <div class="object-content">
+
+                <iframe
+                    src="https://www.youtube.com/embed/${escapeHTML(obj.videoId)}"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+            `;
+
+    }
+
+
+    /* STUDY */
+
+    else if(obj.type === "study"){
+
+        el.classList.add(
+            "study-card-object"
+        );
+
+        const icon =
+            {
+                formula:"📐",
+                important:"⭐",
+                tip:"💡",
+                warning:"⚠",
+                example:"🧠",
+                doubt:"❓"
+            }[
+                obj.studyType
+            ] || "💡";
+
+
+        el.innerHTML =
+            `
+            <div class="object-content">
+
+                <strong>
+                    ${icon}
+                    ${escapeHTML(
+                        obj.heading
+                    )}
+                </strong>
+
+                <div>
+                    ${escapeHTML(
+                        obj.content
+                    ).replace(
+                        /\n/g,
+                        "<br>"
+                    )}
+                </div>
+
+            </div>
+            `;
+
+    }
+
+
+    addHandles(el);
+
+    addObjectEvents(
+        el,
+        obj
+    );
+
+    objectLayer.appendChild(
+        el
+    );
+
+}
+
+
+/* =========================================================
+   HANDLES
+========================================================= */
+
+function addHandles(el){
+
+    [
+        "nw",
+        "ne",
+        "sw",
+        "se"
+    ].forEach(
+        pos => {
+
+            const handle =
+                document.createElement(
+                    "div"
+                );
+
+            handle.className =
+                "resize-handle resize-" +
+                pos;
+
+            handle.dataset.resize =
+                pos;
+
+            el.appendChild(
+                handle
+            );
+
+        }
+    );
+
+
+    const line =
+        document.createElement(
+            "div"
+        );
+
+    line.className =
+        "rotate-line";
+
+    el.appendChild(
+        line
+    );
+
+
+    const rotate =
+        document.createElement(
+            "div"
+        );
+
+    rotate.className =
+        "rotate-handle";
+
+    rotate.dataset.rotate =
+        "true";
+
+    el.appendChild(
+        rotate
+    );
+
+}
+
+
+/* =========================================================
+   OBJECT INTERACTION
+========================================================= */
+
+let selectedObjectId = null;
+
+let interaction = null;
+
+
+function addObjectEvents(
+    el,
+    obj
+){
+
+    el.addEventListener(
+        "pointerdown",
+        event => {
+
+            if(
+                event.target.dataset.resize
+            ){
+
+                startResize(
+                    event,
+                    el,
+                    obj
+                );
+
+                return;
+
+            }
+
+
+            if(
+                event.target.dataset.rotate
+            ){
+
+                startRotate(
+                    event,
+                    el,
+                    obj
+                );
+
+                return;
+
+            }
+
+
+            if(
+                event.target.closest(
+                    "[contenteditable]"
+                )
+            ){
+
+                return;
+
+            }
+
+
+            event.preventDefault();
+
+            selectObject(
+                obj.id
+            );
+
+            startMove(
+                event,
+                el,
+                obj
+            );
+
+        }
+    );
+
+
+    el.addEventListener(
+        "dblclick",
+        () => {
+
+            if(
+                obj.type === "image"
+            ){
+
+                openImageReplace(
+                    obj
+                );
+
+            }
+
+            if(
+                obj.type === "shape"
+            ){
+
+                openShapeEdit(
+                    obj
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+function selectObject(id){
+
+    selectedObjectId =
+        id;
+
+    document
+        .querySelectorAll(
+            ".editor-object"
+        )
+        .forEach(
+            x =>
+                x.classList.remove(
+                    "selected"
+                )
+        );
+
+
+    const el =
+        document.getElementById(
+            id
+        );
+
+    if(el){
+
+        el.classList.add(
+            "selected"
+        );
+
+    }
+
+
+    document.getElementById(
+        "statusSelection"
+    ).textContent =
+        "Object selected";
+
+}
+
+
+/* =========================================================
+   MOVE
+========================================================= */
+
+function startMove(
+    event,
+    el,
+    obj
+){
+
+    const startX =
+        event.clientX;
+
+    const startY =
+        event.clientY;
+
+    const originalX =
+        obj.x;
+
+    const originalY =
+        obj.y;
+
+
+    interaction = {
+
+        type:
+            "move",
+
+        move: (
+
+            e
+        ) => {
+
+            const dx =
+                e.clientX -
+                startX;
+
+            const dy =
+                e.clientY -
+                startY;
+
+
+            obj.x =
+                Math.max(
+                    0,
+                    originalX + dx
+                );
+
+            obj.y =
+                Math.max(
+                    0,
+                    originalY + dy
+                );
+
+
+            applyObjectPosition(
+                el,
+                obj
+            );
+
+        },
+
+        end: () => {
+
+            interaction =
+                null;
+
+            autoSave();
+
+        }
+
+    };
+
+
+    window.addEventListener(
+        "pointermove",
+        interaction.move
+    );
+
+    window.addEventListener(
+        "pointerup",
+        endInteraction,
+        {
+            once:true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function startResize(
+    event,
+    el,
+    obj
+){
+
+    event.preventDefault();
+
+    const corner =
+        event.target.dataset.resize;
+
+    const startX =
+        event.clientX;
+
+    const startY =
+        event.clientY;
+
+    const startWidth =
+        obj.width;
+
+    const startHeight =
+        obj.height;
+
+    const startLeft =
+        obj.x;
+
+    const startTop =
+        obj.y;
+
+
+    interaction = {
+
+        type:
+            "resize",
+
+        move: e => {
+
+            const dx =
+                e.clientX -
+                startX;
+
+            const dy =
+                e.clientY -
+                startY;
+
+
+            let width =
+                startWidth;
+
+            let height =
+                startHeight;
+
+            let left =
+                startLeft;
+
+            let top =
+                startTop;
+
+
+            if(
+                corner.includes("e")
+            ){
+
+                width =
+                    startWidth + dx;
+
+            }
+
+            if(
+                corner.includes("s")
+            ){
+
+                height =
+                    startHeight + dy;
+
+            }
+
+            if(
+                corner.includes("w")
+            ){
+
+                width =
+                    startWidth - dx;
+
+                left =
+                    startLeft + dx;
+
+            }
+
+            if(
+                corner.includes("n")
+            ){
+
+                height =
+                    startHeight - dy;
+
+                top =
+                    startTop + dy;
+
+            }
+
+
+            width =
+                Math.max(
+                    30,
+                    width
+                );
+
+            height =
+                Math.max(
+                    20,
+                    height
+                );
+
+
+            obj.width =
+                width;
+
+            obj.height =
+                height;
+
+            obj.x =
+                Math.max(
+                    0,
+                    left
+                );
+
+            obj.y =
+                Math.max(
+                    0,
+                    top
+                );
+
+
+            applyObjectPosition(
+                el,
+                obj
+            );
+
+        },
+
+        end: () => {
+
+            interaction =
+                null;
+
+            autoSave();
+
+        }
+
+    };
+
+
+    window.addEventListener(
+        "pointermove",
+        interaction.move
+    );
+
+    window.addEventListener(
+        "pointerup",
+        endInteraction,
+        {
+            once:true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ROTATE
+========================================================= */
+
+function startRotate(
+    event,
+    el,
+    obj
+){
+
+    event.preventDefault();
+
+    const rect =
+        el.getBoundingClientRect();
+
+    const centerX =
+        rect.left +
+        rect.width / 2;
+
+    const centerY =
+        rect.top +
+        rect.height / 2;
+
+
+    interaction = {
+
+        type:
+            "rotate",
+
+        move: e => {
+
+            const angle =
+                Math.atan2(
+                    e.clientY -
+                    centerY,
+                    e.clientX -
+                    centerX
+                ) *
+                180 /
+                Math.PI;
+
+
+            obj.rotation =
+                angle + 90;
+
+
+            applyObjectPosition(
+                el,
+                obj
+            );
+
+        },
+
+        end: () => {
+
+            interaction =
+                null;
+
+            autoSave();
+
+        }
+
+    };
+
+
+    window.addEventListener(
+        "pointermove",
+        interaction.move
+    );
+
+    window.addEventListener(
+        "pointerup",
+        endInteraction,
+        {
+            once:true
+        }
+    );
+
+}
+
+
+function endInteraction(){
+
+    if(
+        interaction &&
+        interaction.move
+    ){
+
+        window.removeEventListener(
+            "pointermove",
+            interaction.move
+        );
+
+    }
+
+    if(
+        interaction &&
+        interaction.end
+    ){
+
+        interaction.end();
+
+    }
+
+}
+
+
+/* =========================================================
+   APPLY POSITION
+========================================================= */
+
+function applyObjectPosition(
+    el,
+    obj
+){
+
+    el.style.left =
+        obj.x + "px";
+
+    el.style.top =
+        obj.y + "px";
+
+    el.style.width =
+        obj.width + "px";
+
+    el.style.height =
+        obj.height + "px";
+
+    el.style.transform =
+        `rotate(${obj.rotation || 0}deg)`;
+
+}
+
+
+/* =========================================================
+   KEYBOARD OBJECT CONTROLS
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            !selectedObjectId
+        )
+            return;
+
+        const obj =
+            currentNote.objects.find(
+                o =>
+                    o.id ===
+                    selectedObjectId
+            );
+
+        if(!obj)
+            return;
+
+
+        const tag =
+            document.activeElement?.tagName;
+
+
+        if(
+            tag === "INPUT" ||
+            tag === "TEXTAREA" ||
+            document.activeElement?.isContentEditable
+        ){
+
+            return;
+
+        }
+
+
+        const step =
+            event.shiftKey
+                ? 10
+                : 2;
+
+
+        let changed =
+            false;
+
+
+        if(event.key === "ArrowLeft"){
+
+            obj.x =
+                Math.max(
+                    0,
+                    obj.x - step
+                );
+
+            changed = true;
+
+        }
+
+        if(event.key === "ArrowRight"){
+
+            obj.x += step;
+
+            changed = true;
+
+        }
+
+        if(event.key === "ArrowUp"){
+
+            obj.y =
+                Math.max(
+                    0,
+                    obj.y - step
+                );
+
+            changed = true;
+
+        }
+
+        if(event.key === "ArrowDown"){
+
+            obj.y += step;
+
+            changed = true;
+
+        }
+
+
+        if(event.key === "Delete"){
+
+            deleteSelectedObject();
+
+            event.preventDefault();
+
+            return;
+
+        }
+
+
+        if(changed){
+
+            event.preventDefault();
+
+            const el =
+                document.getElementById(
+                    obj.id
+                );
+
+            if(el){
+
+                applyObjectPosition(
+                    el,
+                    obj
+                );
+
+            }
+
+            autoSave();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   COPY / DUPLICATE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            !selectedObjectId
+        )
+            return;
+
+
+        if(
+            (event.ctrlKey ||
+             event.metaKey) &&
+            event.key.toLowerCase() === "d"
+        ){
+
+            const obj =
+                currentNote.objects.find(
+                    o =>
+                        o.id ===
+                        selectedObjectId
+                );
+
+            if(!obj)
+                return;
+
+
+            const copy =
+                JSON.parse(
+                    JSON.stringify(obj)
+                );
+
+            copy.id =
+                generateId(
+                    obj.type
+                );
+
+            copy.x += 25;
+            copy.y += 25;
+
+
+            currentNote.objects.push(
+                copy
+            );
+
+            renderObject(
+                copy
+            );
+
+            selectObject(
+                copy.id
+            );
+
+            autoSave();
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DELETE OBJECT
+========================================================= */
+
+function deleteSelectedObject(){
+
+    if(
+        !selectedObjectId
+    )
+        return;
+
+
+    currentNote.objects =
+        currentNote.objects.filter(
+            o =>
+                o.id !==
+                selectedObjectId
+        );
+
+
+    const el =
+        document.getElementById(
+            selectedObjectId
+        );
+
+    if(el)
+        el.remove();
+
+
+    selectedObjectId =
+        null;
+
+
+    document.getElementById(
+        "statusSelection"
+    ).textContent =
+        "No object selected";
+
+
+    updateStats();
+
+    autoSave();
+
+}
+
+
+/* =========================================================
+   CLICK EMPTY CANVAS
+========================================================= */
+
+page.addEventListener(
+    "pointerdown",
+    event => {
+
+        if(
+            event.target === page ||
+            event.target === objectLayer
+        ){
+
+            document
+                .querySelectorAll(
+                    ".editor-object"
+                )
+                .forEach(
+                    el =>
+                        el.classList.remove(
+                            "selected"
+                        )
+                );
+
+            selectedObjectId =
+                null;
+
+            document.getElementById(
+                "statusSelection"
+            ).textContent =
+                "No object selected";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD OBJECTS
+========================================================= */
+
+function loadObjects(){
+
+    objectLayer.innerHTML =
+        "";
+
+    const objects =
+        Array.isArray(
+            currentNote.objects
+        )
+        ? currentNote.objects
+        : [];
+
+
+    objects.forEach(
+        obj =>
+            renderObject(
+                obj
+            )
+    );
+
+}
+
+
+loadObjects();
+
+
+/* =========================================================
+   GET OBJECTS
+========================================================= */
+
+function getObjectsFromDOM(){
+
+    return currentNote.objects || [];
+
+}
+
+
+/* =========================================================
+   OBJECT LAYER
+========================================================= */
+
+function openImageReplace(obj){
+
+    openModal(
+        "Replace Image",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                New Image
+            </label>
+
+            <input
+                class="form-input"
+                id="replaceImage"
+                type="file"
+                accept="image/*"
+                style="padding:9px;"
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="replaceImageBtn"
+            >
+                Replace
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "replaceImageBtn"
+        )
+        .onclick =
+        () => {
+
+            const file =
+                document
+                    .getElementById(
+                        "replaceImage"
+                    )
+                    .files[0];
+
+            if(!file)
+                return;
+
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                e => {
+
+                    obj.src =
+                        e.target.result;
+
+                    renderObject(
+                        obj
+                    );
+
+                    selectObject(
+                        obj.id
+                    );
+
+                    closeModal();
+
+                    autoSave();
+
+                };
+
+            reader.readAsDataURL(
+                file
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   EDIT SHAPE
+========================================================= */
+
+function openShapeEdit(obj){
+
+    openModal(
+        "Edit Shape",
+        `
+        <div class="form-group">
+
+            <label class="form-label">
+                Color
+            </label>
+
+            <input
+                class="form-input"
+                id="editShapeColor"
+                type="color"
+                value="${obj.color || "#6366f1"}"
+                style="padding:4px;"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Text
+            </label>
+
+            <input
+                class="form-input"
+                id="editShapeText"
+                value="${escapeHTML(
+                    obj.text || ""
+                )}"
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn primary"
+                id="saveShape"
+            >
+                Save Changes
+            </button>
+
+        </div>
+        `
+    );
+
+
+    document
+        .getElementById(
+            "saveShape"
+        )
+        .onclick =
+        () => {
+
+            obj.color =
+                document
+                    .getElementById(
+                        "editShapeColor"
+                    ).value;
+
+            obj.text =
+                document
+                    .getElementById(
+                        "editShapeText"
+                    ).value;
+
+
+            renderObject(
+                obj
+            );
+
+            selectObject(
+                obj.id
+            );
+
+            closeModal();
+
+            autoSave();
+
+        };
+
+}
+
+
+/* =========================================================
+   STUDY SIDEBAR BUTTONS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".study-tool"
+    )
+    .forEach(
+        btn => {
+
+            btn.addEventListener(
+                "click",
+                () => {
+
+                    openStudyDialog();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+document
+    .getElementById(
+        "sidebarToggle"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle(
+                "collapsed"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "sidebarClose"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.add(
+                "collapsed"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   FULLSCREEN / DISTRACTION
+========================================================= */
+
+document
+    .getElementById(
+        "fullscreenBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.toggle(
+                "distraction"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "saveBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            saveNote();
+
+            showToast(
+                "Note saved successfully."
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   IMPORTANT
+========================================================= */
+
+document
+    .getElementById(
+        "importantBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            currentNote.important =
+                !currentNote.important;
+
+
+            document.getElementById(
+                "importantBtn"
+            ).textContent =
+                currentNote.important
+                ? "★"
+                : "☆";
+
+
+            autoSave();
+
+        }
+    );
+
+
+if(currentNote.important){
+
+    document.getElementById(
+        "importantBtn"
+    ).textContent =
+        "★";
+
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+document
+    .getElementById(
+        "pinBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            currentNote.pinned =
+                !currentNote.pinned;
+
+
+            autoSave();
+
+
+            showToast(
+                currentNote.pinned
+                ? "Note pinned 📌"
+                : "Note unpinned."
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   NOTE NAME
+========================================================= */
+
+noteName.addEventListener(
+    "input",
+    autoSave
+);
+
+
+/* =========================================================
+   EDITOR EVENTS
+========================================================= */
+
+editor.addEventListener(
+    "input",
+    () => {
+
+        autoSave();
+
+        updateStats();
+
+        updateOutline();
+
+    }
+);
+
+
+editor.addEventListener(
+    "keyup",
+    updateToolbarState
+);
+
+
+/* =========================================================
+   UNDO / REDO
+========================================================= */
+
+function undo(){
+
+    editor.focus();
+
+    document.execCommand(
+        "undo"
+    );
+
+    autoSave();
+
+}
+
+
+function redo(){
+
+    editor.focus();
+
+    document.execCommand(
+        "redo"
+    );
+
+    autoSave();
+
+}
+
+
+document
+    .getElementById(
+        "undoBtn"
+    )
+    .addEventListener(
+        "click",
+        undo
+    );
+
+document
+    .getElementById(
+        "redoBtn"
+    )
+    .addEventListener(
+        "click",
+        redo
+    );
+
+document
+    .getElementById(
+        "tbUndo"
+    )
+    .addEventListener(
+        "click",
+        undo
+    );
+
+document
+    .getElementById(
+        "tbRedo"
+    )
+    .addEventListener(
+        "click",
+        redo
+    );
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const key =
+            event.key.toLowerCase();
+
+
+        if(
+            event.ctrlKey ||
+            event.metaKey
+        ){
+
+            if(key === "s"){
+
+                event.preventDefault();
+
+                saveNote();
+
+                showToast(
+                    "Saved ✓"
+                );
+
+            }
+
+
+            if(key === "b"){
+
+                event.preventDefault();
+
+                command(
+                    "bold"
+                );
+
+            }
+
+
+            if(key === "i"){
+
+                event.preventDefault();
+
+                command(
+                    "italic"
+                );
+
+            }
+
+
+            if(key === "u"){
+
+                event.preventDefault();
+
+                command(
+                    "underline"
+                );
+
+            }
+
+
+            if(key === "k"){
+
+                event.preventDefault();
+
+                document
+                    .getElementById(
+                        "linkBtn"
+                    )
+                    .click();
+
+            }
+
+
+            if(key === "f"){
+
+                event.preventDefault();
+
+                toggleFind();
+
+            }
+
+
+            if(key === "z"){
+
+                event.preventDefault();
+
+                undo();
+
+            }
+
+
+            if(
+                key === "y"
+            ){
+
+                event.preventDefault();
+
+                redo();
+
+            }
+
+        }
+
+
+        if(
+            key === "escape"
+        ){
+
+            insertMenu.classList.remove(
+                "show"
+            );
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FIND
+========================================================= */
+
+const findbar =
+    document.getElementById(
+        "findbar"
+    );
+
+
+function toggleFind(){
+
+    findbar.classList.toggle(
+        "show"
+    );
+
+    if(
+        findbar.classList.contains(
+            "show"
+        )
+    ){
+
+        document
+            .getElementById(
+                "findInput"
+            )
+            .focus();
+
+    }
+
+}
+
+
+document
+    .getElementById(
+        "findBtn"
+    )
+    .addEventListener(
+        "click",
+        toggleFind
+    );
+
+
+document
+    .getElementById(
+        "closeFind"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            findbar.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "findNext"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            const value =
+                document
+                    .getElementById(
+                        "findInput"
+                    )
+                    .value
+                    .trim();
+
+            if(!value)
+                return;
+
+
+            editor.focus();
+
+            window.find(
+                value
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "replaceAll"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            const find =
+                document
+                    .getElementById(
+                        "findInput"
+                    )
+                    .value;
+
+            const replace =
+                document
+                    .getElementById(
+                        "replaceInput"
+                    )
+                    .value;
+
+
+            if(!find)
+                return;
+
+
+            const walker =
+                document.createTreeWalker(
+                    editor,
+                    NodeFilter.SHOW_TEXT
+                );
+
+
+            const nodes = [];
+
+            while(
+                walker.nextNode()
+            ){
+
+                nodes.push(
+                    walker.currentNode
+                );
+
+            }
+
+
+            nodes.forEach(
+                node => {
+
+                    node.nodeValue =
+                        node.nodeValue.replaceAll(
+                            find,
+                            replace
+                        );
+
+                }
+            );
+
+
+            autoSave();
+
+            updateStats();
+
+            showToast(
+                "Replace completed."
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+let zoom =
+    1;
+
+
+function setZoom(value){
+
+    zoom =
+        Math.max(
+            .65,
+            Math.min(
+                1.5,
+                value
+            )
+        );
+
+
+    page.style.transform =
+        `scale(${zoom})`;
+
+
+    document.getElementById(
+        "zoomValue"
+    ).textContent =
+        Math.round(
+            zoom * 100
+        ) + "%";
+
+}
+
+
+document
+    .getElementById(
+        "zoomIn"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            setZoom(
+                zoom + .1
+            )
+    );
+
+
+document
+    .getElementById(
+        "zoomOut"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            setZoom(
+                zoom - .1
+            )
+    );
+
+
+document
+    .getElementById(
+        "zoomReset"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            setZoom(1)
+    );
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+document
+    .getElementById(
+        "printBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            saveNote();
+
+            window.print();
+
+        }
+    );
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function getPlainText(){
+
+    return editor.innerText
+        .replace(
+            /\s+/g,
+            " "
+        )
+        .trim();
+
+}
+
+
+function countWords(text){
+
+    if(!text)
+        return 0;
+
+    return text
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
+
+}
+
+
+function updateStats(){
+
+    const text =
+        getPlainText();
+
+    const words =
+        countWords(
+            text
+        );
+
+    const chars =
+        text.length;
+
+    const objects =
+        currentNote.objects.length;
+
+
+    document.getElementById(
+        "statusWords"
+    ).textContent =
+        words + " words";
+
+
+    document.getElementById(
+        "sidebarWords"
+    ).textContent =
+        words.toLocaleString(
+            "en-IN"
+        );
+
+
+    document.getElementById(
+        "sidebarChars"
+    ).textContent =
+        chars.toLocaleString(
+            "en-IN"
+        );
+
+
+    document.getElementById(
+        "sidebarObjects"
+    ).textContent =
+        objects;
+
+
+}
+
+
+updateStats();
+
+
+/* =========================================================
+   OUTLINE
+========================================================= */
+
+function updateOutline(){
+
+    const outline =
+        document.getElementById(
+            "outline"
+        );
+
+
+    const headings =
+        editor.querySelectorAll(
+            "h1,h2,h3"
+        );
+
+
+    if(!headings.length){
+
+        outline.innerHTML =
+            `
+            <div
+                class="outline-item"
+                style="color:#64748b;"
+            >
+                Add H1, H2 or H3 headings
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    outline.innerHTML =
+        Array.from(
+            headings
+        )
+        .map(
+            (heading,index) => {
+
+                heading.id =
+                    heading.id ||
+                    "heading_" +
+                    index;
+
+                return `
+                <div
+                    class="
+                        outline-item
+                        ${heading.tagName.toLowerCase()}
+                    "
+                    data-target="${heading.id}"
+                >
+                    ${escapeHTML(
+                        heading.innerText ||
+                        "Untitled heading"
+                    )}
+                </div>
+                `;
+
+            }
+        )
+        .join("");
+
+
+    outline
+        .querySelectorAll(
+            "[data-target]"
+        )
+        .forEach(
+            item => {
+
+                item.addEventListener(
+                    "click",
+                    () => {
+
+                        const target =
+                            document.getElementById(
+                                item.dataset.target
+                            );
+
+                        if(target){
+
+                            target.scrollIntoView({
+                                behavior:"smooth",
+                                block:"center"
+                            });
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+updateOutline();
+
+
+/* =========================================================
+   TOOLBAR STATE
+========================================================= */
+
+function updateToolbarState(){
+
+    document
+        .querySelectorAll(
+            "[data-command]"
+        )
+        .forEach(
+            btn => {
+
+                try{
+
+                    btn.classList.toggle(
+                        "active",
+                        document.queryCommandState(
+                            btn.dataset.command
+                        )
+                    );
+
+                }catch{}
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(
+    title,
+    html
+){
+
+    modalTitle.textContent =
+        title;
+
+    modalBody.innerHTML =
+        html;
+
+    modalOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeModal(){
+
+    modalOverlay.classList.remove(
+        "show"
+    );
+
+    modalBody.innerHTML =
+        "";
+
+}
+
+
+document
+    .getElementById(
+        "modalClose"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+modalOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            modalOverlay
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL SAVE
+========================================================= */
+
+saveCurrentUser();
+
+setSaveState(
+    "saved"
+);
+
+
+/* =========================================================
+   AUTO SAVE BEFORE LEAVING
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        saveNote();
+
+    }
+);
+
+
+/* =========================================================
+   MOBILE SIDEBAR INITIAL STATE
+========================================================= */
+
+if(
+    window.innerWidth <= 700
+){
+
+    sidebar.classList.add(
+        "collapsed"
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL OUTLINE / STATS
+========================================================= */
+
+updateStats();
+updateOutline();
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+if(
+    !currentNote.content &&
+    currentNote.objects.length === 0
+){
+
+    editor.innerHTML =
+        `
+        <h1>
+            ${escapeHTML(
+                currentNote.title
+            )}
+        </h1>
+
+        <p>
+            Start creating your NIMCET study notes here.
+            You can add formulas, concepts, images,
+            shapes, tables and study blocks.
+        </p>
+
+        <h2>
+            Quick Study Notes
+        </h2>
+
+        <p>
+            Use the toolbar above to format your notes.
+            Insert images and shapes from
+            <b>＋ Insert</b>.
+        </p>
+        `;
+
+    autoSave();
+
+}
+
+</script>
+
+</body>
+</html>
