@@ -2663,10 +2663,36 @@ function getUsers(){
 
 function saveUsers(users){
 
-    localStorage.setItem(
-        USERS_KEY,
-        JSON.stringify(users)
-    );
+    try{
+        const data = JSON.stringify(users);
+
+        localStorage.setItem(
+            USERS_KEY,
+            data
+        );
+
+        // Verify that the browser actually stored the data.
+        const check = localStorage.getItem(USERS_KEY);
+        if(check !== data){
+            throw new Error("LocalStorage verification failed");
+        }
+
+        return true;
+
+    }catch(error){
+
+        console.error("NIMCET PrepPro: data save failed", error);
+
+        // Keep the current data in memory even if browser storage is full.
+        try{
+            sessionStorage.setItem(
+                USERS_KEY,
+                JSON.stringify(users)
+            );
+        }catch(e){}
+
+        return false;
+    }
 }
 
 
@@ -2886,32 +2912,55 @@ function saveCurrentUser(){
             u => u.id === user.id
         );
 
-    if(index !== -1){
-        users[index] = user;
+    if(index === -1){
+        console.warn("NIMCET PrepPro: current user not found while saving");
+        setSaveState("error");
+        return false;
     }
 
-    saveUsers(users);
+    // Replace the user object in the users array so every change
+    // made to notes is persisted with the logged-in account.
+    users[index] = user;
+
+    return saveUsers(users);
 }
 
 
 function saveNote(){
 
-    currentNote.title =
-        noteName.value.trim() ||
-        "Untitled Note";
+    try{
+        if(!currentNote || !user){
+            throw new Error("Current note/user is missing");
+        }
 
-    currentNote.content =
-        editor.innerHTML;
+        currentNote.title =
+            noteName.value.trim() ||
+            "Untitled Note";
 
-    currentNote.objects =
-        getObjectsFromDOM();
+        currentNote.content =
+            editor.innerHTML;
 
-    currentNote.updatedAt =
-        new Date().toISOString();
+        currentNote.objects =
+            getObjectsFromDOM();
 
-    saveCurrentUser();
+        currentNote.updatedAt =
+            new Date().toISOString();
 
-    setSaveState("saved");
+        const saved = saveCurrentUser();
+
+        if(saved){
+            setSaveState("saved");
+            return true;
+        }
+
+        throw new Error("User data could not be stored");
+
+    }catch(error){
+
+        console.error("NIMCET PrepPro: note save failed", error);
+        setSaveState("error");
+        return false;
+    }
 }
 
 
@@ -2938,6 +2987,9 @@ function setSaveState(state){
     if(state === "saving"){
         saveText.textContent =
             "Saving...";
+    }else if(state === "error"){
+        saveText.textContent =
+            "Save failed";
     }else{
         saveText.textContent =
             "Saved";
